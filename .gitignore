@@ -1,0 +1,11 @@
+### Java template
+*.class
+*.iml
+
+# Folders #
+.idea/
+
+# Package Files #
+*.jar
+*.war
+*.ear
