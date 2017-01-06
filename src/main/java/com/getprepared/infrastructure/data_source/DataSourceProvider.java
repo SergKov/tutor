@@ -1,4 +1,4 @@
-package com.getprepared.infrastructure.db;
+package com.getprepared.infrastructure.data_source;
 
 import javax.sql.DataSource;
 

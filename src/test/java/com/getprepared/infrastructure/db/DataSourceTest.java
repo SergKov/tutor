@@ -1,7 +1,7 @@
 package com.getprepared.infrastructure.db;
 
-import com.getprepared.infrastructure.db.DataSourceProvider;
-import com.getprepared.infrastructure.db.impl.MySqlDataSourceProvider;
+import com.getprepared.infrastructure.data_source.DataSourceProvider;
+import com.getprepared.infrastructure.data_source.impl.MySqlDataSourceProvider;
 import org.junit.Before;
 import org.junit.Test;
 

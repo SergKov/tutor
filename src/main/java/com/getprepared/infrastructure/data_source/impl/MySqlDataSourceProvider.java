@@ -1,6 +1,6 @@
-package com.getprepared.infrastructure.db.impl;
+package com.getprepared.infrastructure.data_source.impl;
 
-import com.getprepared.infrastructure.db.DataSourceProvider;
+import com.getprepared.infrastructure.data_source.DataSourceProvider;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import javax.sql.DataSource;
@@ -15,6 +15,8 @@ public class MySqlDataSourceProvider implements DataSourceProvider {
     public static DataSourceProvider getInstance() {
         return instance;
     }
+
+    private MySqlDataSourceProvider() { }
 
     public DataSource getDataSource() {
         final MysqlDataSource ds = new MysqlDataSource();

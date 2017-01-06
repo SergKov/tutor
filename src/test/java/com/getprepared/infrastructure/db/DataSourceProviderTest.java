@@ -1,11 +1,9 @@
 package com.getprepared.infrastructure.db;
 
-import com.getprepared.infrastructure.db.DataSourceProvider;
-import com.getprepared.infrastructure.db.impl.MySqlDataSourceProvider;
-import org.junit.Assert;
+import com.getprepared.infrastructure.data_source.DataSourceProvider;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by koval on 05.01.2017.

@@ -1,6 +1,6 @@
-package com.getprepared.infrastructure.db.impl;
+package com.getprepared.infrastructure.data_source.impl;
 
-import com.getprepared.infrastructure.db.DataSourceProvider;
+import com.getprepared.infrastructure.data_source.DataSourceProvider;
 import org.apache.log4j.Logger;
 
 import javax.naming.InitialContext;
@@ -19,6 +19,8 @@ public class ContextDataSourceProvider implements DataSourceProvider {
     public static ContextDataSourceProvider getInstance() {
         return instance;
     }
+
+    private ContextDataSourceProvider() { }
 
     public DataSource getDataSource() {
         try {
