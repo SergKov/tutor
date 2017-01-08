@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * Created by koval on 02.01.2017.
  */
-public class User extends AbstractDTO {
+public class User extends Entity {
 
-    private final Role role;
+    private Role role;
     private String email;
     private String password;
     private String name;
     private String surname;
-    private List<ResultDTO> results;
+    private List<Result> results;
 
     public User(Long id, Role role, String email, String password, String name, String surname) {
         super(id);
@@ -25,6 +25,10 @@ public class User extends AbstractDTO {
 
     public Role getRole() {
         return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getEmail() {
@@ -59,11 +63,11 @@ public class User extends AbstractDTO {
         this.surname = surname;
     }
 
-    public List<ResultDTO> getResults() {
+    public List<Result> getResults() {
         return results;
     }
 
-    public void setResults(List<ResultDTO> results) {
+    public void setResults(List<Result> results) {
         this.results = results;
     }
 }

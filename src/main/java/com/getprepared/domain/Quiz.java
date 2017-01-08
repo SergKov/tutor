@@ -5,11 +5,12 @@ import java.time.LocalTime;
 /**
  * Created by koval on 31.12.2016.
  */
-public class Quiz extends AbstractDTO {
+public class Quiz extends Entity {
 
     public static final String NAME_KEY = "name";
+    public static final String TIME_KEY = "time";
 
-    private final String name;
+    private String name;
     private LocalTime time;
 
     public Quiz(Long id, String name, LocalTime time) {
@@ -20,6 +21,10 @@ public class Quiz extends AbstractDTO {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalTime getTime() {

@@ -3,17 +3,23 @@ package com.getprepared.domain;
 /**
  * Created by koval on 31.12.2016.
  */
-public abstract class AbstractDTO {
+public abstract class Entity {
 
     public static final String ID_KEY = "id";
 
-    private final Long id;
+    private Long id;
 
-    public AbstractDTO(Long id) {
+    public Entity() { }
+
+    public Entity(Long id) {
         this.id = id;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
