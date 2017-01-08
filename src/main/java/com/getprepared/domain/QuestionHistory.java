@@ -5,9 +5,15 @@ package com.getprepared.domain;
  */
 public class QuestionHistory extends Entity {
 
+    public static final String RESULT_ID_KEY = "result_id";
+    public static final String TEXT_KEY = "text";
+    public static final String TYPE_KEY = "type";
+
     private Result result;
     private String text;
     private AnswerType type;
+
+    public QuestionHistory() { }
 
     public QuestionHistory(Long id, Result result, String text, AnswerType type) {
         super(id);

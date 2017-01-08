@@ -1,6 +1,7 @@
 package com.getprepared.dao;
 
-import com.getprepared.domain.ResultDTO;
+import com.getprepared.domain.Result;
+import com.getprepared.exception.EntityNotFoundException;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface ResultDao {
 
-    void save(ResultDTO result);
+    void save(Result result);
 
-    ResultDTO findById(Long id);
+    Result findById(Long id) throws EntityNotFoundException;
 
-    List<ResultDTO> findByUserEmail(String email);
+    List<Result> findByUserEmail(String email);
 }

@@ -25,7 +25,7 @@ public class PropertyConstants {
 
         public static final String RESULT = PREFIX + "result" + SUFFIX;
 
-        public static final String HISTORY_QUESTION = PREFIX + "history_question" + SUFFIX;
+        public static final String QUESTION_HISTORY = PREFIX + "question_history" + SUFFIX;
 
         public static final String CHOSEN_ANSWER = PREFIX + "chosen_answer" + SUFFIX;
     }
@@ -43,8 +43,6 @@ public class PropertyConstants {
         public static final String CREATE_NEW_QUIZ = "createNewQuiz";
 
         public static final String UPDATE = "update";
-
-        public static final String FIND_BY_USER_EMAIL = "findByUserEmail";
 
         public static final String FIND_ALL = "findAll";
 

@@ -1,6 +1,7 @@
 package com.getprepared.dao;
 
 import com.getprepared.domain.Quiz;
+import com.getprepared.exception.EntityNotFoundException;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -12,7 +13,7 @@ public interface QuizDao {
 
     void save(Quiz quiz);
 
-    Quiz findById(Long id);
+    Quiz findById(Long id) throws EntityNotFoundException;
 
     List<Quiz> findByUserEmail(String email);
 
@@ -20,5 +21,5 @@ public interface QuizDao {
 
     void updateTime(LocalTime time);
 
-    void remove(Long id);
+    void removeById(Long id);
 }

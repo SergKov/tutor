@@ -13,6 +13,8 @@ public class Quiz extends Entity {
     private String name;
     private LocalTime time;
 
+    public Quiz() { }
+
     public Quiz(Long id, String name, LocalTime time) {
         super(id);
         this.name = name;

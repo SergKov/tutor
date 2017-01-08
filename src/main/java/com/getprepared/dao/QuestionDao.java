@@ -2,6 +2,7 @@ package com.getprepared.dao;
 
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
+import com.getprepared.exception.EntityNotFoundException;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface QuestionDao {
 
     void save(Question question);
 
-    Question findById(Long id);
+    Question findById(Long id) throws EntityNotFoundException;
 
     List<Question> createNewQuiz(Long quizId);
 
@@ -20,7 +21,7 @@ public interface QuestionDao {
 
     void update(Question question);
 
-    void removeById(Long id);
+    void removeById(Long id) throws EntityNotFoundException;
 
     void removeByQuizId(Long quizId);
 }

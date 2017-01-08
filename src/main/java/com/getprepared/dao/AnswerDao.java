@@ -1,6 +1,7 @@
 package com.getprepared.dao;
 
-import com.getprepared.domain.AnswerDTO;
+import com.getprepared.domain.Answer;
+import com.getprepared.exception.EntityNotFoundException;
 
 import java.util.List;
 
@@ -9,13 +10,13 @@ import java.util.List;
  */
 public interface AnswerDao {
 
-    void save(AnswerDTO answer);
+    void save(Answer answer);
 
-    AnswerDTO findById(Long id);
+    Answer findById(Long id) throws EntityNotFoundException;
 
-    List<AnswerDTO> findByQuestionId(Long questionId);
+    List<Answer> findByQuestionId(Long questionId);
 
-    void removeById(Long id);
+    void removeById(Long id) throws EntityNotFoundException;
 
-    void removeByQuestionId(Long questionId);
+    void removeByQuestionId(Long questionId) throws EntityNotFoundException;
 }

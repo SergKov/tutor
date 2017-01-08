@@ -1,6 +1,6 @@
 package com.getprepared.dao;
 
-import com.getprepared.domain.QuestionHistoryDTO;
+import com.getprepared.domain.QuestionHistory;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface QuestionHistoryDao {
 
-    void save(QuestionHistoryDTO question);
+    void save(QuestionHistory question);
 
-    List<QuestionHistoryDTO> findByResultId(Long resultId);
+    List<QuestionHistory> findByResultId(Long resultId);
 }

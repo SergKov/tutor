@@ -7,12 +7,20 @@ import java.util.List;
  */
 public class User extends Entity {
 
+    public static final String ROLE_KEY = "role";
+    public static final String EMAIL_KEY = "email";
+    public static final String PASSWORD_KEY = "password";
+    public static final String NAME_KEY = "name";
+    public static final String SURNAME_KEY = "surname";
+
     private Role role;
     private String email;
     private String password;
     private String name;
     private String surname;
     private List<Result> results;
+
+    public User() { }
 
     public User(Long id, Role role, String email, String password, String name, String surname) {
         super(id);

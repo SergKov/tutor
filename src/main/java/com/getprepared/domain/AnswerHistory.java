@@ -5,6 +5,9 @@ package com.getprepared.domain;
  */
 public class AnswerHistory extends Entity {
 
+    public static final String QUESTION_ID_KEY = "question_id";
+    public static final String TEXT_KEY = "text";
+
     private QuestionHistory question;
     private String text;
 
