@@ -16,7 +16,7 @@ public class MySqlDataSourceProvider implements DataSourceProvider {
         return instance;
     }
 
-    private MySqlDataSourceProvider() { }
+    public MySqlDataSourceProvider() { }
 
     public DataSource getDataSource() {
         final MysqlDataSource ds = new MysqlDataSource();
