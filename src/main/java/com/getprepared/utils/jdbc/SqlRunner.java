@@ -1,4 +1,4 @@
-package com.getprepared.utils;
+package com.getprepared.utils.jdbc;
 
 import com.getprepared.exception.DataAccessException;
 import org.apache.log4j.Logger;
@@ -9,13 +9,13 @@ import java.sql.SQLException;
  * Created by koval on 08.01.2017.
  */
 @FunctionalInterface
-public interface SqlRunnable<E> {
+public interface SqlRunner<E> {
 
-    Logger LOG = Logger.getLogger(SqlRunnable.class);
+    Logger LOG = Logger.getLogger(SqlRunner.class);
 
     void run() throws SQLException;
 
-    static <E> void run(final SqlRunnable<E> runnable, final String errorMsg) {
+    static <E> void run(final SqlRunner<E> runnable, final String errorMsg) {
         try {
             runnable.run();
         } catch (final SQLException e) {

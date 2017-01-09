@@ -1,10 +1,10 @@
-package com.getprepared.utils;
+package com.getprepared.utils.jdbc.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import static com.getprepared.utils.SqlCallable.call;
-import static com.getprepared.utils.SqlRunnable.run;
+import static com.getprepared.utils.jdbc.SqlCallback.call;
+import static com.getprepared.utils.jdbc.SqlRunner.run;
 
 /**
  * Created by koval on 05.01.2017.

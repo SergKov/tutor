@@ -1,10 +1,10 @@
 package com.getprepared.utils;
 
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -22,12 +22,13 @@ public class PropertyUtils {
 
     private PropertyUtils() { }
 
-    public static String getQuery(final String fileName, final String key) {
+    public String getQuery(final String fileName, final String key) {
 
         final Properties prop = new Properties();
 
         try {
-            prop.load(new FileInputStream(fileName));
+            final InputStream is = this.getClass().getResourceAsStream(fileName);
+            prop.load(is);
             return String.valueOf(prop.get(key));
         } catch (final IOException e) {
             LOG.warn(String.format("Failed to load file %s", fileName), e);

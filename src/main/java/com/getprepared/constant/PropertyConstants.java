@@ -11,7 +11,7 @@ public class PropertyConstants {
 
         private FILES_NAMES() { }
 
-        private static final String PREFIX = "resources.sql.";
+        private static final String PREFIX = "/sql/";
 
         private static final String SUFFIX = ".properties";
 
@@ -42,8 +42,6 @@ public class PropertyConstants {
 
         public static final String CREATE_NEW_QUIZ = "createNewQuiz";
 
-        public static final String UPDATE = "update";
-
         public static final String FIND_ALL = "findAll";
 
         public static final String UPDATE_TIME = "updateTime";
@@ -53,6 +51,8 @@ public class PropertyConstants {
         public static final String FIND_BY_EMAIL = "findByEmail";
 
         public static final String FIND_BY_QUIZ_ID = "findByQuizId";
+
+        public static final String FIND_BY_USER_ID = "findByUserId";
 
         public static final String UPDATE_CREDENTIALS = "updateCredentials";
 
