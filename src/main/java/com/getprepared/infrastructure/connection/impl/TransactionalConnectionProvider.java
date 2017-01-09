@@ -1,33 +1,23 @@
 package com.getprepared.infrastructure.connection.impl;
 
 import com.getprepared.infrastructure.connection.ConnectionProvider;
-import com.getprepared.utils.ConnectionUtils;
-import com.getprepared.utils.DataSourceUtils;
-import com.mysql.cj.jdbc.MysqlDataSource;
+import com.getprepared.utils.jdbc.utils.ConnectionUtils;
+import com.getprepared.utils.jdbc.utils.DataSourceUtils;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 
 /**
  * Created by koval on 06.01.2017.
  */
-public class TransactionalConnectionProvider implements ConnectionProvider {
+public class TransactionalConnectionProvider extends ConnectionProvider {
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
-    private DataSource ds; //TODO
-
-    public TransactionalConnectionProvider() {
-        this.ds = new MysqlDataSource();
-    }
-
-    public TransactionalConnectionProvider(DataSource dataSource) {
-        this.ds = dataSource;
-    }
+    public TransactionalConnectionProvider() { }
 
     public void begin() {
         if (isNew()) {
-            final Connection con = DataSourceUtils.getConnection(ds);
+            final Connection con = DataSourceUtils.getConnection(dataSource);
             threadLocal.set(con);
         }
     }
@@ -52,20 +42,11 @@ public class TransactionalConnectionProvider implements ConnectionProvider {
     public Connection getConnection() {
 
         if (threadLocal.get() == null) {
-            final Connection con = DataSourceUtils.getConnection(ds);
+            final Connection con = DataSourceUtils.getConnection(dataSource);
             threadLocal.set(con);
             return con;
         }
 
         return threadLocal.get();
-    }
-
-
-    public DataSource getDataSource() {
-        return ds;
-    }
-
-    public void setDataSource(DataSource ds) {
-        this.ds = ds;
     }
 }
