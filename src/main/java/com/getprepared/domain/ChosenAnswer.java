@@ -3,7 +3,7 @@ package com.getprepared.domain;
 /**
  * Created by koval on 02.01.2017.
  */
-public class AnswerHistory extends Entity {
+public class ChosenAnswer extends Entity {
 
     public static final String QUESTION_ID_KEY = "question_id";
     public static final String TEXT_KEY = "text";
@@ -11,10 +11,9 @@ public class AnswerHistory extends Entity {
     private QuestionHistory question;
     private String text;
 
-    public AnswerHistory() {
-    }
+    public ChosenAnswer() { }
 
-    public AnswerHistory(Long id, QuestionHistory question, String text) {
+    public ChosenAnswer(Long id, QuestionHistory question, String text) {
         super(id);
         this.question = question;
         this.text = text;

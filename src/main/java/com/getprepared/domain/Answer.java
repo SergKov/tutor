@@ -13,6 +13,8 @@ public class Answer extends Entity {
     private String text;
     private AnswerType type;
 
+    public Answer() { }
+
     public Answer(Long id, Question question, String text, AnswerType type) {
         super(id);
         this.question = question;

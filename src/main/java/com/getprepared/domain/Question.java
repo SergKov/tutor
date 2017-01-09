@@ -14,8 +14,7 @@ public class Question extends Entity {
     private String text;
     private List<Answer> answers;
 
-    public Question() {
-    }
+    public Question() { }
 
     public Question(Long id, Quiz quiz, String text) {
         super(id);
