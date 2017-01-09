@@ -7,7 +7,6 @@ import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
-import com.getprepared.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -29,17 +28,13 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
 
     private static final Logger LOG = Logger.getLogger(QuestionDaoImpl.class);
 
-    private ConnectionProvider provider;
-
-    public QuestionDaoImpl() {
-        provider = new TransactionalConnectionProvider();
-    }
+    public QuestionDaoImpl() { }
 
     @Override
     public void save(final Question question) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.SAVE))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.SAVE))) {
 
             preparedStatement.setLong(1, question.getQuiz().getId());
             preparedStatement.setString(2, question.getText());
@@ -55,7 +50,8 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     public Question findById(final Long id) throws EntityNotFoundException {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.FIND_BY_ID), ID_KEY))) {
+                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION,
+                        KEYS.FIND_BY_ID), ID_KEY))) {
 
             preparedStatement.setLong(1, id);
 
@@ -77,7 +73,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     public List<Question> createNewQuiz(final Long quizId) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.CREATE_NEW_QUIZ))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.CREATE_NEW_QUIZ))) {
 
             preparedStatement.setLong(1, quizId);
             return getQuestions(preparedStatement);
@@ -91,7 +87,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     public List<Question> findByQuizId(final Long quizId) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.FIND_BY_ID),
+                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.FIND_BY_ID),
                         Question.QUIZ_ID_KEY))) {
 
             preparedStatement.setLong(1, quizId);
@@ -117,25 +113,10 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     }
 
     @Override
-    public void update(final Question question) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.UPDATE))) {
-
-            preparedStatement.setString(1, question.getText());
-            preparedStatement.setLong(2, question.getId());
-            preparedStatement.executeUpdate();
-        } catch (final SQLException e) {
-            LOG.error("Failed to updateCredentials question", e);
-            throw new DataAccessException(e);
-        }
-    }
-
-    @Override
     public void removeById(final Long id) throws EntityNotFoundException {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.REMOVE_BY_ID),
+                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.REMOVE_BY_ID),
                         ID_KEY))) {
 
             preparedStatement.setLong(1, id);
@@ -155,7 +136,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     public void removeByQuizId(final Long quizId) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.QUESTION, KEYS.REMOVE_BY_ID),
+                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.REMOVE_BY_ID),
                         QUIZ_ID_KEY))) {
 
             preparedStatement.setLong(1, quizId);
@@ -169,6 +150,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
 
     @Override
     protected Question getEntity(ResultSet rs) {
+
         try {
             final Long id = rs.getLong(ID_KEY);
             final Quiz quiz = new Quiz();

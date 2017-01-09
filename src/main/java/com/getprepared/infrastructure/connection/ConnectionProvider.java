@@ -11,9 +11,11 @@ import java.sql.Connection;
 public abstract class ConnectionProvider {
 
     protected DataSource dataSource;
+    protected ThreadLocal<Connection> threadLocal;
 
     public void init() {
         dataSource = MySqlDataSourceProvider.getInstance().getDataSource();
+        threadLocal =  new ThreadLocal<>();
     }
 
     public ConnectionProvider() {

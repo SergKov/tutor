@@ -1,27 +1,23 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.constant.PropertyConstants;
 import com.getprepared.dao.UserDao;
-import com.getprepared.domain.Result;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
-import com.getprepared.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.getprepared.constant.PropertyConstants.*;
+import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
+import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
-import static com.getprepared.domain.Result.MARK_KEY;
 import static com.getprepared.domain.User.*;
 
 /**
@@ -31,17 +27,13 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
 
-    private ConnectionProvider provider;
-
-    public UserDaoImpl() {
-        provider = new TransactionalConnectionProvider();
-    }
+    public UserDaoImpl() { }
 
     @Override
     public void save(final User user) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.USER, KEYS.SAVE))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.SAVE))) {
 
             preparedStatement.setString(1, user.getRole().name());
             preparedStatement.setString(2, user.getEmail());
@@ -60,7 +52,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public User findByCredentials(final String email, final String password) throws EntityNotFoundException {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.USER, KEYS.FIND_BY_CREDENTIALS))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.FIND_BY_CREDENTIALS))) {
 
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
@@ -84,7 +76,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public User findByEmail(final String email) throws EntityNotFoundException {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_EMAIL))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_EMAIL))) {
 
             preparedStatement.setString(1, email);
 
@@ -106,21 +98,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public List<User> findAllByQuizId(final Long quizId) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.USER, KEYS.FIND_BY_QUIZ_ID))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.FIND_BY_QUIZ_ID))) {
 
             preparedStatement.setLong(1, quizId);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-
-                final List<User> users = new ArrayList<>();
-
-                if (rs.next()) {
-                    users.add(getEntity(rs));
-                }
-
-                return users;
-            }
-
+            return getUsers(preparedStatement);
         } catch (final SQLException e) {
             LOG.error(String.format("Failed to findAll by quizId %d", quizId), e);
             throw new DataAccessException(e);
@@ -128,10 +109,35 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
+    public List<User> findAll() {
+
+        try (PreparedStatement preparedStatement = getConnection(provider)
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.FIND_ALL))) {
+
+            return getUsers(preparedStatement);
+        } catch (final SQLException e) {
+            LOG.error("Failed to findAll", e);
+            throw new DataAccessException(e);
+        }
+    }
+
+    private List<User> getUsers(PreparedStatement preparedStatement) throws SQLException {
+        try (ResultSet rs = preparedStatement.executeQuery()) {
+
+            final List<User> users = new ArrayList<>();
+            if (rs.next()) {
+                users.add(getEntity(rs));
+            }
+
+            return users;
+        }
+    }
+
+    @Override
     public void updateCredentials(final User user) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.USER, KEYS.UPDATE_CREDENTIALS))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.UPDATE_CREDENTIALS))) {
 
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
@@ -143,7 +149,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    protected User getEntity(ResultSet rs) {
+    protected User getEntity(final ResultSet rs) {
 
         try {
             final Long id = rs.getLong(ID_KEY);

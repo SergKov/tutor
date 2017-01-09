@@ -1,15 +1,12 @@
 package com.getprepared.dao.impl;
 
 import com.getprepared.dao.ResultDao;
-import com.getprepared.domain.Quiz;
 import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
 import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
-import com.getprepared.utils.PropertyUtils;
-import com.sun.xml.internal.ws.server.ServerRtException;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -24,9 +21,6 @@ import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Result.*;
-import static com.getprepared.domain.Result.MARK_KEY;
-import static com.getprepared.domain.Result.QUIZ_NAME_KEY;
-import static com.getprepared.domain.Result.USER_ID_KEY;
 
 /**
  * Created by koval on 06.01.2017.
@@ -35,17 +29,13 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     private static final Logger LOG = Logger.getLogger(ResultDaoImpl.class);
 
-    private ConnectionProvider provider;
-
-    public ResultDaoImpl() {
-        provider = new TransactionalConnectionProvider();
-    }
+    public ResultDaoImpl() { }
 
     @Override
     public void save(final Result result) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.RESULT, KEYS.SAVE))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.SAVE))) {
 
             preparedStatement.setLong(1, result.getUser().getId());
             preparedStatement.setByte(2, result.getMark());
@@ -63,7 +53,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
     public Result findById(final Long id) throws EntityNotFoundException {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_ID))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_ID))) {
 
             preparedStatement.setLong(1, id);
 
@@ -71,7 +61,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
                 if (rs.next()) {
                     return getEntity(rs);
                 } else {
-                    throw new EntityNotFoundException(String.format("Quiz with id %d is not found", id));
+                    throw new EntityNotFoundException(String.format("QuizService with id %d is not found", id));
                 }
             }
 
@@ -85,7 +75,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
     public List<Result> findByUserEmail(final String email) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_EMAIL))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_EMAIL))) {
 
             preparedStatement.setString(1, email);
 

@@ -19,8 +19,6 @@ public interface QuestionDao {
 
     List<Question> findByQuizId(Long quizId);
 
-    void update(Question question);
-
     void removeById(Long id) throws EntityNotFoundException;
 
     void removeByQuizId(Long quizId);

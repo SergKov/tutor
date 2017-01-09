@@ -18,5 +18,7 @@ public interface UserDao {
 
     List<User> findAllByQuizId(Long quizId);
 
+    List<User> findAll();
+
     void updateCredentials(User user);
 }

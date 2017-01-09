@@ -8,7 +8,6 @@ import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
-import com.getprepared.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -29,17 +28,14 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     private static final Logger LOG = Logger.getLogger(AnswerDaoImpl.class);
 
-    private final ConnectionProvider provider; //TODO
 
-    public AnswerDaoImpl() {
-        provider = new TransactionalConnectionProvider();
-    }
+    public AnswerDaoImpl() { }
 
     @Override
     public void save(final Answer answer) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.ANSWER, KEYS.SAVE))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.ANSWER, KEYS.SAVE))) {
 
             preparedStatement.setLong(1, answer.getQuestion().getId());
             preparedStatement.setString(2, answer.getText());
@@ -56,7 +52,8 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     public Answer findById(final Long id) throws EntityNotFoundException {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.ANSWER, KEYS.FIND_BY_ID), ID_KEY))) {
+                .prepareStatement(String.format(getPropertyUtils()
+                        .getQuery(FILES_NAMES.ANSWER, KEYS.FIND_BY_ID), ID_KEY))) {
 
             preparedStatement.setLong(1, id);
 
@@ -78,7 +75,7 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     public List<Answer> findByQuestionId(final Long questionId) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.ANSWER, KEYS.FIND_BY_ID),
+                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.ANSWER, KEYS.FIND_BY_ID),
                         QUESTION_ID_KEY))) {
 
             preparedStatement.setLong(1, questionId);
@@ -101,30 +98,10 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     }
 
     @Override
-    public void removeById(final Long id) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.ANSWER, KEYS.REMOVE_BY_ID),
-                        ID_KEY))) {
-
-            preparedStatement.setLong(1, id);
-            final int removedId = preparedStatement.executeUpdate();
-
-            if (removedId == 0) {
-                throw new EntityNotFoundException(String.format("Answer with id %d is not found", id));
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to removeById answer by id %d", id), e);
-            throw new DataAccessException(e);
-        }
-    }
-
-    @Override
     public void removeByQuestionId(final Long questionId) { //TODO ???
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(PropertyUtils.getQuery(FILES_NAMES.ANSWER, KEYS.REMOVE_BY_ID),
+                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.ANSWER, KEYS.REMOVE_BY_ID),
                         QUESTION_ID_KEY))) {
 
             preparedStatement.setLong(1, questionId);

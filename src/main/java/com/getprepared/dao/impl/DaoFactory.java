@@ -23,6 +23,7 @@ public class DaoFactory {
     }
 
     private void init() {
+
         mapping = new HashMap<>();
 
         mapping.put(DAOS.ANSWER_DAO, new AnswerDaoImpl());
@@ -31,7 +32,7 @@ public class DaoFactory {
         mapping.put(DAOS.USER_DAO, new UserDaoImpl());
         mapping.put(DAOS.RESULT_DAO, new ResultDaoImpl());
         mapping.put(DAOS.QUESTION_HISTORY_DAO, new QuestionHistoryDaoImpl());
-        mapping.put(DAOS.CHOSEN_ANSWER_DAO, new AnswerHistoryDaoImpl());
+        mapping.put(DAOS.CHOSEN_ANSWER_DAO, new ChosenChosenAnswerDaoImpl());
     }
 
     public <T> T getDao(final String name, final Class<T> clazz) {

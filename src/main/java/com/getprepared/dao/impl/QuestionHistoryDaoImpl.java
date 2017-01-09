@@ -9,7 +9,6 @@ import com.getprepared.domain.Result;
 import com.getprepared.exception.DataAccessException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
-import com.getprepared.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -28,17 +27,13 @@ public class QuestionHistoryDaoImpl extends AbstractDao<QuestionHistory> impleme
 
     private static final Logger LOG = Logger.getLogger(QuestionHistoryDao.class);
 
-    private ConnectionProvider provider;
-
-    public QuestionHistoryDaoImpl() {
-        provider = new TransactionalConnectionProvider();
-    }
+    public QuestionHistoryDaoImpl() { }
 
     @Override
     public void save(final QuestionHistory question) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.QUESTION_HISTORY, KEYS.SAVE))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION_HISTORY, KEYS.SAVE))) {
 
             preparedStatement.setLong(1, question.getResult().getId());
             preparedStatement.setString(2, question.getText());
@@ -55,7 +50,7 @@ public class QuestionHistoryDaoImpl extends AbstractDao<QuestionHistory> impleme
     public List<QuestionHistory> findByResultId(final Long resultId) {
 
         try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(PropertyUtils.getQuery(FILES_NAMES.QUESTION_HISTORY, KEYS.FIND_BY_RESULT_ID))) {
+                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION_HISTORY, KEYS.FIND_BY_RESULT_ID))) {
 
             preparedStatement.setLong(1, resultId);
 
@@ -76,7 +71,7 @@ public class QuestionHistoryDaoImpl extends AbstractDao<QuestionHistory> impleme
     }
 
     @Override
-    protected QuestionHistory getEntity(ResultSet rs) {
+    protected QuestionHistory getEntity(final ResultSet rs) {
 
         try {
             final Long id = rs.getLong(ID_KEY);

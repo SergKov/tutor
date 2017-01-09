@@ -11,9 +11,13 @@ import java.sql.Connection;
  */
 public class TransactionalConnectionProvider extends ConnectionProvider {
 
-    private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
+    private static final TransactionalConnectionProvider instance = new TransactionalConnectionProvider();
 
-    public TransactionalConnectionProvider() { }
+    public static TransactionalConnectionProvider getInstance() {
+        return instance;
+    }
+
+    private TransactionalConnectionProvider() { }
 
     public void begin() {
         if (isNew()) {

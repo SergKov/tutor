@@ -15,6 +15,8 @@ public interface QuizDao {
 
     Quiz findById(Long id) throws EntityNotFoundException;
 
+    List<Quiz> findByUserId(Long id);
+
     List<Quiz> findByUserEmail(String email);
 
     List<Quiz> findAll();
