@@ -7,7 +7,7 @@ import com.getprepared.infrastructure.connection.impl.TransactionalConnectionPro
  */
 public class TransactionManager {
 
-    private final TransactionalConnectionProvider provider = new TransactionalConnectionProvider();
+    private final TransactionalConnectionProvider provider = TransactionalConnectionProvider.getInstance();
 
     public void begin() {
         provider.begin();
