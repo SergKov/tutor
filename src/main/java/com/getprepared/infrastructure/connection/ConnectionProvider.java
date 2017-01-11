@@ -1,7 +1,5 @@
 package com.getprepared.infrastructure.connection;
 
-import com.getprepared.infrastructure.data_source.impl.MySqlDataSourceProvider;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 
@@ -10,25 +8,15 @@ import java.sql.Connection;
  */
 public abstract class ConnectionProvider {
 
-    protected DataSource dataSource;
-    protected ThreadLocal<Connection> threadLocal;
+    protected final DataSource dataSource;
 
-    public void init() {
-        dataSource = MySqlDataSourceProvider.getInstance().getDataSource();
-        threadLocal =  new ThreadLocal<>();
-    }
-
-    public ConnectionProvider() {
-        init();
+    public ConnectionProvider(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
     public abstract Connection getConnection();
 
     public DataSource getDataSource() {
         return dataSource;
-    }
-
-    public void setDataSource(DataSource ds) {
-        this.dataSource = dataSource;
     }
 }

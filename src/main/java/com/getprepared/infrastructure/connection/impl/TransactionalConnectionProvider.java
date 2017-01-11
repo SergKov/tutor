@@ -4,20 +4,19 @@ import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.utils.jdbc.utils.ConnectionUtils;
 import com.getprepared.utils.jdbc.utils.DataSourceUtils;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 
 /**
  * Created by koval on 06.01.2017.
  */
-public class TransactionalConnectionProvider extends ConnectionProvider {
+public class TransactionalConnectionProvider extends ConnectionProvider { //TODO
 
-    private static final TransactionalConnectionProvider instance = new TransactionalConnectionProvider();
+    private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
-    public static TransactionalConnectionProvider getInstance() {
-        return instance;
+    public TransactionalConnectionProvider(DataSource dataSource) {
+        super(dataSource);
     }
-
-    private TransactionalConnectionProvider() { }
 
     public void begin() {
         if (isNew()) {
@@ -29,12 +28,14 @@ public class TransactionalConnectionProvider extends ConnectionProvider {
     public void commit() {
         final Connection con = threadLocal.get();
         ConnectionUtils.commit(con);
+        ConnectionUtils.close(con);
         threadLocal.remove();
     }
 
     public void rollback() {
         final Connection con = threadLocal.get();
         ConnectionUtils.rollback(con);
+        ConnectionUtils.close(con);
         threadLocal.remove();
     }
 

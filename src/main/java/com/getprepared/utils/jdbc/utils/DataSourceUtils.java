@@ -3,7 +3,7 @@ package com.getprepared.utils.jdbc.utils;
 import javax.sql.DataSource;
 import java.sql.Connection;
 
-import static com.getprepared.utils.jdbc.DataSourceCallback.call;
+import static com.getprepared.utils.jdbc.function.DataSourceCallback.call;
 
 /**
  * Created by koval on 08.01.2017.

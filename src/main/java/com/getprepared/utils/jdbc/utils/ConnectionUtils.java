@@ -3,8 +3,8 @@ package com.getprepared.utils.jdbc.utils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import static com.getprepared.utils.jdbc.SqlCallback.call;
-import static com.getprepared.utils.jdbc.SqlRunner.run;
+import static com.getprepared.utils.jdbc.function.SqlCallback.call;
+import static com.getprepared.utils.jdbc.function.SqlRunner.run;
 
 /**
  * Created by koval on 05.01.2017.

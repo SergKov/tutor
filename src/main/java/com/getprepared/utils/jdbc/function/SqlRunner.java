@@ -1,4 +1,4 @@
-package com.getprepared.utils.jdbc;
+package com.getprepared.utils.jdbc.function;
 
 import com.getprepared.exception.DataAccessException;
 import org.apache.log4j.Logger;
@@ -9,15 +9,15 @@ import java.sql.SQLException;
  * Created by koval on 08.01.2017.
  */
 @FunctionalInterface
-public interface SqlCallback<E> {
+public interface SqlRunner<E> {
 
-    Logger LOG = Logger.getLogger(SqlCallback.class);
+    Logger LOG = Logger.getLogger(SqlRunner.class);
 
-    E call() throws SQLException;
+    void run() throws SQLException;
 
-    static <E> E call(final SqlCallback<E> callback, final String errorMsg) {
+    static <E> void run(final SqlRunner<E> runnable, final String errorMsg) {
         try {
-            return callback.call();
+            runnable.run();
         } catch (final SQLException e) {
             LOG.error(errorMsg, e);
             throw new DataAccessException(e);
