@@ -7,6 +7,8 @@ import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -29,77 +31,31 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     private static final Logger LOG = Logger.getLogger(ResultDaoImpl.class);
 
-    public ResultDaoImpl() { }
+    public ResultDaoImpl(JdbcTemplate template) {
+        super(template);
+    }
 
     @Override
     public void save(final Result result) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.SAVE))) {
-
-            preparedStatement.setLong(1, result.getUser().getId());
-            preparedStatement.setByte(2, result.getMark());
-            preparedStatement.setString(3, result.getQuizName());
-            preparedStatement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
-            preparedStatement.executeUpdate();
-
-        } catch (final SQLException e) {
-            LOG.error("Failed to save result", e);
-            throw new DataAccessException(e);
-        }
+        //TODO
     }
 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_ID))) {
-
-            preparedStatement.setLong(1, id);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    return getEntity(rs);
-                } else {
-                    throw new EntityNotFoundException(String.format("QuizService with id %d is not found", id));
-                }
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find result by id %d", id), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
+        return null;
     }
 
     @Override
     public List<Result> findByUserEmail(final String email) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_EMAIL))) {
-
-            preparedStatement.setString(1, email);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-
-                final List<Result> results = new ArrayList<>();
-
-                if (rs.next()) {
-                    results.add(getEntity(rs));
-                }
-
-                return results;
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find results by user email %s", email), e);
-            throw new DataAccessException(e);
-        }
+        //TODO add pagination, throw exception
+        return null;
     }
 
-    @Override
-    protected Result getEntity(final ResultSet rs) {
+    private static class ResultMapper implements RowMapper<Result> {
 
-        try {
+        @Override
+        public Result mapRow(ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final User user = new User();
             user.setId(rs.getLong(USER_ID_KEY));
@@ -107,9 +63,6 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
             final String quizName = rs.getString(QUIZ_NAME_KEY);
             final LocalDateTime dateTime = rs.getTimestamp(CREATION_DATETIME_KEY).toLocalDateTime();
             return new Result(id, user, mark, quizName, dateTime);
-        } catch (final SQLException e) {
-            LOG.error("Failed to retrieve information from Result ResultSet", e);
-            throw new DataAccessException(e);
         }
     }
 }

@@ -4,11 +4,14 @@ import com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import com.getprepared.constant.PropertyConstants.KEYS;
 import com.getprepared.dao.QuestionHistoryDao;
 import com.getprepared.domain.AnswerType;
+import com.getprepared.domain.Question;
 import com.getprepared.domain.QuestionHistory;
 import com.getprepared.domain.Result;
 import com.getprepared.exception.DataAccessException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -27,62 +30,31 @@ public class QuestionHistoryDaoImpl extends AbstractDao<QuestionHistory> impleme
 
     private static final Logger LOG = Logger.getLogger(QuestionHistoryDao.class);
 
-    public QuestionHistoryDaoImpl() { }
+    public QuestionHistoryDaoImpl(JdbcTemplate template) {
+        super(template);
+    }
 
     @Override
     public void save(final QuestionHistory question) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION_HISTORY, KEYS.SAVE))) {
-
-            preparedStatement.setLong(1, question.getResult().getId());
-            preparedStatement.setString(2, question.getText());
-            preparedStatement.setString(3, question.getType().name());
-            preparedStatement.executeUpdate();
-
-        } catch (final SQLException e) {
-            LOG.error("Failed to save question", e);
-            throw new DataAccessException(e);
-        }
+        //TODO
     }
 
     @Override
     public List<QuestionHistory> findByResultId(final Long resultId) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION_HISTORY, KEYS.FIND_BY_RESULT_ID))) {
-
-            preparedStatement.setLong(1, resultId);
-
-            final List<QuestionHistory> questionHistory = new ArrayList<>();
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    questionHistory.add(getEntity(rs));
-                }
-            }
-
-            return questionHistory;
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find question by id %d", resultId), e);
-            throw new DataAccessException(e);
-        }
+        //TODO add pagination
+        return null;
     }
 
-    @Override
-    protected QuestionHistory getEntity(final ResultSet rs) {
+    private static class QuestionHistoryMapper implements RowMapper<QuestionHistory> {
 
-        try {
+        @Override
+        public QuestionHistory mapRow(ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final Result result = new Result();
             result.setId(rs.getLong(RESULT_ID_KEY));
             final String text = rs.getString(TEXT_KEY);
             final AnswerType answerType = AnswerType.valueOf(rs.getString(TYPE_KEY));
             return new QuestionHistory(id, result, text, answerType);
-        } catch (final SQLException e) {
-            LOG.error("Failed to retrieve information from QuestionHistory ResultSet", e);
-            throw new DataAccessException(e);
         }
     }
 }

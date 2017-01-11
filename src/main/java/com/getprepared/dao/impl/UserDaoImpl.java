@@ -7,6 +7,8 @@ import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -27,131 +29,48 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
 
-    public UserDaoImpl() { }
+    public UserDaoImpl(JdbcTemplate template) {
+        super(template);
+    }
 
     @Override
     public void save(final User user) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.SAVE))) {
-
-            preparedStatement.setString(1, user.getRole().name());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getName());
-            preparedStatement.setString(5, user.getSurname());
-            preparedStatement.executeUpdate();
-
-        } catch (final SQLException e) {
-            LOG.error("Failed to save user", e);
-            throw new DataAccessException(e);
-        }
+        //TODO
     }
 
     @Override
     public User findByCredentials(final String email, final String password) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.FIND_BY_CREDENTIALS))) {
-
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    return getEntity(rs);
-                } else {
-                    throw new EntityNotFoundException(String.format("User with email %s and password %s is not found",
-                            email, password));
-                }
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find user with email %s and password %s", email, password), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
+        return null;
     }
 
     @Override
     public User findByEmail(final String email) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.RESULT, KEYS.FIND_BY_EMAIL))) {
-
-            preparedStatement.setString(1, email);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    return getEntity(rs);
-                } else {
-                    throw new EntityNotFoundException(String.format("User with email %s is not found", email));
-                }
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find user with email %s", email), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
+        return null;
     }
 
     @Override
     public List<User> findAllByQuizId(final Long quizId) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.FIND_BY_QUIZ_ID))) {
-
-            preparedStatement.setLong(1, quizId);
-            return getUsers(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to findAll by quizId %d", quizId), e);
-            throw new DataAccessException(e);
-        }
+        //TODO add pagination, throw excepton
+        return null;
     }
 
     @Override
     public List<User> findAll() {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.FIND_ALL))) {
-
-            return getUsers(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error("Failed to findAll", e);
-            throw new DataAccessException(e);
-        }
-    }
-
-    private List<User> getUsers(PreparedStatement preparedStatement) throws SQLException {
-        try (ResultSet rs = preparedStatement.executeQuery()) {
-
-            final List<User> users = new ArrayList<>();
-            if (rs.next()) {
-                users.add(getEntity(rs));
-            }
-
-            return users;
-        }
+        //TODO add pagination
+        return null;
     }
 
     @Override
     public void updateCredentials(final User user) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.USER, KEYS.UPDATE_CREDENTIALS))) {
-
-            preparedStatement.setString(1, user.getEmail());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.executeUpdate();
-        } catch (final SQLException e) {
-            LOG.error("Failed to updateCredentials for User", e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
     }
 
-    @Override
-    protected User getEntity(final ResultSet rs) {
+    private static class UserMapper implements RowMapper<User> {
 
-        try {
+        @Override
+        public User mapRow(ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final Role role = Role.valueOf(rs.getString(ROLE_KEY));
             final String email = rs.getString(EMAIL_KEY);
@@ -159,9 +78,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             final String name = rs.getString(NAME_KEY);
             final String surname = rs.getString(SURNAME_KEY);
             return new User(id, role, email, password, name, surname);
-        } catch (final SQLException e) {
-            LOG.error("Failed to retrieve information from User ResultSet", e);
-            throw new DataAccessException(e);
         }
     }
 }

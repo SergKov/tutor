@@ -1,11 +1,14 @@
 package com.getprepared.dao.impl;
 
 import com.getprepared.dao.QuizDao;
+import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -29,140 +32,57 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
 
     private static final Logger LOG = Logger.getLogger(QuizDaoImpl.class);
 
-    public QuizDaoImpl() { }
+    public QuizDaoImpl(JdbcTemplate template) {
+        super(template);
+    }
 
     @Override
     public void save(final Quiz quiz) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.SAVE))) {
-
-            preparedStatement.setString(1, quiz.getName());
-            preparedStatement.setTime(2, Time.valueOf(quiz.getTime()));
-            preparedStatement.executeUpdate();
-        } catch (final SQLException e) {
-            LOG.error("Failed to save quiz", e);
-            throw new DataAccessException(e);
-        }
+        //TODO
     }
 
     @Override
     public Quiz findById(final Long id) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.FIND_BY_ID))) {
-
-            preparedStatement.setLong(1, id);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    return getEntity(rs);
-                } else {
-                    throw new EntityNotFoundException(String.format("QuizService with id %d is not found", id));
-                }
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find quiz by id %d", id), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
+        return null;
     }
 
     @Override
     public List<Quiz> findByUserId(final Long id) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.FIND_BY_USER_ID))) {
-
-            preparedStatement.setLong(1, id);
-            return getQuizzes(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find quizzes by user id %s", id), e);
-            throw new DataAccessException(e);
-        }
+        //TODO add pagination
+        return null;
     }
 
     @Override
     public List<Quiz> findByUserEmail(final String email) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.FIND_BY_EMAIL))) {
-
-            preparedStatement.setString(1, email);
-            return getQuizzes(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find quizzes by user email %s", email), e);
-            throw new DataAccessException(e);
-        }
+        //TODO add pagination
+        return null;
     }
 
     @Override
     public List<Quiz> findAll() {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.FIND_ALL))) {
-
-            return getQuizzes(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error("Failed to find all quizzes", e);
-            throw new DataAccessException(e);
-        }
-    }
-
-    private List<Quiz> getQuizzes(final PreparedStatement preparedStatement) throws SQLException {
-
-        try (ResultSet rs = preparedStatement.executeQuery()) {
-
-            final List<Quiz> quizzes = new ArrayList<>();
-
-            if (rs.next()) {
-                quizzes.add(getEntity(rs));
-            }
-
-            return quizzes;
-        }
+        //TODO add pagination
+        return null;
     }
 
     @Override
     public void updateTime(final LocalTime time) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.UPDATE_TIME))) {
-
-            preparedStatement.setTime(1, Time.valueOf(time));
-            preparedStatement.executeUpdate();
-        } catch (final SQLException e) {
-            LOG.error("Failed to updateCredentials time for QuizService", e);
-            throw new DataAccessException(e);
-        }
+        //TODO
     }
 
     @Override
     public void removeById(final Long id) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUIZ, KEYS.REMOVE_BY_ID))) {
-
-            preparedStatement.setLong(1, id);
-            preparedStatement.executeUpdate();
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to remove quiz by id %d", id), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
     }
 
-    @Override
-    protected Quiz getEntity(final ResultSet rs) {
+    private static class QuizMapper implements RowMapper<Quiz> {
 
-        try {
+        @Override
+        public Quiz mapRow(ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final String name = rs.getString(NAME_KEY);
             final LocalTime time = rs.getTime(TIME_KEY).toLocalTime();
             return new Quiz(id, name, time);
-        } catch (final SQLException e) {
-            LOG.error("Failed to retrieve information from QuizService ResultSet", e);
-            throw new DataAccessException(e);
         }
     }
 }

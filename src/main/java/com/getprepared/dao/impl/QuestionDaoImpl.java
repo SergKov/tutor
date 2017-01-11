@@ -7,6 +7,8 @@ import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -28,138 +30,52 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
 
     private static final Logger LOG = Logger.getLogger(QuestionDaoImpl.class);
 
-    public QuestionDaoImpl() { }
+    public QuestionDaoImpl(JdbcTemplate template) {
+        super(template);
+    }
 
     @Override
     public void save(final Question question) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.SAVE))) {
-
-            preparedStatement.setLong(1, question.getQuiz().getId());
-            preparedStatement.setString(2, question.getText());
-            preparedStatement.executeUpdate();
-
-        } catch (final SQLException e) {
-            LOG.error("Failed to save question", e);
-            throw new DataAccessException(e);
-        }
+        //TODO
     }
 
     @Override
     public Question findById(final Long id) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION,
-                        KEYS.FIND_BY_ID), ID_KEY))) {
-
-            preparedStatement.setLong(1, id);
-
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    return getEntity(rs);
-                } else {
-                    throw new EntityNotFoundException(String.format("Question with id %d is not found", id));
-                }
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find question by id %d", id), e);
-            throw new DataAccessException(e);
-        }
+        //TODO
+        return null;
     }
 
     @Override
     public List<Question> createNewQuiz(final Long quizId) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.CREATE_NEW_QUIZ))) {
-
-            preparedStatement.setLong(1, quizId);
-            return getQuestions(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to create quiz by quiz id %d", quizId), e);
-            throw new DataAccessException(e);
-        }
+        //TODO
+        return null;
     }
 
     @Override
     public List<Question> findByQuizId(final Long quizId) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.FIND_BY_ID),
-                        Question.QUIZ_ID_KEY))) {
-
-            preparedStatement.setLong(1, quizId);
-            return getQuestions(preparedStatement);
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to find questions by id %d", quizId), e);
-            throw new DataAccessException(e);
-        }
-    }
-
-    private List<Question> getQuestions(PreparedStatement preparedStatement) throws SQLException {
-
-        try (ResultSet rs = preparedStatement.executeQuery()) {
-
-            final List<Question> quiz = new ArrayList<>();
-
-            if (rs.next()) {
-                quiz.add(getEntity(rs));
-            }
-
-            return quiz;
-        }
+        //TODO add pagination
+        return null;
     }
 
     @Override
     public void removeById(final Long id) throws EntityNotFoundException {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.REMOVE_BY_ID),
-                        ID_KEY))) {
-
-            preparedStatement.setLong(1, id);
-            final int removedId = preparedStatement.executeUpdate();
-
-            if (removedId == 0) {
-                throw new EntityNotFoundException(String.format("Question with id %d is not found", id));
-            }
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to removeById question by id %d", id), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
     }
 
     @Override
     public void removeByQuizId(final Long quizId) {
-
-        try (PreparedStatement preparedStatement = getConnection(provider)
-                .prepareStatement(String.format(getPropertyUtils().getQuery(FILES_NAMES.QUESTION, KEYS.REMOVE_BY_ID),
-                        QUIZ_ID_KEY))) {
-
-            preparedStatement.setLong(1, quizId);
-            preparedStatement.executeUpdate();
-
-        } catch (final SQLException e) {
-            LOG.error(String.format("Failed to removeById questions by quiz id %d", quizId), e);
-            throw new DataAccessException(e);
-        }
+        //TODO throw exception
     }
 
-    @Override
-    protected Question getEntity(ResultSet rs) {
+    private static class QuestionMapper implements RowMapper<Question> {
 
-        try {
+        @Override
+        public Question mapRow(ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final Quiz quiz = new Quiz();
             quiz.setId(rs.getLong(QUIZ_ID_KEY));
             final String text = rs.getString(TEXT_KEY);
             return new Question(id, quiz, text);
-        } catch (final SQLException e) {
-            LOG.error("Failed to retrieve information from Question ResultSet", e);
-            throw new DataAccessException(e);
         }
     }
 }

@@ -36,15 +36,9 @@ public class PropertyConstants {
 
         public static final String SAVE = "save";
 
-        public static final String FIND_BY_ID = "findById";
-
-        public static final String REMOVE_BY_ID = "removeById";
-
         public static final String CREATE_NEW_QUIZ = "createNewQuiz";
 
-        public static final String FIND_ALL = "findAll";
-
-        public static final String UPDATE_TIME = "updateTime";
+        public static final String FIND_BY_ID = "findById";
 
         public static final String FIND_BY_CREDENTIALS = "findByCredentials";
 
@@ -54,10 +48,18 @@ public class PropertyConstants {
 
         public static final String FIND_BY_USER_ID = "findByUserId";
 
-        public static final String UPDATE_CREDENTIALS = "updateCredentials";
-
         public static final String FIND_BY_RESULT_ID = "findByResultId";
 
         public static final String FIND_BY_QUESTION_ID = "findByQuestionId";
+
+        public static final String FIND_ALL = "findAll";
+
+        public static final String UPDATE_TIME = "updateTime";
+
+        public static final String UPDATE_CREDENTIALS = "updateCredentials";
+
+        public static final String REMOVE_BY_ID = "removeById";
+
+        public static final String REMOVE_BY_QUESTION_ID = "removeByQuestionId";
     }
 }

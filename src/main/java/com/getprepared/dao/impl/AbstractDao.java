@@ -3,6 +3,7 @@ package com.getprepared.dao.impl;
 import com.getprepared.domain.Entity;
 import com.getprepared.infrastructure.connection.ConnectionProvider;
 import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.utils.PropertyUtils;
 
 import java.sql.Connection;
@@ -13,17 +14,11 @@ import java.sql.ResultSet;
  */
 public abstract class AbstractDao<T extends Entity> {
 
-    protected ConnectionProvider provider;
+    protected JdbcTemplate template;
 
-    private void init() {
-        provider = TransactionalConnectionProvider.getInstance();
+    public AbstractDao(JdbcTemplate template) {
+        this.template = template;
     }
-
-    public AbstractDao() {
-        init();
-    }
-
-    protected abstract T getEntity(final ResultSet rs);
 
     protected Connection getConnection(final ConnectionProvider provider) {
         return provider.getConnection();
@@ -32,6 +27,4 @@ public abstract class AbstractDao<T extends Entity> {
     protected PropertyUtils getPropertyUtils() {
         return PropertyUtils.getInstance();
     }
-
-
 }
