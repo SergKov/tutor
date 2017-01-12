@@ -19,9 +19,11 @@ public interface QuizDao {
 
     List<Quiz> findByUserEmail(String email);
 
+    void connect(Long userId, Long quizId);
+
     List<Quiz> findAll();
 
     void updateTime(LocalTime time);
 
-    void removeById(Long id);
+    void remove(Long id);
 }

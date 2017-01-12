@@ -6,12 +6,17 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
+import com.getprepared.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 
+import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
+import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.User.*;
 
@@ -22,25 +27,37 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
 
+    private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.USER);
+
     public UserDaoImpl(JdbcTemplate template) {
         super(template);
     }
 
     @Override
     public void save(final User user) {
-        //TODO
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), user,
+                ps -> {
+                    ps.setString(1, user.getRole().name());
+                    ps.setString(2, user.getEmail());
+                    ps.setString(3, user.getPassword());
+                    ps.setString(4, user.getName());
+                    ps.setString(5, user.getSurname());
+                }, PreparedStatement.RETURN_GENERATED_KEYS);
     }
 
     @Override
     public User findByCredentials(final String email, final String password) throws EntityNotFoundException {
-        //TODO throw exception
-        return null;
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS),
+                rs -> {
+                    rs.setString(1, email);
+                    rs.setString(2, password);
+                }, new UserMapper()).get();
     }
 
     @Override
     public User findByEmail(final String email) throws EntityNotFoundException {
-        //TODO throw exception
-        return null;
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS), rs -> rs.setString(1, email),
+                new UserMapper()).get();
     }
 
     @Override
@@ -56,8 +73,17 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void updateCredentials(final User user) {
-        //TODO throw exception
+    public void updateCredentials(final String email, final String password) {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
+                rs -> {
+                    rs.setString(1, email);
+                    rs.setString(2, password);
+                });
+    }
+
+    @Override
+    public void remove(Long userId, Long quizId) {
+        //TODO
     }
 
     private static class UserMapper implements RowMapper<User> {

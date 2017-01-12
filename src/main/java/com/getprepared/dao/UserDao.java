@@ -20,5 +20,7 @@ public interface UserDao {
 
     List<User> findAll();
 
-    void updateCredentials(User user);
+    void updateCredentials(String email, String password);
+
+    void remove(Long userId, Long quizId);
 }

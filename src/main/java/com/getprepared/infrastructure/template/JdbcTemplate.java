@@ -62,8 +62,8 @@ public class JdbcTemplate {
         }
     }
 
-    public <T> Optional<T> query(final String sql, final PreparedStatementSetter setter,
-                                 final RowMapper<T> rowMapper) { // findById
+    public <T> Optional<T> singleQuery(final String sql, final PreparedStatementSetter setter,
+                                       final RowMapper<T> rowMapper) { // findById
 
         final Connection con = provider.getConnection();
 
@@ -73,7 +73,7 @@ public class JdbcTemplate {
             rs.next(); //TODO
             return Optional.of(rowMapper.mapRow(rs));
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute query %s", sql), e);
+            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -94,7 +94,7 @@ public class JdbcTemplate {
 
             return result;
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute query %s", sql), e);
+            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
     }

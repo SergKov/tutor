@@ -6,13 +6,20 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
+import com.getprepared.utils.PropertyUtils;
 import org.apache.log4j.Logger;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.Properties;
 
+import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
+import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Result.*;
 
@@ -23,25 +30,36 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     private static final Logger LOG = Logger.getLogger(ResultDaoImpl.class);
 
+    private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.RESULT);
+
     public ResultDaoImpl(JdbcTemplate template) {
         super(template);
     }
 
     @Override
     public void save(final Result result) {
-        //TODO
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), result,
+                ps -> {
+                    ps.setLong(1, result.getUser().getId());
+                    ps.setByte(2, result.getMark());
+                    ps.setString(3, result.getQuizName());
+                    ps.setTimestamp(4, Timestamp.valueOf(result.getCreationDateTime()));
+                }, PreparedStatement.RETURN_GENERATED_KEYS);
     }
 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
-        //TODO throw exception
-        return null;
+
+        final Optional<Result> result = jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
+                ps -> ps.setLong(1, id), new ResultMapper());
+
+        return result.get();
     }
 
     @Override
     public List<Result> findByUserEmail(final String email) {
-        //TODO add pagination, throw exception
-        return null;
+        return jdbcTemplate.executeQuery(prop.getProperty(KEYS.FIND_BY_EMAIL), ps -> ps.setString(1, email),
+                new ResultMapper());
     }
 
     private static class ResultMapper implements RowMapper<Result> {

@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
  */
 public class Result extends Entity {
 
-    public static final String SPECIALITY_ID_KEY = "speciality_id";
     public static final String USER_ID_KEY = "user_id";
     public static final String MARK_KEY = "mark";
     public static final String QUIZ_NAME_KEY = "quiz_name";

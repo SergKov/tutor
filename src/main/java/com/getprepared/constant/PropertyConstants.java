@@ -52,6 +52,8 @@ public class PropertyConstants {
 
         public static final String CREATE_NEW_QUIZ = "createNewQuiz";
 
+        public static final String CONNECT = "connect";
+
         public static final String FIND_BY_ID = "findById";
 
         public static final String FIND_BY_CREDENTIALS = "findByCredentials";
@@ -72,7 +74,9 @@ public class PropertyConstants {
 
         public static final String UPDATE_CREDENTIALS = "updateCredentials";
 
-        public static final String REMOVE_BY_ID = "removeById";
+        public static final String REMOVE = "remove";
+
+        public static final String REMOVE_BY_ID = "remove";
 
         public static final String REMOVE_BY_QUESTION_ID = "removeByQuestionId";
     }

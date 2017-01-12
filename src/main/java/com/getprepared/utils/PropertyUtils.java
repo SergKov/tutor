@@ -14,25 +14,20 @@ public class PropertyUtils {
 
     private static final Logger LOG = Logger.getLogger(PropertyUtils.class);
 
-    private static final PropertyUtils instance = new PropertyUtils();
-
-    public static PropertyUtils getInstance() {
-        return instance;
-    }
-
     private PropertyUtils() { }
 
-    public String getValue(final String fileName, final String key) {
+    public static Properties initProp(final String fileName) {
 
         final Properties prop = new Properties();
 
         try {
-            final InputStream is = this.getClass().getResourceAsStream(fileName);
+            final InputStream is = PropertyUtils.class.getResourceAsStream(fileName);
             prop.load(is);
-            return String.valueOf(prop.get(key));
+            return prop;
         } catch (final IOException e) {
             LOG.warn(String.format("Failed to load file %s", fileName), e);
             throw new IllegalStateException(e);
         }
+
     }
 }
