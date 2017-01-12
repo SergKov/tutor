@@ -22,7 +22,7 @@ public class PropertyUtils {
 
     private PropertyUtils() { }
 
-    public String getQuery(final String fileName, final String key) {
+    public String getValue(final String fileName, final String key) {
 
         final Properties prop = new Properties();
 

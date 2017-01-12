@@ -3,24 +3,16 @@ package com.getprepared.dao.impl;
 import com.getprepared.dao.ResultDao;
 import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
-import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.infrastructure.connection.ConnectionProvider;
-import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
-import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Result.*;
 

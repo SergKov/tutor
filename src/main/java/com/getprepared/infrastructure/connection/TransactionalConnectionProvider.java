@@ -1,6 +1,6 @@
-package com.getprepared.infrastructure.connection.impl;
+package com.getprepared.infrastructure.connection;
 
-import com.getprepared.infrastructure.connection.ConnectionProvider;
+import com.getprepared.infrastructure.data_source.DataSourceFactory;
 import com.getprepared.utils.jdbc.utils.ConnectionUtils;
 import com.getprepared.utils.jdbc.utils.DataSourceUtils;
 
@@ -10,17 +10,22 @@ import java.sql.Connection;
 /**
  * Created by koval on 06.01.2017.
  */
-public class TransactionalConnectionProvider extends ConnectionProvider { //TODO
+public class TransactionalConnectionProvider {
 
-    private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
+    private static final TransactionalConnectionProvider instance = new TransactionalConnectionProvider();
 
-    public TransactionalConnectionProvider(DataSource dataSource) {
-        super(dataSource);
+    public static TransactionalConnectionProvider getInstance() {
+        return instance;
     }
+
+    private final DataSource ds = DataSourceFactory.getInstance().getDataSource();
+
+    private final ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
     public void begin() {
         if (isNew()) {
-            final Connection con = DataSourceUtils.getConnection(dataSource);
+            final Connection con = DataSourceUtils.getConnection(ds);
+            ConnectionUtils.setAutoCommit(con, false);
             threadLocal.set(con);
         }
     }
@@ -43,11 +48,10 @@ public class TransactionalConnectionProvider extends ConnectionProvider { //TODO
         return threadLocal.get() == null;
     }
 
-    @Override
     public Connection getConnection() {
 
         if (threadLocal.get() == null) {
-            final Connection con = DataSourceUtils.getConnection(dataSource);
+            final Connection con = DataSourceUtils.getConnection(ds);
             threadLocal.set(con);
             return con;
         }

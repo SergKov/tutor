@@ -11,28 +11,42 @@ public class PropertyConstants {
 
         private FILES_NAMES() { }
 
-        private static final String PREFIX = "/sql/";
+        private static final String PREFIX_DS = "/ds/";
+
+        private static final String PREFIX_SQL = "/sql/";
 
         private static final String SUFFIX = ".properties";
 
-        public static final String ANSWER = PREFIX + "answer" + SUFFIX;
+        public static final String DS_TEST_SETTING = PREFIX_DS + "mysql" + SUFFIX; // TODO rename
 
-        public static final String QUESTION = PREFIX + "question" + SUFFIX;
+        public static final String DS_SETTING = PREFIX_DS + "setting" + SUFFIX; // TODO rename
 
-        public static final String QUIZ = PREFIX + "quiz" + SUFFIX;
+        public static final String ANSWER = PREFIX_SQL + "answer" + SUFFIX;
 
-        public static final String USER = PREFIX + "user" + SUFFIX;
+        public static final String QUESTION = PREFIX_SQL + "question" + SUFFIX;
 
-        public static final String RESULT = PREFIX + "result" + SUFFIX;
+        public static final String QUIZ = PREFIX_SQL + "quiz" + SUFFIX;
 
-        public static final String QUESTION_HISTORY = PREFIX + "question_history" + SUFFIX;
+        public static final String USER = PREFIX_SQL + "user" + SUFFIX;
 
-        public static final String CHOSEN_ANSWER = PREFIX + "chosen_answer" + SUFFIX;
+        public static final String RESULT = PREFIX_SQL + "result" + SUFFIX;
+
+        public static final String QUESTION_HISTORY = PREFIX_SQL + "question_history" + SUFFIX;
+
+        public static final String CHOSEN_ANSWER = PREFIX_SQL + "chosen_answer" + SUFFIX;
     }
 
     public static class KEYS {
 
         private KEYS() { }
+
+        public static final String DS = "datasource"; //TODO rename
+
+        public static final String URL = "url";
+
+        public static final String USER = "user";
+
+        public static final String PASSWORD = "password";
 
         public static final String SAVE = "save";
 

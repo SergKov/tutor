@@ -3,22 +3,15 @@ package com.getprepared.dao.impl;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
-import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.infrastructure.connection.ConnectionProvider;
-import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
-import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Question.QUIZ_ID_KEY;
 import static com.getprepared.domain.Question.TEXT_KEY;

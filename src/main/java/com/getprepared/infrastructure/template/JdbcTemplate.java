@@ -2,7 +2,7 @@ package com.getprepared.infrastructure.template;
 
 import com.getprepared.domain.Entity;
 import com.getprepared.exception.DataAccessException;
-import com.getprepared.infrastructure.connection.ConnectionProvider;
+import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
 import com.getprepared.infrastructure.template.function.PreparedStatementSetter;
 import com.getprepared.infrastructure.template.function.RowMapper;
 import org.apache.log4j.Logger;
@@ -22,9 +22,9 @@ public class JdbcTemplate {
 
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
-    private ConnectionProvider provider;
+    private TransactionalConnectionProvider provider;
 
-    public JdbcTemplate(ConnectionProvider provider) {
+    public JdbcTemplate(TransactionalConnectionProvider provider) {
         this.provider = provider;
     }
 

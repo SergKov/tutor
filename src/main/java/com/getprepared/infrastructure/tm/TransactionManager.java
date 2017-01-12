@@ -1,6 +1,6 @@
 package com.getprepared.infrastructure.tm;
 
-import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
+import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
 
 /**
  * Created by koval on 05.01.2017.

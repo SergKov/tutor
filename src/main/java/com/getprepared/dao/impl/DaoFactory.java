@@ -1,9 +1,6 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.infrastructure.connection.ConnectionProvider;
-import com.getprepared.infrastructure.connection.impl.TransactionalConnectionProvider;
-import com.getprepared.infrastructure.data_source.DataSourceProvider;
-import com.getprepared.infrastructure.data_source.impl.MySqlDataSourceProvider;
+import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 
 import java.util.HashMap;
@@ -32,8 +29,7 @@ public class DaoFactory {
     private void init() {
 
         mapping = new HashMap<>();
-        template = new JdbcTemplate(new TransactionalConnectionProvider(MySqlDataSourceProvider
-                .getInstance().getDataSource())); //TODO !!!
+        template = new JdbcTemplate(getTransactionalConnectionProvider());
 
         mapping.put(DAOS.ANSWER_DAO, new AnswerDaoImpl(template));
         mapping.put(DAOS.QUESTION_DAO, new QuestionDaoImpl(template));
@@ -47,5 +43,9 @@ public class DaoFactory {
     public <T> T getDao(final String name, final Class<T> clazz) {
         final AbstractDao dao = mapping.get(name);
         return clazz.cast(dao);
+    }
+
+    private TransactionalConnectionProvider getTransactionalConnectionProvider() {
+        return TransactionalConnectionProvider.getInstance();
     }
 }
