@@ -4,6 +4,7 @@ import com.getprepared.dao.AnswerDao;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
+import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
@@ -27,8 +28,6 @@ import static com.getprepared.domain.Entity.ID_KEY;
  */
 public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
-    private static final Logger LOG = Logger.getLogger(AnswerDaoImpl.class);
-
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.ANSWER);
 
     public AnswerDaoImpl(JdbcTemplate jdbcTemplate) {
@@ -36,7 +35,7 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     }
 
     @Override
-    public void save(final Answer answer) {
+    public void save(final Answer answer) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), answer,
                 ps -> {
                     ps.setLong(1, answer.getQuestion().getId());
@@ -47,11 +46,8 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
-
-        final Optional<Answer> optional = jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
                 ps -> ps.setLong(1, id), new AnswerMapper());
-
-        return optional.get();
     }
 
     @Override
@@ -61,7 +57,7 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     }
 
     @Override
-    public void removeByQuestionId(final Long questionId) {
+    public void removeByQuestionId(final Long questionId) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.REMOVE_BY_QUESTION_ID), ps -> ps.setLong(1, questionId));
     }
 

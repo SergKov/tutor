@@ -50,9 +50,7 @@ public class PropertyConstants {
 
         public static final String SAVE = "save";
 
-        public static final String CREATE_NEW_QUIZ = "createNewQuiz";
-
-        public static final String CONNECT = "connect";
+        public static final String INSTITUTE = "institute";
 
         public static final String FIND_BY_ID = "findById";
 

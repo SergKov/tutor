@@ -1,7 +1,7 @@
 package com.getprepared.exception;
 
 /**
- * Created by koval on 09.01.2017.
+ * Created by koval on 13.01.2017.
  */
 public class EntityExistsException extends Exception {
 

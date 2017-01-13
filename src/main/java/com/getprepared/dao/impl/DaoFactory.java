@@ -36,8 +36,6 @@ public class DaoFactory {
         mapping.put(DAOS.QUIZ_DAO, new QuizDaoImpl(template));
         mapping.put(DAOS.USER_DAO, new UserDaoImpl(template));
         mapping.put(DAOS.RESULT_DAO, new ResultDaoImpl(template));
-        mapping.put(DAOS.QUESTION_HISTORY_DAO, new QuestionHistoryDaoImpl(template));
-        mapping.put(DAOS.CHOSEN_ANSWER_DAO, new ChosenChosenAnswerDaoImpl(template));
     }
 
     public <T> T getDao(final String name, final Class<T> clazz) {

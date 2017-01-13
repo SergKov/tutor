@@ -1,6 +1,7 @@
 package com.getprepared.domain;
 
 import java.time.LocalTime;
+import java.util.List;
 
 /**
  * Created by koval on 31.12.2016.
@@ -8,17 +9,18 @@ import java.time.LocalTime;
 public class Quiz extends Entity {
 
     public static final String NAME_KEY = "name";
-    public static final String TIME_KEY = "time";
+    public static final String SPECIALITY_ID_KEY = "speciality_id";
 
     private String name;
-    private LocalTime time;
+    private Speciality speciality;
+    private List<Quiz> quizzes;
 
     public Quiz() { }
 
-    public Quiz(Long id, String name, LocalTime time) {
+    public Quiz(Long id, String name, Speciality speciality) {
         super(id);
         this.name = name;
-        this.time = time;
+        this.speciality = speciality;
     }
 
     public String getName() {
@@ -29,11 +31,19 @@ public class Quiz extends Entity {
         this.name = name;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public Speciality getSpeciality() {
+        return speciality;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public List<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 }

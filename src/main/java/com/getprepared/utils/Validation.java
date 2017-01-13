@@ -17,10 +17,6 @@ public interface Validation {
 
     void validateUser(User user);
 
-    void validateQuestionHistory(QuestionHistory history);
-
-    void validateChosenAnswer(ChosenAnswer chosenAnswer);
-
     void validateEmail(String email);
 
     void validatePassword(String password);

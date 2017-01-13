@@ -1,6 +1,7 @@
 package com.getprepared.dao;
 
 import com.getprepared.domain.User;
+import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 
 import java.util.List;
@@ -10,17 +11,17 @@ import java.util.List;
  */
 public interface UserDao {
 
-    void save(User user);
+    void save(User user) throws EntityExistsException;
 
     User findByCredentials(String email, String password) throws EntityNotFoundException;
 
     User findByEmail(String email) throws EntityNotFoundException;
 
-    List<User> findAllByQuizId(Long quizId);
+    List<User> findAllByQuizId(Long quizId) throws EntityNotFoundException;
 
     List<User> findAll();
 
-    void updateCredentials(String email, String password);
+    void updateCredentials(String email, String password) throws EntityExistsException;
 
-    void remove(Long userId, Long quizId);
+    void remove(Long userId, Long quizId) throws EntityNotFoundException;
 }

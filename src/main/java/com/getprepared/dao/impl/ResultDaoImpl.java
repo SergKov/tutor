@@ -3,6 +3,7 @@ package com.getprepared.dao.impl;
 import com.getprepared.dao.ResultDao;
 import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
+import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
@@ -28,8 +29,6 @@ import static com.getprepared.domain.Result.*;
  */
 public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
-    private static final Logger LOG = Logger.getLogger(ResultDaoImpl.class);
-
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.RESULT);
 
     public ResultDaoImpl(JdbcTemplate template) {
@@ -37,7 +36,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
     }
 
     @Override
-    public void save(final Result result) {
+    public void save(final Result result) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), result,
                 ps -> {
                     ps.setLong(1, result.getUser().getId());
@@ -49,11 +48,8 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
-
-        final Optional<Result> result = jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
                 ps -> ps.setLong(1, id), new ResultMapper());
-
-        return result.get();
     }
 
     @Override

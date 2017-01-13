@@ -5,6 +5,7 @@ import com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
+import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
@@ -37,7 +38,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     }
 
     @Override
-    public void save(final Question question) {
+    public void save(final Question question) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), question,
                 ps -> {
                     ps.setLong(1, question.getQuiz().getId());
@@ -47,12 +48,9 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
 
     @Override
     public Question findById(final Long id) throws EntityNotFoundException {
-
-        final Optional<Question> optional = jdbcTemplate.singleQuery(
+        return jdbcTemplate.singleQuery(
                 String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new QuestionMapper());
-
-        return optional.get();
     }
 
     @Override
@@ -62,12 +60,12 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     }
 
     @Override
-    public void removeById(final Long id) throws EntityNotFoundException {
+    public void removeById(final Long id) throws EntityExistsException {
         jdbcTemplate.executeUpdate(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), ID_KEY), ps -> ps.setLong(1, id));
     }
 
     @Override
-    public void removeByQuizId(final Long quizId) {
+    public void removeByQuizId(final Long quizId) throws EntityExistsException {
         jdbcTemplate.executeUpdate(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), QUIZ_ID_KEY),
                 ps -> ps.setLong(1, quizId));
     }

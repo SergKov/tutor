@@ -1,9 +1,9 @@
 package com.getprepared.dao;
 
 import com.getprepared.domain.Quiz;
+import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 
-import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -11,19 +11,17 @@ import java.util.List;
  */
 public interface QuizDao {
 
-    void save(Quiz quiz);
+    void save(Quiz quiz) throws EntityExistsException;
 
     Quiz findById(Long id) throws EntityNotFoundException;
 
-    List<Quiz> findByUserId(Long id);
+    List<Quiz> findByUserId(Long id) throws EntityNotFoundException;
 
-    List<Quiz> findByUserEmail(String email);
+    List<Quiz> findByUserEmail(String email) throws EntityNotFoundException;
 
-    void connect(Long userId, Long quizId);
+    void institute(Long userId, Long quizId) throws EntityNotFoundException, EntityExistsException;
 
-    List<Quiz> findAll();
+    List<Quiz> findAllBySpecialityId(Long specialityId) throws EntityNotFoundException;
 
-    void updateTime(LocalTime time);
-
-    void remove(Long id);
+    void remove(Long id) throws EntityNotFoundException, EntityExistsException;
 }

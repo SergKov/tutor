@@ -3,6 +3,7 @@ package com.getprepared.dao.impl;
 import com.getprepared.dao.UserDao;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
+import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
@@ -34,7 +35,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void save(final User user) {
+    public void save(final User user) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), user,
                 ps -> {
                     ps.setString(1, user.getRole().name());
@@ -51,13 +52,13 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 rs -> {
                     rs.setString(1, email);
                     rs.setString(2, password);
-                }, new UserMapper()).get();
+                }, new UserMapper());
     }
 
     @Override
     public User findByEmail(final String email) throws EntityNotFoundException {
         return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS), rs -> rs.setString(1, email),
-                new UserMapper()).get();
+                new UserMapper());
     }
 
     @Override
@@ -73,7 +74,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void updateCredentials(final String email, final String password) {
+    public void updateCredentials(final String email, final String password) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
                 rs -> {
                     rs.setString(1, email);

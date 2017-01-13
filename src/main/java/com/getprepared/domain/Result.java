@@ -1,6 +1,7 @@
 package com.getprepared.domain;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Created by koval on 02.01.2017.
