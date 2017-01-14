@@ -1,8 +1,7 @@
-package com.getprepared.utils;
+package com.getprepared.utils.impl;
 
 import org.apache.log4j.Logger;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

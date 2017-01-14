@@ -7,7 +7,13 @@ import com.getprepared.infrastructure.connection.TransactionalConnectionProvider
  */
 public class TransactionManager {
 
-    private final TransactionalConnectionProvider provider = TransactionalConnectionProvider.getInstance();
+    private static final TransactionManager instance = new TransactionManager();
+
+    public static TransactionManager getInstance() {
+        return instance;
+    }
+
+    private final TransactionalConnectionProvider provider = getTransactionConnectionProvider();
 
     public void begin() {
         provider.begin();
@@ -23,5 +29,9 @@ public class TransactionManager {
 
     public boolean isNew() {
         return provider.isNew();
+    }
+
+    private TransactionalConnectionProvider getTransactionConnectionProvider() {
+        return TransactionalConnectionProvider.getInstance();
     }
 }

@@ -7,6 +7,10 @@ public class UtilsConstant {
 
     private UtilsConstant() { }
 
+    public static final String PASSWORD_ENCODER = "encoder";
+
+    public static final String FORM_VALIDATION = "formValidation";
+
     public static class REGEX {
 
         private REGEX() { }
