@@ -37,7 +37,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     @Override
     public void save(final Result result) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), result,
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), result,
                 ps -> {
                     ps.setLong(1, result.getUser().getId());
                     ps.setByte(2, result.getMark());
@@ -48,13 +48,13 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
     @Override
     public List<Result> findByUserEmail(final String email) {
-        return jdbcTemplate.executeQuery(prop.getProperty(KEYS.FIND_BY_EMAIL), ps -> ps.setString(1, email),
+        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_EMAIL), ps -> ps.setString(1, email),
                 new ResultMapper());
     }
 

@@ -8,9 +8,13 @@ import com.getprepared.infrastructure.template.JdbcTemplate;
  */
 public abstract class AbstractDao<T extends Entity> {
 
-    protected JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public AbstractDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 }

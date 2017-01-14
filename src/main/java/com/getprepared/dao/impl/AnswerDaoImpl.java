@@ -36,7 +36,7 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), answer,
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), answer,
                 ps -> {
                     ps.setLong(1, answer.getQuestion().getId());
                     ps.setString(2, answer.getText());
@@ -46,19 +46,19 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
                 ps -> ps.setLong(1, id), new AnswerMapper());
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        return jdbcTemplate.executeQuery(prop.getProperty(KEYS.FIND_BY_QUESTION_ID), ps -> ps.setLong(1, questionId),
-                                                                                                    new AnswerMapper());
+        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_QUESTION_ID),
+                ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
 
     @Override
     public void removeByQuestionId(final Long questionId) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.REMOVE_BY_QUESTION_ID), ps -> ps.setLong(1, questionId));
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.REMOVE_BY_QUESTION_ID), ps -> ps.setLong(1, questionId));
     }
 
     private static class AnswerMapper implements RowMapper<Answer> {

@@ -31,8 +31,8 @@ public class SpecialityDaoImpl extends AbstractDao<Speciality> implements Specia
 
     @Override
     public void save(Speciality speciality) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), speciality, ps -> ps.setString(1, speciality.getName()),
-                PreparedStatement.RETURN_GENERATED_KEYS);
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), speciality,
+                ps -> ps.setString(1, speciality.getName()), PreparedStatement.RETURN_GENERATED_KEYS);
     }
 
     @Override

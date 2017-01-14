@@ -22,4 +22,8 @@ public abstract class Entity {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getEntityName() {
+        return this.getClass().getSimpleName();
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Speciality extends Entity {
 
-    private static final String NAME_KEY = "name";
+    public static final String NAME_KEY = "name";
 
     private String name;
     private List<Quiz> quizzes;

@@ -34,7 +34,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public void save(final User user) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), user,
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), user,
                 ps -> {
                     ps.setString(1, user.getRole().name());
                     ps.setString(2, user.getEmail());
@@ -46,7 +46,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User findByCredentials(final String email, final String password) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS),
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS),
                 rs -> {
                     rs.setString(1, email);
                     rs.setString(2, password);
@@ -55,7 +55,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User findByEmail(final String email) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS), rs -> rs.setString(1, email),
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS), rs -> rs.setString(1, email),
                 new UserMapper());
     }
 
@@ -73,7 +73,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public void updateCredentials(final String email, final String password) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
                 rs -> {
                     rs.setString(1, email);
                     rs.setString(2, password);
