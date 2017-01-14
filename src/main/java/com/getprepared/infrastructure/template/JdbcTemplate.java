@@ -80,6 +80,20 @@ public class JdbcTemplate {
         }
     }
 
+    public void remove(final String sql, final PreparedStatementSetter setter) {
+
+        final Connection con = provider.getConnection();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            setter.setValues(ps);
+            ps.executeUpdate();
+        } catch (final SQLException e) {
+            LOG.error(String.format("Failed to remove %s", sql), e);
+            throw new DataAccessException(e);
+        }
+    }
+
+
     public <T> T singleQuery(final String sql, final PreparedStatementSetter setter,
                                        final RowMapper<T> rowMapper) throws EntityNotFoundException {
 
@@ -91,7 +105,7 @@ public class JdbcTemplate {
             final ResultSet rs = ps.executeQuery();
             rs.next();
 
-            final T entry = rowMapper.mapRow(rs); //TODO ?
+            final T entry = rowMapper.mapRow(rs);
 
             if (rowMapper.mapRow(rs) == null) {
                 final String errorMsg = String.format("Entity is not found by this query %s", sql);

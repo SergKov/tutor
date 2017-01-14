@@ -26,8 +26,6 @@ import static com.getprepared.domain.User.*;
  */
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
-    private static final Logger LOG = Logger.getLogger(UserDaoImpl.class);
-
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.USER);
 
     public UserDaoImpl(JdbcTemplate template) {

@@ -57,7 +57,7 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public void institute(Long userId, Long quizId) throws EntityNotFoundException, EntityExistsException {
+    public void institute(Long userId, Long quizId) throws EntityExistsException {
         jdbcTemplate.executeUpdate(prop.getProperty(KEYS.INSTITUTE),
                 ps -> {
                     ps.setLong(1, userId);
@@ -66,14 +66,14 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findAllBySpecialityId(Long specialityId) throws EntityNotFoundException {
-        //TODO
-        return null;
+    public List<Quiz> findAllBySpecialityId(Long specialityId)  {
+        return jdbcTemplate.executeQuery(prop.getProperty(KEYS.FIND_BY_SPECIALITY_ID),
+                ps -> ps.setLong(1, specialityId), new QuizMapper());
     }
 
     @Override
-    public void remove(final Long id) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
+    public void remove(final Long id) {
+        jdbcTemplate.remove(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }
 
     private static class QuizMapper implements RowMapper<Quiz> {

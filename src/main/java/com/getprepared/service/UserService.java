@@ -13,8 +13,6 @@ public interface UserService {
 
     User findByEmail(String email);
 
-    List<User> findAll();
-
     User signIn(String email, String password);
 
     void signUp(User user);

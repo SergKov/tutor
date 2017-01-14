@@ -19,9 +19,9 @@ public interface QuizDao {
 
     List<Quiz> findByUserEmail(String email) throws EntityNotFoundException;
 
-    void institute(Long userId, Long quizId) throws EntityNotFoundException, EntityExistsException;
+    void institute(Long userId, Long quizId) throws EntityExistsException;
 
     List<Quiz> findAllBySpecialityId(Long specialityId) throws EntityNotFoundException;
 
-    void remove(Long id) throws EntityNotFoundException, EntityExistsException;
+    void remove(Long id) throws EntityNotFoundException;
 }

@@ -34,6 +34,7 @@ public class DaoFactory {
         mapping.put(DAOS.ANSWER_DAO, new AnswerDaoImpl(template));
         mapping.put(DAOS.QUESTION_DAO, new QuestionDaoImpl(template));
         mapping.put(DAOS.QUIZ_DAO, new QuizDaoImpl(template));
+        mapping.put(DAOS.SPECIALITY_DAO, new SpecialityDaoImpl(template));
         mapping.put(DAOS.USER_DAO, new UserDaoImpl(template));
         mapping.put(DAOS.RESULT_DAO, new ResultDaoImpl(template));
     }

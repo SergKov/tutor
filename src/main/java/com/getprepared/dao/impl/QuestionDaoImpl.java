@@ -1,6 +1,5 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.constant.PropertyConstants;
 import com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Question;
@@ -10,16 +9,14 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
 import com.getprepared.utils.PropertyUtils;
-import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
 
-import static com.getprepared.constant.PropertyConstants.*;
+import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Question.QUIZ_ID_KEY;
 import static com.getprepared.domain.Question.TEXT_KEY;
@@ -28,8 +25,6 @@ import static com.getprepared.domain.Question.TEXT_KEY;
  * Created by koval on 06.01.2017.
  */
 public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDao {
-
-    private static final Logger LOG = Logger.getLogger(QuestionDaoImpl.class);
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.QUESTION);
 
@@ -60,13 +55,13 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     }
 
     @Override
-    public void removeById(final Long id) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), ID_KEY), ps -> ps.setLong(1, id));
+    public void removeById(final Long id)  {
+        jdbcTemplate.remove(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), ID_KEY), ps -> ps.setLong(1, id));
     }
 
     @Override
-    public void removeByQuizId(final Long quizId) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), QUIZ_ID_KEY),
+    public void removeByQuizId(final Long quizId)  {
+        jdbcTemplate.remove(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), QUIZ_ID_KEY),
                 ps -> ps.setLong(1, quizId));
     }
 
