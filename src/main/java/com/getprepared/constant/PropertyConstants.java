@@ -27,13 +27,11 @@ public class PropertyConstants {
 
         public static final String QUIZ = PREFIX_SQL + "quiz" + SUFFIX;
 
+        public static final String SPECIALITY = PREFIX_SQL + "speciality" + SUFFIX;
+
         public static final String USER = PREFIX_SQL + "user" + SUFFIX;
 
         public static final String RESULT = PREFIX_SQL + "result" + SUFFIX;
-
-        public static final String QUESTION_HISTORY = PREFIX_SQL + "question_history" + SUFFIX;
-
-        public static final String CHOSEN_ANSWER = PREFIX_SQL + "chosen_answer" + SUFFIX;
     }
 
     public static class KEYS {
@@ -62,7 +60,7 @@ public class PropertyConstants {
 
         public static final String FIND_BY_USER_ID = "findByUserId";
 
-        public static final String FIND_BY_RESULT_ID = "findByResultId";
+        public static final String FIND_BY_SPECIALITY_ID = "findBySpecialityId";
 
         public static final String FIND_BY_QUESTION_ID = "findByQuestionId";
 
@@ -74,7 +72,7 @@ public class PropertyConstants {
 
         public static final String REMOVE = "remove";
 
-        public static final String REMOVE_BY_ID = "remove";
+        public static final String REMOVE_BY_ID = "removeById";
 
         public static final String REMOVE_BY_QUESTION_ID = "removeByQuestionId";
     }

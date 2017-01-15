@@ -8,7 +8,7 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
-import com.getprepared.utils.PropertyUtils;
+import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

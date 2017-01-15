@@ -8,14 +8,12 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
-import com.getprepared.utils.PropertyUtils;
-import org.apache.log4j.Logger;
+import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
 
 import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
@@ -57,8 +55,8 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     }
 
     @Override
-    public void removeByQuestionId(final Long questionId) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.REMOVE_BY_QUESTION_ID), ps -> ps.setLong(1, questionId));
+    public void removeByQuestionId(final Long questionId) throws EntityNotFoundException {
+        getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE_BY_QUESTION_ID), ps -> ps.setLong(1, questionId));
     }
 
     private static class AnswerMapper implements RowMapper<Answer> {

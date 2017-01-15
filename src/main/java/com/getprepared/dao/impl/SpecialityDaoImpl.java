@@ -3,9 +3,10 @@ package com.getprepared.dao.impl;
 import com.getprepared.dao.SpecialityDao;
 import com.getprepared.domain.Speciality;
 import com.getprepared.exception.EntityExistsException;
+import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
-import com.getprepared.utils.PropertyUtils;
+import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +34,12 @@ public class SpecialityDaoImpl extends AbstractDao<Speciality> implements Specia
     public void save(Speciality speciality) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), speciality,
                 ps -> ps.setString(1, speciality.getName()), PreparedStatement.RETURN_GENERATED_KEYS);
+    }
+
+    @Override
+    public Speciality findById(Long id) throws EntityNotFoundException {
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), ps -> ps.setLong(1, id),
+                new SpecialityMapper());
     }
 
     @Override

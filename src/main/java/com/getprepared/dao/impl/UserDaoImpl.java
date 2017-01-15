@@ -7,8 +7,7 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
-import com.getprepared.utils.PropertyUtils;
-import org.apache.log4j.Logger;
+import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,6 +44,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
+    public User findById(Long id) throws EntityNotFoundException {
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), rs -> rs.setLong(1, id), new UserMapper());
+    }
+
+    @Override
     public User findByCredentials(final String email, final String password) throws EntityNotFoundException {
         return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS),
                 rs -> {
@@ -66,17 +70,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public List<User> findAll() {
-        //TODO add pagination
-        return null;
-    }
-
-    @Override
-    public void updateCredentials(final String email, final String password) throws EntityExistsException {
+    public void update(User user) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
                 rs -> {
-                    rs.setString(1, email);
-                    rs.setString(2, password);
+                    rs.setString(1, user.getEmail());
+                    rs.setString(2, user.getPassword());
                 });
     }
 

@@ -1,27 +1,30 @@
 package com.getprepared.utils;
 
 import com.getprepared.domain.*;
+import com.getprepared.exception.ValidationException;
 
 /**
  * Created by koval on 09.01.2017.
  */
 public interface Validation {
 
-    void validateAnswer(Answer answer);
+    void validateAnswer(Answer answer) throws ValidationException;
 
-    void validateQuestion(Question question);
+    void validateQuestion(Question question) throws ValidationException;
 
-    void validateQuiz(Quiz quiz);
+    void validateQuiz(Quiz quiz) throws ValidationException;
 
-    void validateResult(Result result);
+    void validateSpeciality(Speciality speciality) throws ValidationException;
 
-    void validateUser(User user);
+    void validateResult(Result result) throws ValidationException;
 
-    void validateEmail(String email);
+    void validateUser(User user) throws ValidationException;
 
-    void validatePassword(String password);
+    void validateEmail(String email) throws ValidationException;
 
-    void validateId(Long id);
+    void validatePassword(String password) throws ValidationException;
 
-    void validateEntity(Entity entity);
+    void validateId(Long id) throws ValidationException;
+
+    void validateEntity(Entity entity) throws ValidationException;
 }

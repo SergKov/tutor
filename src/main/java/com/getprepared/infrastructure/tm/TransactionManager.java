@@ -27,10 +27,6 @@ public class TransactionManager {
         provider.rollback();
     }
 
-    public boolean isNew() {
-        return provider.isNew();
-    }
-
     private TransactionalConnectionProvider getTransactionConnectionProvider() {
         return TransactionalConnectionProvider.getInstance();
     }

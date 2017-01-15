@@ -13,15 +13,15 @@ public interface UserDao {
 
     void save(User user) throws EntityExistsException;
 
+    User findById(Long id) throws EntityNotFoundException;
+
     User findByCredentials(String email, String password) throws EntityNotFoundException;
 
     User findByEmail(String email) throws EntityNotFoundException;
 
     List<User> findAllByQuizId(Long quizId) throws EntityNotFoundException;
 
-    List<User> findAll();
-
-    void updateCredentials(String email, String password) throws EntityExistsException;
+    void update(User user) throws EntityExistsException;
 
     void remove(Long userId, Long quizId) throws EntityNotFoundException;
 }

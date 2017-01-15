@@ -43,6 +43,9 @@ public class JdbcTemplate {
 
             if (rs.next()) {
                 entity.setId(rs.getLong(1));
+            } else {
+                LOG.error(String.format("Failed to save entity %s", entity.getEntityName()));
+                throw new DataAccessException();
             }
 
         } catch (final SQLException e) {
@@ -122,7 +125,7 @@ public class JdbcTemplate {
     }
 
     public <T> List<T> executeQuery(final String sql, final PreparedStatementSetter setter,
-                                 final RowMapper<T> rowMapper) { // findByOtherId
+                                 final RowMapper<T> rowMapper) {
 
         final Connection con = provider.getConnection();
 

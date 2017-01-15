@@ -17,5 +17,5 @@ public interface AnswerDao {
 
     List<Answer> findByQuestionId(Long questionId) throws EntityNotFoundException;
 
-    void removeByQuestionId(Long questionId) throws EntityExistsException;
+    void removeByQuestionId(Long questionId) throws EntityNotFoundException;
 }

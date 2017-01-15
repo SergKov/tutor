@@ -2,6 +2,7 @@ package com.getprepared.dao;
 
 import com.getprepared.domain.Speciality;
 import com.getprepared.exception.EntityExistsException;
+import com.getprepared.exception.EntityNotFoundException;
 
 import java.util.List;
 
@@ -11,6 +12,8 @@ import java.util.List;
 public interface SpecialityDao {
 
     void save(Speciality speciality) throws EntityExistsException;
+
+    Speciality findById(Long id) throws EntityNotFoundException;
 
     List<Speciality> findAll();
 }

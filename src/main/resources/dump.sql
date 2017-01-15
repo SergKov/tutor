@@ -14,10 +14,18 @@ CREATE TABLE User (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE Quiz (
+CREATE TABLE Speciality (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(15) NOT NULL UNIQUE,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE Quiz (
+  id INT NOT NULL AUTO_INCREMENT,
+  speciality_id INT NOT NULL,
+  name VARCHAR(20) NOT NULL UNIQUE,
   `time` TIME,
+  FOREIGN KEY(speciality_id) REFERENCES Speciality(id),
   PRIMARY KEY (id)
 );
 
@@ -49,23 +57,9 @@ CREATE TABLE Result (
   id INT NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   mark TINYINT NOT NULL,
+  speciality_name VARCHAR(20) NOT NULL,
   quiz_name VARCHAR(15) NOT NULL,
   creation_datetime TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES `User` (id),
   PRIMARY KEY (id)
 );
-
-CREATE TABLE History_Question (
-	id INT NOT NULL AUTO_INCREMENT,
-  result_id INT NOT NULL,
-  `text` TEXT NOT NULL,
-  `type` ENUM('INCORRECT', 'CORRECT') NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE Chosen_Answer (
-	id INT NOT NULL AUTO_INCREMENT,
-	question_id INT NOT NULL,
-	`text` TEXT NOT NULL,
-  PRIMARY KEY (id)
-)
