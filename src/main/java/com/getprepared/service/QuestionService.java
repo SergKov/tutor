@@ -2,6 +2,9 @@ package com.getprepared.service;
 
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
+import com.getprepared.exception.EntityExistsException;
+import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.exception.ValidationException;
 
 import java.util.List;
 import java.util.Map;
@@ -12,15 +15,11 @@ import java.util.Set;
  */
 public interface QuestionService {
 
-    void save(Question question);
+    void save(Question question) throws ValidationException, EntityExistsException;
 
-    Question findById(Long id);
+    Question findById(Long id) throws ValidationException, EntityNotFoundException;
 
-    List<Question> findByQuizId(Long id);
+    List<Question> findByQuizId(Long id) throws ValidationException, EntityNotFoundException;
 
-    Map<Question, Set<Answer>> createNewQuiz(Long quizId);
-
-    void update(Question question);
-
-    void remove(Question question);
+    void remove(Question question) throws ValidationException, EntityNotFoundException;
 }

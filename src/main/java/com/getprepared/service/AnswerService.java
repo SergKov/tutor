@@ -1,6 +1,9 @@
 package com.getprepared.service;
 
 import com.getprepared.domain.Answer;
+import com.getprepared.exception.EntityExistsException;
+import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.exception.ValidationException;
 
 import java.util.List;
 
@@ -9,11 +12,11 @@ import java.util.List;
  */
 public interface AnswerService {
 
-    void save(Answer answer);
+    void save(Answer answer) throws ValidationException, EntityExistsException;
 
-    Answer findById(Long id);
+    Answer findById(Long id) throws ValidationException, EntityExistsException, EntityNotFoundException;
 
-    List<Answer> findByQuestionId(Long questionId);
+    List<Answer> findByQuestionId(Long questionId) throws ValidationException, EntityNotFoundException;
 
-    void remove(Answer answer);
+    void removeByQuestionId(Long questionId) throws ValidationException, EntityNotFoundException;
 }

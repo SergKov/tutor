@@ -1,6 +1,9 @@
 package com.getprepared.service;
 
 import com.getprepared.domain.Result;
+import com.getprepared.exception.EntityExistsException;
+import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.exception.ValidationException;
 
 import java.util.List;
 
@@ -9,9 +12,9 @@ import java.util.List;
  */
 public interface ResultService {
 
-    void save(Result result);
+    void save(Result result) throws ValidationException, EntityExistsException;
 
-    Result findById(Long id);
+    Result findById(Long id) throws ValidationException, EntityNotFoundException;
 
     List<Result> findAllByUserId(Long userId);
 }
