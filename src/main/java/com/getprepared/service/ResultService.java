@@ -16,5 +16,5 @@ public interface ResultService {
 
     Result findById(Long id) throws ValidationException, EntityNotFoundException;
 
-    List<Result> findAllByUserId(Long userId);
+    List<Result> findByUserId(Long userId) throws ValidationException, EntityNotFoundException;
 }

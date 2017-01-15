@@ -24,7 +24,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
 
     @Override
-    public void save(Question question) throws ValidationException, EntityExistsException {
+    public void save(final Question question) throws ValidationException, EntityExistsException {
         try {
             getTransactionManager().begin();
             getValidation().validateQuestion(question);
@@ -48,7 +48,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public Question findById(Long id) throws ValidationException, EntityNotFoundException {
+    public Question findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
@@ -66,7 +66,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public List<Question> findByQuizId(Long id) throws ValidationException, EntityNotFoundException {
+    public List<Question> findByQuizId(final Long id) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
@@ -84,7 +84,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public void remove(Question question) throws ValidationException, EntityNotFoundException {
+    public void remove(final Question question) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateEntity(question);

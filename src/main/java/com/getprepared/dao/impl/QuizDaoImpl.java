@@ -57,7 +57,7 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public void institute(Long userId, Long quizId) throws EntityExistsException {
+    public void assign(final Long userId, final Long quizId) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.INSTITUTE),
                 ps -> {
                     ps.setLong(1, userId);
@@ -66,7 +66,7 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findAllBySpecialityId(Long specialityId)  {
+    public List<Quiz> findAllBySpecialityId(final Long specialityId)  {
         return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_SPECIALITY_ID),
                 ps -> ps.setLong(1, specialityId), new QuizMapper());
     }

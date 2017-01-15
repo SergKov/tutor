@@ -7,11 +7,13 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
+import com.getprepared.service.UserService;
 import org.apache.log4j.Logger;
 
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUIZ_DAO;
+import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 
 /**
  * Created by koval on 15.01.2017.
@@ -23,7 +25,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     public QuizServiceImpl() { }
 
     @Override
-    public void save(Quiz quiz) throws ValidationException, EntityExistsException {
+    public void save(final Quiz quiz) throws ValidationException, EntityExistsException {
         try {
             getTransactionManager().begin();
             getValidation().validateQuiz(quiz);
@@ -38,7 +40,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public Quiz findById(Long id) throws ValidationException, EntityNotFoundException {
+    public Quiz findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
@@ -60,7 +62,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findAllByUserEmail(String email) throws ValidationException, EntityNotFoundException {
+    public List<Quiz> findByUserEmail(final String email) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateEmail(email);
@@ -76,7 +78,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findAllByUserId(Long id) throws ValidationException, EntityNotFoundException {
+    public List<Quiz> findByUserId(final Long id) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
@@ -92,12 +94,27 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public void institute(Long id, User user) {
-        //TODO
+    public void assign(final Long quizId, final Long userId) throws ValidationException, EntityNotFoundException,
+                                                                                EntityExistsException  {
+        try {
+            getTransactionManager().begin();
+            getValidation().validateId(quizId);
+            getValidation().validateId(userId);
+            final QuizDao quizDao = getQuizDao();
+            final Quiz quiz = quizDao.findById(quizId);
+            final UserService userService = getUserService();
+            final User user = userService.findById(userId);
+            quizDao.assign(quiz.getId(), user.getId());
+            getTransactionManager().commit();
+        } catch (final ValidationException | EntityNotFoundException | EntityExistsException e) {
+            getTransactionManager().rollback();
+            LOG.warn(e.getMessage(), e);
+            throw e;
+        }
     }
 
     @Override
-    public void remove(Quiz quiz) throws ValidationException, EntityNotFoundException {
+    public void remove(final Quiz quiz) throws ValidationException, EntityNotFoundException {
         try {
             getTransactionManager().begin();
             getValidation().validateQuiz(quiz);
@@ -111,7 +128,11 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         }
     }
 
-    public QuizDao getQuizDao() {
+    private QuizDao getQuizDao() {
         return getDaoFactory().getDao(QUIZ_DAO, QuizDao.class);
+    }
+
+    private UserService getUserService() {
+        return ServiceFactory.getInstance().getService(USER_SERVICE, UserService.class);
     }
 }

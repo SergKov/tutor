@@ -44,8 +44,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User findById(Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), rs -> rs.setLong(1, id), new UserMapper());
+    public User findById(final Long id) throws EntityNotFoundException {
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), rs -> rs.setLong(1, id),
+                new UserMapper());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void update(User user) throws EntityExistsException {
+    public void update(final User user) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
                 rs -> {
                     rs.setString(1, user.getEmail());
@@ -79,8 +80,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void remove(Long userId, Long quizId) {
-        //TODO
+    public void remove(final Long userId, final Long quizId) {
+        getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE), rs -> {
+            rs.setLong(1, userId);
+            rs.setLong(2, quizId);
+        });
     }
 
     private static class UserMapper implements RowMapper<User> {

@@ -1,6 +1,5 @@
 package com.getprepared.infrastructure.template.function;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

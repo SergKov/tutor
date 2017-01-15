@@ -31,13 +31,13 @@ public class SpecialityDaoImpl extends AbstractDao<Speciality> implements Specia
     }
 
     @Override
-    public void save(Speciality speciality) throws EntityExistsException {
+    public void save(final Speciality speciality) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), speciality,
                 ps -> ps.setString(1, speciality.getName()), PreparedStatement.RETURN_GENERATED_KEYS);
     }
 
     @Override
-    public Speciality findById(Long id) throws EntityNotFoundException {
+    public Speciality findById(final Long id) throws EntityNotFoundException {
         return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), ps -> ps.setLong(1, id),
                 new SpecialityMapper());
     }

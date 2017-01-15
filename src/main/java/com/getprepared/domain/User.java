@@ -19,6 +19,7 @@ public class User extends Entity {
     private String name;
     private String surname;
     private List<Result> results;
+    private List<Quiz> quizzes;
 
     public User() { }
 
@@ -77,5 +78,13 @@ public class User extends Entity {
 
     public void setResults(List<Result> results) {
         this.results = results;
+    }
+
+    public List<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 }

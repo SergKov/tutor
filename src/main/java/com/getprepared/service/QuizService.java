@@ -19,11 +19,11 @@ public interface QuizService {
 
     List<Quiz> findAll();
 
-    List<Quiz> findAllByUserEmail(String email) throws ValidationException, EntityNotFoundException;
+    List<Quiz> findByUserEmail(String email) throws ValidationException, EntityNotFoundException;
 
-    List<Quiz> findAllByUserId(Long id) throws ValidationException, EntityNotFoundException;
+    List<Quiz> findByUserId(Long id) throws ValidationException, EntityNotFoundException;
 
-    void institute(Long id, User user);
+    void assign(Long quizId, Long userId) throws ValidationException, EntityNotFoundException, EntityExistsException;
 
     void remove(Quiz quiz) throws ValidationException, EntityNotFoundException;
 }
