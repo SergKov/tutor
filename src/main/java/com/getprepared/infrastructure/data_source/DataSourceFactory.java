@@ -1,6 +1,5 @@
 package com.getprepared.infrastructure.data_source;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
 import org.apache.log4j.Logger;
 
 import javax.naming.InitialContext;
@@ -21,17 +20,11 @@ public class DataSourceFactory {
     }
 
     public DataSource getDataSource() {
-        final MysqlDataSource ds = new MysqlDataSource();
-        ds.setURL("jdbc:mysql://localhost:3306/tutor_test");
-        ds.setUser("root");
-        ds.setPassword("root");
-        return ds;
-
-//        try {
-//            return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/tutor");
-//        } catch (final NamingException e) {
-//            LOG.fatal("Failed to get DataSource", e);
-//            throw new IllegalStateException(e);
-//        }
+        try {
+            return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/tutor");
+        } catch (final NamingException e) {
+            LOG.fatal("Failed to get DataSource", e);
+            throw new IllegalStateException(e);
+        }
     }
 }

@@ -49,13 +49,11 @@ public class TransactionalConnectionProvider {
     }
 
     public Connection getConnection() {
-
         if (threadLocal.get() == null) {
             final Connection con = DataSourceUtils.getConnection(ds);
             threadLocal.set(con);
             return con;
         }
-
         return threadLocal.get();
     }
 }

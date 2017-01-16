@@ -4,6 +4,7 @@ import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.factory.ControllerFactory;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import static com.getprepared.constant.PageConstants.REDIRECT;
 /**
  * Created by koval on 14.01.2017.
  */
+@WebServlet("/")
 public class FrontController extends HttpServlet {
 
     private static final String CONTROLLER_KEY = "controller";
