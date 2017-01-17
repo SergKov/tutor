@@ -20,6 +20,8 @@ public class PageConstants {
         public static final String HOME = PREFIX + "homePage" + SUFFIX;
 
         public static final String NOT_FOUND = PREFIX + "pageNotFound" + SUFFIX;
+
+        public static final String SIGN_UP = PREFIX + "signUp" + SUFFIX;
     }
 
     public static class LINKS {
@@ -28,7 +30,11 @@ public class PageConstants {
 
         public static final String HOME_PAGE = "/";
 
+        public static final String SIGN_UP = "/signUp";
+
         public static final String CHOOSE_TEST = "/chooseTest";
+
+        public static final String SPECIALITIES = "/specialities";
 
         public static final String NOT_FOUND = "/pageNotFound";
     }
@@ -51,6 +57,8 @@ public class PageConstants {
         private FORMS() { }
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
+
+        public static final String SIGN_UP = "signUp";
     }
 
     public static class ERRORS {
@@ -62,5 +70,9 @@ public class PageConstants {
         public static final String CREDENTIALS_INVALIDATED = "You have entered invalidated credentials";
 
         public static final String STUDENT_IS_NOT_EXIST = "Student with such credentials is not exist";
+
+        public static final String DATA_INVALIDATED = "You have entered invalidated data";
+
+        public static final String STUDENT_EXISTS = "Such student already exists";
     }
 }

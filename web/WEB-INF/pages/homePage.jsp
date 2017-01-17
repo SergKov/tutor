@@ -19,7 +19,7 @@
         <div class="row">
             <div class="well">
                 <form action="/" method="POST" class="form-horizontal">
-                    <input type="hidden" name="controller" value="customerSignIn">
+                    <input type="hidden" name="controller" value="studentSignIn">
 
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="email"><fmt:message key="login"/>:</label>

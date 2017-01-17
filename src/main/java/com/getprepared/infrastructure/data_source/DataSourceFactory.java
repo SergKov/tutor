@@ -21,7 +21,6 @@ public class DataSourceFactory {
 
     public DataSource getDataSource() {
         try {
-
             return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/tutor");
         } catch (final NamingException e) {
 //            final MysqlDataSource source = new MysqlDataSource();
