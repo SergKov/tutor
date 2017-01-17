@@ -7,6 +7,7 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
 import com.getprepared.infrastructure.template.function.PreparedStatementSetter;
 import com.getprepared.infrastructure.template.function.RowMapper;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class JdbcTemplate {
 
-//    private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
+    private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
     private TransactionalConnectionProvider provider;
 
@@ -43,12 +44,12 @@ public class JdbcTemplate {
             if (rs.next()) {
                 entity.setId(rs.getLong(1));
             } else {
-//                LOG.error(String.format("Failed to save entity %s", entity.getEntityName()));
+                LOG.error(String.format("Failed to save entity %s", entity.getEntityName()));
                 throw new DataAccessException();
             }
 
         } catch (final SQLException e) {
-//            LOG.error(String.format("Failed to execute update %s with generated key %d", sql, genKey), e);
+            LOG.error(String.format("Failed to execute update %s with generated key %d", sql, genKey), e);
             throw new DataAccessException(e);
         }
     }

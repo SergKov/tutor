@@ -11,7 +11,7 @@ import javax.sql.DataSource;
  */
 public class DataSourceFactory {
 
-//    private static final Logger LOG = Logger.getLogger(DataSourceFactory.class);
+    private static final Logger LOG = Logger.getLogger(DataSourceFactory.class);
 
     private static final DataSourceFactory instance = new DataSourceFactory();
 
@@ -29,7 +29,7 @@ public class DataSourceFactory {
 //            source.setUser(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.USER));
 //            source.setPassword(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.PASSWORD));
 //            return source;
-//            LOG.fatal("Failed to get DataSource", e);
+            LOG.fatal("Failed to get DataSource", e);
             throw new IllegalStateException(e);
         }
     }

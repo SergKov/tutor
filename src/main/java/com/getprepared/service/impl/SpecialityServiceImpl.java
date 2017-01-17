@@ -17,7 +17,7 @@ import static com.getprepared.constant.ServerConstants.DAOS.SPECIALITY_DAO;
  */
 public class SpecialityServiceImpl extends AbstractService implements SpecialityService {
 
-//    private static final Logger LOG = Logger.getLogger(SpecialityServiceImpl.class);
+    private static final Logger LOG = Logger.getLogger(SpecialityServiceImpl.class);
 
     public SpecialityServiceImpl() { }
 
@@ -31,7 +31,7 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
             getTransactionManager().commit();
         } catch (ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -47,7 +47,7 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
             return speciality;
         } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

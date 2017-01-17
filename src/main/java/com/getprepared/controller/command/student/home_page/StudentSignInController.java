@@ -6,6 +6,7 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
 import com.getprepared.service.impl.ServiceFactory;
 import com.getprepared.utils.impl.Messages;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
  */
 public class StudentSignInController extends AbstractHomePageController {
 
-//    private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
+    private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
 
     private UserService userService;
 

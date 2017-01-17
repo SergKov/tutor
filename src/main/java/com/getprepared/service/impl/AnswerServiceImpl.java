@@ -6,6 +6,7 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.AnswerService;
+import org.apache.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +18,7 @@ import static com.getprepared.constant.ServerConstants.DAOS.ANSWER_DAO;
  */
 public class AnswerServiceImpl extends AbstractService implements AnswerService {
 
-//    private static final Logger LOG = Logger.getLogger(AnswerServiceImpl.class);
+    private static final Logger LOG = Logger.getLogger(AnswerServiceImpl.class);
 
     public AnswerServiceImpl() { }
 
@@ -31,7 +32,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             getTransactionManager().commit();
         } catch (final ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -47,7 +48,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             return answer;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -63,7 +64,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             return Collections.unmodifiableList(answers);
         } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -78,7 +79,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             getTransactionManager().commit();
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
