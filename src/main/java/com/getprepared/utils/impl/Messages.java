@@ -7,17 +7,20 @@ import java.util.ResourceBundle;
  * Created by koval on 15.01.2017.
  */
 public class Messages {
-    private static final String BUNDLE = "resources.messages.base";
-    private static Messages messages = new Messages();
+
+    private static final String BUNDLE = "/messages/base";
+
+    private static final Messages instance = new Messages();
+
+    public static Messages getInstance() {
+        return instance;
+    }
+
     private ResourceBundle resoureBoundle;
 
     private Messages() { }
 
-    public static Messages getInstance() {
-        return messages;
-    }
-
-    public String getMessage(String key, Locale locale) {
+    public String getMessage(final String key, final Locale locale) {
         resoureBoundle = ResourceBundle.getBundle(BUNDLE, locale);
         return resoureBoundle.getString(key);
     }
