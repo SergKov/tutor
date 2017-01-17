@@ -5,7 +5,15 @@
   Time: 23:13
   To change this template use File | Settings | File Templates.
 --%>
-<html>
-<body> Not Found </body>
-</html>
+<%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
+
+<templates:page_template>
+
+    <jsp:attribute name="header">
+        <h1 class="text-muted text-center"><fmt:message key="pageNotFound"/></h1>
+    </jsp:attribute>
+
+</templates:page_template>
 
