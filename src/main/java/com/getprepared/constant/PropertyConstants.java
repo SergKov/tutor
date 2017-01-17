@@ -48,7 +48,7 @@ public class PropertyConstants {
 
         public static final String SAVE = "save";
 
-        public static final String INSTITUTE = "institute";
+        public static final String ASSIGN = "assign";
 
         public static final String FIND_BY_ID = "findById";
 

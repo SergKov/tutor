@@ -16,6 +16,19 @@ public class WebConstants {
         public static final String PASSWORD = "password";
     }
 
+    public static class REQUEST_ATTRIBUTES {
+
+        private REQUEST_ATTRIBUTES() { }
+
+        public static final String TITLE = "title";
+
+        public static final String ERROR_MSG = "errorMsg";
+
+        public static final String EMAIL_REGEX = "emailRegex";
+
+        public static final String PASSWORD_REGEX = "passwordRegex";
+    }
+
     public static class SESSION_ATTRIBUTES {
 
         private SESSION_ATTRIBUTES() { }

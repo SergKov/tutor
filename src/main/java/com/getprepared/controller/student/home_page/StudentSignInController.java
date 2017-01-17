@@ -1,4 +1,4 @@
-package com.getprepared.controller.command.student.home_page;
+package com.getprepared.controller.student.home_page;
 
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
@@ -16,6 +16,8 @@ import java.io.IOException;
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
@@ -52,16 +54,15 @@ public class StudentSignInController extends AbstractHomePageController {
                 return REDIRECT;
             }
         } catch (final ValidationException e) {
-            request.setAttribute("errorMsg", Messages.getInstance().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
-//            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
-            request.setAttribute("errorMsg", Messages.getInstance().getMessage(ERRORS.STUDENT_IS_NOT_EXIST,
-                    request.getLocale()));
-//            LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXIST, request.getLocale()));
+            LOG.warn(e.getMessage(), e);
         }
 
-        request.setAttribute("title", Messages.getInstance().getMessage(NAMES.SIGN_IN, request.getLocale()));
+        request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
 
         return PAGES.HOME;

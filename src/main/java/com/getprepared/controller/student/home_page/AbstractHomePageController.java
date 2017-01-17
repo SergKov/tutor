@@ -1,11 +1,12 @@
-package com.getprepared.controller.command.student.home_page;
+package com.getprepared.controller.student.home_page;
 
 import com.getprepared.controller.AbstractController;
-import com.getprepared.controller.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static com.getprepared.constant.UtilsConstant.REGEX;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.EMAIL_REGEX;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.PASSWORD_REGEX;
 
 /**
  * Created by koval on 15.01.2017.
@@ -13,7 +14,7 @@ import static com.getprepared.constant.UtilsConstant.REGEX;
 public abstract class AbstractHomePageController extends AbstractController {
 
     protected void fillPage(final HttpServletRequest request) {
-        request.setAttribute("emailRegex", REGEX.EMAIL);
-        request.setAttribute("passwordRegex", REGEX.PASSWORD);
+        request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);
+        request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
     }
 }
