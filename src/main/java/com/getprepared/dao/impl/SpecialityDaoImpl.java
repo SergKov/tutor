@@ -51,7 +51,7 @@ public class SpecialityDaoImpl extends AbstractDao<Speciality> implements Specia
     private static class SpecialityMapper implements RowMapper<Speciality> {
 
         @Override
-        public Speciality mapRow(ResultSet rs) throws SQLException {
+        public Speciality mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final String name = rs.getString(NAME_KEY);
             return new Speciality(id, name);

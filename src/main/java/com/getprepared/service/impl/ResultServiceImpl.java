@@ -21,14 +21,14 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
 
     @Override
-    public void save(Result result) throws ValidationException, EntityExistsException {
+    public void save(final Result result) throws ValidationException, EntityExistsException {
         try {
             getTransactionManager().begin();
             getValidation().validateResult(result);
             final ResultDao resultDao = getResultDao();
             resultDao.save(result);
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityExistsException e) {
+        } catch (ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -44,7 +44,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             final Result result = resultDao.findById(id);
             getTransactionManager().commit();
             return result;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -60,7 +60,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             final List<Result> result = resultDao.findByUserId(userId);
             getTransactionManager().commit();
             return result;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

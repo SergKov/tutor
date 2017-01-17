@@ -40,7 +40,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             }
 
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityExistsException e) {
+        } catch (ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -58,7 +58,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
             getTransactionManager().commit();
             return question;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -75,8 +75,8 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final List<Question> questions = questionDao.findByQuizId(id);
 
             getTransactionManager().commit();
-            return Collections.unmodifiableList(questions);
-        } catch (final ValidationException | EntityNotFoundException e) {
+            return questions;
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -95,7 +95,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final AnswerService answerService = getAnswerService();
             answerService.removeByQuestionId(question.getId());
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

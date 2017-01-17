@@ -1,6 +1,5 @@
 package com.getprepared.domain;
 
-import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -8,18 +7,37 @@ import java.util.List;
  */
 public class Quiz extends Entity {
 
-    public static final String NAME_KEY = "name";
+    public static final String OWNER_ID_KEY = "owner_id";
     public static final String SPECIALITY_ID_KEY = "speciality_id";
+    public static final String NAME_KEY = "name";
 
-    private String name;
+    private User user;
     private Speciality speciality;
+    private String name;
     private List<Quiz> quizzes;
 
     public Quiz() { }
 
-    public Quiz(Long id, String name, Speciality speciality) {
+    public Quiz(Long id, User user, Speciality speciality, String name) {
         super(id);
+        this.user = user;
         this.name = name;
+        this.speciality = speciality;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
     }
 
@@ -29,14 +47,6 @@ public class Quiz extends Entity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Speciality getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(Speciality speciality) {
-        this.speciality = speciality;
     }
 
     public List<Quiz> getQuizzes() {

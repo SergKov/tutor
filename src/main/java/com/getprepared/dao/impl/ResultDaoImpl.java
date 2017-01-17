@@ -65,7 +65,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
     private static class ResultMapper implements RowMapper<Result> {
 
         @Override
-        public Result mapRow(ResultSet rs) throws SQLException {
+        public Result mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final User user = new User();
             user.setId(rs.getLong(USER_ID_KEY));

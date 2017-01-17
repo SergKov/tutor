@@ -90,7 +90,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static class UserMapper implements RowMapper<User> {
 
         @Override
-        public User mapRow(ResultSet rs) throws SQLException {
+        public User mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final Role role = Role.valueOf(rs.getString(ROLE_KEY));
             final String email = rs.getString(EMAIL_KEY);

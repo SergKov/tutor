@@ -30,7 +30,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             final AnswerDao answerDao = getAnswerDao();
             answerDao.save(answer);
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityExistsException e) {
+        } catch (ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -46,7 +46,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             final Answer answer = answerDao.findById(id);
             getTransactionManager().commit();
             return answer;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -77,7 +77,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             final AnswerDao answerDao = getAnswerDao();
             answerDao.removeByQuestionId(questionId);
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

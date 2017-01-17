@@ -62,7 +62,7 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
     private static class AnswerMapper implements RowMapper<Answer> {
 
         @Override
-        public Answer mapRow(ResultSet rs) throws SQLException{
+        public Answer mapRow(final ResultSet rs) throws SQLException{
             final Long id = rs.getLong(ID_KEY);
             final Question question = new Question();
             question.setId(rs.getLong(QUESTION_ID_KEY));

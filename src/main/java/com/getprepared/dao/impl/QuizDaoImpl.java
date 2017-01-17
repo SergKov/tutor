@@ -3,6 +3,7 @@ package com.getprepared.dao.impl;
 import com.getprepared.dao.QuizDao;
 import com.getprepared.domain.Quiz;
 import com.getprepared.domain.Speciality;
+import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.template.JdbcTemplate;
@@ -19,6 +20,7 @@ import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Quiz.NAME_KEY;
+import static com.getprepared.domain.Quiz.OWNER_ID_KEY;
 import static com.getprepared.domain.Quiz.SPECIALITY_ID_KEY;
 
 /**
@@ -58,7 +60,7 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
 
     @Override
     public void assign(final Long userId, final Long quizId) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.INSTITUTE),
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.ASSIGN),
                 ps -> {
                     ps.setLong(1, userId);
                     ps.setLong(2, quizId);
@@ -79,12 +81,14 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     private static class QuizMapper implements RowMapper<Quiz> {
 
         @Override
-        public Quiz mapRow(ResultSet rs) throws SQLException {
+        public Quiz mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
+            final User owner = new User();
+            owner.setId(rs.getLong(OWNER_ID_KEY));
             final String name = rs.getString(NAME_KEY);
             final Speciality speciality = new Speciality();
             speciality.setId(rs.getLong(SPECIALITY_ID_KEY));
-            return new Quiz(id, name, speciality);
+            return new Quiz(id, owner, speciality, name);
         }
     }
 }

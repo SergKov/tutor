@@ -68,7 +68,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
     private static class QuestionMapper implements RowMapper<Question> {
 
         @Override
-        public Question mapRow(ResultSet rs) throws SQLException {
+        public Question mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final Quiz quiz = new Quiz();
             quiz.setId(rs.getLong(QUIZ_ID_KEY));

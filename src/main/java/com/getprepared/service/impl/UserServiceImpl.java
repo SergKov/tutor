@@ -42,7 +42,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             final User user = userDao.findById(id);
             getTransactionManager().commit();
             return user;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -58,7 +58,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             final User user = userDao.findByEmail(email);
             getTransactionManager().commit();
             return user;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -78,7 +78,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             final User user = userDao.findByCredentials(email, encodedPassword);
             getTransactionManager().commit();
             return user;
-        } catch (final ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -95,7 +95,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             final UserDao userDao = getUserDao();
             userDao.save(user);
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityExistsException e) {
+        } catch (ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -112,7 +112,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             final UserDao userDao = getUserDao();
             userDao.update(user);
             getTransactionManager().commit();
-        } catch (final ValidationException | EntityExistsException e) {
+        } catch (ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
