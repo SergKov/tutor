@@ -6,25 +6,23 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
 import com.getprepared.service.impl.ServiceFactory;
 import com.getprepared.utils.impl.Messages;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
-import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 15.01.2017.
  */
 public class StudentSignInController extends AbstractHomePageController {
 
-    private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
+//    private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
 
     private UserService userService;
 
@@ -55,11 +53,11 @@ public class StudentSignInController extends AbstractHomePageController {
         } catch (final ValidationException e) {
             request.setAttribute("errorMsg", Messages.getInstance().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
             request.setAttribute("errorMsg", Messages.getInstance().getMessage(ERRORS.STUDENT_IS_NOT_EXIST,
                     request.getLocale()));
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
         }
 
         request.setAttribute("title", Messages.getInstance().getMessage(NAMES.SIGN_IN, request.getLocale()));

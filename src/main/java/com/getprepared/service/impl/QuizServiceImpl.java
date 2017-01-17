@@ -20,7 +20,7 @@ import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
  */
 public class QuizServiceImpl extends AbstractService implements QuizService {
 
-    private static final Logger LOG = Logger.getLogger(QuizServiceImpl.class);
+//    private static final Logger LOG = Logger.getLogger(QuizServiceImpl.class);
 
     public QuizServiceImpl() { }
 
@@ -34,7 +34,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().commit();
         } catch (final ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -50,7 +50,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             return quiz;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -72,7 +72,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             return quizzes;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -88,7 +88,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             return quizzes;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -108,7 +108,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().commit();
         } catch (final ValidationException | EntityNotFoundException | EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -123,7 +123,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().commit();
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

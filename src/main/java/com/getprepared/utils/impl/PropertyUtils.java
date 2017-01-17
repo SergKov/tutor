@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public class PropertyUtils {
 
-    private static final Logger LOG = Logger.getLogger(PropertyUtils.class);
+//    private static final Logger LOG = Logger.getLogger(PropertyUtils.class);
 
     private PropertyUtils() { }
 
@@ -24,7 +24,7 @@ public class PropertyUtils {
             prop.load(is);
             return prop;
         } catch (final IOException e) {
-            LOG.warn(String.format("Failed to load file %s", fileName), e);
+//            LOG.warn(String.format("Failed to load file %s", fileName), e);
             throw new IllegalStateException(e);
         }
 

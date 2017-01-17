@@ -21,7 +21,7 @@ import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
  */
 public class QuestionServiceImpl extends AbstractService implements QuestionService {
 
-    private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
+//    private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
 
     @Override
     public void save(final Question question) throws ValidationException, EntityExistsException {
@@ -42,7 +42,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().commit();
         } catch (final ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -60,7 +60,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             return question;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -78,7 +78,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             return Collections.unmodifiableList(questions);
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -97,7 +97,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().commit();
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

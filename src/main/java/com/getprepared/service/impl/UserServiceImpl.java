@@ -21,7 +21,7 @@ import static com.getprepared.constant.UtilsConstant.PASSWORD_ENCODER;
  */
 public class UserServiceImpl extends AbstractService implements UserService {
 
-    private static final Logger LOG = Logger.getLogger(UserServiceImpl.class);
+//    private static final Logger LOG = Logger.getLogger(UserServiceImpl.class);
 
     private PasswordEncoder passwordEncoder;
 
@@ -44,7 +44,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             return user;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -60,7 +60,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             return user;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -80,7 +80,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             return user;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
 
@@ -97,7 +97,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             getTransactionManager().commit();
         } catch (final ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -114,7 +114,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             getTransactionManager().commit();
         } catch (final ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

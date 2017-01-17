@@ -1,6 +1,5 @@
 package com.getprepared.controller;
 
-import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.factory.ControllerFactory;
 
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.getprepared.constant.PageConstants.LINKS;
 import static com.getprepared.constant.PageConstants.REDIRECT;
 
 /**
@@ -38,7 +38,7 @@ public class FrontController extends HttpServlet {
         final Controller controller = ControllerFactory.getInstance().getController(controllerKey);
 
         if (controller == null) {
-            resp.sendRedirect(PageConstants.LINKS.NOT_FOUND);
+            resp.sendRedirect(LINKS.NOT_FOUND);
         } else {
             final String page = controller.execute(req, resp);
             if (!REDIRECT.equals(page)) {

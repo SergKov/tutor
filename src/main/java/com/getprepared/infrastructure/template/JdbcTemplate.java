@@ -7,7 +7,6 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
 import com.getprepared.infrastructure.template.function.PreparedStatementSetter;
 import com.getprepared.infrastructure.template.function.RowMapper;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +20,7 @@ import java.util.List;
  */
 public class JdbcTemplate {
 
-    private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
+//    private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
     private TransactionalConnectionProvider provider;
 
@@ -44,12 +43,12 @@ public class JdbcTemplate {
             if (rs.next()) {
                 entity.setId(rs.getLong(1));
             } else {
-                LOG.error(String.format("Failed to save entity %s", entity.getEntityName()));
+//                LOG.error(String.format("Failed to save entity %s", entity.getEntityName()));
                 throw new DataAccessException();
             }
 
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute update %s with generated key %d", sql, genKey), e);
+//            LOG.error(String.format("Failed to execute update %s with generated key %d", sql, genKey), e);
             throw new DataAccessException(e);
         }
     }
@@ -62,7 +61,7 @@ public class JdbcTemplate {
             setter.setValues(ps);
             executeUpdate(ps, sql);
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute update %s", sql), e);
+//            LOG.error(String.format("Failed to execute update %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -78,7 +77,7 @@ public class JdbcTemplate {
     private void checkException(final SQLException e, final String sql) throws EntityExistsException {
         if (e.getErrorCode() == 1062) {
             final String errorMsg = String.format("Entity by this query %s is already exists", sql);
-            LOG.warn(errorMsg);
+//            LOG.warn(errorMsg);
             throw new EntityExistsException(String.format("Entity by this query %s is already exists", sql));
         }
     }
@@ -91,7 +90,7 @@ public class JdbcTemplate {
             setter.setValues(ps);
             ps.executeUpdate();
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to remove %s", sql), e);
+//            LOG.error(String.format("Failed to remove %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -112,14 +111,14 @@ public class JdbcTemplate {
 
             if (rowMapper.mapRow(rs) == null) {
                 final String errorMsg = String.format("Entity is not found by this query %s", sql);
-                LOG.warn(errorMsg);
+//                LOG.warn(errorMsg);
                 throw new EntityNotFoundException(errorMsg);
             }
 
             return entry;
 
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
+//            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -140,7 +139,7 @@ public class JdbcTemplate {
 
             return result;
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
+//            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
     }

@@ -18,7 +18,7 @@ import static com.getprepared.constant.ServerConstants.DAOS.RESULT_DAO;
  */
 public class ResultServiceImpl extends AbstractService implements ResultService {
 
-    private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
+//    private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
 
     @Override
     public void save(Result result) throws ValidationException, EntityExistsException {
@@ -30,7 +30,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             getTransactionManager().commit();
         } catch (final ValidationException | EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -46,7 +46,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             return result;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -62,7 +62,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             return result;
         } catch (final ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
+//            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

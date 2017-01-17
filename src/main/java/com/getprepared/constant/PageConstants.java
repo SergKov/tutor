@@ -5,8 +5,7 @@ package com.getprepared.constant;
  */
 public class PageConstants {
 
-    private PageConstants() {
-    }
+    private PageConstants() { }
 
     public static final String REDIRECT = "redirect";
 
@@ -14,11 +13,11 @@ public class PageConstants {
 
         private PAGES() { }
 
-        public static final String PREFIX = "/WEB-INF/pages/";
+        private static final String PREFIX = "/WEB-INF/pages/";
 
-        public static final String SUFFIX = ".jsp";
+        private static final String SUFFIX = ".jsp";
 
-        public static final String HOME = PREFIX + "home_page" + SUFFIX;
+        public static final String HOME = PREFIX + "homePage" + SUFFIX;
 
         public static final String NOT_FOUND = PREFIX + "pageNotFound" + SUFFIX;
     }

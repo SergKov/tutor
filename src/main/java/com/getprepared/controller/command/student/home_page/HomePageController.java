@@ -1,9 +1,7 @@
 package com.getprepared.controller.command.student.home_page;
 
 import com.getprepared.constant.PageConstants.LINKS;
-import com.getprepared.constant.PageConstants.NAMES;
 import com.getprepared.constant.PageConstants.PAGES;
-import com.getprepared.utils.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +25,7 @@ public class HomePageController extends AbstractHomePageController {
             return REDIRECT;
         }
 
-        request.setAttribute("title", Messages.getInstance().getMessage(NAMES.SIGN_IN, request.getLocale()));
+//        request.setAttribute("title", NAMES.SIGN_IN);
         fillPage(request);
         return PAGES.HOME;
     }
