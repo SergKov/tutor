@@ -14,7 +14,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 public abstract class AbstractSignUpPageController extends AbstractController {
 
     protected void fillPage(final HttpServletRequest request) {
-        request.setAttribute(TITLE, getMessages().getMessage(SIGN_UP, request.getLocale()));
+        request.setAttribute(TITLE, SIGN_UP);
         request.setAttribute(NAME_REGEX, NAME);
         request.setAttribute(SURNAME_REGEX, SURNAME);
         request.setAttribute(EMAIL_REGEX, EMAIL);

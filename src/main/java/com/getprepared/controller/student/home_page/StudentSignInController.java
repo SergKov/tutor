@@ -62,7 +62,7 @@ public class StudentSignInController extends AbstractHomePageController {
             LOG.warn(e.getMessage(), e);
         }
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
+        request.setAttribute(TITLE, NAMES.SIGN_IN);
         fillPage(request);
 
         return PAGES.HOME;

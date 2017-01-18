@@ -64,10 +64,10 @@ public class SignUpController extends AbstractSignUpPageController {
                 return REDIRECT;
             }
         } catch (final ValidationException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
+            request.setAttribute(ERROR_MSG, ERRORS.DATA_INVALIDATED);
             LOG.warn(e.getMessage(), e);
         } catch (final EntityExistsException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, ERRORS.STUDENT_EXISTS);
             LOG.warn(e.getMessage(), e);
         }
 

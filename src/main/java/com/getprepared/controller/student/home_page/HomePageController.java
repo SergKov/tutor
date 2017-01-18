@@ -28,7 +28,7 @@ public class HomePageController extends AbstractHomePageController {
             return REDIRECT;
         }
 
-        request.setAttribute(TITLE, getMessages().getMessage(SIGN_IN, request.getLocale()));
+        request.setAttribute(TITLE, SIGN_IN);
         fillPage(request);
         return PAGES.HOME;
     }
