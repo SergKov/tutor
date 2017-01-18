@@ -43,8 +43,8 @@ public class WebConstants {
 
         private SESSION_ATTRIBUTES() { }
 
-        public static final String STUDENT = "signUp.student";
+        public static final String STUDENT = "student";
 
-        public static final String TUTOR = "signUp.tutor";
+        public static final String TUTOR = "tutor";
     }
 }

@@ -21,12 +21,14 @@ public class UtilsConstant {
 
         public static final String NAME = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$";
 
-        public static final  String SURNAME = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$";
+        public static final String SURNAME = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$";
 
         public static final String QUIZ_NAME = "^[\\S]{2,32}$";
 
         public static final String SPECIALITY_NAME = "^[\\S]{2,32}$";
 
         public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$";
+
+        public static final String USER_TYPE = "^[STUDENT|TUTOR]$";
     }
 }

@@ -20,8 +20,8 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES;
 import static com.getprepared.constant.UtilsConstant.FORM_VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS.*;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg.ERROR_MSG;
 
 /**
  * Created by koval on 17.01.2017.

@@ -6,6 +6,7 @@ import com.getprepared.utils.Validation;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.getprepared.constant.UtilsConstant.REGEX;
+import static com.getprepared.constant.UtilsConstant.REGEX.USER_TYPE;
 
 /**
  * Created by koval on 14.01.2017.
@@ -164,7 +165,7 @@ public class ValidationImpl implements Validation {
         if (role == null) {
             throw new ValidationException("Role is missing.");
         }
-        if (!role.equals("STUDENT") && !role.equals("TUTOR")) {
+        if (!role.equals("TUTOR") && !role.equals("STUDENT")) {
             throw new ValidationException("Role is illegal");
         }
     }
