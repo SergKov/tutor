@@ -13,13 +13,13 @@ public class WebConstants {
 
         public static final String ROLE = "role";
 
-        public static final String EMAIL = "homePage.email";
+        public static final String EMAIL = "email";
 
-        public static final String PASSWORD = "homePage.password";
+        public static final String PASSWORD = "password";
 
-        public static final String NAME = "signUp.name";
+        public static final String NAME = "name";
 
-        public static final String SURNAME = "signUp.surname";
+        public static final String SURNAME = "surname";
     }
 
     public static class REQUEST_ATTRIBUTES {

@@ -26,7 +26,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
-                                   placeholder="<fmt:message bundle="${bundle}" key="homePage.enterEmail"/>" required>
+                                   placeholder="<fmt:message key="homePage.enterEmail"/>" required>
                         </div>
                     </div>
                     <div class="form-group">

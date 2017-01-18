@@ -28,7 +28,7 @@
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="/editCredentials"><fmt:message key="editCredentials"/></a>
+                        <a href="/editCredentials"><fmt:message key="signOut.editCredentials"/></a>
                     </li>
                     <li>
                         <form action="/" method="POST">
@@ -47,7 +47,7 @@
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="/worker/editCredentials"><fmt:message key="editCredentials"/></a>
+                        <a href="/worker/editCredentials"><fmt:message key="signOut.editCredentials"/></a>
                     </li>
                     <li>
                         <form action="/worker" method="POST">

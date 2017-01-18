@@ -15,7 +15,7 @@ public class UtilsConstant {
 
         private REGEX() { }
 
-        public static final String EMAIL = "^(.+)@(.+){2, 24}$";
+        public static final String EMAIL = "^[a-zA-Z@\\.1-9]{2,32}$";
 
         public static final String PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,20}$";
 

@@ -131,7 +131,7 @@ public class ValidationImpl implements Validation {
         validateSurname(user.getSurname());
     }
 
-    private void validateName(final String name) throws ValidationException {
+    public void validateName(final String name) throws ValidationException {
         if (name == null) {
             throw new ValidationException("Name is missing.");
         }
@@ -140,7 +140,7 @@ public class ValidationImpl implements Validation {
         }
     }
 
-    private void validateSurname(final String surname) throws ValidationException {
+    public void validateSurname(final String surname) throws ValidationException {
         if (surname == null) {
             throw new ValidationException("Surname is missing.");
         }
@@ -156,6 +156,16 @@ public class ValidationImpl implements Validation {
         }
         if (!email.matches(REGEX.EMAIL)) {
             throw new ValidationException(String.format("Email %s has an incorrect format.", email));
+        }
+    }
+
+    @Override
+    public void validateRole(final String role) throws ValidationException {
+        if (role == null) {
+            throw new ValidationException("Role is missing.");
+        }
+        if (!role.equals("STUDENT") && !role.equals("TUTOR")) {
+            throw new ValidationException("Role is illegal");
         }
     }
 

@@ -90,12 +90,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public void signUp(final User user) throws ValidationException, EntityExistsException {
         try {
             getTransactionManager().begin();
-            getValidation().validateUser(user);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             final UserDao userDao = getUserDao();
             userDao.save(user);
             getTransactionManager().commit();
-        } catch (ValidationException | EntityExistsException e) {
+        } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

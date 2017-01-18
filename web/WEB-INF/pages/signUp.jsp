@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="name"><fmt:message key="signUp.name"/>:</label>
+                        <label class="control-label col-xs-5" for="name"><fmt:message key="signUp.name"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${nameRegex}" class="form-control" id="name" name="name"
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="surName"><fmt:message key="signUp.surname"/>:</label>
+                        <label class="control-label col-xs-5" for="surName"><fmt:message key="signUp.surname"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${surnameRegex}" class="form-control" id="surName"
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.email"/>:</label>
+                        <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.email"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/>:</label>
+                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
