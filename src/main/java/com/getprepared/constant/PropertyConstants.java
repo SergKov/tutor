@@ -44,7 +44,7 @@ public class PropertyConstants {
 
         public static final String USER = "user";
 
-        public static final String PASSWORD = "password";
+        public static final String PASSWORD = "homePage.password";
 
         public static final String SAVE = "save";
 

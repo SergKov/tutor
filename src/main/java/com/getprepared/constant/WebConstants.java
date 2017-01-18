@@ -13,13 +13,13 @@ public class WebConstants {
 
         public static final String ROLE = "role";
 
-        public static final String EMAIL = "email";
+        public static final String EMAIL = "homePage.email";
 
-        public static final String PASSWORD = "password";
+        public static final String PASSWORD = "homePage.password";
 
-        public static final String NAME = "name";
+        public static final String NAME = "signUp.name";
 
-        public static final String SURNAME = "surname";
+        public static final String SURNAME = "signUp.surname";
     }
 
     public static class REQUEST_ATTRIBUTES {
@@ -43,8 +43,8 @@ public class WebConstants {
 
         private SESSION_ATTRIBUTES() { }
 
-        public static final String STUDENT = "student";
+        public static final String STUDENT = "signUp.student";
 
-        public static final String TUTOR = "tutor";
+        public static final String TUTOR = "signUp.tutor";
     }
 }

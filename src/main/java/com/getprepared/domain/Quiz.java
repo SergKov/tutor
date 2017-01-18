@@ -9,7 +9,7 @@ public class Quiz extends Entity {
 
     public static final String OWNER_ID_KEY = "owner_id";
     public static final String SPECIALITY_ID_KEY = "speciality_id";
-    public static final String NAME_KEY = "name";
+    public static final String NAME_KEY = "signUp.name";
 
     private User user;
     private Speciality speciality;

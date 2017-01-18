@@ -22,25 +22,25 @@
                     <input type="hidden" name="controller" value="studentSignIn">
 
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="email"><fmt:message key="login"/>:</label>
+                        <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.login"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
-                                   placeholder="<fmt:message bundle="${bundle}" key="enterEmail"/>" required>
+                                   placeholder="<fmt:message bundle="${bundle}" key="homePage.enterEmail"/>" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="password"/>:</label>
+                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/>:</label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
-                                   name="password" placeholder="<fmt:message key="enterPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="homePage.enterPassword"/>" required>
                         </div>
                     </div>
                     <div class="col-xs-offset-7 col-xs-5">
                         <button type="submit" class="btn btn-info btn-md"><fmt:message key="homePage.submit"/></button>
                     </div>
-                    <p class="text-center"><a href="/signUp"><fmt:message key="register"/></a></p>
+                    <p class="text-center"><a href="/signUp"><fmt:message key="homePage.register"/></a></p>
                 </form>
             </div>
         </div>
