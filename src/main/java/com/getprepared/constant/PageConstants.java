@@ -53,7 +53,7 @@ public class PageConstants {
 
         public static final String SIGN_UP = "SignUp";
 
-        public static final String CHOOSE_TEST = "ChooseTest";
+        public static final String HOME_PAGE = "HomePage";
     }
 
     public static class FORMS {

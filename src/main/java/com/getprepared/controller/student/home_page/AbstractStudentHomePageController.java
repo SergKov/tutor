@@ -32,7 +32,7 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
 
     protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.CHOOSE_TEST, request.getLocale()));
+        request.setAttribute(TITLE, getMessages().getMessage(NAMES.HOME_PAGE, request.getLocale()));
         request.setAttribute(QUIZ, REGEX.QUIZ_NAME);
 
         try {
