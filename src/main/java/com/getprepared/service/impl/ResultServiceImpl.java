@@ -1,6 +1,5 @@
 package com.getprepared.service.impl;
 
-import com.getprepared.dao.QuizDao;
 import com.getprepared.dao.ResultDao;
 import com.getprepared.domain.Result;
 import com.getprepared.exception.EntityExistsException;
@@ -25,7 +24,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
         try {
             getTransactionManager().begin();
             getValidation().validateResult(result);
-            final ResultDao resultDao = getResultDao();
+            final ResultDao resultDao = getDao();
             resultDao.save(result);
             getTransactionManager().commit();
         } catch (ValidationException | EntityExistsException e) {
@@ -40,7 +39,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
-            final ResultDao resultDao = getResultDao();
+            final ResultDao resultDao = getDao();
             final Result result = resultDao.findById(id);
             getTransactionManager().commit();
             return result;
@@ -56,7 +55,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
         try {
             getTransactionManager().begin();
             getValidation().validateId(userId);
-            final ResultDao resultDao = getResultDao();
+            final ResultDao resultDao = getDao();
             final List<Result> result = resultDao.findByUserId(userId);
             getTransactionManager().commit();
             return result;
@@ -67,7 +66,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
         }
     }
 
-    private ResultDao getResultDao() {
+    private ResultDao getDao() {
         return getDaoFactory().getDao(RESULT_DAO, ResultDao.class);
     }
 

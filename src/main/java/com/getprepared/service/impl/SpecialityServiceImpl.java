@@ -26,7 +26,7 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
         try {
             getTransactionManager().begin();
             getValidation().validateSpeciality(speciality);
-            final SpecialityDao specialityDao = getSpecialityDao();
+            final SpecialityDao specialityDao = getDao();
             specialityDao.save(speciality);
             getTransactionManager().commit();
         } catch (ValidationException | EntityExistsException e) {
@@ -41,7 +41,7 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
-            final SpecialityDao specialityDao = getSpecialityDao();
+            final SpecialityDao specialityDao = getDao();
             final Speciality speciality = specialityDao.findById(id);
             getTransactionManager().commit();
             return speciality;
@@ -58,7 +58,7 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
         return null;
     }
 
-    private SpecialityDao getSpecialityDao() {
+    private SpecialityDao getDao() {
         return getDaoFactory().getDao(SPECIALITY_DAO, SpecialityDao.class);
     }
 }

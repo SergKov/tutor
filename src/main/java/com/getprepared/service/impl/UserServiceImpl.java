@@ -10,9 +10,6 @@ import com.getprepared.utils.PasswordEncoder;
 import com.getprepared.utils.UtilsFactory;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import static com.getprepared.constant.ServerConstants.DAOS.USER_DAO;
 import static com.getprepared.constant.UtilsConstant.PASSWORD_ENCODER;
 
@@ -38,7 +35,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
-            final UserDao userDao = getUserDao();
+            final UserDao userDao = getDao();
             final User user = userDao.findById(id);
             getTransactionManager().commit();
             return user;
@@ -54,7 +51,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
             getTransactionManager().begin();
             getValidation().validateEmail(email);
-            final UserDao userDao = getUserDao();
+            final UserDao userDao = getDao();
             final User user = userDao.findByEmail(email);
             getTransactionManager().commit();
             return user;
@@ -74,7 +71,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             getTransactionManager().begin();
             getValidation().validateEmail(email);
             getValidation().validatePassword(password);
-            final UserDao userDao = getUserDao();
+            final UserDao userDao = getDao();
             final User user = userDao.findByCredentials(email, encodedPassword);
             getTransactionManager().commit();
             return user;
@@ -91,7 +88,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
             getTransactionManager().begin();
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            final UserDao userDao = getUserDao();
+            final UserDao userDao = getDao();
             userDao.save(user);
             getTransactionManager().commit();
         } catch (final EntityExistsException e) {
@@ -108,7 +105,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             getValidation().validateUser(user);
             getValidation().validateId(user.getId());
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            final UserDao userDao = getUserDao();
+            final UserDao userDao = getDao();
             userDao.update(user);
             getTransactionManager().commit();
         } catch (ValidationException | EntityExistsException e) {
@@ -118,7 +115,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         }
     }
 
-    private UserDao getUserDao() {
+    private UserDao getDao() {
         return getDaoFactory().getDao(USER_DAO, UserDao.class);
     }
 }

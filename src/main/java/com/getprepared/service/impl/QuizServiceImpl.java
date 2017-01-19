@@ -29,7 +29,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             getTransactionManager().begin();
             getValidation().validateQuiz(quiz);
-            final QuizDao quizDao = getQuizDao();
+            final QuizDao quizDao = getDao();
             quizDao.save(quiz);
             getTransactionManager().commit();
         } catch (ValidationException | EntityExistsException e) {
@@ -44,7 +44,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
-            final QuizDao quizDao = getQuizDao();
+            final QuizDao quizDao = getDao();
             final Quiz quiz = quizDao.findById(id);
             getTransactionManager().commit();
             return quiz;
@@ -66,7 +66,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             getTransactionManager().begin();
             getValidation().validateEmail(email);
-            final QuizDao quizDao = getQuizDao();
+            final QuizDao quizDao = getDao();
             final List<Quiz> quizzes = quizDao.findByUserEmail(email);
             getTransactionManager().commit();
             return quizzes;
@@ -82,7 +82,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
-            final QuizDao quizDao = getQuizDao();
+            final QuizDao quizDao = getDao();
             final List<Quiz> quizzes = quizDao.findByUserId(id);
             getTransactionManager().commit();
             return quizzes;
@@ -100,7 +100,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().begin();
             getValidation().validateId(quizId);
             getValidation().validateId(userId);
-            final QuizDao quizDao = getQuizDao();
+            final QuizDao quizDao = getDao();
             final Quiz quiz = quizDao.findById(quizId);
             final UserService userService = getUserService();
             final User user = userService.findById(userId);
@@ -118,7 +118,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             getTransactionManager().begin();
             getValidation().validateQuiz(quiz);
-            final QuizDao quizDao = getQuizDao();
+            final QuizDao quizDao = getDao();
             quizDao.remove(quiz.getId());
             getTransactionManager().commit();
         } catch (ValidationException | EntityNotFoundException e) {
@@ -128,7 +128,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         }
     }
 
-    private QuizDao getQuizDao() {
+    private QuizDao getDao() {
         return getDaoFactory().getDao(QUIZ_DAO, QuizDao.class);
     }
 

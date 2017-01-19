@@ -10,7 +10,6 @@ import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import org.apache.log4j.Logger;
 
-import java.util.Collections;
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUESTION_DAO;
@@ -29,7 +28,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().begin();
             getValidation().validateQuestion(question);
 
-            final QuestionDao questionDao = getQuestionDao();
+            final QuestionDao questionDao = getDao();
             questionDao.save(question);
 
             final AnswerService answerService = getAnswerService();
@@ -53,7 +52,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().begin();
             getValidation().validateId(id);
 
-            final QuestionDao questionDao = getQuestionDao();
+            final QuestionDao questionDao = getDao();
             final Question question = questionDao.findById(id);
 
             getTransactionManager().commit();
@@ -71,7 +70,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().begin();
             getValidation().validateId(id);
 
-            final QuestionDao questionDao = getQuestionDao();
+            final QuestionDao questionDao = getDao();
             final List<Question> questions = questionDao.findByQuizId(id);
 
             getTransactionManager().commit();
@@ -89,7 +88,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().begin();
             getValidation().validateEntity(question);
 
-            final QuestionDao questionDao = getQuestionDao();
+            final QuestionDao questionDao = getDao();
             questionDao.removeById(question.getId());
 
             final AnswerService answerService = getAnswerService();
@@ -102,7 +101,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
         }
     }
 
-    private QuestionDao getQuestionDao() {
+    private QuestionDao getDao() {
         return getDaoFactory().getDao(QUESTION_DAO, QuestionDao.class);
     }
 

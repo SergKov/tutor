@@ -27,7 +27,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
         try {
             getTransactionManager().begin();
             getValidation().validateAnswer(answer);
-            final AnswerDao answerDao = getAnswerDao();
+            final AnswerDao answerDao = getDao();
             answerDao.save(answer);
             getTransactionManager().commit();
         } catch (ValidationException | EntityExistsException e) {
@@ -42,7 +42,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
         try {
             getTransactionManager().begin();
             getValidation().validateId(id);
-            final AnswerDao answerDao = getAnswerDao();
+            final AnswerDao answerDao = getDao();
             final Answer answer = answerDao.findById(id);
             getTransactionManager().commit();
             return answer;
@@ -58,7 +58,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
         try {
             getTransactionManager().begin();
             getValidation().validateId(questionId);
-            final AnswerDao answerDao = getAnswerDao();
+            final AnswerDao answerDao = getDao();
             final List<Answer> answers = answerDao.findByQuestionId(questionId);
             getTransactionManager().commit();
             return Collections.unmodifiableList(answers);
@@ -74,7 +74,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
         try {
             getTransactionManager().begin();
             getValidation().validateId(questionId);
-            final AnswerDao answerDao = getAnswerDao();
+            final AnswerDao answerDao = getDao();
             answerDao.removeByQuestionId(questionId);
             getTransactionManager().commit();
         } catch (ValidationException | EntityNotFoundException e) {
@@ -84,7 +84,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
         }
     }
 
-    private AnswerDao getAnswerDao() {
+    private AnswerDao getDao() {
         return getDaoFactory().getDao(ANSWER_DAO, AnswerDao.class);
     }
 }
