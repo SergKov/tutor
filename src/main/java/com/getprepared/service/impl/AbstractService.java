@@ -2,10 +2,10 @@ package com.getprepared.service.impl;
 
 import com.getprepared.dao.impl.DaoFactory;
 import com.getprepared.infrastructure.tm.TransactionManager;
-import com.getprepared.utils.UtilsFactory;
+import com.getprepared.utils.factory.UtilsFactory;
 import com.getprepared.utils.Validation;
 
-import static com.getprepared.constant.UtilsConstant.FORM_VALIDATION;
+import static com.getprepared.constant.UtilsConstant.VALIDATION;
 
 /**
  * Created by koval on 14.01.2017.
@@ -25,7 +25,7 @@ public abstract class AbstractService {
     public void init() {
         daoFactory = DaoFactory.getInstance();
         tm = TransactionManager.getInstance();
-        validation = UtilsFactory.getInstance().getUtil(FORM_VALIDATION, Validation.class);
+        validation = UtilsFactory.getInstance().getUtil(VALIDATION, Validation.class);
     }
 
     protected TransactionManager getTransactionManager() {

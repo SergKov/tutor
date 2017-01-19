@@ -1,11 +1,9 @@
-package com.getprepared.controller.student.home_page;
+package com.getprepared.controller.student.sign_in;
 
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
-import com.getprepared.service.impl.ServiceFactory;
-import com.getprepared.utils.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +21,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 15.01.2017.
  */
-public class StudentSignInController extends AbstractHomePageController {
+public class StudentSignInController extends AbstractSignInController {
 
     private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
 
@@ -31,7 +29,7 @@ public class StudentSignInController extends AbstractHomePageController {
 
     @Override
     public void init() {
-        userService = ServiceFactory.getInstance().getService(USER_SERVICE, UserService.class);
+        userService = getServiceFactory().getService(USER_SERVICE, UserService.class);
     }
 
     @Override
@@ -39,7 +37,7 @@ public class StudentSignInController extends AbstractHomePageController {
 
         final HttpSession httpSession = request.getSession();
         if (httpSession.getAttribute(SESSION_ATTRIBUTES.STUDENT) != null) {
-            response.sendRedirect(LINKS.CHOOSE_TEST);
+            response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
             return REDIRECT;
         }
 
@@ -50,7 +48,7 @@ public class StudentSignInController extends AbstractHomePageController {
             final User user = userService.signIn(email, password);
             if (user != null) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
-                response.sendRedirect(LINKS.CHOOSE_TEST);
+                response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
                 return REDIRECT;
             }
         } catch (final ValidationException e) {
@@ -65,6 +63,6 @@ public class StudentSignInController extends AbstractHomePageController {
         request.setAttribute(TITLE, NAMES.SIGN_IN);
         fillPage(request);
 
-        return PAGES.HOME;
+        return PAGES.STUDENT_SIGN_IN;
     }
 }

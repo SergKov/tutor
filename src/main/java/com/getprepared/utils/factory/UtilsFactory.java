@@ -1,4 +1,4 @@
-package com.getprepared.utils;
+package com.getprepared.utils.factory;
 
 import com.getprepared.utils.impl.ParserImpl;
 import com.getprepared.utils.impl.PasswordEncoderImpl;

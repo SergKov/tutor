@@ -8,10 +8,10 @@ import java.util.List;
 public class User extends Entity {
 
     public static final String ROLE_KEY = "role";
-    public static final String EMAIL_KEY = "homePage.email";
-    public static final String PASSWORD_KEY = "homePage.password";
-    public static final String NAME_KEY = "signUp.name";
-    public static final String SURNAME_KEY = "signUp.surname";
+    public static final String EMAIL_KEY = "email";
+    public static final String PASSWORD_KEY = "password";
+    public static final String NAME_KEY = "name";
+    public static final String SURNAME_KEY = "surname";
 
     private Role role;
     private String email;

@@ -20,6 +20,8 @@ public class WebConstants {
         public static final String NAME = "name";
 
         public static final String SURNAME = "surname";
+
+        public static final String QUIZ = "quiz";
     }
 
     public static class REQUEST_ATTRIBUTES {
@@ -27,6 +29,8 @@ public class WebConstants {
         private REQUEST_ATTRIBUTES() { }
 
         public static final String TITLE = "title";
+
+        public static final String QUIZ_LIST = "quizList";
 
         public static final String ERROR_MSG = "errorMsg";
 
@@ -46,5 +50,7 @@ public class WebConstants {
         public static final String STUDENT = "student";
 
         public static final String TUTOR = "tutor";
+
+        public static final String CHOSEN_QUIZ_ID = "chosenQuizId";
     }
 }

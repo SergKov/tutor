@@ -27,8 +27,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public void save(final Quiz quiz) throws ValidationException, EntityExistsException {
         try {
-            getTransactionManager().begin();
             getValidation().validateQuiz(quiz);
+
+            getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             quizDao.save(quiz);
             getTransactionManager().commit();
@@ -42,8 +43,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public Quiz findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
+
+            getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             final Quiz quiz = quizDao.findById(id);
             getTransactionManager().commit();
@@ -64,8 +66,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public List<Quiz> findByUserEmail(final String email) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateEmail(email);
+
+            getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             final List<Quiz> quizzes = quizDao.findByUserEmail(email);
             getTransactionManager().commit();
@@ -78,15 +81,14 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findByUserId(final Long id) throws ValidationException, EntityNotFoundException {
+    public List<Quiz> findByUserId(final Long id) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();
-            getValidation().validateId(id);
             final QuizDao quizDao = getDao();
             final List<Quiz> quizzes = quizDao.findByUserId(id);
             getTransactionManager().commit();
             return quizzes;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

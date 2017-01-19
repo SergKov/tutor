@@ -7,7 +7,7 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
 import com.getprepared.utils.PasswordEncoder;
-import com.getprepared.utils.UtilsFactory;
+import com.getprepared.utils.factory.UtilsFactory;
 import org.apache.log4j.Logger;
 
 import static com.getprepared.constant.ServerConstants.DAOS.USER_DAO;

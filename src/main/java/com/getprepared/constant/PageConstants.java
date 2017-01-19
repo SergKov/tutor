@@ -17,24 +17,28 @@ public class PageConstants {
 
         private static final String SUFFIX = ".jsp";
 
-        public static final String HOME = PREFIX + "homePage" + SUFFIX;
+        public static final String STUDENT_SIGN_IN = PREFIX + "homePage" + SUFFIX;
 
         public static final String NOT_FOUND = PREFIX + "pageNotFound" + SUFFIX;
 
         public static final String SIGN_UP = PREFIX + "signUp" + SUFFIX;
+
+        public static final String STUDENT_HOME_PAGE = PREFIX + "studentHomePage" + SUFFIX;
     }
 
     public static class LINKS {
 
         private LINKS() { }
 
-        public static final String HOME_PAGE = "/";
+        public static final String STUDENT_SIGN_IN = "/";
 
         public static final String SIGN_UP = "/signUp";
 
-        public static final String CHOOSE_TEST = "/chooseTest";
+        public static final String STUDENT_HOME_PAGE = "/studentHomePage";
 
         public static final String SPECIALITIES = "/specialities";
+
+        public static final String TEST = "/test";
 
         public static final String NOT_FOUND = "/pageNotFound";
     }
@@ -59,6 +63,8 @@ public class PageConstants {
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
         public static final String SIGN_UP = "signUp";
+
+        public static final String STUDENT_HOME_PAGE = "studentHomePage";
     }
 
     public static class ERRORS {
@@ -74,5 +80,9 @@ public class PageConstants {
         public static final String DATA_INVALIDATED = "You have entered invalidated data";
 
         public static final String STUDENT_EXISTS = "Such student already exists";
+
+        public static final String STUDENT_INVALIDATED = "Student invalidated"; //TODO
+
+        public static final String QUIZ_ID_INCORRECT = "Quiz id is incorrect"; //TODO
     }
 }

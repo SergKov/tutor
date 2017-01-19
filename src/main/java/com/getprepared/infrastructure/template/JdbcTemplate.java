@@ -62,7 +62,7 @@ public class JdbcTemplate {
             setter.setValues(ps);
             executeUpdate(ps, sql);
         } catch (final SQLException e) {
-//            LOG.error(String.format("Failed to execute update %s", sql), e);
+            LOG.error(String.format("Failed to execute update %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -78,7 +78,7 @@ public class JdbcTemplate {
     private void checkException(final SQLException e, final String sql) throws EntityExistsException {
         if (e.getErrorCode() == 1062) {
             final String errorMsg = String.format("Entity by this query %s is already exists", sql);
-//            LOG.warn(errorMsg);
+            LOG.warn(errorMsg);
             throw new EntityExistsException(String.format("Entity by this query %s is already exists", sql));
         }
     }
@@ -91,7 +91,7 @@ public class JdbcTemplate {
             setter.setValues(ps);
             ps.executeUpdate();
         } catch (final SQLException e) {
-//            LOG.error(String.format("Failed to remove %s", sql), e);
+            LOG.error(String.format("Failed to remove %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -112,14 +112,14 @@ public class JdbcTemplate {
 
             if (rowMapper.mapRow(rs) == null) {
                 final String errorMsg = String.format("Entity is not found by this query %s", sql);
-//                LOG.warn(errorMsg);
+                LOG.warn(errorMsg);
                 throw new EntityNotFoundException(errorMsg);
             }
 
             return entry;
 
         } catch (final SQLException e) {
-//            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
+            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
     }
@@ -140,7 +140,7 @@ public class JdbcTemplate {
 
             return result;
         } catch (final SQLException e) {
-//            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
+            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
     }

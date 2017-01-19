@@ -21,7 +21,7 @@ public interface QuizService {
 
     List<Quiz> findByUserEmail(String email) throws ValidationException, EntityNotFoundException;
 
-    List<Quiz> findByUserId(Long id) throws ValidationException, EntityNotFoundException;
+    List<Quiz> findByUserId(Long id) throws EntityNotFoundException;
 
     void assign(Long quizId, Long userId) throws ValidationException, EntityNotFoundException, EntityExistsException;
 

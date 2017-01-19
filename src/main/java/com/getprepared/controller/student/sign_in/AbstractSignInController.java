@@ -1,4 +1,4 @@
-package com.getprepared.controller.student.home_page;
+package com.getprepared.controller.student.sign_in;
 
 import com.getprepared.controller.AbstractController;
 
@@ -11,7 +11,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.PASSWORD_
 /**
  * Created by koval on 15.01.2017.
  */
-public abstract class AbstractHomePageController extends AbstractController {
+public abstract class AbstractSignInController extends AbstractController {
 
     protected void fillPage(final HttpServletRequest request) {
         request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);

@@ -6,20 +6,16 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
-import com.getprepared.service.impl.ServiceFactory;
-import com.getprepared.utils.UtilsFactory;
 import com.getprepared.utils.Validation;
-import com.getprepared.utils.impl.ValidationImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES;
-import static com.getprepared.constant.UtilsConstant.FORM_VALIDATION;
+import static com.getprepared.constant.ServerConstants.SERVICES.*;
+import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
@@ -36,8 +32,8 @@ public class SignUpController extends AbstractSignUpPageController {
 
     @Override
     public void init() {
-        userService = ServiceFactory.getInstance().getService(SERVICES.USER_SERVICE, UserService.class);
-        validation = UtilsFactory.getInstance().getUtil(FORM_VALIDATION, ValidationImpl.class);
+        userService = getServiceFactory().getService(USER_SERVICE, UserService.class);
+        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
     }
 
     @Override
@@ -46,7 +42,6 @@ public class SignUpController extends AbstractSignUpPageController {
         final User user = new User();
 
         try {
-
             final String role = request.getParameter(ROLE);
             validation.validateRole(role);
             user.setRole(Role.valueOf(role));
@@ -71,7 +66,7 @@ public class SignUpController extends AbstractSignUpPageController {
 
             if (user.getId() != null && user.getRole() == Role.STUDENT) {
                 request.getSession().setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
-                response.sendRedirect(LINKS.CHOOSE_TEST);
+                response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
                 return REDIRECT;
             }
 
