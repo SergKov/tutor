@@ -1,12 +1,14 @@
 package com.getprepared.utils;
 
+import com.getprepared.utils.impl.ParserImpl;
 import com.getprepared.utils.impl.PasswordEncoderImpl;
 import com.getprepared.utils.impl.ValidationImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.getprepared.constant.UtilsConstant.FORM_VALIDATION;
+import static com.getprepared.constant.UtilsConstant.PARSER;
+import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.UtilsConstant.PASSWORD_ENCODER;
 
 /**
@@ -24,8 +26,9 @@ public class UtilsFactory {
 
     private void init() {
         mapping = new HashMap<>();
-        mapping.put(FORM_VALIDATION, new ValidationImpl());
+        mapping.put(VALIDATION, new ValidationImpl());
         mapping.put(PASSWORD_ENCODER, new PasswordEncoderImpl());
+        mapping.put(PARSER, new ParserImpl());
     }
 
     private UtilsFactory() {

@@ -9,7 +9,9 @@ public class UtilsConstant {
 
     public static final String PASSWORD_ENCODER = "encoder";
 
-    public static final String FORM_VALIDATION = "formValidation";
+    public static final String VALIDATION = "validation";
+
+    public static final String PARSER = "parser";
 
     public static class REGEX {
 
@@ -27,8 +29,6 @@ public class UtilsConstant {
 
         public static final String SPECIALITY_NAME = "^[\\S]{2,32}$";
 
-        public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$";
-
-        public static final String USER_TYPE = "^[STUDENT|TUTOR]$";
+        public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$"; //doesn't work
     }
 }

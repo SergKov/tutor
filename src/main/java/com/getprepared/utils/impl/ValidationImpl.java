@@ -6,7 +6,6 @@ import com.getprepared.utils.Validation;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.getprepared.constant.UtilsConstant.REGEX;
-import static com.getprepared.constant.UtilsConstant.REGEX.USER_TYPE;
 
 /**
  * Created by koval on 14.01.2017.
