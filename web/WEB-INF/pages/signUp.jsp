@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="confirm_psw"><fmt:message
-                                key="signUp.repeatPassword"/>:</label>
+                                key="signUp.repeatPassword"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"

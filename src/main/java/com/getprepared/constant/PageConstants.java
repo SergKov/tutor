@@ -17,7 +17,7 @@ public class PageConstants {
 
         private static final String SUFFIX = ".jsp";
 
-        public static final String STUDENT_SIGN_IN = PREFIX + "homePage" + SUFFIX;
+        public static final String STUDENT_SIGN_IN = PREFIX + "studentSignIn" + SUFFIX;
 
         public static final String NOT_FOUND = PREFIX + "pageNotFound" + SUFFIX;
 
