@@ -25,8 +25,9 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public void save(final Answer answer) throws ValidationException, EntityExistsException {
         try {
-            getTransactionManager().begin();
             getValidation().validateAnswer(answer);
+
+            getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             answerDao.save(answer);
             getTransactionManager().commit();
@@ -40,8 +41,9 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public Answer findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
+
+            getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             final Answer answer = answerDao.findById(id);
             getTransactionManager().commit();
@@ -56,8 +58,9 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(questionId);
+
+            getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             final List<Answer> answers = answerDao.findByQuestionId(questionId);
             getTransactionManager().commit();
@@ -72,8 +75,9 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public void removeByQuestionId(final Long questionId) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(questionId);
+
+            getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             answerDao.removeByQuestionId(questionId);
             getTransactionManager().commit();

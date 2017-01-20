@@ -25,8 +25,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public void save(final Question question) throws ValidationException, EntityExistsException {
         try {
-            getTransactionManager().begin();
             getValidation().validateQuestion(question);
+
+            getTransactionManager().begin();
 
             final QuestionDao questionDao = getDao();
             questionDao.save(question);
@@ -49,12 +50,11 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public Question findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
 
+            getTransactionManager().begin();
             final QuestionDao questionDao = getDao();
             final Question question = questionDao.findById(id);
-
             getTransactionManager().commit();
             return question;
         } catch (ValidationException | EntityNotFoundException e) {
@@ -67,12 +67,11 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public List<Question> findByQuizId(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
 
+            getTransactionManager().begin();
             final QuestionDao questionDao = getDao();
             final List<Question> questions = questionDao.findByQuizId(id);
-
             getTransactionManager().commit();
             return questions;
         } catch (ValidationException | EntityNotFoundException e) {
@@ -85,8 +84,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public void remove(final Question question) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateEntity(question);
+
+            getTransactionManager().begin();
 
             final QuestionDao questionDao = getDao();
             questionDao.removeById(question.getId());

@@ -24,8 +24,9 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
     @Override
     public void save(final Speciality speciality) throws ValidationException, EntityExistsException {
         try {
-            getTransactionManager().begin();
             getValidation().validateSpeciality(speciality);
+
+            getTransactionManager().begin();
             final SpecialityDao specialityDao = getDao();
             specialityDao.save(speciality);
             getTransactionManager().commit();
@@ -39,8 +40,9 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
     @Override
     public Speciality findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
+
+            getTransactionManager().begin();
             final SpecialityDao specialityDao = getDao();
             final Speciality speciality = specialityDao.findById(id);
             getTransactionManager().commit();

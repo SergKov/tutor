@@ -2,8 +2,8 @@ package com.getprepared.service.impl;
 
 import com.getprepared.dao.impl.DaoFactory;
 import com.getprepared.infrastructure.tm.TransactionManager;
-import com.getprepared.utils.factory.UtilsFactory;
 import com.getprepared.utils.Validation;
+import com.getprepared.utils.factory.UtilsFactory;
 
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 

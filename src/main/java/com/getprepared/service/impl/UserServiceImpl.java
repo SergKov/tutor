@@ -33,8 +33,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public User findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
+
+            getTransactionManager().begin();
             final UserDao userDao = getDao();
             final User user = userDao.findById(id);
             getTransactionManager().commit();
@@ -49,8 +50,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public User findByEmail(final String email) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateEmail(email);
+
+            getTransactionManager().begin();
             final UserDao userDao = getDao();
             final User user = userDao.findByEmail(email);
             getTransactionManager().commit();
@@ -68,9 +70,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
         final String encodedPassword = passwordEncoder.encode(password);
 
         try {
-            getTransactionManager().begin();
             getValidation().validateEmail(email);
             getValidation().validatePassword(password);
+
+            getTransactionManager().begin();
             final UserDao userDao = getDao();
             final User user = userDao.findByCredentials(email, encodedPassword);
             getTransactionManager().commit();
@@ -101,9 +104,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public void update(final User user) throws ValidationException, EntityExistsException {
         try {
-            getTransactionManager().begin();
             getValidation().validateUser(user);
             getValidation().validateId(user.getId());
+
+            getTransactionManager().begin();
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             final UserDao userDao = getDao();
             userDao.update(user);

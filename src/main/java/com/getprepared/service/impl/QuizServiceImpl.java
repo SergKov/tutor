@@ -99,9 +99,10 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     public void assign(final Long quizId, final Long userId) throws ValidationException, EntityNotFoundException,
                                                                                 EntityExistsException  {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(quizId);
             getValidation().validateId(userId);
+
+            getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             final Quiz quiz = quizDao.findById(quizId);
             final UserService userService = getUserService();
@@ -118,8 +119,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public void remove(final Quiz quiz) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateQuiz(quiz);
+
+            getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             quizDao.remove(quiz.getId());
             getTransactionManager().commit();

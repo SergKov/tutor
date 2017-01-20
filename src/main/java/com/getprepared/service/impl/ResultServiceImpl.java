@@ -22,8 +22,9 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public void save(final Result result) throws ValidationException, EntityExistsException {
         try {
-            getTransactionManager().begin();
             getValidation().validateResult(result);
+
+            getTransactionManager().begin();
             final ResultDao resultDao = getDao();
             resultDao.save(result);
             getTransactionManager().commit();
@@ -37,8 +38,9 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public Result findById(final Long id) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(id);
+
+            getTransactionManager().begin();
             final ResultDao resultDao = getDao();
             final Result result = resultDao.findById(id);
             getTransactionManager().commit();
@@ -53,8 +55,9 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public List<Result> findByUserId(final Long userId) throws ValidationException, EntityNotFoundException {
         try {
-            getTransactionManager().begin();
             getValidation().validateId(userId);
+
+            getTransactionManager().begin();
             final ResultDao resultDao = getDao();
             final List<Result> result = resultDao.findByUserId(userId);
             getTransactionManager().commit();
