@@ -1,4 +1,4 @@
-package com.getprepared.controller.common.signUp;
+package com.getprepared.controller.common.sign_up;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

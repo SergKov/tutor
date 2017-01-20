@@ -45,10 +45,10 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
                 request.setAttribute(QUIZ_LIST, quizList);
             }
         } catch (final ValidationException e) {
-            request.setAttribute(ERROR_MSG, ERRORS.STUDENT_INVALIDATED);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_INVALIDATED, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, ERRORS.STUDENT_IS_NOT_EXIST);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXIST, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
     }

@@ -1,6 +1,7 @@
-package com.getprepared.controller.common.signUp;
+package com.getprepared.controller.common.sign_up;
 
 import com.getprepared.controller.AbstractController;
+import com.getprepared.domain.Role;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +15,8 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 public abstract class AbstractSignUpPageController extends AbstractController {
 
     protected void fillPage(final HttpServletRequest request) {
-        request.setAttribute(TITLE, SIGN_UP);
+        request.setAttribute(TITLE, getMessages().getMessage(SIGN_UP, request.getLocale()));
+        request.setAttribute(ROLES, Role.values());
         request.setAttribute(NAME_REGEX, NAME);
         request.setAttribute(SURNAME_REGEX, SURNAME);
         request.setAttribute(EMAIL_REGEX, EMAIL);

@@ -1,4 +1,4 @@
-package com.getprepared.controller.common.signUp;
+package com.getprepared.controller.common.sign_up;
 
 import com.getprepared.constant.PageConstants.*;
 import com.getprepared.domain.Role;

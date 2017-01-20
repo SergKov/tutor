@@ -60,7 +60,7 @@ public class StudentSignInController extends AbstractSignInController {
             LOG.warn(e.getMessage(), e);
         }
 
-        request.setAttribute(TITLE, NAMES.SIGN_IN);
+        request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
 
         return PAGES.STUDENT_SIGN_IN;

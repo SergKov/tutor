@@ -41,25 +41,6 @@
                 </ul>
             </div>
         </c:when>
-        <c:when test="${worker ne null}">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${worker.name}
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="/worker/editCredentials"><fmt:message key="signOut.editCredentials"/></a>
-                    </li>
-                    <li>
-                        <form action="/worker" method="POST">
-                            <input type="hidden" name="controller" value="workerSignOut">
-                            <button class="btn btn-primary" type="submit">
-                                <fmt:message key="SignOut"/>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </c:when>
     </c:choose>
 </div>
 

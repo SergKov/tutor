@@ -30,6 +30,8 @@ public class WebConstants {
 
         public static final String TITLE = "title";
 
+        public static final String ROLES = "roles";
+
         public static final String QUIZ_LIST = "quizList";
 
         public static final String ERROR_MSG = "errorMsg";
