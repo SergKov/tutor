@@ -1,4 +1,4 @@
-package com.getprepared.controller.common;
+package com.getprepared.controller.common.abstract_classes;
 
 import com.getprepared.controller.AbstractController;
 

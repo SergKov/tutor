@@ -1,6 +1,6 @@
 package com.getprepared.controller.student.sign_in;
 
-import com.getprepared.controller.common.AbstractSignInController;
+import com.getprepared.controller.common.abstract_classes.AbstractSignInController;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;

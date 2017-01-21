@@ -75,5 +75,7 @@ public class PropertyConstants {
         public static final String REMOVE_BY_ID = "removeById";
 
         public static final String REMOVE_BY_QUESTION_ID = "removeByQuestionId";
+
+        public static final String COUNT = "count";
     }
 }

@@ -1,6 +1,6 @@
 package com.getprepared.controller.tutor.sign_in;
 
-import com.getprepared.controller.common.AbstractSignInController;
+import com.getprepared.controller.common.abstract_classes.AbstractSignInController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

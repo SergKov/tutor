@@ -22,6 +22,8 @@ public class WebConstants {
         public static final String SURNAME = "surname";
 
         public static final String QUIZ = "quiz";
+
+        public static final String SPECIALITY_NAME = "specialityName";
     }
 
     public static class REQUEST_ATTRIBUTES {
@@ -43,6 +45,12 @@ public class WebConstants {
         public static final String NAME_REGEX = "nameRegex";
 
         public static final String SURNAME_REGEX = "surnameRegex";
+
+        public static final String SPECIALITIES = "speciality";
+
+        public static final String START_INDEX = "startIndex";
+
+        public static final String END_INDEX = "endIndex";
     }
 
     public static class SESSION_ATTRIBUTES {

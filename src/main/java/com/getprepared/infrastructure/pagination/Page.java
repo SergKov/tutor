@@ -1,5 +1,7 @@
 package com.getprepared.infrastructure.pagination;
 
+import com.getprepared.utils.impl.CollectionUtils;
+
 import java.util.List;
 
 /**
@@ -21,5 +23,9 @@ public class Page<E> {
 
     public Long getTotalCount() {
         return totalCount;
+    }
+
+    public boolean isEmpty() {
+        return CollectionUtils.isEmpty(content);
     }
 }
