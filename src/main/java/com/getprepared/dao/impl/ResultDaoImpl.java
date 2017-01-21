@@ -56,12 +56,6 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
-    @Override
-    public List<Result> findByUserEmail(final String email) {
-        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_EMAIL), ps -> ps.setString(1, email),
-                new ResultMapper());
-    }
-
     private static class ResultMapper implements RowMapper<Result> {
 
         @Override

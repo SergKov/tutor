@@ -3,6 +3,7 @@ package com.getprepared.dao;
 import com.getprepared.domain.Speciality;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.infrastructure.pagination.Page;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface SpecialityDao {
 
     Speciality findById(Long id) throws EntityNotFoundException;
 
-    List<Speciality> findAll();
+    Page<Speciality> findAll(Long page, Long pageSize) throws EntityNotFoundException;
 }

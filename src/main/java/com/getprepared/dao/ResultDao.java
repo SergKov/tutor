@@ -16,6 +16,4 @@ public interface ResultDao {
     Result findById(Long id) throws EntityNotFoundException;
 
     List<Result> findByUserId(Long id) throws EntityNotFoundException;
-
-    List<Result> findByUserEmail(String email) throws EntityNotFoundException;
 }

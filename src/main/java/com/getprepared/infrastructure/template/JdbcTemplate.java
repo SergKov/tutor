@@ -124,6 +124,10 @@ public class JdbcTemplate {
         }
     }
 
+    public <T> T singleQuery(final String sql, final RowMapper<T> rowMapper) throws EntityNotFoundException {
+        return singleQuery(sql, new DefaultPreparedStatementSetter(), rowMapper);
+    }
+
     public <T> List<T> executeQuery(final String sql, final PreparedStatementSetter setter,
                                  final RowMapper<T> rowMapper) {
 
@@ -143,5 +147,9 @@ public class JdbcTemplate {
             LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
             throw new DataAccessException(e);
         }
+    }
+
+    public <T> List<T> executeQuery(final String sql, final RowMapper<T> rowMapper) {
+        return executeQuery(sql, new DefaultPreparedStatementSetter(), rowMapper);
     }
 }

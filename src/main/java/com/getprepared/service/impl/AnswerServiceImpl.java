@@ -20,7 +20,8 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
 
     private static final Logger LOG = Logger.getLogger(AnswerServiceImpl.class);
 
-    public AnswerServiceImpl() { }
+    public AnswerServiceImpl() {
+    }
 
     @Override
     public void save(final Answer answer) throws ValidationException, EntityExistsException {
@@ -64,7 +65,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
             final AnswerDao answerDao = getDao();
             final List<Answer> answers = answerDao.findByQuestionId(questionId);
             getTransactionManager().commit();
-            return Collections.unmodifiableList(answers);
+            return answers;
         } catch (ValidationException | EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);

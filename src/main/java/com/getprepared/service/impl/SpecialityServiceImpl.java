@@ -5,6 +5,7 @@ import com.getprepared.domain.Speciality;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
+import com.getprepared.infrastructure.pagination.Page;
 import com.getprepared.service.SpecialityService;
 import org.apache.log4j.Logger;
 
@@ -55,9 +56,18 @@ public class SpecialityServiceImpl extends AbstractService implements Speciality
     }
 
     @Override
-    public List<Speciality> findAll() {
-        //TODO
-        return null;
+    public Page<Speciality> findAll(Long page, Long pageSize) throws EntityNotFoundException {
+        try {
+            getTransactionManager().begin();
+            final SpecialityDao specialityDao = getDao();
+            final Page<Speciality> specialities = specialityDao.findAll(page, pageSize);
+            getTransactionManager().commit();
+            return specialities;
+        } catch (final EntityNotFoundException e) {
+            getTransactionManager().rollback();
+            LOG.warn(e.getMessage(), e);
+            throw e;
+        }
     }
 
     private SpecialityDao getDao() {

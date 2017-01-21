@@ -4,6 +4,7 @@ import com.getprepared.domain.Speciality;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
+import com.getprepared.infrastructure.pagination.Page;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface SpecialityService {
 
     Speciality findById(Long id) throws ValidationException, EntityNotFoundException;
 
-    List<Speciality> findAll();
+    Page<Speciality> findAll(Long page, Long pageSize) throws EntityNotFoundException;
 }

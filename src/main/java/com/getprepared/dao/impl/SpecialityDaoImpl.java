@@ -4,6 +4,7 @@ import com.getprepared.dao.SpecialityDao;
 import com.getprepared.domain.Speciality;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.infrastructure.pagination.Page;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
@@ -43,9 +44,15 @@ public class SpecialityDaoImpl extends AbstractDao<Speciality> implements Specia
     }
 
     @Override
-    public List<Speciality> findAll() {
-        //TODO
-        return null;
+    public Page<Speciality> findAll(Long page, Long pageSize) throws EntityNotFoundException {
+
+        final List<Speciality> specialities = getJdbcTemplate()
+                .executeQuery(String.format(prop.getProperty(KEYS.FIND_ALL),
+                        pageSize, page * pageSize), new SpecialityMapper());
+
+        final Long count = getJdbcTemplate().singleQuery(prop.getProperty(KEYS.COUNT), rs -> rs.getLong(1));
+
+        return new Page<>(specialities, count);
     }
 
     private static class SpecialityMapper implements RowMapper<Speciality> {
