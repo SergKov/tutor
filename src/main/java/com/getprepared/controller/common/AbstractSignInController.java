@@ -1,4 +1,4 @@
-package com.getprepared.controller.student.sign_in;
+package com.getprepared.controller.common;
 
 import com.getprepared.controller.AbstractController;
 

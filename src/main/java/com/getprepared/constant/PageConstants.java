@@ -24,6 +24,8 @@ public class PageConstants {
         public static final String SIGN_UP = PREFIX + "signUp" + SUFFIX;
 
         public static final String STUDENT_HOME_PAGE = PREFIX + "studentHomePage" + SUFFIX;
+
+        public static final String TUTOR_SIGN_IN = PREFIX + "tutorSignIn" + SUFFIX;
     }
 
     public static class LINKS {
@@ -41,6 +43,8 @@ public class PageConstants {
         public static final String TEST = "/test";
 
         public static final String NOT_FOUND = "/pageNotFound";
+
+        public static final String TUTOR_SIGN_IN = "/tutor";
     }
 
     public static class NAMES {
@@ -62,9 +66,11 @@ public class PageConstants {
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
-        public static final String SIGN_UP = "sign_up";
+        public static final String SIGN_UP = "signUp";
 
         public static final String STUDENT_HOME_PAGE = "studentHomePage";
+
+        public static final String TUTOR_SIGN_IN = "tutorSignIn";
     }
 
     public static class ERRORS {
@@ -75,7 +81,9 @@ public class PageConstants {
 
         public static final String CREDENTIALS_INVALIDATED = "You have entered invalidated credentials";
 
-        public static final String STUDENT_IS_NOT_EXIST = "Student with such credentials is not exist";
+        public static final String STUDENT_IS_NOT_EXISTS = "User with such credentials is not exists";
+
+        public static final String TUTOR_IS_NOT_EXISTS = "Tutor with such credentials is not exists";
 
         public static final String DATA_INVALIDATED = "You have entered invalidated data";
 

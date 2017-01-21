@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: koval
-  Date: 16.01.2017
-  Time: 23:03
+  Date: 21.01.2017
+  Time: 13:06
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
@@ -19,25 +19,25 @@
         <div class="well">
             <form action="/tutor" method="POST" class="form-horizontal">
                 <div class="row">
-                    <input type="hidden" name="controller" value="studentSignIn">
+                    <input type="hidden" name="controller" value="workerSignIn">
 
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.login"/></label>
+                        <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.enterEmail"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
-                                   placeholder="<fmt:message key="homePage.enterEmail"/>" required>
+                                   placeholder="<fmt:message key="tutorSignIn.enterEmail"/>" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/></label>
+                        <label class="control-label col-xs-5" for="psw"><fmt:message key="tutorSignIn.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
-                                   name="password" placeholder="<fmt:message key="homePage.enterPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="tutorSignIn.enterPassword"/>" required>
                         </div>
                     </div>
                 </div>
@@ -56,3 +56,4 @@
     </jsp:body>
 
 </templates:page_template>
+

@@ -1,4 +1,4 @@
-package com.getprepared.controller.student.sign_in;
+package com.getprepared.controller.tutor.sign_in;
 
 import com.getprepared.controller.common.AbstractSignInController;
 import com.getprepared.domain.User;
@@ -20,11 +20,11 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
- * Created by koval on 15.01.2017.
+ * Created by koval on 21.01.2017.
  */
-public class StudentSignInController extends AbstractSignInController {
+public class TutorSignInController extends AbstractSignInController {
 
-    private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
+    private static final Logger LOG = Logger.getLogger(TutorSignInController.class);
 
     private UserService userService;
 
@@ -37,8 +37,8 @@ public class StudentSignInController extends AbstractSignInController {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         final HttpSession httpSession = request.getSession();
-        if (httpSession.getAttribute(SESSION_ATTRIBUTES.STUDENT) != null) {
-            response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
+        if (httpSession.getAttribute(SESSION_ATTRIBUTES.TUTOR) != null) {
+            response.sendRedirect(LINKS.SPECIALITIES);
             return REDIRECT;
         }
 
@@ -46,17 +46,17 @@ public class StudentSignInController extends AbstractSignInController {
         final String password = request.getParameter(INPUTS.PASSWORD);
 
         try {
-            final User student = userService.signIn(email, password);
-            if (student != null) {
-                httpSession.setAttribute(SESSION_ATTRIBUTES.STUDENT, student);
-                response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
+            final User tutor = userService.signIn(email, password);
+            if (tutor != null) {
+                httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, tutor);
+                response.sendRedirect(LINKS.SPECIALITIES);
                 return REDIRECT;
             }
-        } catch (final ValidationException e) {
+        } catch (final EntityNotFoundException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
             LOG.warn(e.getMessage(), e);
-        } catch (final EntityNotFoundException e) {
+        } catch (final ValidationException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXISTS,
                     request.getLocale()));
             LOG.warn(e.getMessage(), e);
@@ -65,6 +65,6 @@ public class StudentSignInController extends AbstractSignInController {
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
 
-        return PAGES.STUDENT_SIGN_IN;
+        return PAGES.TUTOR_SIGN_IN;
     }
 }

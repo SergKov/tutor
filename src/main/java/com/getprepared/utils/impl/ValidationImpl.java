@@ -103,7 +103,6 @@ public class ValidationImpl implements Validation {
             throw new ValidationException("Result's creation date is missing.");
         }
 
-        validateName(result.getSpecialityName());
         validateName(result.getQuizName());
         validateMark(result.getMark());
 

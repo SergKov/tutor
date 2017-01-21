@@ -10,23 +10,20 @@ public class Result extends Entity {
 
     public static final String USER_ID_KEY = "user_id";
     public static final String MARK_KEY = "mark";
-    public static final String SPECIALITY_KEY = "speciality_name";
     public static final String QUIZ_NAME_KEY = "quiz_name";
     public static final String CREATION_DATETIME_KEY = "creation_datetime";
 
     private User user;
     private Byte mark;
-    private String specialityName;
     private String quizName;
     private LocalDateTime creationDateTime;
 
     public Result() { }
 
-    public Result(Long id, User user, Byte mark, String specialityName, String quizName, LocalDateTime creationDateTime) {
+    public Result(Long id, User user, Byte mark,  String quizName, LocalDateTime creationDateTime) {
         super(id);
         this.user = user;
         this.mark = mark;
-        this.specialityName = specialityName;
         this.quizName = quizName;
         this.creationDateTime = creationDateTime;
     }
@@ -45,14 +42,6 @@ public class Result extends Entity {
 
     public void setMark(Byte mark) {
         this.mark = mark;
-    }
-
-    public String getSpecialityName() {
-        return specialityName;
-    }
-
-    public void setSpecialityName(String specialityName) {
-        this.specialityName = specialityName;
     }
 
     public String getQuizName() {

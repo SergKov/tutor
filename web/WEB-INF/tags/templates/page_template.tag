@@ -23,23 +23,21 @@
 
     <c:choose>
         <c:when test="${user ne null}">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${user.name}
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="/editCredentials"><fmt:message key="signOut.editCredentials"/></a>
-                    </li>
-                    <li>
-                        <form action="/" method="POST">
-                            <input type="hidden" name="controller" value="customerSignOut">
-                            <button class="btn btn-link" type="submit">
-                                <fmt:message key="SignOut"/>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
+            <button class="btn btn-primary" type="button">${user.name}
+                <span class="caret"></span></button>
+            <ul>
+                <li>
+                    <a href="/editCredentials"><fmt:message key="signOut.editCredentials"/></a>
+                </li>
+                <li>
+                    <form action="/" method="POST">
+                        <input type="hidden" name="controller" value="customerSignOut">
+                        <button class="btn btn-link" type="submit">
+                            <fmt:message key="SignOut"/>
+                        </button>
+                    </form>
+                </li>
+            </ul>
         </c:when>
     </c:choose>
 </div>
@@ -48,7 +46,7 @@
     <div class="container">
         <div class="row alert alert-danger" <c:if test="${empty errorMsg}"> style="display: none;" </c:if>
              id="errorMsg">
-            ${errorMsg}
+             ${errorMsg}
         </div>
         <jsp:doBody/>
     </div>

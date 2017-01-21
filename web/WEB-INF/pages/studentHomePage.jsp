@@ -60,7 +60,6 @@
             </c:otherwise>
         </c:choose>
 
-
         <div class="row">
             <div class="col-xs-offset-5 col-xs-3">
                 <button class="btn btn-link" id="back_btn">
@@ -68,8 +67,6 @@
                 </button>
             </div>
         </div>
-
-
     </jsp:body>
 
 </templates:page_template>
