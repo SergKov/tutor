@@ -19,10 +19,10 @@
         <div class="well">
             <form action="/tutor" method="POST" class="form-horizontal">
                 <div class="row">
-                    <input type="hidden" name="controller" value="workerSignIn">
+                    <input type="hidden" name="controller" value="tutorSignIn">
 
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.enterEmail"/></label>
+                        <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.email"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"

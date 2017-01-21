@@ -23,7 +23,7 @@ public class WebConstants {
 
         public static final String QUIZ = "quiz";
 
-        public static final String SPECIALITY_NAME = "specialityName";
+        public static final String ADD_SPECIALITY = "addSpeciality";
     }
 
     public static class REQUEST_ATTRIBUTES {

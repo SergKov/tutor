@@ -38,7 +38,7 @@ public class TutorSignInController extends AbstractSignInController {
 
         final HttpSession httpSession = request.getSession();
         if (httpSession.getAttribute(SESSION_ATTRIBUTES.TUTOR) != null) {
-            response.sendRedirect(LINKS.SPECIALITIES);
+            response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
             return REDIRECT;
         }
 
@@ -49,7 +49,7 @@ public class TutorSignInController extends AbstractSignInController {
             final User tutor = userService.signIn(email, password);
             if (tutor != null) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, tutor);
-                response.sendRedirect(LINKS.SPECIALITIES);
+                response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {

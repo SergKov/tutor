@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <form action="/studentHomePage" method="POST">
+                <form action="/studentHomePage" method="GET">
                     <input type="hidden" name="controller" value="chooseTest">
 
                     <div class="row">

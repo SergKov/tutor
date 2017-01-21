@@ -12,6 +12,9 @@ import com.getprepared.controller.student.sign_in.StudentSignInController;
 import com.getprepared.controller.student.sign_in.StudentSignInPageController;
 import com.getprepared.controller.tutor.sign_in.TutorSignInController;
 import com.getprepared.controller.tutor.sign_in.TutorSignInPageController;
+import com.getprepared.controller.tutor.speciality_page.AddSpecialityController;
+import com.getprepared.controller.tutor.speciality_page.TutorSpecialityController;
+import com.getprepared.controller.tutor.speciality_page.TutorSpecialityPageController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,11 +47,14 @@ public class ControllerFactory {
         mapping.put(LINKS.SIGN_UP, new SignUpPageController());
         mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePagePageController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
+        mapping.put(LINKS.TUTOR_SPECIALITIES, new TutorSpecialityPageController());
 
         mapping.put(FORMS.STUDENT_SIGN_IN, new StudentSignInController());
         mapping.put(FORMS.SIGN_UP, new SignUpController());
         mapping.put(FORMS.STUDENT_HOME_PAGE, new StudentHomePageController());
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
+        mapping.put(FORMS.TUTOR_SPECIALITIES, new TutorSpecialityController());
+        mapping.put(FORMS.ADD_SPECIALITY, new AddSpecialityController());
 
         mapping.values().forEach(AbstractController::init);
     }

@@ -72,7 +72,7 @@ public class SignUpController extends AbstractSignUpPageController {
 
             if (user.getId() != null && user.getRole() == Role.TUTOR) {
                 request.getSession().setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
-                response.sendRedirect(LINKS.SPECIALITIES);
+                response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
                 return REDIRECT;
             }
         } catch (final ValidationException e) {

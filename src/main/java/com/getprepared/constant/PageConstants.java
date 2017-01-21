@@ -40,7 +40,7 @@ public class PageConstants {
 
         public static final String STUDENT_HOME_PAGE = "/studentHomePage";
 
-        public static final String SPECIALITIES = "/specialities";
+        public static final String TUTOR_SPECIALITIES = "/specialities";
 
         public static final String QUIZZES = "/specialities/quizzes";
 
@@ -81,6 +81,10 @@ public class PageConstants {
         public static final String STUDENT_HOME_PAGE = "studentHomePage";
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
+
+        public static final String TUTOR_SPECIALITIES = "tutorSpecialities";
+
+        public static final String ADD_SPECIALITY = "addSpeciality";
     }
 
     public static class ERRORS {

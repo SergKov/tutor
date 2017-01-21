@@ -36,9 +36,9 @@ public class AddSpecialityController extends AbstractSpecialityController {
 
         try {
             final Speciality speciality = new Speciality();
-            speciality.setName(request.getParameter(INPUTS.SPECIALITY_NAME));
+            speciality.setName(request.getParameter(INPUTS.ADD_SPECIALITY));
             specialityService.save(speciality);
-            response.sendRedirect(LINKS.SPECIALITIES);
+            response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
             return REDIRECT;
         } catch (final ValidationException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_INVALIDATED, request.getLocale()));
@@ -52,6 +52,4 @@ public class AddSpecialityController extends AbstractSpecialityController {
 
         return PAGES.TUTOR_SPECIALITIES;
     }
-
-
 }
