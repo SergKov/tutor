@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <templates:page_template>
@@ -16,9 +17,9 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="row">
-            <div class="well">
-                <form action="/signUp" method="POST" class="form-horizontal">
+        <div class="well">
+            <form action="/signUp" method="POST" class="form-horizontal">
+                <div class="row">
                     <input type="hidden" name="controller" value="signUp"/>
 
                     <div class="form-group">
@@ -26,12 +27,17 @@
 
                         <div class="col-xs-3">
                             <select class="form-control" id="role" name="role">
-                                <option><fmt:message key="signUp.student"/></option>
-                                <option><fmt:message key="signUp.tutor"/></option>
+                                <c:forEach items="${roles}" var="role">
+                                    <option value="${role}">
+                                        <fmt:message key="signUp.${role}"/>
+                                    </option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="name"><fmt:message key="signUp.name"/></label>
 
@@ -40,6 +46,9 @@
                                    placeholder="<fmt:message key="signUp.enterName"/>" required>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="surName"><fmt:message key="signUp.surname"/></label>
 
@@ -49,6 +58,9 @@
                                    placeholder="<fmt:message key="signUp.enterSurname"/>" required>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.email"/></label>
 
@@ -57,6 +69,9 @@
                                    placeholder="<fmt:message key="homePage.enterEmail"/>" required>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/></label>
 
@@ -66,6 +81,9 @@
                                    placeholder="<fmt:message key="homePage.enterPassword"/>" required>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="confirm_psw"><fmt:message
                                 key="signUp.repeatPassword"/></label>
@@ -76,7 +94,9 @@
                                    placeholder="<fmt:message key="homePage.enterPassword"/>" required>
                         </div>
                     </div>
+                </div>
 
+                <div class="row">
                     <div class="form-group">
                         <div class="col-xs-offset-5 col-xs-3">
                             <button type="submit" class="btn btn-info btn-block">
@@ -87,8 +107,8 @@
                             </button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </jsp:body>
 

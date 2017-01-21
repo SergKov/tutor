@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/>:</label>
+                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"

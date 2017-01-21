@@ -32,7 +32,7 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
 
     protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.CHOOSE_TEST, request.getLocale()));
+        request.setAttribute(TITLE, getMessages().getMessage(NAMES.HOME_PAGE, request.getLocale()));
         request.setAttribute(QUIZ, REGEX.QUIZ_NAME);
 
         try {
@@ -45,10 +45,10 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
                 request.setAttribute(QUIZ_LIST, quizList);
             }
         } catch (final ValidationException e) {
-            request.setAttribute(ERROR_MSG, ERRORS.STUDENT_INVALIDATED);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_INVALIDATED, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, ERRORS.STUDENT_IS_NOT_EXIST);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXIST, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
     }

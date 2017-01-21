@@ -1,11 +1,13 @@
 package com.getprepared.controller.student.sign_in;
 
+import com.getprepared.constant.PageConstants;
 import com.getprepared.constant.PageConstants.PAGES;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.PageConstants.NAMES.SIGN_IN;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
@@ -25,7 +27,7 @@ public class StudentSignInPageController extends AbstractSignInController {
 //            return REDIRECT;
 //        }
 
-        request.setAttribute(TITLE, SIGN_IN);
+        request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
         return PAGES.STUDENT_SIGN_IN;
     }

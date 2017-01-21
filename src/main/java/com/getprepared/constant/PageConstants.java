@@ -53,7 +53,7 @@ public class PageConstants {
 
         public static final String SIGN_UP = "SignUp";
 
-        public static final String CHOOSE_TEST = "ChooseTest";
+        public static final String HOME_PAGE = "HomePage";
     }
 
     public static class FORMS {
@@ -62,7 +62,7 @@ public class PageConstants {
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
-        public static final String SIGN_UP = "signUp";
+        public static final String SIGN_UP = "sign_up";
 
         public static final String STUDENT_HOME_PAGE = "studentHomePage";
     }
