@@ -3,7 +3,6 @@ package com.getprepared.controller.student.home_page;
 import com.getprepared.exception.ParseException;
 import com.getprepared.service.QuizService;
 import com.getprepared.utils.Parser;
-import com.getprepared.utils.impl.ParserImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,7 @@ public class StudentHomePageController extends AbstractStudentHomePageController
     @Override
     public void init() {
         quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        parser = getUtilsFactory().getUtil(PARSER, ParserImpl.class);
+        parser = getUtilsFactory().getUtil(PARSER, Parser.class);
     }
 
     @Override

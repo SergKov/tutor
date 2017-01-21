@@ -46,11 +46,11 @@ public class WebConstants {
 
         public static final String SURNAME_REGEX = "surnameRegex";
 
-        public static final String SPECIALITIES = "speciality";
+        public static final String SPECIALITIES = "specialities";
 
-        public static final String START_INDEX = "startIndex";
+        public static final String PAGE_INDEX = "page";
 
-        public static final String END_INDEX = "endIndex";
+        public static final String PAGE_SIZE = "size";
     }
 
     public static class SESSION_ATTRIBUTES {

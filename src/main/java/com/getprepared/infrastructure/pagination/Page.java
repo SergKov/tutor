@@ -11,10 +11,22 @@ public class Page<E> {
 
     private final List<E> content;
     private final Long totalCount;
+    private final Long pageIndex;
+    private final Long pageSize;
 
-    public Page(List<E> content, Long totalCount) {
+    public Page(List<E> content, Long totalCount, Long pageIndex, Long pageSize) {
         this.content = content;
         this.totalCount = totalCount;
+        this.pageIndex = pageIndex;
+        this.pageSize = pageSize;
+    }
+
+    public Long getPageCount() {
+        return totalCount / pageSize;
+    }
+
+    public boolean isEmpty() {
+        return CollectionUtils.isEmpty(content);
     }
 
     public List<E> getContent() {
@@ -23,9 +35,5 @@ public class Page<E> {
 
     public Long getTotalCount() {
         return totalCount;
-    }
-
-    public boolean isEmpty() {
-        return CollectionUtils.isEmpty(content);
     }
 }

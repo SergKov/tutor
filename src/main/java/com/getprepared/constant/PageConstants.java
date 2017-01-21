@@ -103,7 +103,7 @@ public class PageConstants {
 
         public static final String STUDENT_EXISTS = "Such student already exists";
 
-        public static final String SPECIALITY_ID_INCORRECT = "Speciality id is incorrect";
+        public static final String SPECIALITY_ID_INCORRECT = "SpecialityIdIncorrect";
 
         public static final String SPECIALITY_IS_NOT_FOUND = "Speciality is not found";
 

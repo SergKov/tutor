@@ -18,9 +18,9 @@
     <jsp:body>
         <div class="well">
             <form action="/tutor" method="POST" class="form-horizontal">
-                <div class="row">
-                    <input type="hidden" name="controller" value="tutorSignIn">
+                <input type="hidden" name="controller" value="tutorSignIn">
 
+                <div class="row">
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.email"/></label>
 
@@ -33,11 +33,13 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="tutorSignIn.password"/></label>
+                        <label class="control-label col-xs-5" for="psw"><fmt:message
+                                key="tutorSignIn.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
-                                   name="password" placeholder="<fmt:message key="tutorSignIn.enterPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="tutorSignIn.enterPassword"/>"
+                                   required>
                         </div>
                     </div>
                 </div>

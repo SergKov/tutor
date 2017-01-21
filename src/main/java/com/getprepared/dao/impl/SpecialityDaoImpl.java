@@ -52,7 +52,7 @@ public class SpecialityDaoImpl extends AbstractDao<Speciality> implements Specia
 
         final Long count = getJdbcTemplate().singleQuery(prop.getProperty(KEYS.COUNT), rs -> rs.getLong(1));
 
-        return new Page<>(specialities, count);
+        return new Page<>(specialities, count, page, pageSize);
     }
 
     private static class SpecialityMapper implements RowMapper<Speciality> {

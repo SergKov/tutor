@@ -18,8 +18,8 @@
 </jsp:attribute>
 
     <jsp:body>
-        <c:if test="${not empty specialities}">
-            <c:forEach items="${specialities}" var="speciality">
+        <c:if test="${not empty specialities.content}">
+            <c:forEach items="${specialities.content}" var="speciality">
                 <form action="/tutor/specialities" method="GET" class="form-horizontal">
                     <input type="hidden" name="specialityId" value="${speciality.id}">
 
@@ -40,6 +40,10 @@
                         </div>
                     </div>
                 </form>
+            </c:forEach>
+
+            <c:forEach begin="0" end="${specialities.pageCount}" var="i">
+                <a href="/tutor/specialities?page=${i}">${i+1}</a>
             </c:forEach>
         </c:if>
 
