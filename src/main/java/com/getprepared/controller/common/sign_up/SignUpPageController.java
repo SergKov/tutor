@@ -1,5 +1,7 @@
 package com.getprepared.controller.common.sign_up;
 
+import com.getprepared.controller.common.abstract_classes.AbstractSignUpPageController;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

@@ -65,20 +65,17 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public User signIn(final String email, final String password) throws ValidationException, EntityNotFoundException {
+    public User signIn(final String email, final String password) throws EntityNotFoundException {
 
         final String encodedPassword = passwordEncoder.encode(password);
 
         try {
-            getValidation().validateEmail(email);
-            getValidation().validatePassword(password);
-
             getTransactionManager().begin();
             final UserDao userDao = getDao();
             final User user = userDao.findByCredentials(email, encodedPassword);
             getTransactionManager().commit();
             return user;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

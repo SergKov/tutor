@@ -45,7 +45,7 @@ public class StudentHomePageController extends AbstractStudentHomePageController
             response.sendRedirect(LINKS.TEST);
             return REDIRECT;
         } catch (final ParseException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_ID_INCORRECT, request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ID, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 
