@@ -14,23 +14,22 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>StudentSignedInFilter</filter-name>
-        <filter-class>com.getprepared.filter.StudentSignedInFilter</filter-class>
+        <filter-name>UserSignedInFilter</filter-name>
+        <filter-class>com.getprepared.filter.UserSignedInFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>StudentSignedInFilter</filter-name>
+        <filter-name>UserSignedInFilter</filter-name>
         <url-pattern>/signUpPage</url-pattern>
     </filter-mapping>
 
     <filter>
-        <filter-name>StudentGuestFilter</filter-name>
-        <filter-class>com.getprepared.filter.StudentGuestFilter</filter-class>
+        <filter-name>UserGuestFilter</filter-name>
+        <filter-class>com.getprepared.filter.UserGuestFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>StudentGuestFilter</filter-name>
+        <filter-name>UserGuestFilter</filter-name>
         <url-pattern>/studentHomePage</url-pattern>
-        <url-pattern>/editCredentials</url-pattern>
-        <url-pattern>/test</url-pattern>
+        <url-pattern>/tutorHomePage</url-pattern>
     </filter-mapping>
 
     <filter>

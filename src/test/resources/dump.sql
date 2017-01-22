@@ -25,7 +25,6 @@ CREATE TABLE Quiz (
   speciality_id INT NOT NULL,
   owner_id INT NOT NULL,
   name VARCHAR(20) NOT NULL UNIQUE,
-  `time` TIME,
   FOREIGN KEY(speciality_id) REFERENCES Speciality(id),
   FOREIGN KEY(owner_id) REFERENCES Quiz(id),
   PRIMARY KEY (id)

@@ -9,8 +9,6 @@ import com.getprepared.infrastructure.pagination.Page;
 import com.getprepared.service.SpecialityService;
 import org.apache.log4j.Logger;
 
-import java.util.List;
-
 import static com.getprepared.constant.ServerConstants.DAOS.SPECIALITY_DAO;
 
 /**

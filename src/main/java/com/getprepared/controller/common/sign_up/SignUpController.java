@@ -73,14 +73,14 @@ public class SignUpController extends AbstractSignUpPageController {
 
             if (user.getId() != null && user.getRole() == Role.TUTOR) {
                 request.getSession().setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
-                response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
+                response.sendRedirect(LINKS.TUTOR_QUIZZES);
                 return REDIRECT;
             }
         } catch (final ValidationException e) {
-            request.setAttribute(ERROR_MSG, ERRORS.DATA_INVALIDATED);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final EntityExistsException e) {
-            request.setAttribute(ERROR_MSG, ERRORS.STUDENT_EXISTS);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_EXISTS, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 

@@ -15,22 +15,22 @@ import static com.getprepared.constant.WebConstants.*;
 /**
  * Created by koval on 20.01.2017.
  */
-public class StudentSignedInFilter implements Filter {
+public class UserGuestFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException { }
+    public void init(FilterConfig filterConfig) throws ServletException {  }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
         final HttpSession httpSession = ((HttpServletRequest)servletRequest).getSession(false);
-        if ((httpSession != null) && (httpSession.getAttribute(SESSION_ATTRIBUTES.STUDENT) != null)) {
-            ((HttpServletResponse)servletResponse).sendRedirect(LINKS.STUDENT_HOME_PAGE);
+        if (httpSession == null || httpSession.getAttribute(SESSION_ATTRIBUTES.STUDENT) == null) {
+            ((HttpServletResponse)servletResponse).sendRedirect(LINKS.STUDENT_SIGN_IN);
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 
     @Override
-    public void destroy() { }
+    public void destroy() {  }
 }

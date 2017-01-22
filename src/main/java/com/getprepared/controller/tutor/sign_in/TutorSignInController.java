@@ -42,7 +42,7 @@ public class TutorSignInController extends AbstractSignInController {
 
         final HttpSession httpSession = request.getSession();
         if (httpSession.getAttribute(SESSION_ATTRIBUTES.TUTOR) != null) {
-            response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
+            response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;
         }
 
@@ -55,7 +55,7 @@ public class TutorSignInController extends AbstractSignInController {
             final User tutor = userService.signIn(email, password);
             if (tutor != null) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, tutor);
-                response.sendRedirect(LINKS.TUTOR_SPECIALITIES);
+                response.sendRedirect(LINKS.TUTOR_QUIZZES);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {
@@ -63,8 +63,7 @@ public class TutorSignInController extends AbstractSignInController {
                     request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final ValidationException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXISTS,
-                    request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 

@@ -32,7 +32,7 @@
                         <input type="hidden" name="controller" value="signOut">
 
                         <button class="btn btn-link" type="submit">
-                            <fmt:message key="SignOut"/>
+                            <fmt:message key="signOut.signOut"/>
                         </button>
                     </form>
                 </li>
@@ -48,7 +48,7 @@
                         <input type="hidden" name="controller" value="signOut">
 
                         <button class="btn btn-link" type="submit">
-                            <fmt:message key="SignOut"/>
+                            <fmt:message key="signOut.signOut"/>
                         </button>
                     </form>
                 </li>

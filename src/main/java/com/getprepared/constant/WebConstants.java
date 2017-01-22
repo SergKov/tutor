@@ -42,6 +42,8 @@ public class WebConstants {
 
         public static final String PASSWORD_REGEX = "passwordRegex";
 
+        public static final String QUIZ_NAME_REGEX = "quizRegex";
+
         public static final String NAME_REGEX = "nameRegex";
 
         public static final String SURNAME_REGEX = "surnameRegex";

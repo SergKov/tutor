@@ -75,6 +75,21 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
+    public Page<Quiz> findAll(final Long page, final Long pageSize) throws EntityNotFoundException {
+        try {
+            getTransactionManager().begin();
+            final QuizDao quizDao = getDao();
+            final Page<Quiz> quizzes = quizDao.findAll(page, pageSize);
+            getTransactionManager().commit();
+            return quizzes;
+        } catch (final EntityNotFoundException e) {
+            getTransactionManager().rollback();
+            LOG.warn(e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Override
     public List<Quiz> findByUserEmail(final String email) throws ValidationException, EntityNotFoundException {
         try {
             getValidation().validateEmail(email);

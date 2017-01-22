@@ -106,11 +106,12 @@ public class JdbcTemplate {
             setter.setValues(ps);
 
             final ResultSet rs = ps.executeQuery();
-            rs.next();
 
-            final T entry = rowMapper.mapRow(rs);
+            T entry;
 
-            if (rowMapper.mapRow(rs) == null) {
+            if (rs.next()) {
+                entry = rowMapper.mapRow(rs);
+            } else {
                 final String errorMsg = String.format("Entity is not found by this query %s", sql);
                 LOG.warn(errorMsg);
                 throw new EntityNotFoundException(errorMsg);

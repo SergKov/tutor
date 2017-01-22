@@ -19,7 +19,6 @@ import static com.getprepared.constant.UtilsConstant.PARSER;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 21.01.2017.
@@ -38,15 +37,15 @@ public abstract class AbstractQuizController extends AbstractController {
         try {
             final Long pageIndex = parser.parseLong(request.getParameter(PAGE_INDEX), 10L);
             validation.validateId(pageIndex);
-            final Long pageSize = parser.parseLong(request.getParameter(PAGE_SIZE), 0L);
+            final Long pageSize = parser.parseLong(request.getParameter(PAGE_SIZE), 1L);
             validation.validateId(pageSize);
-            final Long specialityId = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTES.SPECIALITY_ID);
-            final Page<Quiz> quizzes = quizService.findAllBySpecialityId(specialityId, pageIndex, pageSize);
-            if (!quizzes.isEmpty()) {
-                request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_LIST, quizzes);
+            final Page<Quiz> specialities = quizService.findAll(pageIndex, pageSize);
+            if (!specialities.isEmpty()) {
+                request.setAttribute(REQUEST_ATTRIBUTES.SPECIALITIES, specialities);
             }
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.SPECIALITY_IS_NOT_FOUND,
+                    request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final ValidationException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ID, request.getLocale()));

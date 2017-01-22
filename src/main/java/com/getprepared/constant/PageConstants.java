@@ -27,7 +27,9 @@ public class PageConstants {
 
         public static final String TUTOR_SIGN_IN = PREFIX + "tutorSignIn" + SUFFIX;
 
-        public static final String TUTOR_SPECIALITIES = PREFIX + "tutorSpecialities" + SUFFIX;
+        public static final String TUTOR_QUIZZES = PREFIX + "tutorQuizzes" + SUFFIX;
+
+        public static final String ADD_QUIZ = PREFIX + "addQuiz" + SUFFIX;
     }
 
     public static class LINKS {
@@ -40,13 +42,11 @@ public class PageConstants {
 
         public static final String STUDENT_HOME_PAGE = "/studentHomePage";
 
-        public static final String TUTOR_SPECIALITIES = "/specialities";
+        public static final String TUTOR_QUIZZES = "/specialities";
 
         public static final String QUIZZES = "/specialities/quizzes";
 
-        public static final String ADD_SPECIALITY = "/tutor/specialities";
-
-        public static final String ADD_QUIZ = "/tutor/specialities/quizzes";
+        public static final String ADD_QUIZ = "/tutor/quizzes/addQuiz";
 
         public static final String TEST = "/test";
 
@@ -67,9 +67,9 @@ public class PageConstants {
 
         public static final String HOME_PAGE = "HomePage";
 
-        public static final String SPECIALITIES = "Specialities";
-
         public static final String QUIZZES = "Quizzes";
+
+        public static final String ADD_QUIZ = "AddQuiz";
     }
 
     public static class FORMS {
@@ -84,37 +84,31 @@ public class PageConstants {
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
-        public static final String TUTOR_SPECIALITIES = "tutorSpecialities";
+        public static final String TUTOR_QUIZZES = "tutorSpecialities";
 
-        public static final String ADD_SPECIALITY = "addSpeciality";
+        public static final String ADD_QUIZ = "addQuiz";
+
+        public static final String SIGN_OUT = "signOut";
     }
 
     public static class ERRORS {
 
         private ERRORS() { }
 
-        public static final String SYSTEM_NOT_AVAILABLE = "System is not available";
+        public static final String CREDENTIALS_INVALIDATED = "YouHaveEnteredInvalidatedCredentials";
 
-        public static final String CREDENTIALS_INVALIDATED = "You have entered invalidated credentials";
+        public static final String DATA_INVALIDATED = "YouHaveEnteredInvalidatedData";
 
-        public static final String STUDENT_IS_NOT_EXISTS = "User with such credentials is not exists";
+        public static final String USER_EXISTS = "SuchStudentAlreadyExists";
 
-        public static final String TUTOR_IS_NOT_EXISTS = "Tutor with such credentials is not exists";
+        public static final String INCORRECT_ID = "IdIncorrect";
 
-        public static final String DATA_INVALIDATED = "You have entered invalidated data";
+        public static final String SPECIALITY_IS_NOT_FOUND = "SpecialityIsNotFound";
 
-        public static final String STUDENT_EXISTS = "Such student already exists";
+        public static final String STUDENT_INVALIDATED = "StudentInvalidated";
 
-        public static final String SPECIALITY_ID_INCORRECT = "SpecialityIdIncorrect";
+        public static final String INVALIDATED_ID = "InvalidatedId";
 
-        public static final String SPECIALITY_IS_NOT_FOUND = "Speciality is not found";
-
-        public static final String SPECIALITY_EXISTS = "Such speciality already exists";
-
-        public static final String STUDENT_INVALIDATED = "Student invalidated";
-
-        public static final String INVALIDATED_ID = "Invalidated id";
-
-        public static final String QUIZ_EXISTS = "Such quiz already exists";
+        public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
     }
 }

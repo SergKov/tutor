@@ -57,8 +57,7 @@ public class StudentSignInController extends AbstractSignInController {
                     request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXISTS,
-                    request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 

@@ -48,7 +48,7 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_INVALIDATED, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_IS_NOT_EXISTS,
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }

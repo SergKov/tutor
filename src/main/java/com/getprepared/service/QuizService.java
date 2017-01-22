@@ -21,6 +21,8 @@ public interface QuizService {
 
     Page<Quiz> findAllBySpecialityId(Long specialityId, Long page, Long pageSize) throws EntityNotFoundException;
 
+    Page<Quiz> findAll(Long page, Long pageSize) throws EntityNotFoundException;
+
     List<Quiz> findByUserEmail(String email) throws ValidationException, EntityNotFoundException;
 
     List<Quiz> findByUserId(Long id) throws EntityNotFoundException;

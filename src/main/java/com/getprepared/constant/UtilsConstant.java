@@ -29,6 +29,6 @@ public class UtilsConstant {
 
         public static final String SPECIALITY_NAME = "^[\\S]{2,32}$";
 
-        public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$"; //doesn't work
+        public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$";
     }
 }
