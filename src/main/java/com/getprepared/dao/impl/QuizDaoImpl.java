@@ -6,6 +6,7 @@ import com.getprepared.domain.Speciality;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.infrastructure.pagination.Page;
 import com.getprepared.infrastructure.template.JdbcTemplate;
 import com.getprepared.infrastructure.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
@@ -68,9 +69,16 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findAllBySpecialityId(final Long specialityId)  {
-        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_SPECIALITY_ID),
-                ps -> ps.setLong(1, specialityId), new QuizMapper());
+    public Page<Quiz> findAllBySpecialityId(final Long specialityId, final Long page, final Long pageSize)
+            throws EntityNotFoundException {
+
+        final List<Quiz> quizzes = getJdbcTemplate()
+                .executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_SPECIALITY_ID), pageSize, page * pageSize),
+                        new QuizMapper());
+
+        final Long count = getJdbcTemplate().singleQuery(prop.getProperty(KEYS.COUNT), rs -> rs.getLong(1));
+
+        return new Page<>(quizzes, count, page, pageSize);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.getprepared.utils.impl;
 
-import com.getprepared.infrastructure.pagination.Page;
-
 import java.util.Collection;
 
 /**

@@ -5,6 +5,8 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
+import com.getprepared.infrastructure.pagination.Page;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public interface QuizService {
 
     Quiz findById(Long id) throws ValidationException, EntityNotFoundException;
 
-    List<Quiz> findAll();
+    Page<Quiz> findAllBySpecialityId(Long specialityId, Long page, Long pageSize) throws EntityNotFoundException;
 
     List<Quiz> findByUserEmail(String email) throws ValidationException, EntityNotFoundException;
 

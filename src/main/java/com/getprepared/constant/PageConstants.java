@@ -68,6 +68,8 @@ public class PageConstants {
         public static final String HOME_PAGE = "HomePage";
 
         public static final String SPECIALITIES = "Specialities";
+
+        public static final String QUIZZES = "Quizzes";
     }
 
     public static class FORMS {
@@ -111,6 +113,8 @@ public class PageConstants {
 
         public static final String STUDENT_INVALIDATED = "Student invalidated";
 
-        public static final String QUIZ_ID_INCORRECT = "Quiz id is incorrect";
+        public static final String INVALIDATED_ID = "Invalidated id";
+
+        public static final String QUIZ_EXISTS = "Such quiz already exists";
     }
 }

@@ -3,6 +3,7 @@ package com.getprepared.dao;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.infrastructure.pagination.Page;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface QuizDao {
 
     void assign(Long userId, Long quizId) throws EntityExistsException;
 
-    List<Quiz> findAllBySpecialityId(Long specialityId) throws EntityNotFoundException;
+    Page<Quiz> findAllBySpecialityId(Long specialityId, Long page, Long pageSize) throws EntityNotFoundException;
 
     void remove(Long id) throws EntityNotFoundException;
 }

@@ -62,5 +62,7 @@ public class WebConstants {
         public static final String TUTOR = "tutor";
 
         public static final String CHOSEN_QUIZ_ID = "chosenQuizId";
+
+        public static final String SPECIALITY_ID = "specialityId";
     }
 }
