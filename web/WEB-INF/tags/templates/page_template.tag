@@ -22,16 +22,15 @@
     </h1>
 
     <c:choose>
-        <c:when test="${user ne null}">
-            <button class="btn btn-primary" type="button">${user.name}
-                <span class="caret"></span></button>
+
+        <c:when test="${not empty student}">
+            <button class="btn btn-primary" type="button">${student.name}</button>
             <ul>
                 <li>
-                    <a href="/editCredentials"><fmt:message key="signOut.editCredentials"/></a>
-                </li>
-                <li>
                     <form action="/" method="POST">
-                        <input type="hidden" name="controller" value="customerSignOut">
+
+                        <input type="hidden" name="controller" value="signOut">
+
                         <button class="btn btn-link" type="submit">
                             <fmt:message key="SignOut"/>
                         </button>
@@ -39,14 +38,32 @@
                 </li>
             </ul>
         </c:when>
+
+        <c:when test="${not empty tutor}">
+            <button class="btn btn-primary" type="button">${tutor.name}</button>
+            <ul>
+                <li>
+                    <form action="/" method="POST">
+
+                        <input type="hidden" name="controller" value="signOut">
+
+                        <button class="btn btn-link" type="submit">
+                            <fmt:message key="SignOut"/>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </c:when>
+
     </c:choose>
+
 </div>
 
 <div id="body">
     <div class="container">
         <div class="row alert alert-danger" <c:if test="${empty errorMsg}"> style="display: none;" </c:if>
              id="errorMsg">
-             ${errorMsg}
+            ${errorMsg}
         </div>
         <jsp:doBody/>
     </div>

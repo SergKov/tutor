@@ -1,4 +1,4 @@
-package com.getprepared.controller.tutor.speciality_page;
+package com.getprepared.controller.tutor.quiz_page;
 
 import com.getprepared.controller.common.abstract_classes.AbstractSpecialityController;
 import com.getprepared.domain.Speciality;

@@ -1,4 +1,4 @@
-package com.getprepared.controller.tutor.speciality_page;
+package com.getprepared.controller.tutor.quiz_page;
 
 import com.getprepared.controller.common.abstract_classes.AbstractSpecialityController;
 import com.getprepared.service.SpecialityService;
@@ -13,7 +13,7 @@ import static com.getprepared.constant.ServerConstants.SERVICES.SPECIALITY_SERVI
 /**
  * Created by koval on 21.01.2017.
  */
-public class TutorSpecialityController extends AbstractSpecialityController {
+public class TutorSpecialityPageController extends AbstractSpecialityController {
 
     private SpecialityService specialityService;
 

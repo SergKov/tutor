@@ -4,6 +4,7 @@ import com.getprepared.constant.PageConstants.LINKS;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.Controller;
 import com.getprepared.controller.common.PageNotFoundController;
+import com.getprepared.controller.common.sign_out.SignOutController;
 import com.getprepared.controller.common.sign_up.SignUpController;
 import com.getprepared.controller.common.sign_up.SignUpPageController;
 import com.getprepared.controller.student.home_page.StudentHomePageController;
@@ -12,9 +13,9 @@ import com.getprepared.controller.student.sign_in.StudentSignInController;
 import com.getprepared.controller.student.sign_in.StudentSignInPageController;
 import com.getprepared.controller.tutor.sign_in.TutorSignInController;
 import com.getprepared.controller.tutor.sign_in.TutorSignInPageController;
-import com.getprepared.controller.tutor.speciality_page.AddSpecialityController;
-import com.getprepared.controller.tutor.speciality_page.TutorSpecialityController;
-import com.getprepared.controller.tutor.speciality_page.TutorSpecialityPageController;
+import com.getprepared.controller.tutor.quiz_page.AddSpecialityController;
+import com.getprepared.controller.tutor.quiz_page.TutorSpecialityController;
+import com.getprepared.controller.tutor.quiz_page.TutorSpecialityPageController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +56,7 @@ public class ControllerFactory {
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
         mapping.put(FORMS.TUTOR_SPECIALITIES, new TutorSpecialityController());
         mapping.put(FORMS.ADD_SPECIALITY, new AddSpecialityController());
+        mapping.put(FORMS.SIGN_OUT, new SignOutController());
 
         mapping.values().forEach(AbstractController::init);
     }
