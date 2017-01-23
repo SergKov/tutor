@@ -13,7 +13,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="studentHomePage.welcome"/> ${user.name}
+        <fmt:message key="studentHomePage.welcome"/> ${student.name}
     </jsp:attribute>
 
     <jsp:body>

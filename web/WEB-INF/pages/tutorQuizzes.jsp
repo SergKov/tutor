@@ -14,7 +14,7 @@
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="tutorHomePage.hello"/> ${worker.name} !
+    <fmt:message key="tutorHomePage.hello"/> ${tutor.name} !
 </jsp:attribute>
 
     <jsp:body>

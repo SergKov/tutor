@@ -19,7 +19,7 @@
     </filter>
     <filter-mapping>
         <filter-name>UserSignedInFilter</filter-name>
-        <url-pattern>/signUpPage</url-pattern>
+        <url-pattern>/signUp</url-pattern>
     </filter-mapping>
 
     <filter>

@@ -1,16 +1,13 @@
 package com.getprepared.filter;
 
-import com.getprepared.constant.PageConstants;
-import com.getprepared.constant.WebConstants;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.PageConstants.LINKS;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 20.01.2017.

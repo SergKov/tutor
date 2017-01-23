@@ -47,7 +47,7 @@ public class QuizController extends AbstractQuizController {
             final Long parsedQuizId = parser.parseLong(quizId);
             validation.validateId(parsedQuizId);
             request.getSession().setAttribute(SESSION_ATTRIBUTES.CHOSEN_QUIZ_ID, parsedQuizId);
-            response.sendRedirect(LINKS.QUIZZES);
+            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
             return REDIRECT;
         } catch (final ParseException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INCORRECT_ID, request.getLocale()));

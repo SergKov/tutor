@@ -24,15 +24,13 @@
     <c:choose>
 
         <c:when test="${not empty student}">
-            <button class="btn btn-primary" type="button">${student.name}</button>
             <ul>
                 <li>
                     <form action="/" method="POST">
-
                         <input type="hidden" name="controller" value="signOut">
 
                         <button class="btn btn-link" type="submit">
-                            <fmt:message key="signOut.signOut"/>
+                            "SignOut"
                         </button>
                     </form>
                 </li>
@@ -40,7 +38,6 @@
         </c:when>
 
         <c:when test="${not empty tutor}">
-            <button class="btn btn-primary" type="button">${tutor.name}</button>
             <ul>
                 <li>
                     <form action="/" method="POST">
@@ -48,7 +45,7 @@
                         <input type="hidden" name="controller" value="signOut">
 
                         <button class="btn btn-link" type="submit">
-                            <fmt:message key="signOut.signOut"/>
+                            "SignOut"
                         </button>
                     </form>
                 </li>

@@ -42,11 +42,11 @@ public class PageConstants {
 
         public static final String STUDENT_HOME_PAGE = "/studentHomePage";
 
-        public static final String TUTOR_QUIZZES = "/specialities";
-
-        public static final String QUIZZES = "/specialities/quizzes";
+        public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
         public static final String ADD_QUIZ = "/tutor/quizzes/addQuiz";
+
+        public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
 
         public static final String TEST = "/test";
 

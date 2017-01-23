@@ -1,7 +1,5 @@
 package com.getprepared.controller.tutor.add_quiz;
 
-import com.getprepared.constant.PageConstants;
-import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
@@ -11,13 +9,13 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
+import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.SPECIALITY_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
 /**
@@ -32,7 +30,7 @@ public class AddQuizController extends AbstractAddQuizController {
 
     @Override
     public void init() {
-        quizService = getServiceFactory().getService(SPECIALITY_SERVICE, QuizService.class);
+        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
         validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
     }
 
@@ -45,7 +43,7 @@ public class AddQuizController extends AbstractAddQuizController {
             validation.validateName(name);
             quiz.setName(name);
             quizService.save(quiz);
-            response.sendRedirect(LINKS.QUIZZES);
+            response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;
         } catch (final ValidationException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
