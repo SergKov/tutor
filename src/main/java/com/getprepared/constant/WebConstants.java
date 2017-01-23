@@ -32,7 +32,13 @@ public class WebConstants {
 
         public static final String TITLE = "title";
 
+        public static final String USER = "user";
+
+        public static final String EMAIL = "email";
+
         public static final String ROLES = "roles";
+
+        public static final String QUIZ_NAME = "name";
 
         public static final String QUIZ_LIST = "quizList";
 

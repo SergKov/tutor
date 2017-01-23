@@ -1,6 +1,8 @@
 package com.getprepared.controller.tutor.sign_in;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.common.abstract_classes.AbstractSignInController;
+import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
@@ -49,15 +52,21 @@ public class TutorSignInController extends AbstractSignInController {
         final String email = request.getParameter(INPUTS.EMAIL);
         final String password = request.getParameter(INPUTS.PASSWORD);
 
+        request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
+
         try {
             validation.validateEmail(email);
             validation.validatePassword(password);
+
             final User tutor = userService.signIn(email, password);
-            if (tutor != null) {
+
+            if (tutor != null && tutor.getRole() == Role.TUTOR) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, tutor);
                 response.sendRedirect(LINKS.TUTOR_QUIZZES);
                 return REDIRECT;
             }
+
+
         } catch (final EntityNotFoundException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));

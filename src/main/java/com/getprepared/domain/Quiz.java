@@ -7,38 +7,16 @@ import java.util.List;
  */
 public class Quiz extends Entity {
 
-    public static final String OWNER_ID_KEY = "owner_id";
-    public static final String SPECIALITY_ID_KEY = "speciality_id";
     public static final String NAME_KEY = "name";
 
-    private User user;
-    private Speciality speciality;
     private String name;
     private List<Quiz> quizzes;
 
     public Quiz() { }
 
-    public Quiz(Long id, User user, Speciality speciality, String name) {
+    public Quiz(Long id, String name) {
         super(id);
-        this.user = user;
         this.name = name;
-        this.speciality = speciality;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Speciality getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(Speciality speciality) {
-        this.speciality = speciality;
     }
 
     public String getName() {

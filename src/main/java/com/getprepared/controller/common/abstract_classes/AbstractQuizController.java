@@ -39,12 +39,12 @@ public abstract class AbstractQuizController extends AbstractController {
             validation.validateId(pageIndex);
             final Long pageSize = parser.parseLong(request.getParameter(PAGE_SIZE), 1L);
             validation.validateId(pageSize);
-            final Page<Quiz> specialities = quizService.findAll(pageIndex, pageSize);
-            if (!specialities.isEmpty()) {
-                request.setAttribute(REQUEST_ATTRIBUTES.SPECIALITIES, specialities);
+            final Page<Quiz> quizzes = quizService.findAll(pageIndex, pageSize);
+            if (!quizzes.isEmpty()) {
+                request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_LIST, quizzes);
             }
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.SPECIALITY_IS_NOT_FOUND,
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_IS_NOT_FOUND,
                     request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final ValidationException e) {

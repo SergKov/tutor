@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor.add_quiz;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
@@ -15,6 +16,7 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.SPECIALITY_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
@@ -42,6 +44,7 @@ public class AddQuizController extends AbstractAddQuizController {
             final String name = request.getParameter(INPUTS.QUIZ);
             validation.validateName(name);
             quiz.setName(name);
+            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, name);
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;

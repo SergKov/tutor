@@ -80,7 +80,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
             LOG.warn(e.getMessage(), e);
             throw e;
         }
-
     }
 
     @Override

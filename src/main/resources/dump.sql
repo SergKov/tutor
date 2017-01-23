@@ -14,19 +14,9 @@ CREATE TABLE User (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE Speciality (
-  id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(15) NOT NULL UNIQUE,
-  PRIMARY KEY(id)
-);
-
 CREATE TABLE Quiz (
   id INT NOT NULL AUTO_INCREMENT,
-  speciality_id INT NOT NULL,
-  owner_id INT NOT NULL,
   name VARCHAR(20) NOT NULL UNIQUE,
-  FOREIGN KEY(speciality_id) REFERENCES Speciality(id),
-  FOREIGN KEY(owner_id) REFERENCES Quiz(id),
   PRIMARY KEY (id)
 );
 

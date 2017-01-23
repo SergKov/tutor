@@ -2,8 +2,6 @@ package com.getprepared.dao.impl;
 
 import com.getprepared.dao.QuizDao;
 import com.getprepared.domain.Quiz;
-import com.getprepared.domain.Speciality;
-import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.pagination.Page;
@@ -21,8 +19,6 @@ import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Quiz.NAME_KEY;
-import static com.getprepared.domain.Quiz.OWNER_ID_KEY;
-import static com.getprepared.domain.Quiz.SPECIALITY_ID_KEY;
 
 /**
  * Created by koval on 06.01.2017.
@@ -80,20 +76,6 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
         return new Page<>(quizzes, count, page, pageSize);
     }
 
-
-    @Override
-    public Page<Quiz> findAllBySpecialityId(final Long specialityId, final Long page, final Long pageSize)
-            throws EntityNotFoundException {
-
-        final List<Quiz> quizzes = getJdbcTemplate()
-                .executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_SPECIALITY_ID), pageSize, page * pageSize),
-                        new QuizMapper());
-
-        final Long count = getJdbcTemplate().singleQuery(prop.getProperty(KEYS.COUNT), rs -> rs.getLong(1));
-
-        return new Page<>(quizzes, count, page, pageSize);
-    }
-
     @Override
     public void remove(final Long id) {
         getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
@@ -104,12 +86,8 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
         @Override
         public Quiz mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
-            final User owner = new User();
-            owner.setId(rs.getLong(OWNER_ID_KEY));
             final String name = rs.getString(NAME_KEY);
-            final Speciality speciality = new Speciality();
-            speciality.setId(rs.getLong(SPECIALITY_ID_KEY));
-            return new Quiz(id, owner, speciality, name);
+            return new Quiz(id, name);
         }
     }
 }

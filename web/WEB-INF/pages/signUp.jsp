@@ -28,7 +28,7 @@
                         <div class="col-xs-3">
                             <select class="form-control" id="role" name="role">
                                 <c:forEach items="${roles}" var="role">
-                                    <option value="${role}">
+                                    <option value="${user.role}">
                                         <fmt:message key="signUp.${role}"/>
                                     </option>
                                 </c:forEach>
@@ -43,6 +43,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${nameRegex}" class="form-control" id="name" name="name"
+                                   value="${user.name}"
                                    placeholder="<fmt:message key="signUp.enterName"/>" required>
                         </div>
                     </div>
@@ -54,7 +55,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${surnameRegex}" class="form-control" id="surName"
-                                   name="surname"
+                                   name="surname" value="${user.surname}"
                                    placeholder="<fmt:message key="signUp.enterSurname"/>" required>
                         </div>
                     </div>
@@ -66,6 +67,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
+                                   value="${user.email}"
                                    placeholder="<fmt:message key="homePage.enterEmail"/>" required>
                         </div>
                     </div>

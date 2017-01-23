@@ -19,8 +19,6 @@ public interface UserDao {
 
     User findByEmail(String email) throws EntityNotFoundException;
 
-    List<User> findAllByQuizId(Long quizId) throws EntityNotFoundException;
-
     void update(User user) throws EntityExistsException;
 
     void remove(Long userId, Long quizId) throws EntityNotFoundException;

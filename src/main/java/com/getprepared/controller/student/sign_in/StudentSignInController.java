@@ -1,5 +1,6 @@
 package com.getprepared.controller.student.sign_in;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.common.abstract_classes.AbstractSignInController;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
@@ -44,6 +46,8 @@ public class StudentSignInController extends AbstractSignInController {
 
         final String email = request.getParameter(INPUTS.EMAIL);
         final String password = request.getParameter(INPUTS.PASSWORD);
+
+        request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
 
         try {
             final User student = userService.signIn(email, password);

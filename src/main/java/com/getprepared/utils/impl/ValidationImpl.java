@@ -52,11 +52,6 @@ public class ValidationImpl implements Validation {
     @Override
     public void validateQuiz(final Quiz quiz) throws ValidationException {
         validateEntity(quiz);
-
-        if (quiz.getSpeciality() != null) {
-            throw new ValidationException("Quiz's speciality is missing.");
-        }
-
         validateQuizName(quiz.getName());
     }
 
@@ -68,23 +63,6 @@ public class ValidationImpl implements Validation {
 
         if (!name.matches(REGEX.QUIZ_NAME)) {
             throw new ValidationException(String.format("Quiz's name %s has an incorrect format.", name));
-        }
-    }
-
-    @Override
-    public void validateSpeciality(final Speciality speciality) throws ValidationException {
-        validateEntity(speciality);
-        validateSpecialityName(speciality.getName());
-    }
-
-    private void validateSpecialityName(final String name) throws ValidationException {
-
-        if (name == null) {
-            throw new ValidationException("Speciality's name is missing.");
-        }
-
-        if (!name.matches(REGEX.SPECIALITY_NAME)) {
-            throw new ValidationException(String.format("Speciality's name %s has an incorrect format.", name));
         }
     }
 

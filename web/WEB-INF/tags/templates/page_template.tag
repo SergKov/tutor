@@ -22,7 +22,6 @@
     </h1>
 
     <c:choose>
-
         <c:when test="${not empty student}">
             <ul>
                 <li>
@@ -41,7 +40,6 @@
             <ul>
                 <li>
                     <form action="/" method="POST">
-
                         <input type="hidden" name="controller" value="signOut">
 
                         <button class="btn btn-link" type="submit">
@@ -51,9 +49,7 @@
                 </li>
             </ul>
         </c:when>
-
     </c:choose>
-
 </div>
 
 <div id="body">

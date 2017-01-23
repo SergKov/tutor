@@ -65,12 +65,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public List<User> findAllByQuizId(final Long quizId) {
-        //TODO add pagination, throw excepton
-        return null;
-    }
-
-    @Override
     public void update(final User user) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
                 rs -> {

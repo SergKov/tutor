@@ -99,11 +99,11 @@ public class PageConstants {
 
         public static final String DATA_INVALIDATED = "YouHaveEnteredInvalidatedData";
 
-        public static final String USER_EXISTS = "SuchStudentAlreadyExists";
+        public static final String USER_EXISTS = "SuchUserAlreadyExists";
 
         public static final String INCORRECT_ID = "IdIncorrect";
 
-        public static final String SPECIALITY_IS_NOT_FOUND = "SpecialityIsNotFound";
+        public static final String QUIZ_IS_NOT_FOUND = "QuizIsNotFound";
 
         public static final String STUDENT_INVALIDATED = "StudentInvalidated";
 

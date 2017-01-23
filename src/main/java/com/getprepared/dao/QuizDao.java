@@ -24,7 +24,5 @@ public interface QuizDao {
 
     Page<Quiz> findAll(Long page, Long pageSize) throws EntityNotFoundException;
 
-    Page<Quiz> findAllBySpecialityId(Long specialityId, Long page, Long pageSize) throws EntityNotFoundException;
-
     void remove(Long id) throws EntityNotFoundException;
 }

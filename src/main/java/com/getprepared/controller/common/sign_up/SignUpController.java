@@ -1,6 +1,7 @@
 package com.getprepared.controller.common.sign_up;
 
 import com.getprepared.constant.PageConstants.*;
+import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.common.abstract_classes.AbstractSignUpPageController;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.*;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
@@ -62,6 +64,8 @@ public class SignUpController extends AbstractSignUpPageController {
             final String password = request.getParameter(PASSWORD);
             validation.validatePassword(password);
             user.setPassword(password);
+
+            request.setAttribute(REQUEST_ATTRIBUTES.USER, user);
 
             userService.signUp(user);
 

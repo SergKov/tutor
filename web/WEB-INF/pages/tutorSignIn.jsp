@@ -26,6 +26,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
+                                   value="${email}"
                                    placeholder="<fmt:message key="tutorSignIn.enterEmail"/>" required>
                         </div>
                     </div>
