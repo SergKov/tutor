@@ -22,7 +22,7 @@ public class DataSourceFactory {
     public DataSource getDataSource() {
         try {
             return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/tutor");
-        } catch (final NamingException e) {
+        } catch (final NamingException e) { //TODO
 //            final MysqlDataSource source = new MysqlDataSource();
 //            source.setURL(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.URL));
 //            source.setUser(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.USER));

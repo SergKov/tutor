@@ -8,7 +8,6 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.AnswerService;
 import org.apache.log4j.Logger;
 
-import java.util.Collections;
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.ANSWER_DAO;

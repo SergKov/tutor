@@ -1,7 +1,8 @@
 package com.getprepared.controller.common.sign_up;
 
-import com.getprepared.constant.PageConstants.*;
-import com.getprepared.constant.WebConstants;
+import com.getprepared.constant.PageConstants.ERRORS;
+import com.getprepared.constant.PageConstants.LINKS;
+import com.getprepared.constant.PageConstants.PAGES;
 import com.getprepared.controller.common.abstract_classes.AbstractSignUpPageController;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
@@ -15,11 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.*;
+import static com.getprepared.constant.PageConstants.REDIRECT;
+import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS.*;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 

@@ -12,7 +12,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 22.01.2017.
  */
-public abstract class AbstractAddQuizController extends AbstractController{
+public abstract class AbstractAddQuizController extends AbstractController {
 
     protected void fillPage(final HttpServletRequest request) {
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUIZ, request.getLocale()));

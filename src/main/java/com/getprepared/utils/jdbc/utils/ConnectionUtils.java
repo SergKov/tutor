@@ -1,9 +1,7 @@
 package com.getprepared.utils.jdbc.utils;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 
-import static com.getprepared.utils.jdbc.function.SqlCallback.call;
 import static com.getprepared.utils.jdbc.function.SqlRunner.run;
 
 /**

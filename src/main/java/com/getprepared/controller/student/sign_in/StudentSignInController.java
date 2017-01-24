@@ -1,6 +1,5 @@
 package com.getprepared.controller.student.sign_in;
 
-import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.common.abstract_classes.AbstractSignInController;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
@@ -16,10 +15,8 @@ import java.io.IOException;
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.WebConstants.*;
-import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 15.01.2017.

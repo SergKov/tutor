@@ -1,13 +1,11 @@
 package com.getprepared.controller.student.home_page;
 
-import com.getprepared.constant.PageConstants;
 import com.getprepared.service.QuizService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 

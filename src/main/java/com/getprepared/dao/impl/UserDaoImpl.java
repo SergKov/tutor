@@ -12,7 +12,6 @@ import com.getprepared.utils.impl.PropertyUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Properties;
 
 import static com.getprepared.constant.PropertyConstants.FILES_NAMES;

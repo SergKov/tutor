@@ -4,8 +4,6 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 
-import java.util.List;
-
 /**
  * Created by koval on 03.01.2017.
  */

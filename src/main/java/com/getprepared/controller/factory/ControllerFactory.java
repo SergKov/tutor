@@ -16,7 +16,6 @@ import com.getprepared.controller.tutor.add_quiz.AddQuizPageController;
 import com.getprepared.controller.tutor.quiz_page.QuizPageController;
 import com.getprepared.controller.tutor.sign_in.TutorSignInController;
 import com.getprepared.controller.tutor.sign_in.TutorSignInPageController;
-import com.getprepared.controller.tutor.quiz_page.QuizController;
 
 import java.util.HashMap;
 import java.util.Map;

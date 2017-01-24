@@ -84,6 +84,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     @Override
     public User signInTutor(String email, String password) throws ValidationException, EntityNotFoundException {
+
         final String encodedPassword = passwordEncoder.encode(password);
 
         try {

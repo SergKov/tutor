@@ -1,7 +1,6 @@
 package com.getprepared.dao;
 
 import com.getprepared.domain.Question;
-import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 

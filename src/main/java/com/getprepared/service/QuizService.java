@@ -1,12 +1,10 @@
 package com.getprepared.service;
 
 import com.getprepared.domain.Quiz;
-import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.infrastructure.pagination.Page;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 

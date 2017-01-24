@@ -5,8 +5,6 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 
-import java.util.List;
-
 /**
  * Created by koval on 09.01.2017.
  */

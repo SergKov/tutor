@@ -1,6 +1,5 @@
 package com.getprepared.controller.tutor.add_quiz;
 
-import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
@@ -14,9 +13,7 @@ import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.SPECIALITY_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
