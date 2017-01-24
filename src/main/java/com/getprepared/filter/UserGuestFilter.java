@@ -21,13 +21,13 @@ public class UserGuestFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {  }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+    public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain filterChain) throws IOException, ServletException {
-        final HttpSession httpSession = ((HttpServletRequest)servletRequest).getSession(false);
+        final HttpSession httpSession = ((HttpServletRequest)request).getSession(false);
         if (httpSession == null || httpSession.getAttribute(SESSION_ATTRIBUTES.STUDENT) == null) {
-            ((HttpServletResponse)servletResponse).sendRedirect(LINKS.STUDENT_SIGN_IN);
+            ((HttpServletResponse)response).sendRedirect(LINKS.STUDENT_SIGN_IN);
         } else {
-            filterChain.doFilter(servletRequest, servletResponse);
+            filterChain.doFilter(request, response);
         }
     }
 

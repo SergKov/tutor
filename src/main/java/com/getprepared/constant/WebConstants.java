@@ -38,9 +38,9 @@ public class WebConstants {
 
         public static final String ROLES = "roles";
 
-        public static final String QUIZ_NAME = "name";
+        public static final String QUIZ_NAME = "quizName";
 
-        public static final String QUIZ_LIST = "quizList";
+        public static final String QUIZZES = "quizzes";
 
         public static final String ERROR_MSG = "errorMsg";
 

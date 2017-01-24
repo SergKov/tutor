@@ -29,7 +29,8 @@
     <filter-mapping>
         <filter-name>UserGuestFilter</filter-name>
         <url-pattern>/studentHomePage</url-pattern>
-        <url-pattern>/tutorHomePage</url-pattern>
+        <url-pattern>/tutorQuizzes</url-pattern>
+        <url-pattern>/addQuiz</url-pattern>
     </filter-mapping>
 
     <filter>

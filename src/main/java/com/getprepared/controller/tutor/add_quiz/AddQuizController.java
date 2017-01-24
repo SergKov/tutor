@@ -42,9 +42,8 @@ public class AddQuizController extends AbstractAddQuizController {
 
         try {
             final String name = request.getParameter(INPUTS.QUIZ);
-            validation.validateName(name);
+            validation.validateQuizName(name);
             quiz.setName(name);
-            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, name);
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;

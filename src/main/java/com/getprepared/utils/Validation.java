@@ -14,6 +14,8 @@ public interface Validation {
 
     void validateQuiz(Quiz quiz) throws ValidationException;
 
+    void validateQuizName(String name) throws ValidationException;
+
     void validateResult(Result result) throws ValidationException;
 
     void validateUser(User user) throws ValidationException;

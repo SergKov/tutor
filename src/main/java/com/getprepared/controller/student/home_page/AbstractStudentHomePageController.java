@@ -42,7 +42,7 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
             final List<Quiz> quizList = quizService.findByUserId(user.getId());
 
             if (!CollectionUtils.isEmpty(quizList)) {
-                request.setAttribute(QUIZ_LIST, quizList);
+                request.setAttribute(QUIZZES, quizList);
             }
         } catch (final ValidationException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_INVALIDATED, request.getLocale()));

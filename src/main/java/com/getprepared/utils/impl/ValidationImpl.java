@@ -55,7 +55,7 @@ public class ValidationImpl implements Validation {
         validateQuizName(quiz.getName());
     }
 
-    private void validateQuizName(final String name) throws ValidationException {
+    public void validateQuizName(final String name) throws ValidationException {
 
         if (name == null) {
             throw new ValidationException("Quiz's name is missing.");

@@ -27,8 +27,6 @@ public class UtilsConstant {
 
         public static final String QUIZ_NAME = "^[\\S]{2,32}$";
 
-        public static final String SPECIALITY_NAME = "^[\\S]{2,32}$";
-
         public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$";
     }
 }

@@ -58,14 +58,13 @@ public class TutorSignInController extends AbstractSignInController {
             validation.validateEmail(email);
             validation.validatePassword(password);
 
-            final User tutor = userService.signIn(email, password);
+            final User user = userService.signInTutor(email, password);
 
-            if (tutor != null && tutor.getRole() == Role.TUTOR) {
-                httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, tutor);
+            if (user != null) {
+                httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
                 response.sendRedirect(LINKS.TUTOR_QUIZZES);
                 return REDIRECT;
             }
-
 
         } catch (final EntityNotFoundException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,

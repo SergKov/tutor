@@ -18,6 +18,8 @@ public interface UserService {
 
     User signIn(String email, String password) throws ValidationException, EntityNotFoundException;
 
+    User signInTutor(String email, String password) throws ValidationException, EntityNotFoundException;
+
     void signUp(User user) throws ValidationException, EntityExistsException;
 
     void update(User user) throws ValidationException, EntityExistsException;

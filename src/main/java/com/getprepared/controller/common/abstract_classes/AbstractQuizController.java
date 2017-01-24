@@ -41,7 +41,7 @@ public abstract class AbstractQuizController extends AbstractController {
             validation.validateId(pageSize);
             final Page<Quiz> quizzes = quizService.findAll(pageIndex, pageSize);
             if (!quizzes.isEmpty()) {
-                request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_LIST, quizzes);
+                request.setAttribute(REQUEST_ATTRIBUTES.QUIZZES, quizzes);
             }
         } catch (final EntityNotFoundException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_IS_NOT_FOUND,

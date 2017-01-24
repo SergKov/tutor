@@ -24,7 +24,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" class="form-control" id="quiz_id"
-                                   value="${name}"
+                                   value="${quizName}"
                                    name="quiz" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                         </div>
 

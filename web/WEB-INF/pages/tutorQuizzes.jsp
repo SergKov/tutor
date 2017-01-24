@@ -21,10 +21,10 @@
 
         <div class="row">
             <c:choose>
-                <c:when test="${not empty quizzes}">
+                <c:when test="${quizzes ne null}">
                     <c:forEach items="${quizzes}" var="quiz">
                         <form action="/tutor/quizzes" method="POST" class="form-horizontal">
-                            <input type="hidden" name="specialityId" value="${quiz.id}">
+                            <input type="hidden" name="quizId" value="${quiz.id}">
 
                             <div class="col-xs-6 col-xs-offset-2">
                                 <div class="form-group">
@@ -39,12 +39,6 @@
                                        width="25px"
                                        height="25px"
                                        name="controller" value="quizQuestions">
-                            </div>
-
-                            <div class="col-xs-1">
-                                <input id="speciality_update" type="image" src="/resource/img/edit.ico" width="25px"
-                                       height="25px"
-                                       name="controller" value="quizUpdate">
                             </div>
 
                             <div class="col-xs-2">
