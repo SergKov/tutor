@@ -31,7 +31,7 @@ public class PageConstants {
 
         public static final String ADD_QUIZ = PREFIX + "addQuiz" + SUFFIX;
 
-        public static final String QUESTIONS = PREFIX + "questions" + SUFFIX;
+        public static final String QUESTIONS = PREFIX + "questionsPage" + SUFFIX;
     }
 
     public static class LINKS {
@@ -55,6 +55,8 @@ public class PageConstants {
         public static final String NOT_FOUND = "/pageNotFound";
 
         public static final String TUTOR_SIGN_IN = "/tutor";
+
+        public static final String SIGN_OUT = "/signOut";
     }
 
     public static class NAMES {
@@ -74,6 +76,8 @@ public class PageConstants {
         public static final String ADD_QUIZ = "AddQuiz";
 
         public static final String QUESTIONS = "Questions";
+
+        public static final String QUESTION = "Question";
     }
 
     public static class FORMS {
@@ -95,6 +99,8 @@ public class PageConstants {
         public static final String SIGN_OUT = "signOut";
 
         public static final String REMOVE_QUIZ = "quizRemove";
+
+        public static final String QUIZ_QUESTIONS = "quizQuestions";
     }
 
     public static class ERRORS {

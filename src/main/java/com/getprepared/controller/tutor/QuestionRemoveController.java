@@ -1,8 +1,10 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.controller.common.AbstractQuizController;
+import com.getprepared.domain.Question;
+import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ParseException;
 import com.getprepared.exception.ValidationException;
+import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import com.getprepared.utils.Parser;
 import com.getprepared.utils.Validation;
@@ -12,53 +14,52 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
+import static com.getprepared.constant.PageConstants.ERRORS;
+import static com.getprepared.constant.PageConstants.PAGES;
+import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.PARSER;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
- * Created by koval on 21.01.2017.
+ * Created by koval on 24.01.2017.
  */
-public class QuizController extends AbstractQuizController {
+public class QuestionRemoveController extends AbstractQuestionController {
 
-    private static final Logger LOG = Logger.getLogger(QuizController.class);
+    private static final Logger LOG = Logger.getLogger(QuestionRemoveController.class);
 
     private QuizService quizService;
+    private QuestionService questionService;
     private Validation validation;
     private Parser parser;
 
     @Override
     public void init() {
         quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
+        questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
         validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
         parser = getUtilsFactory().getUtil(PARSER, Parser.class);
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        final String quizId = request.getParameter(INPUTS.QUIZ);
-
         try {
-            final Long parsedQuizId = parser.parseLong(quizId);
-            validation.validateId(parsedQuizId);
-            request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
-            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
-            return REDIRECT;
-        } catch (final ParseException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INCORRECT_ID, request.getLocale()));
-            LOG.warn(e.getMessage(), e);
-        } catch (final ValidationException e) {
+            final Long questionId = parser.parseLong(request.getParameter(INPUTS.QUESTION_ID));
+            validation.validateId(questionId);
+            final Question question = questionService.findById(questionId);
+            validation.validateQuestion(question);
+            questionService.remove(question);
+        } catch (ValidationException | ParseException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ID, request.getLocale()));
+            LOG.warn(e.getMessage(), e);
+        } catch (final EntityNotFoundException e) {
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_NOT_FOUND, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 
-        fillPage(request, quizService);
-
-        return PAGES.TUTOR_QUIZZES;
+        fillPage(request, quizService, questionService);
+        return PAGES.QUESTIONS;
     }
 }

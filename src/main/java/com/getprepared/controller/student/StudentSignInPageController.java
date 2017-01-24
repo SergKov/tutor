@@ -20,12 +20,6 @@ public class StudentSignInPageController extends AbstractSignInController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-//        if (request.getSession(false) != null) {
-//            response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
-//            return REDIRECT;
-//        }
-
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
         return PAGES.STUDENT_SIGN_IN;

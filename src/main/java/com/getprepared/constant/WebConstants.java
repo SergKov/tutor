@@ -62,6 +62,8 @@ public class WebConstants {
 
         public static final String QUIZ = "quiz";
 
+        public static final String QUESTION = "question";
+
         public static final String QUESTIONS = "questions";
 
         public static final String PAGE_INDEX = "page";

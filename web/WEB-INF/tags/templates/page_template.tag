@@ -25,13 +25,9 @@
         <c:when test="${not empty student}">
             <ul>
                 <li>
-                    <form action="/" method="POST">
-                        <input type="hidden" name="controller" value="signOut">
-
-                        <button class="btn btn-link" type="submit">
-                            "SignOut"
-                        </button>
-                    </form>
+                    <a href="/signOut">
+                        "SignOut"
+                    </a>
                 </li>
             </ul>
         </c:when>
@@ -39,13 +35,9 @@
         <c:when test="${not empty tutor}">
             <ul>
                 <li>
-                    <form action="/" method="POST">
-                        <input type="hidden" name="controller" value="signOut">
-
-                        <button class="btn btn-link" type="submit">
-                            "SignOut"
-                        </button>
-                    </form>
+                    <a href="/signOut">
+                        "SignOut"
+                    </a>
                 </li>
             </ul>
         </c:when>

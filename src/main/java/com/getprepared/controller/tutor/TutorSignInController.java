@@ -73,7 +73,6 @@ public class TutorSignInController extends AbstractSignInController {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
-
         return PAGES.TUTOR_SIGN_IN;
     }
 }

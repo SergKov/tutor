@@ -21,12 +21,12 @@ public class SignOutController extends AbstractController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        final HttpSession httpSession = request.getSession();
-//        final Enumeration<String> attributes = httpSession.getAttributeNames();
-//        while (attributes.hasMoreElements()) {
-//            httpSession.removeAttribute(attributes.nextElement());
-//        }
-        httpSession.invalidate();
+        final HttpSession httpSession = request.getSession(false);
+
+        if (httpSession != null) {
+            httpSession.invalidate();
+        }
+
         response.sendRedirect(LINKS.STUDENT_SIGN_IN);
         return REDIRECT;
     }

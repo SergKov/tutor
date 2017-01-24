@@ -55,7 +55,6 @@ public class QuizAddController extends AbstractQuizAddController {
         }
 
         fillPage(request);
-
         return PAGES.ADD_QUIZ;
     }
 }
