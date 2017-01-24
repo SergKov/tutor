@@ -23,14 +23,12 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>UserGuestFilter</filter-name>
-        <filter-class>com.getprepared.filter.UserGuestFilter</filter-class>
+        <filter-name>StudentGuestFilter</filter-name>
+        <filter-class>com.getprepared.filter.StudentGuestFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>UserGuestFilter</filter-name>
-        <url-pattern>/studentHomePage</url-pattern>
-        <url-pattern>/tutorQuizzes</url-pattern>
-        <url-pattern>/addQuiz</url-pattern>
+        <filter-name>StudentGuestFilter</filter-name>
+        <url-pattern>/studentHomePage/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -41,6 +39,16 @@
         <filter-name>ChangeUserToWorkerFilter</filter-name>
         <url-pattern>/tutor/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>TutorGuestFilter</filter-name>
+        <filter-class>com.getprepared.filter.TutorGuestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TutorGuestFilter</filter-name>
+        <url-pattern>/tutor/quizzes/*</url-pattern>
+    </filter-mapping>
+
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
