@@ -3,6 +3,7 @@ package com.getprepared.service.impl;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
+import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
@@ -40,7 +41,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             }
 
             getTransactionManager().commit();
-        } catch (ValidationException | EntityExistsException e) {
+        } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -48,21 +49,21 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public Question findById(final Long id) throws ValidationException, EntityNotFoundException {
+    public Question findById(final Long id) throws EntityNotFoundException {
         try {
-            getValidation().validateId(id);
-
             getTransactionManager().begin();
             final QuestionDao questionDao = getDao();
             final Question question = questionDao.findById(id);
             getTransactionManager().commit();
             return question;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
+
+
 
     @Override
     public List<Question> findByQuizId(final Long id) throws ValidationException, EntityNotFoundException {
@@ -82,10 +83,8 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public void remove(final Question question) throws ValidationException, EntityNotFoundException {
+    public void remove(final Question question) throws EntityNotFoundException {
         try {
-            getValidation().validateEntity(question);
-
             getTransactionManager().begin();
 
             final QuestionDao questionDao = getDao();
@@ -94,7 +93,25 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final AnswerService answerService = getAnswerService();
             answerService.removeByQuestionId(question.getId());
             getTransactionManager().commit();
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
+            getTransactionManager().rollback();
+            LOG.warn(e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    @Override
+    public void removeByQuizId(final Long quizId) throws EntityNotFoundException {
+        try {
+            getTransactionManager().begin();
+            final QuestionDao questionDao = getDao();
+            final List<Question> questions = questionDao.findByQuizId(quizId);
+            final AnswerService answerService = getAnswerService();
+            for (Question question : questions) {
+                answerService.removeByQuestionId(question.getId());
+            }
+            questionDao.removeByQuizId(quizId);
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

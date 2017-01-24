@@ -10,7 +10,7 @@ public class Quiz extends Entity {
     public static final String NAME_KEY = "name";
 
     private String name;
-    private List<Quiz> quizzes;
+    private List<Question> questions;
 
     public Quiz() { }
 
@@ -27,11 +27,11 @@ public class Quiz extends Entity {
         this.name = name;
     }
 
-    public List<Quiz> getQuizzes() {
-        return quizzes;
+    public List<Question> getQuestions() {
+        return questions;
     }
 
-    public void setQuizzes(List<Quiz> quizzes) {
-        this.quizzes = quizzes;
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }

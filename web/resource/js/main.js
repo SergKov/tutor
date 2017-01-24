@@ -18,5 +18,10 @@ $(document).ready(function() {
         e.preventDefault();
         parent.history.back();
     });
-    
+
+    $(".remove_btn").click(function (e) {
+        if (!confirm('Are you sure?')) {
+            e.preventDefault();
+        }
+    });
 });

@@ -21,9 +21,9 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 22.01.2017.
  */
-public class AddQuizController extends AbstractAddQuizController {
+public class QuizAddController extends AbstractQuizAddController {
 
-    private static final Logger LOG = Logger.getLogger(AddQuizController.class);
+    private static final Logger LOG = Logger.getLogger(QuizAddController.class);
 
     private QuizService quizService;
     private Validation validation;
@@ -40,9 +40,9 @@ public class AddQuizController extends AbstractAddQuizController {
 
         try {
             final String name = request.getParameter(INPUTS.QUIZ);
+            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, name);
             validation.validateQuizName(name);
             quiz.setName(name);
-            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, name);
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;

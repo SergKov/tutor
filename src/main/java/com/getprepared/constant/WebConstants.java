@@ -24,6 +24,12 @@ public class WebConstants {
         public static final String QUIZ = "quiz";
 
         public static final String ADD_SPECIALITY = "addSpeciality";
+
+        public static final String QUESTION_ID = "questionId";
+
+        public static final String QUIZ_ID = "quizId";
+
+        public static final String QUIZ_NAME = "quizName";
     }
 
     public static class REQUEST_ATTRIBUTES {
@@ -54,7 +60,9 @@ public class WebConstants {
 
         public static final String SURNAME_REGEX = "surnameRegex";
 
-        public static final String SPECIALITIES = "specialities";
+        public static final String QUIZ = "quiz";
+
+        public static final String QUESTIONS = "questions";
 
         public static final String PAGE_INDEX = "page";
 
@@ -69,8 +77,6 @@ public class WebConstants {
 
         public static final String TUTOR = "tutor";
 
-        public static final String CHOSEN_QUIZ_ID = "chosenQuizId";
-
-        public static final String SPECIALITY_ID = "specialityId";
+        public static final String QUIZ_ID = "quizId";
     }
 }

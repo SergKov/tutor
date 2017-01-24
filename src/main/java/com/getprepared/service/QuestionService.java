@@ -18,5 +18,7 @@ public interface QuestionService {
 
     List<Question> findByQuizId(Long id) throws ValidationException, EntityNotFoundException;
 
-    void remove(Question question) throws ValidationException, EntityNotFoundException;
+    void remove(Question question) throws EntityNotFoundException;
+
+    void removeByQuizId(Long quizId) throws EntityNotFoundException;
 }

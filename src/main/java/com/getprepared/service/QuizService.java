@@ -15,7 +15,7 @@ public interface QuizService {
 
     void save(Quiz quiz) throws ValidationException, EntityExistsException;
 
-    Quiz findById(Long id) throws ValidationException, EntityNotFoundException;
+    Quiz findById(Long id) throws EntityNotFoundException;
 
     List<Quiz> findAll();
 
@@ -25,5 +25,5 @@ public interface QuizService {
 
     void assign(Long quizId, Long userId) throws ValidationException, EntityNotFoundException, EntityExistsException;
 
-    void remove(Quiz quiz) throws ValidationException, EntityNotFoundException;
+    void remove(Quiz quiz) throws EntityNotFoundException;
 }

@@ -72,15 +72,13 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     }
 
     @Override
-    public void removeByQuestionId(final Long questionId) throws ValidationException, EntityNotFoundException {
+    public void removeByQuestionId(final Long questionId) throws EntityNotFoundException {
         try {
-            getValidation().validateId(questionId);
-
             getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             answerDao.removeByQuestionId(questionId);
             getTransactionManager().commit();
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

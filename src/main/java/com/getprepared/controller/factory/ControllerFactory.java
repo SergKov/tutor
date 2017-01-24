@@ -11,11 +11,7 @@ import com.getprepared.controller.student.StudentHomePageController;
 import com.getprepared.controller.student.StudentHomePagePageController;
 import com.getprepared.controller.student.StudentSignInController;
 import com.getprepared.controller.student.StudentSignInPageController;
-import com.getprepared.controller.tutor.AddQuizController;
-import com.getprepared.controller.tutor.AddQuizPageController;
-import com.getprepared.controller.tutor.QuizPageController;
-import com.getprepared.controller.tutor.TutorSignInController;
-import com.getprepared.controller.tutor.TutorSignInPageController;
+import com.getprepared.controller.tutor.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,13 +45,14 @@ public class ControllerFactory {
         mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePagePageController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
-        mapping.put(LINKS.ADD_QUIZ, new AddQuizPageController());
+        mapping.put(LINKS.ADD_QUIZ, new QuizPageAddController());
 
         mapping.put(FORMS.STUDENT_SIGN_IN, new StudentSignInController());
         mapping.put(FORMS.SIGN_UP, new SignUpController());
         mapping.put(FORMS.STUDENT_HOME_PAGE, new StudentHomePageController());
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
-        mapping.put(FORMS.ADD_QUIZ, new AddQuizController());
+        mapping.put(FORMS.ADD_QUIZ, new QuizAddController());
+        mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());
         mapping.put(FORMS.SIGN_OUT, new SignOutController());
 
         mapping.values().forEach(AbstractController::init);

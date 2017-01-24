@@ -41,7 +41,7 @@ public class StudentHomePageController extends AbstractStudentHomePageController
         try {
             final Long id = parser.parseLong(quizId);
             final HttpSession httpSession = request.getSession();
-            httpSession.setAttribute(SESSION_ATTRIBUTES.CHOSEN_QUIZ_ID, id);
+            httpSession.setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, id);
             response.sendRedirect(LINKS.TEST);
             return REDIRECT;
         } catch (final ParseException e) {

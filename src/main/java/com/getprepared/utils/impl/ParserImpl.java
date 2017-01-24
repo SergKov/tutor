@@ -12,11 +12,22 @@ public class ParserImpl implements Parser {
     private static final Logger LOG = Logger.getLogger(ParserImpl.class);
 
     @Override
-    public Long parseLong(String value) throws ParseException {
+    public Long parseLong(final String value) throws ParseException {
         try {
             return Long.parseLong(value);
         } catch (NumberFormatException | NullPointerException e) {
             final String errorMsg = String.format("Failed to parse %s", value);
+            LOG.warn(errorMsg, e);
+            throw new ParseException(errorMsg, e);
+        }
+    }
+
+    @Override
+    public Long parseLong(final Object object) throws ParseException {
+        try {
+            return Long.parseLong(String.valueOf(object));
+        } catch (NumberFormatException | NullPointerException e) {
+            final String errorMsg = String.format("Failed to parse %s", object);
             LOG.warn(errorMsg, e);
             throw new ParseException(errorMsg, e);
         }

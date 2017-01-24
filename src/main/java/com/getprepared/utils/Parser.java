@@ -10,5 +10,7 @@ public interface Parser {
 
     Long parseLong(String value) throws ParserException, ParseException;
 
+    Long parseLong(Object object) throws ParseException;
+
     Long parseLong(String value, Long defaultValue);
 }

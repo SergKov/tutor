@@ -10,11 +10,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="tutorHomePage.hello"/> ${tutor.name} !
+    <fmt:message key="quizPage.hello"/> ${tutor.name} !
 </jsp:attribute>
 
     <jsp:body>
@@ -27,21 +26,21 @@
 
                             <div class="col-xs-6 col-xs-offset-2">
                                 <div class="form-group">
-                                    <input id="speciality_name" type="text" class="form-control"
+                                    <input id="quiz_name" type="text" class="form-control"
                                            name="quizName"
                                            value="${quiz.name}">
                                 </div>
                             </div>
 
                             <div class="col-xs-1">
-                                <input id="speciality_questions" type="image" src="/resource/img/see.ico"
+                                <input id="quiz_questions" type="image" src="/resource/img/see.ico"
                                        width="25px"
                                        height="25px"
                                        name="controller" value="quizQuestions">
                             </div>
 
                             <div class="col-xs-2">
-                                <input id="speciality_remove" class="remove_btn" type="image"
+                                <input id="quiz_remove" class="remove_btn" type="image"
                                        src="/resource/img/delete.ico" width="25px" height="25px"
                                        name="controller" value="quizRemove">
                             </div>
