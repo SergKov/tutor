@@ -1,4 +1,6 @@
-package com.getprepared.controller.tutor.add_quiz;
+package com.getprepared.controller.tutor;
+
+import com.getprepared.controller.tutor.AbstractAddQuizController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

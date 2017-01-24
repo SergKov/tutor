@@ -84,7 +84,7 @@ public class PageConstants {
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
-        public static final String TUTOR_QUIZZES = "tutorSpecialities";
+        public static final String TUTOR_QUIZZES = "tutorQuizzes";
 
         public static final String ADD_QUIZ = "addQuiz";
 
@@ -99,7 +99,11 @@ public class PageConstants {
 
         public static final String DATA_INVALIDATED = "YouHaveEnteredInvalidatedData";
 
-        public static final String USER_EXISTS = "SuchUserAlreadyExists";
+        public static final String USER_EXISTS = "UserExists";
+
+        public static final String USER_NOT_FOUND = "UserNotExists";
+
+        public static final String TUTOR_NOT_FOUND = "TutorNotExists";
 
         public static final String INCORRECT_ID = "IdIncorrect";
 

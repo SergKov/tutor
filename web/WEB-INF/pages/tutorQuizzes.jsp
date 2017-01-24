@@ -18,11 +18,10 @@
 </jsp:attribute>
 
     <jsp:body>
-
-        <div class="row">
-            <c:choose>
-                <c:when test="${quizzes ne null}">
-                    <c:forEach items="${quizzes}" var="quiz">
+        <c:choose>
+            <c:when test="${not empty quizzes}">
+                <c:forEach items="${quizzes}" var="quiz">
+                    <div class="row">
                         <form action="/tutor/quizzes" method="POST" class="form-horizontal">
                             <input type="hidden" name="quizId" value="${quiz.id}">
 
@@ -47,20 +46,20 @@
                                        name="controller" value="quizRemove">
                             </div>
                         </form>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <h1 class="text-muted text-center"><fmt:message key="quizPage.text"/></h1>
-                </c:otherwise>
-            </c:choose>
-        </div>
+                    </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <h1 class="text-muted text-center"><fmt:message key="quizPage.text"/></h1>
+            </c:otherwise>
+        </c:choose>
 
         <div class="row">
             <a href="/tutor/quizzes/addQuiz" id="add_quiz" class="col-xs-1 col-xs-offset-10">
                 <img src="/resource/img/plus.ico" width="25px" height="25px">
             </a>
         </div>
-        
+
     </jsp:body>
 
 </templates:page_template>

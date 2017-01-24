@@ -1,4 +1,4 @@
-package com.getprepared.controller.common.abstract_classes;
+package com.getprepared.controller.common;
 
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.Role;

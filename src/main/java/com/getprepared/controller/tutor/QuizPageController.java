@@ -1,6 +1,6 @@
-package com.getprepared.controller.tutor.quiz_page;
+package com.getprepared.controller.tutor;
 
-import com.getprepared.controller.common.abstract_classes.AbstractQuizController;
+import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.service.QuizService;
 
 import javax.servlet.http.HttpServletRequest;

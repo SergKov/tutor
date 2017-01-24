@@ -65,15 +65,8 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public Page<Quiz> findAll(Long page, Long pageSize) throws EntityNotFoundException {
-
-        final List<Quiz> quizzes = getJdbcTemplate()
-                .executeQuery(String.format(prop.getProperty(KEYS.FIND_ALL), pageSize, page * pageSize),
-                        new QuizMapper());
-
-        final Long count = getJdbcTemplate().singleQuery(prop.getProperty(KEYS.COUNT), rs -> rs.getLong(1));
-
-        return new Page<>(quizzes, count, page, pageSize);
+    public List<Quiz> findAll() {
+        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_ALL), new QuizMapper());
     }
 
     @Override

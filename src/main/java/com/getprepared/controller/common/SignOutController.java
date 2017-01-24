@@ -1,4 +1,4 @@
-package com.getprepared.controller.common.sign_out;
+package com.getprepared.controller.common;
 
 import com.getprepared.controller.AbstractController;
 

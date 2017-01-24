@@ -1,7 +1,7 @@
-package com.getprepared.controller.student.sign_in;
+package com.getprepared.controller.student;
 
 import com.getprepared.constant.PageConstants.*;
-import com.getprepared.controller.common.abstract_classes.AbstractSignInController;
+import com.getprepared.controller.common.AbstractSignInController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.getprepared.controller.student.home_page;
+package com.getprepared.controller.student;
 
 import com.getprepared.service.QuizService;
 

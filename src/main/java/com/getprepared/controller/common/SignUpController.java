@@ -1,9 +1,8 @@
-package com.getprepared.controller.common.sign_up;
+package com.getprepared.controller.common;
 
 import com.getprepared.constant.PageConstants.ERRORS;
 import com.getprepared.constant.PageConstants.LINKS;
 import com.getprepared.constant.PageConstants.PAGES;
-import com.getprepared.controller.common.abstract_classes.AbstractSignUpPageController;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;

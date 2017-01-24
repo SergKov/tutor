@@ -72,6 +72,4 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     private ResultDao getDao() {
         return getDaoFactory().getDao(RESULT_DAO, ResultDao.class);
     }
-
-
 }

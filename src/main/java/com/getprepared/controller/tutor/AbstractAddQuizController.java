@@ -1,4 +1,4 @@
-package com.getprepared.controller.tutor.add_quiz;
+package com.getprepared.controller.tutor;
 
 import com.getprepared.controller.AbstractController;
 

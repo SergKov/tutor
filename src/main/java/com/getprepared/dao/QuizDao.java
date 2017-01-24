@@ -22,7 +22,7 @@ public interface QuizDao {
 
     void assign(Long userId, Long quizId) throws EntityExistsException;
 
-    Page<Quiz> findAll(Long page, Long pageSize) throws EntityNotFoundException;
+    List<Quiz> findAll();
 
     void remove(Long id) throws EntityNotFoundException;
 }

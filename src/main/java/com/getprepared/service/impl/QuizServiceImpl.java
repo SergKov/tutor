@@ -23,7 +23,8 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     private static final Logger LOG = Logger.getLogger(QuizServiceImpl.class);
 
-    public QuizServiceImpl() { }
+    public QuizServiceImpl() {
+    }
 
     @Override
     public void save(final Quiz quiz) throws ValidationException, EntityExistsException {
@@ -59,18 +60,12 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public Page<Quiz> findAll(final Long page, final Long pageSize) throws EntityNotFoundException {
-        try {
-            getTransactionManager().begin();
-            final QuizDao quizDao = getDao();
-            final Page<Quiz> quizzes = quizDao.findAll(page, pageSize);
-            getTransactionManager().commit();
-            return quizzes;
-        } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
-        }
+    public List<Quiz> findAll() {
+        getTransactionManager().begin();
+        final QuizDao quizDao = getDao();
+        final List<Quiz> quizzes = quizDao.findAll();
+        getTransactionManager().commit();
+        return quizzes;
     }
 
     @Override
@@ -107,7 +102,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     @Override
     public void assign(final Long quizId, final Long userId) throws ValidationException, EntityNotFoundException,
-                                                                                EntityExistsException  {
+            EntityExistsException {
         try {
             getValidation().validateId(quizId);
             getValidation().validateId(userId);

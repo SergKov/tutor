@@ -17,8 +17,6 @@ public class ServerConstants {
 
         public static final String QUIZ_DAO = "quizDao";
 
-        public static final String SPECIALITY_DAO = "specialityDao";
-
         public static final String RESULT_DAO = "resultDao";
 
         public static final String USER_DAO = "userDao";
@@ -33,8 +31,6 @@ public class ServerConstants {
         public static final String QUESTION_SERVICE = "questionService";
 
         public static final String QUIZ_SERVICE = "quizService";
-
-        public static final String SPECIALITY_SERVICE = "specialityService";
 
         public static final String RESULT_SERVICE = "resultService";
 

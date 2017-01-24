@@ -1,6 +1,6 @@
-package com.getprepared.controller.common.sign_up;
+package com.getprepared.controller.common;
 
-import com.getprepared.controller.common.abstract_classes.AbstractSignUpPageController;
+import com.getprepared.controller.common.AbstractSignUpPageController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
