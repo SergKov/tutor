@@ -1,8 +1,6 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.exception.ParseException;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.Parser;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,12 +23,10 @@ public class StudentHomePageController extends AbstractStudentHomePageController
     private static final Logger LOG = Logger.getLogger(StudentHomePageController.class);
 
     private QuizService quizService;
-    private Parser parser;
 
     @Override
     public void init() {
         quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        parser = getUtilsFactory().getUtil(PARSER, Parser.class);
     }
 
     @Override
@@ -39,18 +35,15 @@ public class StudentHomePageController extends AbstractStudentHomePageController
         final String quizId = request.getParameter(INPUTS.QUIZ);
 
         try {
-            final Long id = parser.parseLong(quizId);
+            final Long id = Long.parseLong(quizId);
             final HttpSession httpSession = request.getSession();
             httpSession.setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, id);
             response.sendRedirect(LINKS.TEST);
-            return REDIRECT;
-        } catch (final ParseException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ID, request.getLocale()));
+        } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
+            response.sendRedirect(PAGES.NOT_FOUND);
         }
 
-        fillPage(request, quizService);
-
-        return PAGES.STUDENT_HOME_PAGE;
+        return REDIRECT;
     }
 }

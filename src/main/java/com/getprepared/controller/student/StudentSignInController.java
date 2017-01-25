@@ -5,6 +5,7 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
+import com.getprepared.utils.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
+import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
@@ -26,10 +28,12 @@ public class StudentSignInController extends AbstractSignInController {
     private static final Logger LOG = Logger.getLogger(StudentSignInController.class);
 
     private UserService userService;
+    private Validation validation;
 
     @Override
     public void init() {
         userService = getServiceFactory().getService(USER_SERVICE, UserService.class);
+        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
     }
 
     @Override
@@ -47,6 +51,9 @@ public class StudentSignInController extends AbstractSignInController {
         request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
 
         try {
+            validation.validateEmail(email);
+            validation.validatePassword(password);
+
             final User student = userService.signIn(email, password);
             if (student != null) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.STUDENT, student);

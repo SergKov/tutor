@@ -83,7 +83,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public User signInTutor(String email, String password) throws ValidationException, EntityNotFoundException {
+    public User signInTutor(String email, String password) throws EntityNotFoundException {
 
         final String encodedPassword = passwordEncoder.encode(password);
 
@@ -101,7 +101,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public void signUp(final User user) throws ValidationException, EntityExistsException {
+    public void signUp(final User user) throws EntityExistsException {
         try {
             getTransactionManager().begin();
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -116,17 +116,14 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public void update(final User user) throws ValidationException, EntityExistsException {
+    public void update(final User user) throws EntityExistsException {
         try {
-            getValidation().validateUser(user);
-            getValidation().validateId(user.getId());
-
             getTransactionManager().begin();
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             final UserDao userDao = getDao();
             userDao.update(user);
             getTransactionManager().commit();
-        } catch (ValidationException | EntityExistsException e) {
+        } catch (EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

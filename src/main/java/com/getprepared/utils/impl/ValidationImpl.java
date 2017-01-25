@@ -136,11 +136,11 @@ public class ValidationImpl implements Validation {
         }
     }
 
-    @Override
-    public void validateRole(final String role) throws ValidationException {
+    private void validateRole(final String role) throws ValidationException {
         if (role == null) {
             throw new ValidationException("Role is missing.");
         }
+
         if (!role.equals("TUTOR") && !role.equals("STUDENT")) {
             throw new ValidationException("Role is illegal");
         }
@@ -166,8 +166,7 @@ public class ValidationImpl implements Validation {
         }
     }
 
-    @Override
-    public void validateEntity(Entity entity) throws ValidationException {
+    private void validateEntity(Entity entity) throws ValidationException {
         if (entity == null) {
             throw new ValidationException(String.format("%s is missing.", entity.getEntityName()));
         }

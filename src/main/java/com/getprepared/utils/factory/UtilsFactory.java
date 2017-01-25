@@ -1,6 +1,5 @@
 package com.getprepared.utils.factory;
 
-import com.getprepared.utils.impl.ParserImpl;
 import com.getprepared.utils.impl.PasswordEncoderImpl;
 import com.getprepared.utils.impl.ValidationImpl;
 
@@ -26,7 +25,6 @@ public class UtilsFactory {
         mapping = new HashMap<>();
         mapping.put(VALIDATION, new ValidationImpl());
         mapping.put(PASSWORD_ENCODER, new PasswordEncoderImpl());
-        mapping.put(PARSER, new ParserImpl());
     }
 
     private UtilsFactory() {

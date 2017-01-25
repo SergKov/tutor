@@ -41,30 +41,9 @@ public class SignUpController extends AbstractSignUpPageController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        final User user = new User();
-
         try {
-            final String role = request.getParameter(ROLE);
-            validation.validateRole(role);
-            user.setRole(Role.valueOf(role));
-
-            final String name = request.getParameter(NAME);
-            validation.validateName(name);
-            user.setName(request.getParameter(NAME));
-
-            final String surname = request.getParameter(SURNAME);
-            validation.validateSurname(surname);
-            user.setSurname(request.getParameter(SURNAME));
-
-            final String email = request.getParameter(EMAIL);
-            validation.validateEmail(email);
-            user.setEmail(email);
-
-            final String password = request.getParameter(PASSWORD);
-            validation.validatePassword(password);
-            user.setPassword(password);
-
+            final User user = convertInputToUser(request);
+            validation.validateUser(user);
             request.setAttribute(REQUEST_ATTRIBUTES.USER, user);
 
             userService.signUp(user);
@@ -89,7 +68,6 @@ public class SignUpController extends AbstractSignUpPageController {
         }
 
         fillPage(request);
-
         return PAGES.SIGN_UP;
     }
 }

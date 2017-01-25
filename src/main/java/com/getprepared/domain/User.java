@@ -14,22 +14,31 @@ public class User extends Entity {
     public static final String SURNAME_KEY = "surname";
 
     private Role role;
-    private String email;
-    private String password;
     private String name;
     private String surname;
+    private String email;
+    private String password;
+
     private List<Result> results;
     private List<Quiz> quizzes;
 
     public User() { }
 
-    public User(Long id, Role role, String email, String password, String name, String surname) {
+    public User(Long id, Role role, String name, String surname, String email, String password) {
         super(id);
         this.role = role;
-        this.email = email;
-        this.password = password;
         this.name = name;
         this.surname = surname;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(Role role, String name, String surname, String email, String password) {
+        this.role = role;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
     }
 
     public Role getRole() {
@@ -38,22 +47,6 @@ public class User extends Entity {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -72,19 +65,19 @@ public class User extends Entity {
         this.surname = surname;
     }
 
-    public List<Result> getResults() {
-        return results;
+    public String getEmail() {
+        return email;
     }
 
-    public void setResults(List<Result> results) {
-        this.results = results;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public List<Quiz> getQuizzes() {
-        return quizzes;
+    public String getPassword() {
+        return password;
     }
 
-    public void setQuizzes(List<Quiz> quizzes) {
-        this.quizzes = quizzes;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

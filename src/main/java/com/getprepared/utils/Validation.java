@@ -22,8 +22,6 @@ public interface Validation {
 
     void validateEmail(String email) throws ValidationException;
 
-    void validateRole(String role) throws ValidationException;
-
     void validateName(String name) throws ValidationException;
 
     void validateSurname(String surname) throws ValidationException;
@@ -31,6 +29,4 @@ public interface Validation {
     void validatePassword(String password) throws ValidationException;
 
     void validateId(Long id) throws ValidationException;
-
-    void validateEntity(Entity entity) throws ValidationException;
 }

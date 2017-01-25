@@ -66,16 +66,14 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
 
     @Override
-    public List<Question> findByQuizId(final Long id) throws ValidationException, EntityNotFoundException {
+    public List<Question> findByQuizId(final Long id) throws EntityNotFoundException {
         try {
-            getValidation().validateId(id);
-
             getTransactionManager().begin();
             final QuestionDao questionDao = getDao();
             final List<Question> questions = questionDao.findByQuizId(id);
             getTransactionManager().commit();
             return questions;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

@@ -14,11 +14,11 @@ public interface UserService {
 
     User findByEmail(String email) throws ValidationException, EntityNotFoundException;
 
-    User signIn(String email, String password) throws ValidationException, EntityNotFoundException;
+    User signIn(String email, String password) throws EntityNotFoundException;
 
-    User signInTutor(String email, String password) throws ValidationException, EntityNotFoundException;
+    User signInTutor(String email, String password) throws EntityNotFoundException;
 
-    void signUp(User user) throws ValidationException, EntityExistsException;
+    void signUp(User user) throws EntityExistsException;
 
-    void update(User user) throws ValidationException, EntityExistsException;
+    void update(User user) throws EntityExistsException;
 }
