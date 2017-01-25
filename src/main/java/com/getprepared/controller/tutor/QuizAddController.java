@@ -36,13 +36,10 @@ public class QuizAddController extends AbstractQuizAddController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        final Quiz quiz = new Quiz();
-
         try {
-            final String name = request.getParameter(INPUTS.QUIZ);
-            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, name);
-            validation.validateQuizName(name);
-            quiz.setName(name);
+            final Quiz quiz = convertInputToQuiz(request);
+            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());
+            validation.validateQuiz(quiz);
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;

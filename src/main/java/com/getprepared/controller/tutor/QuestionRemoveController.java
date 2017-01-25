@@ -48,18 +48,16 @@ public class QuestionRemoveController extends AbstractQuestionController {
             final Question question = questionService.findById(questionId);
             validation.validateQuestion(question);
             questionService.remove(question);
-        } catch (final ValidationException  e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ID, request.getLocale()));
+        } catch (ValidationException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
+            response.sendRedirect(PAGES.NOT_FOUND);
+            return REDIRECT;
         } catch (final EntityNotFoundException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_NOT_FOUND, request.getLocale()));
             LOG.warn(e.getMessage(), e);
-        } catch (final NumberFormatException e) {
-            response.sendRedirect(PAGES.NOT_FOUND);
-            return REDIRECT;
         }
 
-        fillPage(request, quizService, questionService, validation);
+        fillPage(request, quizService, questionService);
         return PAGES.QUESTIONS;
     }
 }

@@ -55,7 +55,7 @@ public class ValidationImpl implements Validation {
         validateQuizName(quiz.getName());
     }
 
-    public void validateQuizName(final String name) throws ValidationException {
+    private void validateQuizName(final String name) throws ValidationException {
 
         if (name == null) {
             throw new ValidationException("Quiz's name is missing.");
@@ -102,13 +102,14 @@ public class ValidationImpl implements Validation {
             throw new ValidationException("User is missing.");
         }
 
+        validateRole(user.getRole());
         validateEmail(user.getEmail());
         validatePassword(user.getPassword());
         validateName(user.getName());
         validateSurname(user.getSurname());
     }
 
-    public void validateName(final String name) throws ValidationException {
+    private void validateName(final String name) throws ValidationException {
         if (name == null) {
             throw new ValidationException("Name is missing.");
         }
@@ -117,7 +118,7 @@ public class ValidationImpl implements Validation {
         }
     }
 
-    public void validateSurname(final String surname) throws ValidationException {
+    private void validateSurname(final String surname) throws ValidationException {
         if (surname == null) {
             throw new ValidationException("Surname is missing.");
         }
@@ -136,13 +137,9 @@ public class ValidationImpl implements Validation {
         }
     }
 
-    private void validateRole(final String role) throws ValidationException {
+    private void validateRole(final Role role) throws ValidationException {
         if (role == null) {
             throw new ValidationException("Role is missing.");
-        }
-
-        if (!role.equals("TUTOR") && !role.equals("STUDENT")) {
-            throw new ValidationException("Role is illegal");
         }
     }
 

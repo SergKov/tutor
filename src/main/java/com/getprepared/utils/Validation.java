@@ -14,17 +14,11 @@ public interface Validation {
 
     void validateQuiz(Quiz quiz) throws ValidationException;
 
-    void validateQuizName(String name) throws ValidationException;
-
     void validateResult(Result result) throws ValidationException;
 
     void validateUser(User user) throws ValidationException;
 
     void validateEmail(String email) throws ValidationException;
-
-    void validateName(String name) throws ValidationException;
-
-    void validateSurname(String surname) throws ValidationException;
 
     void validatePassword(String password) throws ValidationException;
 

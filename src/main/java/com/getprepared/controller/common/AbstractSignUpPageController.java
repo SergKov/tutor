@@ -39,7 +39,7 @@ public abstract class AbstractSignUpPageController extends AbstractController {
             return new User(Role.valueOf(role), name, surname, email, password);
         } catch (final Exception e) {
             LOG.warn(e.getMessage(), e);
-            throw new ValidationException("Failed to invalidate data", e);
+            throw new ValidationException("Failed to validate data", e);
         }
     }
 }
