@@ -1,13 +1,13 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.constant.PageConstants.*;
+import com.getprepared.constant.PageConstants.NAMES;
+import com.getprepared.constant.PageConstants.PAGES;
 import com.getprepared.controller.common.AbstractSignInController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**

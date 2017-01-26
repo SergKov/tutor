@@ -18,7 +18,6 @@ import java.io.IOException;
 import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.INPUTS.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;

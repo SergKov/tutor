@@ -32,6 +32,8 @@ public class PageConstants {
         public static final String ADD_QUIZ = PREFIX + "addQuiz" + SUFFIX;
 
         public static final String QUESTIONS = PREFIX + "questionsPage" + SUFFIX;
+
+        public static final String QUESTION = PREFIX + "question" + SUFFIX;
     }
 
     public static class LINKS {

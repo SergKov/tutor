@@ -28,15 +28,13 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public void save(final Quiz quiz) throws ValidationException, EntityExistsException {
+    public void save(final Quiz quiz) throws EntityExistsException {
         try {
-            getValidation().validateQuiz(quiz);
-
             getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             quizDao.save(quiz);
             getTransactionManager().commit();
-        } catch (ValidationException | EntityExistsException e) {
+        } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

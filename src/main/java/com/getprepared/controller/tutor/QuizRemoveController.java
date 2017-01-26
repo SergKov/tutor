@@ -1,6 +1,5 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityNotFoundException;
@@ -14,10 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.PageConstants.ERRORS;
-import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.UtilsConstant.PARSER;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
@@ -49,6 +45,8 @@ public class QuizRemoveController extends AbstractQuizController {
             final Quiz quiz = quizService.findById(quizId);
             validation.validateQuiz(quiz);
             quizService.remove(quiz);
+            response.sendRedirect(LINKS.TUTOR_QUIZZES);
+            return REDIRECT;
         } catch (final EntityNotFoundException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
             LOG.warn(e.getMessage(), e);

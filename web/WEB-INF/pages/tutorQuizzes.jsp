@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                     <input id="quiz_name" type="text" class="form-control"
                                            name="quizName"
-                                           value="${quiz.name}">
+                                           value="${quiz.name}" readonly="readonly">
                                 </div>
                             </div>
 

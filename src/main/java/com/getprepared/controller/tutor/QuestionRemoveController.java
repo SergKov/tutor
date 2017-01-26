@@ -12,12 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.ERRORS;
-import static com.getprepared.constant.PageConstants.PAGES;
-import static com.getprepared.constant.PageConstants.REDIRECT;
+import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.UtilsConstant.PARSER;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
@@ -25,7 +22,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 24.01.2017.
  */
-public class QuestionRemoveController extends AbstractQuestionController {
+public class QuestionRemoveController extends AbstractQuestionsController {
 
     private static final Logger LOG = Logger.getLogger(QuestionRemoveController.class);
 
@@ -48,6 +45,8 @@ public class QuestionRemoveController extends AbstractQuestionController {
             final Question question = questionService.findById(questionId);
             validation.validateQuestion(question);
             questionService.remove(question);
+            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+            return REDIRECT;
         } catch (ValidationException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(PAGES.NOT_FOUND);

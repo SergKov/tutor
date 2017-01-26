@@ -1,7 +1,5 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.PageConstants;
-import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.ValidationException;
@@ -12,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import static com.getprepared.constant.PageConstants.LINKS.ADD_QUIZ;
 import static com.getprepared.constant.PageConstants.NAMES;
 import static com.getprepared.constant.UtilsConstant.REGEX;
-import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**

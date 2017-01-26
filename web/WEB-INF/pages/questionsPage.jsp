@@ -14,7 +14,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        ${quiz.name}
+        <fmt:message key="questionPage.welcome"/> ${tutor.name}
     </jsp:attribute>
 
     <jsp:body>
@@ -24,7 +24,6 @@
                 <c:forEach items="${questions}" var="question">
 
                     <div class="row">
-
                         <div class="col-xs-6 col-xs-offset-2">
                             <c:set var="shortText" value="${fn:substring(question.text, 0, 50)}"/>
                                 ${shortText}
@@ -54,13 +53,13 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center">${specialiality.name} <fmt:message key="questionPage.text"/></h1>
+                <h1 class="text-muted text-center">${question.name} <fmt:message key="questionPage.text"/></h1>
             </c:otherwise>
         </c:choose>
 
         <div class="row">
             <div class="col-xs-1 col-xs-offset-11">
-                <a href="/worker/speciality/questions/addQuestion" id="add_speciality">
+                <a href="/tutor/quizzes/questions/addQuestion" id="add_question">
                     <img src="/resource/img/plus.ico" width="25px" height="25px">
                 </a>
             </div>
