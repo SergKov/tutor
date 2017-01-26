@@ -53,7 +53,7 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center">${question.name} <fmt:message key="questionPage.text"/></h1>
+                <h1 class="text-muted text-center"><fmt:message key="questionPage.text"/></h1>
             </c:otherwise>
         </c:choose>
 

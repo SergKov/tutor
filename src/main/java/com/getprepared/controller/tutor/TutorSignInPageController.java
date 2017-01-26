@@ -20,7 +20,6 @@ public class TutorSignInPageController extends AbstractSignInController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
         return PAGES.TUTOR_SIGN_IN;
     }
