@@ -24,4 +24,21 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
+
+    $("#plusAnswer").click(function () {
+        var $answer = $('.answer').first().clone();
+        $answer.find(':input').each(function () {
+            $(this).val('');
+        });
+
+        $answer.addClass('answer-padding');
+        $('.answers').append($answer);
+    });
+
+    $("#minusAnswer").click(function () {
+        var $answers = $('.answer');
+        if ($answers.length > 1) {
+            $answers.last().remove();
+        }
+    });
 });
