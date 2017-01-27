@@ -64,6 +64,7 @@ public class QuestionPageController extends AbstractQuestionsController {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ID, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final NumberFormatException e) {
+            LOG.warn(e.getMessage(), e);
             response.sendRedirect(PAGES.NOT_FOUND);
             return REDIRECT;
         }
