@@ -47,6 +47,7 @@ public class ControllerFactory {
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
         mapping.put(LINKS.ADD_QUIZ, new QuizPageAddController());
         mapping.put(LINKS.TUTOR_QUESTIONS, new QuestionsPageController());
+        mapping.put(LINKS.ADD_QUESTION, new QuestionAddController());
         mapping.put(LINKS.SIGN_OUT, new SignOutController());
 
         mapping.put(FORMS.STUDENT_SIGN_IN, new StudentSignInController());
@@ -55,6 +56,7 @@ public class ControllerFactory {
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
         mapping.put(FORMS.ADD_QUIZ, new QuizAddController());
         mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());
+        mapping.put(FORMS.ADD_QUESTION, new QuestionAddPageController());
         mapping.put(FORMS.QUIZ_QUESTIONS, new QuizQuestionsController());
 
         mapping.values().forEach(AbstractController::init);

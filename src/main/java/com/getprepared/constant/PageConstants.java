@@ -34,6 +34,8 @@ public class PageConstants {
         public static final String QUESTIONS = PREFIX + "questionsPage" + SUFFIX;
 
         public static final String QUESTION = PREFIX + "question" + SUFFIX;
+
+        public static final String ADD_QUESTION = PREFIX + "addQuestion" + SUFFIX;
     }
 
     public static class LINKS {
@@ -51,6 +53,8 @@ public class PageConstants {
         public static final String ADD_QUIZ = "/tutor/quizzes/addQuiz";
 
         public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
+
+        public static final String ADD_QUESTION = "/tutor/quizzes/questions/addQuestion";
 
         public static final String TEST = "/test";
 
@@ -80,6 +84,8 @@ public class PageConstants {
         public static final String QUESTIONS = "Questions";
 
         public static final String QUESTION = "Question";
+
+        public static final String ADD_QUESTION = "AddQuestion";
     }
 
     public static class FORMS {
@@ -103,6 +109,8 @@ public class PageConstants {
         public static final String REMOVE_QUIZ = "quizRemove";
 
         public static final String QUIZ_QUESTIONS = "quizQuestions";
+
+        public static final String ADD_QUESTION = "addQuestion";
     }
 
     public static class ERRORS {
@@ -125,10 +133,16 @@ public class PageConstants {
 
         public static final String QUESTION_NOT_FOUND = "QuestionIsNotFound";
 
+        public static final String QUESTION_EXISTS = "QuestionExists";
+
         public static final String STUDENT_INVALIDATED = "StudentInvalidated";
 
         public static final String INVALIDATED_ID = "InvalidatedId";
 
         public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
+
+        public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
+
+        public static final String INVALIDATED_ANSWERS = "InvalidatedAnswers";
     }
 }

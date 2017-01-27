@@ -30,6 +30,12 @@ public class WebConstants {
         public static final String QUIZ_ID = "quizId";
 
         public static final String QUIZ_NAME = "quizName";
+
+        public static final String QUESTION_TEXT = "questionText";
+
+        public static final String ANSWER_TEXT = "answerText";
+
+        public static final String ANSWER_TYPE = "answerType";
     }
 
     public static class REQUEST_ATTRIBUTES {
@@ -66,9 +72,15 @@ public class WebConstants {
 
         public static final String QUESTIONS = "questions";
 
-        public static final String PAGE_INDEX = "page";
+        public static final String ANSWER_TYPE_REGEX = "answerTypeRegex";
 
-        public static final String PAGE_SIZE = "size";
+        public static final String ADD_QUESTION = "addQuestion";
+
+        public static final String ANSWER_TYPES = "answerTypes";
+
+        public static final String PAGE_INDEX = "page"; //TODO
+
+        public static final String PAGE_SIZE = "size"; //TODO
     }
 
     public static class SESSION_ATTRIBUTES {

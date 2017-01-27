@@ -18,6 +18,10 @@ public class ServiceFactory {
 
     private Map<String, AbstractService> mapping;
 
+    private ServiceFactory() {
+        init();
+    }
+
     private void init() {
 
         mapping = new HashMap<>();
@@ -29,10 +33,6 @@ public class ServiceFactory {
         mapping.put(SERVICES.USER_SERVICE, new UserServiceImpl());
 
         mapping.values().forEach(AbstractService::init);
-    }
-
-    private ServiceFactory() {
-        init();
     }
 
     public <T> T getService(final String serviceName, final Class<T> clazz) {
