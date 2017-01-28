@@ -91,7 +91,7 @@ public class QuestionAddController extends AbstractQuestionAddController { //TOD
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ANSWERS, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final EntityExistsException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 

@@ -1,7 +1,6 @@
 package com.getprepared.infrastructure.template;
 
 import com.getprepared.domain.Entity;
-import com.getprepared.exception.DataAccessException;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
@@ -44,13 +43,15 @@ public class JdbcTemplate {
             if (rs.next()) {
                 entity.setId(rs.getLong(1));
             } else {
-                LOG.error(String.format("Failed to save entity %s", entity.getEntityName()));
-                throw new DataAccessException();
+                final String errorMsg = String.format("Failed to save entity %s", entity.getEntityName());
+                LOG.error(errorMsg);
+                throw new IllegalStateException(errorMsg);
             }
 
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute update %s with generated key %d", sql, genKey), e);
-            throw new DataAccessException(e);
+            final String errorMsg = String.format("Failed to execute update %s with generated key %d", sql, genKey);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 
@@ -62,8 +63,9 @@ public class JdbcTemplate {
             setter.setValues(ps);
             executeUpdate(ps, sql);
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute update %s", sql), e);
-            throw new DataAccessException(e);
+            final String errorMsg = String.format("Failed to execute update %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 
@@ -91,8 +93,9 @@ public class JdbcTemplate {
             setter.setValues(ps);
             ps.executeUpdate();
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to remove %s", sql), e);
-            throw new DataAccessException(e);
+            final String errorMsg = String.format("Failed to remove %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 
@@ -120,8 +123,9 @@ public class JdbcTemplate {
             return entry;
 
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
-            throw new DataAccessException(e);
+            final String errorMsg = String.format("Failed to execute singleQuery %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 
@@ -145,8 +149,9 @@ public class JdbcTemplate {
 
             return result;
         } catch (final SQLException e) {
-            LOG.error(String.format("Failed to execute singleQuery %s", sql), e);
-            throw new DataAccessException(e);
+            final String errorMsg = String.format("Failed to execute singleQuery %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 

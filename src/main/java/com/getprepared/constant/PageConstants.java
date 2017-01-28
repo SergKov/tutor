@@ -56,6 +56,8 @@ public class PageConstants {
 
         public static final String ADD_QUESTION = "/tutor/quizzes/questions/addQuestion";
 
+        public static final String QUESTION = "/tutor/quizzes/questions/question";
+
         public static final String TEST = "/test";
 
         public static final String NOT_FOUND = "/pageNotFound";
@@ -110,6 +112,8 @@ public class PageConstants {
 
         public static final String QUIZ_QUESTIONS = "quizQuestions";
 
+        public static final String QUESTION = "question";
+
         public static final String ADD_QUESTION = "addQuestion";
     }
 
@@ -126,8 +130,6 @@ public class PageConstants {
         public static final String USER_NOT_FOUND = "UserNotExists";
 
         public static final String TUTOR_NOT_FOUND = "TutorNotExists";
-
-        public static final String INCORRECT_ID = "IdIncorrect";
 
         public static final String QUIZ_NOT_FOUND = "QuizIsNotFound";
 

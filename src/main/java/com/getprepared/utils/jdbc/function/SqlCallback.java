@@ -1,6 +1,5 @@
 package com.getprepared.utils.jdbc.function;
 
-import com.getprepared.exception.DataAccessException;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
@@ -20,7 +19,7 @@ public interface SqlCallback<E> {
             return callback.call();
         } catch (final SQLException e) {
             LOG.error(errorMsg, e);
-            throw new DataAccessException(e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 }
