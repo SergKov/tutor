@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS Tutor;
+DROP DATABASE IF EXISTS Tutor_Test;
 
-CREATE DATABASE Tutor;
+CREATE DATABASE Tutor_Test;
 
-USE Tutor;
+USE Tutor_Test;
 
 CREATE TABLE User (
   id INT NOT NULL AUTO_INCREMENT,
@@ -17,14 +17,14 @@ CREATE TABLE User (
 CREATE TABLE Quiz (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(20) NOT NULL UNIQUE,
-  FOREIGN KEY(speciality_id) REFERENCES Speciality(id),
-  FOREIGN KEY(owner_id) REFERENCES Quiz(id),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE User_Quiz (
+CREATE TABLE Result (
   quiz_id INT NOT NULL,
   user_id INT NOT NULL,
+  mark TINYINT NOT NULL,
+  creation_datetime TIMESTAMP,
   FOREIGN KEY(quiz_id) REFERENCES Quiz(id),
   FOREIGN KEY(user_id) REFERENCES `User`(id)
 );
@@ -43,15 +43,5 @@ CREATE TABLE Answer (
   `text` TEXT NOT NULL,
   `type` ENUM('INCORRECT', 'CORRECT') NOT NULL,
   FOREIGN KEY (question_id) REFERENCES Question (id),
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE Result (
-  id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  mark TINYINT NOT NULL,
-  quiz_name VARCHAR(15) NOT NULL,
-  creation_datetime TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES `User` (id),
   PRIMARY KEY (id)
 );

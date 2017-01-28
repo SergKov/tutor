@@ -20,9 +20,11 @@ CREATE TABLE Quiz (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE User_Quiz (
+CREATE TABLE Result (
   quiz_id INT NOT NULL,
   user_id INT NOT NULL,
+  mark TINYINT NOT NULL,
+  creation_datetime TIMESTAMP,
   FOREIGN KEY(quiz_id) REFERENCES Quiz(id),
   FOREIGN KEY(user_id) REFERENCES `User`(id)
 );
@@ -41,15 +43,5 @@ CREATE TABLE Answer (
   `text` TEXT NOT NULL,
   `type` ENUM('INCORRECT', 'CORRECT') NOT NULL,
   FOREIGN KEY (question_id) REFERENCES Question (id),
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE Result (
-  id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  mark TINYINT NOT NULL,
-  quiz_name VARCHAR(15) NOT NULL,
-  creation_datetime TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES `User` (id),
   PRIMARY KEY (id)
 );
