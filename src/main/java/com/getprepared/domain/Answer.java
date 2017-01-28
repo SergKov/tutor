@@ -15,13 +15,6 @@ public class Answer extends Entity {
 
     public Answer() { }
 
-    public Answer(Long id, Question question, String text, AnswerType type) {
-        super(id);
-        this.question = question;
-        this.text = text;
-        this.type = type;
-    }
-
     public Question getQuestion() {
         return question;
     }

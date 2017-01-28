@@ -67,12 +67,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User findByEmail(final String email) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_EMAIL), rs -> rs.setString(1, email),
-                new UserMapper());
-    }
-
-    @Override
     public void update(final User user) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
                 rs -> {
@@ -99,7 +93,19 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
             final String password = rs.getString(PASSWORD_KEY);
             final String name = rs.getString(NAME_KEY);
             final String surname = rs.getString(SURNAME_KEY);
-            return new User(id, role, email, password, name, surname);
+            return fillUser(id, role, email, password, name, surname);
+        }
+
+        private User fillUser(final Long id, final Role role, final String email, final String password,
+                              final String name, final String surname) {
+            final User user = new User();
+            user.setId(id);
+            user.setRole(role);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setName(name);
+            user.setSurname(surname);
+            return user;
         }
     }
 }

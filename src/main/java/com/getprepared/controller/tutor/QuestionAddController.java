@@ -1,6 +1,5 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
@@ -23,7 +22,6 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;

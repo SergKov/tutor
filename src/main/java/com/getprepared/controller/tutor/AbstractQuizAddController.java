@@ -28,7 +28,9 @@ public abstract class AbstractQuizAddController extends AbstractController {
     protected Quiz convertInputToQuiz(final HttpServletRequest request) throws ValidationException {
         try {
             final String name = request.getParameter(INPUTS.QUIZ_NAME);
-            return new Quiz(name);
+            final Quiz quiz = new Quiz();
+            quiz.setName(name);
+            return quiz;
         } catch (final Exception e) {
             LOG.warn(e.getMessage(), e);
             throw new ValidationException("Failed to validate quiz", e);

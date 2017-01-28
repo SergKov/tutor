@@ -68,7 +68,16 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
             question.setId(rs.getLong(QUESTION_ID_KEY));
             final String text = rs.getString(TEXT_KEY);
             final AnswerType type = AnswerType.valueOf(rs.getString(TYPE_KEY));
-            return new Answer(id, question, text, type);
+            return fillAnswer(id, question, text, type);
+        }
+
+        public Answer fillAnswer(final Long id, final Question question, final String text, final AnswerType type) {
+            final Answer answer = new Answer();
+            answer.setId(id);
+            answer.setQuestion(question);
+            answer.setText(text);
+            answer.setType(type);
+            return answer;
         }
     }
 }

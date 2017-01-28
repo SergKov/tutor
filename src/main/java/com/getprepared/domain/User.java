@@ -20,22 +20,8 @@ public class User extends Entity {
     private String password;
 
     private List<Result> results;
-    private List<Quiz> quizzes;
 
     public User() { }
-
-    public User(Long id, Role role, String name, String surname, String email, String password) {
-        super(id);
-        this.role = role;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User(Role role, String name, String surname, String email, String password) {
-        this(null, role, name, surname, email, password);
-    }
 
     public Role getRole() {
         return role;

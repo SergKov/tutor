@@ -19,14 +19,6 @@ public class Result extends Entity {
 
     public Result() { }
 
-    public Result(Long id, User user, Byte mark,  String quizName, LocalDateTime creationDateTime) {
-        super(id);
-        this.user = user;
-        this.mark = mark;
-        this.quizName = quizName;
-        this.creationDateTime = creationDateTime;
-    }
-
     public User getUser() {
         return user;
     }

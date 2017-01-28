@@ -73,7 +73,15 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
             final Quiz quiz = new Quiz();
             quiz.setId(rs.getLong(QUIZ_ID_KEY));
             final String text = rs.getString(TEXT_KEY);
-            return new Question(id, quiz, text);
+            return fillQuestion(id, quiz, text);
+        }
+
+        public Question fillQuestion(final Long id, final Quiz quiz, final String text) {
+            final Question question = new Question();
+            question.setId(id);
+            question.setQuiz(quiz);
+            question.setText(text);
+            return question;
         }
     }
 }

@@ -16,12 +16,6 @@ public class Question extends Entity {
 
     public Question() { }
 
-    public Question(Long id, Quiz quiz, String text) {
-        super(id);
-        this.quiz = quiz;
-        this.text = text;
-    }
-
     public Quiz getQuiz() {
         return quiz;
     }

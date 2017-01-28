@@ -13,17 +13,13 @@ import java.util.List;
  */
 public interface QuizService {
 
-    void save(Quiz quiz) throws ValidationException, EntityExistsException;
+    void save(Quiz quiz) throws EntityExistsException;
 
     Quiz findById(Long id) throws EntityNotFoundException;
 
     List<Quiz> findAll();
 
-    List<Quiz> findByUserEmail(String email) throws ValidationException, EntityNotFoundException;
-
     List<Quiz> findByUserId(Long id) throws EntityNotFoundException;
-
-    void assign(Long quizId, Long userId) throws ValidationException, EntityNotFoundException, EntityExistsException;
 
     void remove(Quiz quiz) throws EntityNotFoundException;
 }

@@ -14,15 +14,6 @@ public class Quiz extends Entity {
 
     public Quiz() { }
 
-    public Quiz(Long id, String name) {
-        super(id);
-        this.name = name;
-    }
-
-    public Quiz(String name) {
-        this(null, name);
-    }
-
     public String getName() {
         return name;
     }

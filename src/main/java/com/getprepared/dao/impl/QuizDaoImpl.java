@@ -12,6 +12,7 @@ import com.getprepared.utils.impl.PropertyUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Properties;
 
@@ -50,21 +51,6 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findByUserEmail(final String email) {
-        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_EMAIL), ps -> ps.setString(1, email),
-                new QuizMapper());
-    }
-
-    @Override
-    public void assign(final Long userId, final Long quizId) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.ASSIGN),
-                ps -> {
-                    ps.setLong(1, userId);
-                    ps.setLong(2, quizId);
-                });
-    }
-
-    @Override
     public List<Quiz> findAll() {
         return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_ALL), new QuizMapper());
     }
@@ -80,7 +66,14 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
         public Quiz mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final String name = rs.getString(NAME_KEY);
-            return new Quiz(id, name);
+            return fillQuiz(id, name);
+        }
+
+        private Quiz fillQuiz(final Long id, final String name) {
+            final Quiz quiz = new Quiz();
+            quiz.setId(id);
+            quiz.setName(name);
+            return quiz;
         }
     }
 }

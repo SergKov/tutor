@@ -33,13 +33,16 @@ public class TransactionalConnectionProvider {
     public void commit() {
         final Connection con = threadLocal.get();
         ConnectionUtils.commit(con);
-        ConnectionUtils.close(con);
-        threadLocal.remove();
     }
 
     public void rollback() {
         final Connection con = threadLocal.get();
         ConnectionUtils.rollback(con);
+        end();
+    }
+
+    public void end() {
+        final Connection con = threadLocal.get();
         ConnectionUtils.close(con);
         threadLocal.remove();
     }

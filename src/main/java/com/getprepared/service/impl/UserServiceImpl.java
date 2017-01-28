@@ -31,33 +31,14 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public User findById(final Long id) throws ValidationException, EntityNotFoundException {
+    public User findById(final Long id) throws EntityNotFoundException {
         try {
-            getValidation().validateId(id);
-
             getTransactionManager().begin();
             final UserDao userDao = getDao();
             final User user = userDao.findById(id);
             getTransactionManager().commit();
             return user;
-        } catch (ValidationException | EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
-        }
-    }
-
-    @Override
-    public User findByEmail(final String email) throws ValidationException, EntityNotFoundException {
-        try {
-            getValidation().validateEmail(email);
-
-            getTransactionManager().begin();
-            final UserDao userDao = getDao();
-            final User user = userDao.findByEmail(email);
-            getTransactionManager().commit();
-            return user;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;

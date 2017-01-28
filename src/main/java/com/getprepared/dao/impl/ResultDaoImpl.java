@@ -66,7 +66,18 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
             final Byte mark = rs.getByte(MARK_KEY);
             final String quizName = rs.getString(QUIZ_NAME_KEY);
             final LocalDateTime dateTime = rs.getTimestamp(CREATION_DATETIME_KEY).toLocalDateTime();
-            return new Result(id, user, mark, quizName, dateTime);
+            return fillResult(id, user, mark, quizName, dateTime);
+        }
+
+        private Result fillResult(final Long id, final User user, final Byte mark, final String name,
+                                  final LocalDateTime dateTime) {
+            final Result result = new Result();
+            result.setId(id);
+            result.setUser(user);
+            result.setMark(mark);
+            result.setQuizName(name);
+            result.setCreationDateTime(dateTime);
+            return result;
         }
     }
 }

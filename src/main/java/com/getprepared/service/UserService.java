@@ -10,9 +10,7 @@ import com.getprepared.exception.ValidationException;
  */
 public interface UserService {
 
-    User findById(Long id) throws ValidationException, EntityNotFoundException;
-
-    User findByEmail(String email) throws ValidationException, EntityNotFoundException;
+    User findById(Long id) throws EntityNotFoundException;
 
     User signIn(String email, String password) throws EntityNotFoundException;
 

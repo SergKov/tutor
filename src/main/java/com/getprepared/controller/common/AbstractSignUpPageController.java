@@ -36,10 +36,21 @@ public abstract class AbstractSignUpPageController extends AbstractController {
             final String surname = request.getParameter(INPUTS.SURNAME);
             final String email = request.getParameter(INPUTS.EMAIL);
             final String password = request.getParameter(INPUTS.PASSWORD);
-            return new User(Role.valueOf(role), name, surname, email, password);
+            return fillUser(role, name, surname, email, password);
         } catch (final Exception e) {
             LOG.warn(e.getMessage(), e);
             throw new ValidationException("Failed to validate data", e);
         }
+    }
+
+    private User fillUser(final String role, final String name, final String surname, final String email,
+                          final String password) {
+        final User user = new User();
+        user.setRole(Role.valueOf(role));
+        user.setName(name);
+        user.setSurname(surname);
+        user.setEmail(email);
+        user.setPassword(password);
+        return user;
     }
 }
