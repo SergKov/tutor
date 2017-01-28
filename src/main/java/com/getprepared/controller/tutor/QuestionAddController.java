@@ -83,8 +83,6 @@ public class QuestionAddController extends AbstractQuestionAddController { //TOD
                 response.sendRedirect(LINKS.TUTOR_QUESTIONS);
                 return REDIRECT;
             }
-
-
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
