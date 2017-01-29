@@ -48,8 +48,6 @@ public class PropertyConstants {
 
         public static final String SAVE = "save";
 
-        public static final String ASSIGN = "assign";
-
         public static final String FIND_BY_ID = "findById";
 
         public static final String FIND_BY_CREDENTIALS = "findByCredentials";
@@ -62,13 +60,9 @@ public class PropertyConstants {
 
         public static final String FIND_BY_USER_ID = "findByUserId";
 
-        public static final String FIND_BY_SPECIALITY_ID = "findBySpecialityId";
-
         public static final String FIND_BY_QUESTION_ID = "findByQuestionId";
 
         public static final String FIND_ALL = "findAll";
-
-        public static final String UPDATE_TIME = "updateTime";
 
         public static final String UPDATE_CREDENTIALS = "updateCredentials";
 

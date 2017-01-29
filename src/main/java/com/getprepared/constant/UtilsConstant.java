@@ -19,7 +19,7 @@ public class UtilsConstant {
 
         public static final String EMAIL = "^[a-zA-Z@\\.1-9]{2,32}$";
 
-        public static final String PASSWORD = "^(?=.*[0-9]){6,20}$";
+        public static final String PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,20}$";
 
         public static final String NAME = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$";
 

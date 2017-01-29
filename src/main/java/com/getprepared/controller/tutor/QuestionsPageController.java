@@ -1,6 +1,5 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.PageConstants;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 
@@ -8,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
+import static com.getprepared.constant.PageConstants.NAMES;
 import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;

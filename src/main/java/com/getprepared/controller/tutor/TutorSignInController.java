@@ -63,11 +63,11 @@ public class TutorSignInController extends AbstractSignInController {
             }
 
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
-                    request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
             LOG.warn(e.getMessage(), e);
         } catch (final ValidationException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
+                    request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
 
