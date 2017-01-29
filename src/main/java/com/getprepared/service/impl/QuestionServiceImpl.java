@@ -54,6 +54,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().begin();
             final QuestionDao questionDao = getDao();
             final Question question = questionDao.findById(id);
+            final AnswerService answerService = getAnswerService();
+            final List<Answer> answers = answerService.findByQuestionId(question.getId());
+            question.setAnswers(answers);
             getTransactionManager().commit();
             return question;
         } catch (final EntityNotFoundException e) {
@@ -62,8 +65,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             throw e;
         }
     }
-
-
 
     @Override
     public List<Question> findByQuizId(final Long id) throws EntityNotFoundException {

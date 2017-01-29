@@ -56,6 +56,8 @@ public class PageConstants {
 
         public static final String ADD_QUESTION = "/tutor/quizzes/questions/addQuestion";
 
+        public static final String SEE_QUESTION = "/tutor/quizzes/questions/question";
+
         public static final String TEST = "/test";
 
         public static final String NOT_FOUND = "/pageNotFound";
@@ -104,7 +106,7 @@ public class PageConstants {
 
         public static final String REMOVE_QUIZ = "quizRemove";
 
-        public static final String REMOVE_QUESTION = "removeQuestion";
+        public static final String REMOVE_QUESTION = "questionRemove";
 
         public static final String QUIZ_QUESTIONS = "quizQuestions";
 

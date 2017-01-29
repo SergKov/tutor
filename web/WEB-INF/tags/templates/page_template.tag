@@ -1,7 +1,7 @@
 <%@ tag description="Overall page template" pageEncoding="UTF-8" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ attribute name="header" fragment="true" %>
 <html>
 <head>
@@ -26,7 +26,7 @@
             <ul>
                 <li>
                     <a href="/signOut">
-                        "SignOut"
+                        <fmt:message key="signOut.signOut"/>
                     </a>
                 </li>
             </ul>
@@ -36,7 +36,7 @@
             <ul>
                 <li>
                     <a href="/signOut">
-                        "SignOut"
+                        <fmt:message key="signOut.signOut"/>
                     </a>
                 </li>
             </ul>

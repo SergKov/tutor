@@ -52,12 +52,11 @@ public class ControllerFactory {
 
         mapping.put(FORMS.STUDENT_SIGN_IN, new StudentSignInController());
         mapping.put(FORMS.SIGN_UP, new SignUpController());
-//        mapping.put(FORMS.STUDENT_HOME_PAGE, new StudentHomePageController());
+        mapping.put(FORMS.STUDENT_HOME_PAGE, new StudentHomePageController());
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
         mapping.put(FORMS.ADD_QUIZ, new QuizAddController());
         mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());
         mapping.put(FORMS.ADD_QUESTION, new QuestionAddController());
-        mapping.put(FORMS.QUESTION, new QuestionPageController());
         mapping.put(FORMS.REMOVE_QUESTION, new QuestionRemoveController());
         mapping.put(FORMS.QUIZ_QUESTIONS, new QuizQuestionsController());
 

@@ -44,13 +44,13 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
+        return getJdbcTemplate().singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new AnswerMapper());
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_QUESTION_ID),
+        return getJdbcTemplate().executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), QUESTION_ID_KEY),
                 ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
 

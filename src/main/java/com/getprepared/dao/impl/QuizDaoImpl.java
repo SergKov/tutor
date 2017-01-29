@@ -43,12 +43,6 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findByUserId(final Long id) {
-        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_BY_USER_ID), ps -> ps.setLong(1, id),
-                new QuizMapper());
-    }
-
-    @Override
     public List<Quiz> findAll() {
         return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_ALL), new QuizMapper());
     }

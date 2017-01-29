@@ -56,8 +56,6 @@ public class PropertyConstants {
 
         public static final String FIND_BY_USER_ID = "findByUserId";
 
-        public static final String FIND_BY_QUESTION_ID = "findByQuestionId";
-
         public static final String FIND_ALL = "findAll";
 
         public static final String REMOVE = "remove";
