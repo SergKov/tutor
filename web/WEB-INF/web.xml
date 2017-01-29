@@ -30,7 +30,6 @@
     <filter-mapping>
         <filter-name>StudentGuestFilter</filter-name>
         <url-pattern>/studentHomePage/*</url-pattern>
-        <url-pattern>/tutor/quizzes/*</url-pattern>
     </filter-mapping>
     
     <filter>
@@ -49,7 +48,6 @@
 
     <filter-mapping>
         <filter-name>TutorGuestFilter</filter-name>
-        <url-pattern>/studentHomePage/*</url-pattern>
         <url-pattern>/tutor/quizzes/*</url-pattern>
     </filter-mapping>
 
@@ -71,7 +69,6 @@
         <filter-name>StudentSignedInFilter</filter-name>
         <url-pattern>/</url-pattern>
         <url-pattern>/signUp</url-pattern>
-        <url-pattern>/tutor/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -92,7 +89,6 @@
         <filter-name>TutorSignedInFilter</filter-name>
         <url-pattern>/</url-pattern>
         <url-pattern>/signUp</url-pattern>
-        <url-pattern>/studentHomePage/*</url-pattern>
     </filter-mapping>
 
 

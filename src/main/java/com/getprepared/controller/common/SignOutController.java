@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.PageConstants.PAGES;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.STUDENT;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
 
 /**
@@ -24,7 +25,7 @@ public class SignOutController extends AbstractController {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final HttpSession httpSession = request.getSession(false);
 
-        if (httpSession.getAttribute(TUTOR) != null) {
+        if (httpSession.getAttribute(STUDENT) != null) {
             httpSession.invalidate();
             response.sendRedirect(LINKS.STUDENT_SIGN_IN);
             return REDIRECT;
