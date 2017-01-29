@@ -23,8 +23,6 @@ public class WebConstants {
 
         public static final String QUIZ = "quiz";
 
-        public static final String ADD_SPECIALITY = "addSpeciality";
-
         public static final String QUESTION_ID = "questionId";
 
         public static final String QUIZ_ID = "quizId";
@@ -78,6 +76,12 @@ public class WebConstants {
 
         public static final String ANSWER_TYPES = "answerTypes";
 
+        public static final String QUESTIONS_LENGTH = "questionsLength";
+
+        public static final String QUESTION_NUMBER = "questionNumber";
+
+        public static final String ANSWERS = "answers";
+
         public static final String PAGE_INDEX = "page"; //TODO
 
         public static final String PAGE_SIZE = "size"; //TODO
@@ -91,6 +95,6 @@ public class WebConstants {
 
         public static final String TUTOR = "tutor";
 
-        public static final String QUIZ_ID = "quizId";
+        public static final String QUIZ = "quiz";
     }
 }

@@ -7,10 +7,7 @@ import com.getprepared.controller.common.PageNotFoundController;
 import com.getprepared.controller.common.SignOutController;
 import com.getprepared.controller.common.SignUpController;
 import com.getprepared.controller.common.SignUpPageController;
-import com.getprepared.controller.student.StudentHomePageController;
-import com.getprepared.controller.student.StudentHomePagePageController;
-import com.getprepared.controller.student.StudentSignInController;
-import com.getprepared.controller.student.StudentSignInPageController;
+import com.getprepared.controller.student.*;
 import com.getprepared.controller.tutor.*;
 
 import java.util.HashMap;
@@ -43,6 +40,7 @@ public class ControllerFactory {
         mapping.put(LINKS.NOT_FOUND, new PageNotFoundController());
         mapping.put(LINKS.SIGN_UP, new SignUpPageController());
         mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePagePageController());
+        mapping.put(LINKS.TEST, new TestPageController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
         mapping.put(LINKS.ADD_QUIZ, new QuizPageAddController());

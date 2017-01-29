@@ -1,5 +1,7 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.domain.Quiz;
+import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.service.QuizService;
 import org.apache.log4j.Logger;
 
@@ -35,9 +37,10 @@ public class StudentHomePageController extends AbstractStudentHomePageController
         try {
             final Long id = Long.parseLong(quizId);
             final HttpSession httpSession = request.getSession();
-            httpSession.setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, id);
+            final Quiz quiz = quizService.findById(id);
+            httpSession.setAttribute(SESSION_ATTRIBUTES.QUIZ, quiz);
             response.sendRedirect(LINKS.TEST);
-        } catch (final NumberFormatException e) {
+        } catch (NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(PAGES.NOT_FOUND);
         }

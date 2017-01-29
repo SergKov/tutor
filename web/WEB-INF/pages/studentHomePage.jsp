@@ -21,32 +21,32 @@
             <c:when test="${not empty quizzes}">
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-5">
-                        <label class="control-label" for="spec">
-                            <h3><fmt:message key="studentHomePage.chooseSpeciality"/></h3>
+                        <label class="control-label" for="quiz">
+                            <h3><fmt:message key="studentHomePage.chooseQuiz"/></h3>
                         </label>
                     </div>
                 </div>
 
-                <form action="/studentHomePage" method="GET">
-                    <input type="hidden" name="controller" value="chooseTest">
+                <form action="/studentHomePage" method="POST">
+                    <input type="hidden" name="controller" value="studentTest">
 
                     <div class="row">
                         <div class="col-xs-offset-5 col-xs-2">
-                            <c:forEach items="${quizzes}" var="quiz">
-                                <div class="form-group">
-                                    <select id="spec" class="form-control" name="speciality">
+                            <div class="form-group">
+                                <select id="quiz" class="form-control" name="quiz">
+                                    <c:forEach items="${quizzes}" var="quiz">
                                         <option value="${quiz.id}">
                                                 ${quiz.name}
                                         </option>
-                                    </select>
-                                </div>
-                            </c:forEach>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-xs-offset-5 col-xs-5">
-                            <button class="btn btn-primary" id="start_btn">
+                        <div class="col-xs-offset-5 col-xs-2">
+                            <button class="btn btn-block btn-primary" id="start_btn">
                                 <fmt:message key="studentHomePage.start"/>
                             </button>
                         </div>
@@ -61,8 +61,8 @@
         </c:choose>
 
         <div class="row">
-            <div class="col-xs-offset-5 col-xs-3">
-                <button class="btn btn-link" id="back_btn">
+            <div class="col-xs-offset-5 col-xs-2">
+                <button class="btn btn-block btn-link" id="back_btn">
                     <fmt:message key="studentHomePage.back"/>
                 </button>
             </div>

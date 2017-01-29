@@ -19,6 +19,12 @@ $(document).ready(function() {
         parent.history.back();
     });
 
+    $(".start_btn").click(function (e) {
+        if (!confirm('Are you ready?')) {
+            e.preventDefault();
+        }
+    });
+
     $(".remove_btn").click(function (e) {
         if (!confirm('Are you sure?')) {
             e.preventDefault();

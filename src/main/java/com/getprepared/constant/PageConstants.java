@@ -36,6 +36,8 @@ public class PageConstants {
         public static final String QUESTION = PREFIX + "question" + SUFFIX;
 
         public static final String ADD_QUESTION = PREFIX + "addQuestion" + SUFFIX;
+
+        public static final String TEST = PREFIX + "tutor" + SUFFIX;
     }
 
     public static class LINKS {
@@ -55,8 +57,6 @@ public class PageConstants {
         public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
 
         public static final String ADD_QUESTION = "/tutor/quizzes/questions/addQuestion";
-
-        public static final String SEE_QUESTION = "/tutor/quizzes/questions/question";
 
         public static final String TEST = "/test";
 
