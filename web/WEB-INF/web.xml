@@ -20,16 +20,18 @@
     <filter-mapping>
         <filter-name>StudentGuestFilter</filter-name>
         <url-pattern>/studentHomePage/*</url-pattern>
+        <url-pattern>/tutor/quizzes/*</url-pattern>
     </filter-mapping>
 
     <filter>
-        <filter-name>UserSignedInFilter</filter-name>
+        <filter-name>StudentSignedInFilter</filter-name>
         <filter-class>com.getprepared.filter.StudentSignedInFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>UserSignedInFilter</filter-name>
+        <filter-name>StudentSignedInFilter</filter-name>
         <url-pattern>/signUp</url-pattern>
         <url-pattern>/</url-pattern>
+        <url-pattern>/tutor/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -39,25 +41,18 @@
     <filter-mapping>
         <filter-name>TutorGuestFilter</filter-name>
         <url-pattern>/tutor/quizzes/*</url-pattern>
+        <url-pattern>/studentHomePage/*</url-pattern>
     </filter-mapping>
 
     <filter>
-        <filter-name>TutorSugnedInFilter</filter-name>
+        <filter-name>TutorSignedInFilter</filter-name>
         <filter-class>com.getprepared.filter.TutorSignedInFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>TutorSugnedInFilter</filter-name>
+        <filter-name>TutorSignedInFilter</filter-name>
         <url-pattern>/signUp</url-pattern>
         <url-pattern>/tutor</url-pattern>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>ChangeUserToWorkerFilter</filter-name>
-        <filter-class>com.getprepared.filter.ChangeStudentToTutorFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>ChangeUserToWorkerFilter</filter-name>
-        <url-pattern>/tutor/*</url-pattern>
+        <url-pattern>/studentHomePage/*</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>
