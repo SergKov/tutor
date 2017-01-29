@@ -19,7 +19,6 @@ import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
  * Created by koval on 15.01.2017.
@@ -55,7 +54,7 @@ public class StudentSignInController extends AbstractSignInController {
             validation.validateEmail(email);
             validation.validatePassword(password);
 
-            final User user = userService.signIn(email, password);
+            final User user = userService.signInStudent(email, password);
             if (user != null && user.getRole() == Role.STUDENT) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
                 response.sendRedirect(LINKS.STUDENT_HOME_PAGE);

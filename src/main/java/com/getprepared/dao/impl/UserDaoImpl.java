@@ -49,8 +49,8 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User findByCredentials(final String email, final String password) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_CREDENTIALS),
+    public User findByStudentCredentials(final String email, final String password) throws EntityNotFoundException {
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_STUDENT_CREDENTIALS),
                 rs -> {
                     rs.setString(1, email);
                     rs.setString(2, password);

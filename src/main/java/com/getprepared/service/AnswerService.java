@@ -17,6 +17,4 @@ public interface AnswerService {
     Answer findById(Long id) throws ValidationException, EntityExistsException, EntityNotFoundException;
 
     List<Answer> findByQuestionId(Long questionId) throws ValidationException, EntityNotFoundException;
-
-    void removeByQuestionId(Long questionId) throws EntityNotFoundException;
 }

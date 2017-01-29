@@ -25,15 +25,15 @@ CREATE TABLE Result (
   user_id INT NOT NULL,
   mark TINYINT NOT NULL,
   creation_datetime TIMESTAMP,
-  FOREIGN KEY(quiz_id) REFERENCES Quiz(id),
-  FOREIGN KEY(user_id) REFERENCES `User`(id)
+  FOREIGN KEY(quiz_id) REFERENCES Quiz(id) ON DELETE CASCADE,
+  FOREIGN KEY(user_id) REFERENCES `User`(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Question (
   id INT NOT NULL AUTO_INCREMENT,
   quiz_id INT NOT NULL,
   `text` TEXT NOT NULL,
-  FOREIGN KEY (quiz_id) REFERENCES Quiz(id),
+  FOREIGN KEY (quiz_id) REFERENCES Quiz(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );
 
@@ -42,6 +42,6 @@ CREATE TABLE Answer (
   question_id INT NOT NULL,
   `text` TEXT NOT NULL,
   `type` ENUM('INCORRECT', 'CORRECT') NOT NULL,
-  FOREIGN KEY (question_id) REFERENCES Question (id),
+  FOREIGN KEY (question_id) REFERENCES Question (id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );

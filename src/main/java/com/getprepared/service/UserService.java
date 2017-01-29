@@ -12,7 +12,7 @@ public interface UserService {
 
     User findById(Long id) throws EntityNotFoundException;
 
-    User signIn(String email, String password) throws EntityNotFoundException;
+    User signInStudent(String email, String password) throws EntityNotFoundException;
 
     User signInTutor(String email, String password) throws EntityNotFoundException;
 

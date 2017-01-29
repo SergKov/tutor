@@ -56,13 +56,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
 
     @Override
     public void removeById(final Long id)  {
-        getJdbcTemplate().remove(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), ID_KEY), ps -> ps.setLong(1, id));
-    }
-
-    @Override
-    public void removeByQuizId(final Long quizId)  {
-        getJdbcTemplate().remove(String.format(prop.getProperty(KEYS.REMOVE_BY_ID), QUIZ_ID_KEY),
-                ps -> ps.setLong(1, quizId));
+        getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }
 
     private static class QuestionMapper implements RowMapper<Question> {

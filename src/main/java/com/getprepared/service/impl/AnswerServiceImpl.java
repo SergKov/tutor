@@ -71,20 +71,6 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
         }
     }
 
-    @Override
-    public void removeByQuestionId(final Long questionId) throws EntityNotFoundException {
-        try {
-            getTransactionManager().begin();
-            final AnswerDao answerDao = getDao();
-            answerDao.removeByQuestionId(questionId);
-            getTransactionManager().commit();
-        } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
-        }
-    }
-
     private AnswerDao getDao() {
         return getDaoFactory().getDao(ANSWER_DAO, AnswerDao.class);
     }

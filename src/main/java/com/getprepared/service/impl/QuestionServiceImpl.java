@@ -84,31 +84,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     public void remove(final Question question) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();
-
             final QuestionDao questionDao = getDao();
             questionDao.removeById(question.getId());
-
-            final AnswerService answerService = getAnswerService();
-            answerService.removeByQuestionId(question.getId());
             getTransactionManager().commit();
-        } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
-        }
-    }
-
-    @Override
-    public void removeByQuizId(final Long quizId) throws EntityNotFoundException {
-        try {
-            getTransactionManager().begin();
-            final QuestionDao questionDao = getDao();
-            final List<Question> questions = questionDao.findByQuizId(quizId);
-            final AnswerService answerService = getAnswerService();
-            for (Question question : questions) {
-                answerService.removeByQuestionId(question.getId());
-            }
-            questionDao.removeByQuizId(quizId);
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);

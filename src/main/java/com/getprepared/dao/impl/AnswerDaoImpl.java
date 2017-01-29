@@ -54,11 +54,6 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
                 ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
 
-    @Override
-    public void removeByQuestionId(final Long questionId) throws EntityNotFoundException {
-        getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE_BY_QUESTION_ID), ps -> ps.setLong(1, questionId));
-    }
-
     private static class AnswerMapper implements RowMapper<Answer> {
 
         @Override

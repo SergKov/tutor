@@ -19,6 +19,4 @@ public interface QuestionService {
     List<Question> findByQuizId(Long id) throws EntityNotFoundException;
 
     void remove(Question question) throws EntityNotFoundException;
-
-    void removeByQuizId(Long quizId) throws EntityNotFoundException;
 }

@@ -44,17 +44,15 @@ public class PropertyConstants {
 
         public static final String USER = "user";
 
-        public static final String PASSWORD = "homePage.password";
+        public static final String PASSWORD = "password";
 
         public static final String SAVE = "save";
 
         public static final String FIND_BY_ID = "findById";
 
-        public static final String FIND_BY_CREDENTIALS = "findByCredentials";
+        public static final String FIND_BY_STUDENT_CREDENTIALS = "findByStudentCredentials";
 
         public static final String FIND_BY_TUTOR_CREDENTIALS = "findByTutorCredentials";
-
-        public static final String FIND_BY_QUIZ_ID = "findByQuizId";
 
         public static final String FIND_BY_USER_ID = "findByUserId";
 
@@ -62,13 +60,9 @@ public class PropertyConstants {
 
         public static final String FIND_ALL = "findAll";
 
-        public static final String UPDATE_CREDENTIALS = "updateCredentials";
-
         public static final String REMOVE = "remove";
 
         public static final String REMOVE_BY_ID = "removeById";
-
-        public static final String REMOVE_BY_QUESTION_ID = "removeByQuestionId";
 
         public static final String COUNT = "count";
     }

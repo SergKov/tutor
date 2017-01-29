@@ -70,8 +70,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             quizDao.remove(quiz.getId());
-            final QuestionService questionService = getQuestionService();
-            questionService.removeByQuizId(quiz.getId());
             getTransactionManager().commit();
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
@@ -82,9 +80,5 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     private QuizDao getDao() {
         return getDaoFactory().getDao(QUIZ_DAO, QuizDao.class);
-    }
-
-    private QuestionService getQuestionService() {
-        return ServiceFactory.getInstance().getService(QUESTION_SERVICE, QuestionService.class);
     }
 }
