@@ -1,6 +1,7 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.controller.common.AbstractSignInController;
+import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
@@ -54,9 +55,9 @@ public class StudentSignInController extends AbstractSignInController {
             validation.validateEmail(email);
             validation.validatePassword(password);
 
-            final User student = userService.signIn(email, password);
-            if (student != null) {
-                httpSession.setAttribute(SESSION_ATTRIBUTES.STUDENT, student);
+            final User user = userService.signIn(email, password);
+            if (user != null && user.getRole() == Role.STUDENT) {
+                httpSession.setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
                 response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
                 return REDIRECT;
             }
@@ -69,9 +70,7 @@ public class StudentSignInController extends AbstractSignInController {
             LOG.warn(e.getMessage(), e);
         }
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.SIGN_IN, request.getLocale()));
         fillPage(request);
-
         return PAGES.STUDENT_SIGN_IN;
     }
 }

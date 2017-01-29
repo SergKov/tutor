@@ -16,8 +16,4 @@ public interface UserDao {
     User findByCredentials(String email, String password) throws EntityNotFoundException;
 
     User findByTutorCredentials(String email, String password) throws EntityNotFoundException;
-
-    void update(User user) throws EntityExistsException;
-
-    void remove(Long userId, Long quizId) throws EntityNotFoundException;
 }

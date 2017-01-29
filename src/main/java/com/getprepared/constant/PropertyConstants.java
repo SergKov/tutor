@@ -54,8 +54,6 @@ public class PropertyConstants {
 
         public static final String FIND_BY_TUTOR_CREDENTIALS = "findByTutorCredentials";
 
-        public static final String FIND_BY_EMAIL = "findByEmail";
-
         public static final String FIND_BY_QUIZ_ID = "findByQuizId";
 
         public static final String FIND_BY_USER_ID = "findByUserId";

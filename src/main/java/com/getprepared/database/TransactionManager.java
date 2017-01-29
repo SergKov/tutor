@@ -1,6 +1,4 @@
-package com.getprepared.infrastructure.tm;
-
-import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
+package com.getprepared.database;
 
 /**
  * Created by koval on 05.01.2017.

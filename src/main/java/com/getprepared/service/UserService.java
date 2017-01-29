@@ -17,6 +17,4 @@ public interface UserService {
     User signInTutor(String email, String password) throws EntityNotFoundException;
 
     void signUp(User user) throws EntityExistsException;
-
-    void update(User user) throws EntityExistsException;
 }

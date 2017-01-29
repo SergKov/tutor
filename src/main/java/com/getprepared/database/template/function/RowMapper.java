@@ -1,4 +1,4 @@
-package com.getprepared.infrastructure.template.function;
+package com.getprepared.database.template.function;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

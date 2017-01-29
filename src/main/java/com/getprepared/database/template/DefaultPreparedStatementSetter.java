@@ -1,6 +1,6 @@
-package com.getprepared.infrastructure.template;
+package com.getprepared.database.template;
 
-import com.getprepared.infrastructure.template.function.PreparedStatementSetter;
+import com.getprepared.database.template.function.PreparedStatementSetter;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

@@ -1,7 +1,6 @@
-package com.getprepared.infrastructure.connection;
+package com.getprepared.database;
 
 import com.getprepared.exception.TransactionalException;
-import com.getprepared.infrastructure.data_source.DataSourceFactory;
 import com.getprepared.utils.jdbc.utils.ConnectionUtils;
 import com.getprepared.utils.jdbc.utils.DataSourceUtils;
 
@@ -26,11 +25,18 @@ public class TransactionalConnectionProvider {
     public void begin() {
 
         if (threadLocal.get() == null) {
-            final Connection con = DataSourceUtils.getConnection(ds);
-            incrementAndSet(con);
+            create();
         }
 
         threadLocal.get().increment();
+    }
+
+    private void create() {
+        final Connection con = DataSourceUtils.getConnection(ds);
+        ConnectionUtils.setAutoCommit(con, false);
+        final TransactionConnectionCounter transactionConnectionCounter = new TransactionConnectionCounter();
+        transactionConnectionCounter.setConnection(con);
+        threadLocal.set(transactionConnectionCounter);
     }
 
     public void commit() {
@@ -39,13 +45,12 @@ public class TransactionalConnectionProvider {
             throw new TransactionalException();
         }
 
+        threadLocal.get().decrement();
         if (threadLocal.get().isZero()) {
             final Connection con = threadLocal.get().getConnection();
             ConnectionUtils.commit(con);
             ConnectionUtils.close(con);
             threadLocal.remove();
-        } else {
-            threadLocal.get().decrement();
         }
     }
 
@@ -61,26 +66,12 @@ public class TransactionalConnectionProvider {
         threadLocal.remove();
     }
 
-    public boolean isNew() {
-        return threadLocal.get() == null;
-    }
-
     public Connection getConnection() {
 
         if (threadLocal.get() == null) {
-            final Connection con = DataSourceUtils.getConnection(ds);
-            incrementAndSet(con);
-            return con;
+            throw new TransactionalException();
         }
 
         return threadLocal.get().getConnection();
-    }
-
-    private void incrementAndSet(final Connection con) {
-        ConnectionUtils.setAutoCommit(con, false);
-        final TransactionConnectionCounter transactionConnectionCounter = new TransactionConnectionCounter();
-        transactionConnectionCounter.setConnection(con);
-        transactionConnectionCounter.increment();
-        threadLocal.set(transactionConnectionCounter);
     }
 }

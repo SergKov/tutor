@@ -1,4 +1,4 @@
-package com.getprepared.infrastructure.pagination;
+package com.getprepared.database.pagination;
 
 import com.getprepared.utils.impl.CollectionUtils;
 

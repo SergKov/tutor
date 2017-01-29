@@ -4,15 +4,13 @@ import com.getprepared.dao.QuizDao;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.infrastructure.pagination.Page;
-import com.getprepared.infrastructure.template.JdbcTemplate;
-import com.getprepared.infrastructure.template.function.RowMapper;
+import com.getprepared.database.template.JdbcTemplate;
+import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Properties;
 

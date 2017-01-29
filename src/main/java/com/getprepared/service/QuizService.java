@@ -3,8 +3,6 @@ package com.getprepared.service;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
-import com.getprepared.infrastructure.pagination.Page;
 
 import java.util.List;
 
@@ -18,8 +16,6 @@ public interface QuizService {
     Quiz findById(Long id) throws EntityNotFoundException;
 
     List<Quiz> findAll();
-
-    List<Quiz> findByUserId(Long id) throws EntityNotFoundException;
 
     void remove(Quiz quiz) throws EntityNotFoundException;
 }

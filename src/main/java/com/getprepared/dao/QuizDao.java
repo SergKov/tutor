@@ -3,7 +3,6 @@ package com.getprepared.dao;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.infrastructure.pagination.Page;
 
 import java.util.List;
 

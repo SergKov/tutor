@@ -1,11 +1,11 @@
-package com.getprepared.infrastructure.template;
+package com.getprepared.database.template;
 
 import com.getprepared.domain.Entity;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
-import com.getprepared.infrastructure.template.function.PreparedStatementSetter;
-import com.getprepared.infrastructure.template.function.RowMapper;
+import com.getprepared.database.TransactionalConnectionProvider;
+import com.getprepared.database.template.function.PreparedStatementSetter;
+import com.getprepared.database.template.function.RowMapper;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

@@ -1,7 +1,7 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.infrastructure.connection.TransactionalConnectionProvider;
-import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.database.TransactionalConnectionProvider;
+import com.getprepared.database.template.JdbcTemplate;
 
 import java.util.HashMap;
 import java.util.Map;

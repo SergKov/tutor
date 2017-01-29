@@ -39,17 +39,13 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
             final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTES.STUDENT);
 
             validation.validateId(user.getId());
-            final List<Quiz> quizList = quizService.findByUserId(user.getId());
+            final List<Quiz> quizList = quizService.findAll();
 
             if (!CollectionUtils.isEmpty(quizList)) {
                 request.setAttribute(QUIZZES, quizList);
             }
         } catch (final ValidationException e) {
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.STUDENT_INVALIDATED, request.getLocale()));
-            LOG.warn(e.getMessage(), e);
-        } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
-                    request.getLocale()));
             LOG.warn(e.getMessage(), e);
         }
     }

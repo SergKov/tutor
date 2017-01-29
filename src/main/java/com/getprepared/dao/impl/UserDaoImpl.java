@@ -5,8 +5,8 @@ import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.infrastructure.template.JdbcTemplate;
-import com.getprepared.infrastructure.template.function.RowMapper;
+import com.getprepared.database.template.JdbcTemplate;
+import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
@@ -64,23 +64,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     rs.setString(1, email);
                     rs.setString(2, password);
                 }, new UserMapper());
-    }
-
-    @Override
-    public void update(final User user) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.UPDATE_CREDENTIALS),
-                rs -> {
-                    rs.setString(1, user.getEmail());
-                    rs.setString(2, user.getPassword());
-                });
-    }
-
-    @Override
-    public void remove(final Long userId, final Long quizId) {
-        getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE), rs -> {
-            rs.setLong(1, userId);
-            rs.setLong(2, quizId);
-        });
     }
 
     private static class UserMapper implements RowMapper<User> {

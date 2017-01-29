@@ -1,7 +1,7 @@
 package com.getprepared.dao.impl;
 
 import com.getprepared.domain.Entity;
-import com.getprepared.infrastructure.template.JdbcTemplate;
+import com.getprepared.database.template.JdbcTemplate;
 
 /**
  * Created by koval on 06.01.2017.

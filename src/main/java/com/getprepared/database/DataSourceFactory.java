@@ -1,4 +1,4 @@
-package com.getprepared.infrastructure.data_source;
+package com.getprepared.database;
 
 import org.apache.log4j.Logger;
 

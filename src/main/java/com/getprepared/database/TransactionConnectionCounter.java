@@ -1,4 +1,4 @@
-package com.getprepared.infrastructure.connection;
+package com.getprepared.database;
 
 import java.sql.Connection;
 
