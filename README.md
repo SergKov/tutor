@@ -1,7 +1,9 @@
 # Tutor project
 Tutor can create quizzes, students can pass them
 
-Project with Servlet, JSP, JSTL, JDBC, Maven
+Project with Servlet, JSP, JSTL, JDBC, Log4j, Maven
+
+Web Server : Apache Tomcat
 
 Database : MySQL
 
