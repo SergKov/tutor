@@ -60,9 +60,9 @@ public class QuestionsPageController extends AbstractQuestionsController {
                 final List<Answer> answers = answerService.findByQuestionId(questionId);
                 question.setAnswers(answers);
             } catch (final NumberFormatException | ValidationException | EntityNotFoundException e) {
-                request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_NOT_FOUND,
-                        request.getLocale()));
+                response.sendRedirect(LINKS.NOT_FOUND);
                 LOG.warn(e.getMessage(), e);
+                return REDIRECT;
             }
             return PAGES.QUESTION;
         } else {

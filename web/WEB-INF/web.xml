@@ -14,8 +14,8 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>StudentSignedInFilter</filter-name>
-        <filter-class>com.getprepared.filter.UserSignedInFilter</filter-class>
+        <filter-name>StudentGuestFilter</filter-name>
+        <filter-class>com.getprepared.filter.UserGuestFilter</filter-class>
 
         <init-param>
             <param-name>role</param-name>
@@ -23,19 +23,19 @@
         </init-param>
         <init-param>
             <param-name>homePage</param-name>
-            <param-value>/studentHomePage</param-value>
+            <param-value>/</param-value>
         </init-param>
     </filter>
     
     <filter-mapping>
-        <filter-name>StudentSignedInFilter</filter-name>
-        <url-pattern>/signUp</url-pattern>
-        <url-pattern>/</url-pattern>
+        <filter-name>StudentGuestFilter</filter-name>
+        <url-pattern>/studentHomePage/*</url-pattern>
+        <url-pattern>/tutor/quizzes/*</url-pattern>
     </filter-mapping>
     
     <filter>
-        <filter-name>TutorSignedInFilter</filter-name>
-        <filter-class>com.getprepared.filter.UserSignedInFilter</filter-class>
+        <filter-name>TutorGuestFilter</filter-name>
+        <filter-class>com.getprepared.filter.UserGuestFilter</filter-class>
         
         <init-param>
             <param-name>role</param-name>
@@ -48,9 +48,51 @@
     </filter>
 
     <filter-mapping>
-        <filter-name>TutorSignedInFilter</filter-name>
-        <url-pattern>/signUp</url-pattern>
+        <filter-name>TutorGuestFilter</filter-name>
+        <url-pattern>/studentHomePage/*</url-pattern>
+        <url-pattern>/tutor/quizzes/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>StudentSignedInFilter</filter-name>
+        <filter-class>com.getprepared.filter.UserSignedInFilter</filter-class>
+
+        <init-param>
+            <param-name>role</param-name>
+            <param-value>student</param-value>
+        </init-param>
+        <init-param>
+            <param-name>homePage</param-name>
+            <param-value>/studentHomePage</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>StudentSignedInFilter</filter-name>
         <url-pattern>/</url-pattern>
+        <url-pattern>/signUp</url-pattern>
+        <url-pattern>/tutor/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>TutorSignedInFilter</filter-name>
+        <filter-class>com.getprepared.filter.UserSignedInFilter</filter-class>
+
+        <init-param>
+            <param-name>role</param-name>
+            <param-value>tutor</param-value>
+        </init-param>
+        <init-param>
+            <param-name>homePage</param-name>
+            <param-value>/tutor/quizzes</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>TutorSignedInFilter</filter-name>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/signUp</url-pattern>
+        <url-pattern>/studentHomePage/*</url-pattern>
     </filter-mapping>
 
 

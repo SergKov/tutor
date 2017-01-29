@@ -1,5 +1,6 @@
 package com.getprepared.controller.common;
 
+import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
 
@@ -24,11 +26,12 @@ public class SignOutController extends AbstractController {
 
         if (httpSession.getAttribute(TUTOR) != null) {
             httpSession.invalidate();
-            return PAGES.TUTOR_SIGN_IN;
+            response.sendRedirect(LINKS.STUDENT_SIGN_IN);
+            return REDIRECT;
         }
 
         httpSession.invalidate();
-        return PAGES.STUDENT_SIGN_IN;
-
+        response.sendRedirect(LINKS.TUTOR_SIGN_IN);
+        return REDIRECT;
     }
 }
