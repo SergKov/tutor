@@ -110,6 +110,8 @@ public class PageConstants {
 
         public static final String REMOVE_QUIZ = "quizRemove";
 
+        public static final String REMOVE_QUESTION = "removeQuestion";
+
         public static final String QUIZ_QUESTIONS = "quizQuestions";
 
         public static final String QUESTION = "question";
