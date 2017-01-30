@@ -17,7 +17,7 @@
 
     <jsp:body>
         <div class="well">
-            <form action="/tutor" method="POST" class="form-horizontal">
+            <form action="/" method="POST" class="form-horizontal">
                 <div class="row">
                     <input type="hidden" name="controller" value="studentSignIn">
 

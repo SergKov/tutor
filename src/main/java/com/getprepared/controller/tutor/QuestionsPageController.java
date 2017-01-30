@@ -9,6 +9,7 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
+import com.getprepared.utils.Validation;
 import com.getprepared.utils.impl.Messages;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -24,6 +25,7 @@ import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
+import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 
@@ -36,13 +38,13 @@ public class QuestionsPageController extends AbstractQuestionsController {
 
     private QuizService quizService;
     private QuestionService questionService;
-    private AnswerService answerService;
+    private Validation validation;
 
     @Override
     public void init() {
         quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
         questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
-        answerService = getServiceFactory().getService(ANSWER_SERVICE, AnswerService.class);
+        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
     }
 
     @Override
@@ -55,10 +57,9 @@ public class QuestionsPageController extends AbstractQuestionsController {
                 request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTION, request.getLocale()));
 
                 final Long questionId = Long.valueOf(questionIdString);
+                validation.validateId(questionId);
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
-                final List<Answer> answers = answerService.findByQuestionId(questionId);
-                question.setAnswers(answers);
             } catch (final NumberFormatException | ValidationException | EntityNotFoundException e) {
                 response.sendRedirect(LINKS.NOT_FOUND);
                 LOG.warn(e.getMessage(), e);
