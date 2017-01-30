@@ -1,21 +1,21 @@
 package com.getprepared.service.impl;
 
 import com.getprepared.dao.QuizDao;
+import com.getprepared.domain.Answer;
+import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
-import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
+import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.service.UserService;
 import org.apache.log4j.Logger;
 
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUIZ_DAO;
+import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 
 /**
  * Created by koval on 15.01.2017.
@@ -46,6 +46,16 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().begin();
             final QuizDao quizDao = getDao();
             final Quiz quiz = quizDao.findById(id);
+            final QuestionService questionService = getQuestionService();
+            final List<Question> questions = questionService.findByQuizId(id);
+            final AnswerService answerService = getAnswerService();
+
+            for (Question question : questions) {
+                final Long questionId = question.getId();
+                final List<Answer> answers = answerService.findByQuestionId(questionId);
+                question.setAnswers(answers);
+            }
+
             getTransactionManager().commit();
             return quiz;
         } catch (final EntityNotFoundException e) {
@@ -56,7 +66,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findAll() {
+    public List<Quiz> findAll()  {
         getTransactionManager().begin();
         final QuizDao quizDao = getDao();
         final List<Quiz> quizzes = quizDao.findAll();
@@ -80,5 +90,13 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     private QuizDao getDao() {
         return getDaoFactory().getDao(QUIZ_DAO, QuizDao.class);
+    }
+
+    private QuestionService getQuestionService() {
+        return getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
+    }
+
+    private AnswerService getAnswerService() {
+        return getServiceFactory().getService(ANSWER_SERVICE, AnswerService.class);
     }
 }

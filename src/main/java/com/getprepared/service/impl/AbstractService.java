@@ -14,6 +14,8 @@ public abstract class AbstractService {
 
     private DaoFactory daoFactory;
 
+    private ServiceFactory serviceFactory;
+
     private TransactionManager tm;
 
     private Validation validation;
@@ -24,6 +26,7 @@ public abstract class AbstractService {
 
     public void init() {
         daoFactory = DaoFactory.getInstance();
+        serviceFactory = ServiceFactory.getInstance();
         tm = TransactionManager.getInstance();
         validation = UtilsFactory.getInstance().getUtil(VALIDATION, Validation.class);
     }
@@ -34,6 +37,10 @@ public abstract class AbstractService {
 
     protected DaoFactory getDaoFactory() {
         return daoFactory;
+    }
+
+    protected ServiceFactory getServiceFactory() {
+        return serviceFactory;
     }
 
     protected Validation getValidation() {

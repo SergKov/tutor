@@ -24,10 +24,8 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
 
     @Override
-    public void save(final Question question) throws ValidationException, EntityExistsException {
+    public void save(final Question question) throws EntityExistsException {
         try {
-            getValidation().validateQuestion(question);
-
             getTransactionManager().begin();
 
             final QuestionDao questionDao = getDao();
@@ -67,18 +65,22 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public List<Question> findByQuizId(final Long id) throws EntityNotFoundException {
-        try {
-            getTransactionManager().begin();
-            final QuestionDao questionDao = getDao();
-            final List<Question> questions = questionDao.findByQuizId(id);
-            getTransactionManager().commit();
-            return questions;
-        } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
+    public List<Question> findByQuizId(final Long id) {
+
+        getTransactionManager().begin();
+        final QuestionDao questionDao = getDao();
+        final List<Question> questions = questionDao.findByQuizId(id);
+        final AnswerService answerService = getAnswerService();
+
+        for (Question question : questions) {
+            final Long questionId = question.getId();
+            final List<Answer> answers = answerService.findByQuestionId(questionId);
+            question.setAnswers(answers);
         }
+
+        getTransactionManager().commit();
+        return questions;
+
     }
 
     @Override

@@ -62,4 +62,12 @@ public class User extends Entity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
 }

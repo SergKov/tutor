@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface AnswerService {
 
-    void save(Answer answer) throws ValidationException, EntityExistsException;
+    void save(Answer answer) throws EntityExistsException;
 
-    Answer findById(Long id) throws ValidationException, EntityExistsException, EntityNotFoundException;
+    Answer findById(Long id) throws EntityNotFoundException;
 
-    List<Answer> findByQuestionId(Long questionId) throws EntityNotFoundException;
+    List<Answer> findByQuestionId(Long questionId);
 }

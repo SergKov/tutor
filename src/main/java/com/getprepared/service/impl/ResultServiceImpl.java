@@ -20,15 +20,13 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
 
     @Override
-    public void save(final Result result) throws ValidationException, EntityExistsException {
+    public void save(final Result result) throws EntityExistsException {
         try {
-            getValidation().validateResult(result);
-
             getTransactionManager().begin();
             final ResultDao resultDao = getDao();
             resultDao.save(result);
             getTransactionManager().commit();
-        } catch (ValidationException | EntityExistsException e) {
+        } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -36,16 +34,14 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     }
 
     @Override
-    public Result findById(final Long id) throws ValidationException, EntityNotFoundException {
+    public Result findById(final Long id) throws EntityNotFoundException {
         try {
-            getValidation().validateId(id);
-
             getTransactionManager().begin();
             final ResultDao resultDao = getDao();
             final Result result = resultDao.findById(id);
             getTransactionManager().commit();
             return result;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -53,20 +49,12 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     }
 
     @Override
-    public List<Result> findByUserId(final Long userId) throws ValidationException, EntityNotFoundException {
-        try {
-            getValidation().validateId(userId);
-
-            getTransactionManager().begin();
-            final ResultDao resultDao = getDao();
-            final List<Result> result = resultDao.findByUserId(userId);
-            getTransactionManager().commit();
-            return result;
-        } catch (ValidationException | EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
-        }
+    public List<Result> findByUserId(final Long userId) {
+        getTransactionManager().begin();
+        final ResultDao resultDao = getDao();
+        final List<Result> result = resultDao.findByUserId(userId);
+        getTransactionManager().commit();
+        return result;
     }
 
     private ResultDao getDao() {

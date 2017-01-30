@@ -19,18 +19,17 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
 
     private static final Logger LOG = Logger.getLogger(AnswerServiceImpl.class);
 
-    public AnswerServiceImpl() { }
+    public AnswerServiceImpl() {
+    }
 
     @Override
-    public void save(final Answer answer) throws ValidationException, EntityExistsException {
+    public void save(final Answer answer) throws EntityExistsException {
         try {
-            getValidation().validateAnswer(answer);
-
             getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             answerDao.save(answer);
             getTransactionManager().commit();
-        } catch (ValidationException | EntityExistsException e) {
+        } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -38,16 +37,14 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     }
 
     @Override
-    public Answer findById(final Long id) throws ValidationException, EntityNotFoundException {
+    public Answer findById(final Long id) throws EntityNotFoundException {
         try {
-            getValidation().validateId(id);
-
             getTransactionManager().begin();
             final AnswerDao answerDao = getDao();
             final Answer answer = answerDao.findById(id);
             getTransactionManager().commit();
             return answer;
-        } catch (ValidationException | EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
             LOG.warn(e.getMessage(), e);
             throw e;
@@ -55,18 +52,12 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     }
 
     @Override
-    public List<Answer> findByQuestionId(final Long questionId) throws EntityNotFoundException {
-        try {
-            getTransactionManager().begin();
-            final AnswerDao answerDao = getDao();
-            final List<Answer> answers = answerDao.findByQuestionId(questionId);
-            getTransactionManager().commit();
-            return answers;
-        } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
-            throw e;
-        }
+    public List<Answer> findByQuestionId(final Long questionId) {
+        getTransactionManager().begin();
+        final AnswerDao answerDao = getDao();
+        final List<Answer> answers = answerDao.findByQuestionId(questionId);
+        getTransactionManager().commit();
+        return answers;
     }
 
     private AnswerDao getDao() {

@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface ResultService {
 
-    void save(Result result) throws ValidationException, EntityExistsException;
+    void save(Result result) throws EntityExistsException;
 
-    Result findById(Long id) throws ValidationException, EntityNotFoundException;
+    Result findById(Long id) throws EntityNotFoundException;
 
-    List<Result> findByUserId(Long userId) throws ValidationException, EntityNotFoundException;
+    List<Result> findByUserId(Long userId);
 }

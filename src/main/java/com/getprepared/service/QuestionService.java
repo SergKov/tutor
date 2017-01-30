@@ -12,11 +12,11 @@ import java.util.List;
  */
 public interface QuestionService {
 
-    void save(Question question) throws ValidationException, EntityExistsException;
+    void save(Question question) throws EntityExistsException;
 
-    Question findById(Long id) throws ValidationException, EntityNotFoundException;
+    Question findById(Long id) throws EntityNotFoundException;
 
-    List<Question> findByQuizId(Long id) throws EntityNotFoundException;
+    List<Question> findByQuizId(Long id) ;
 
     void remove(Question question) throws EntityNotFoundException;
 }
