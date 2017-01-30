@@ -95,6 +95,8 @@ public class WebConstants {
 
         public static final String TUTOR = "tutor";
 
+        public static final String QUIZ_ID = "quizId";
+
         public static final String QUIZ = "quiz";
     }
 }

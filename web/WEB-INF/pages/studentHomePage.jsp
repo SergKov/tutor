@@ -19,6 +19,7 @@
     <jsp:body>
         <c:choose>
             <c:when test="${not empty quizzes}">
+
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-5">
                         <label class="control-label" for="quiz">

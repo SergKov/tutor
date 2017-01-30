@@ -88,6 +88,8 @@ public class PageConstants {
         public static final String QUESTION = "Question";
 
         public static final String ADD_QUESTION = "AddQuestion";
+
+        public static final String TEST = "Test";
     }
 
     public static class FORMS {
@@ -113,6 +115,8 @@ public class PageConstants {
         public static final String QUESTION = "question";
 
         public static final String ADD_QUESTION = "addQuestion";
+
+        public static final String STUDENT_TEST = "studentTest";
     }
 
     public static class ERRORS {
