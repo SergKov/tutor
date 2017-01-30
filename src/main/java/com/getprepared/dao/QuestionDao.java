@@ -15,7 +15,7 @@ public interface QuestionDao {
 
     Question findById(Long id) throws EntityNotFoundException;
 
-    List<Question> findByQuizId(Long quizId) throws EntityNotFoundException;
+    List<Question> findByQuizId(Long quizId);
 
     void removeById(Long id) throws EntityNotFoundException;
 }

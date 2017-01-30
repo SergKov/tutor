@@ -51,7 +51,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
     }
 
     @Override
-    public List<Result> findByUserId(Long id) throws EntityNotFoundException {
+    public List<Result> findByUserId(Long id) {
         return getJdbcTemplate().executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), USER_ID_KEY),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
