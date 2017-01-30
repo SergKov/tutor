@@ -21,29 +21,30 @@
             <c:when test="${not empty quizzes}">
                 <c:forEach items="${quizzes}" var="quiz">
                     <div class="row">
-                        <form action="/tutor/quizzes" method="POST" class="form-horizontal">
-                            <input type="hidden" name="quizId" value="${quiz.id}">
-
-                            <div class="col-xs-6 col-xs-offset-2">
-                                <div class="form-group">
-                                    <input id="quiz_name" type="text" class="form-control"
-                                           name="quizName"
-                                           value="${quiz.name}" readonly="readonly">
-                                </div>
+                        <div class="col-xs-6 col-xs-offset-2">
+                            <div class="form-group">
+                                <input id="quiz_name" type="text" class="form-control"
+                                       name="quizName"
+                                       value="${quiz.name}" readonly="readonly">
                             </div>
+                        </div>
 
-                            <div class="col-xs-1">
-                                <input id="quiz_questions" type="image" src="/resource/img/see.ico"
-                                       width="25px"
-                                       height="25px"
-                                       name="controller" value="quizQuestions">
-                            </div>
+                        <div class="col-xs-1">
+                            <form action="/tutor/quizzes" method="GET" class="form-horizontal">
+                                <input type="hidden" name="quizId" value="${quiz.id}">
+                                <input type="image" id="question" class="see_btn"
+                                       src="/resource/img/see.ico" width="25px" height="25px">
+                            </form>
+                        </div>
 
-                            <div class="col-xs-2">
+                        <div class="col-xs-2">
+                            <form action="/tutor/quizzes" method="POST" class="form-horizontal">
+                                <input type="hidden" name="quizId" value="${quiz.id}">
                                 <input id="quiz_remove" class="remove_btn" type="image"
                                        src="/resource/img/delete.ico" width="25px" height="25px"
                                        name="controller" value="quizRemove">
-                            </div>
+                            </form>
+                        </div>
                         </form>
                     </div>
                 </c:forEach>

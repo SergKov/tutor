@@ -1,33 +1,25 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.PageConstants;
-import com.getprepared.constant.WebConstants;
-import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
-import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import com.getprepared.utils.Validation;
-import com.getprepared.utils.impl.Messages;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.PageConstants.NAMES;
-import static com.getprepared.constant.PageConstants.PAGES;
-import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.*;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
+import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
  * Created by koval on 25.01.2017.

@@ -56,7 +56,6 @@ public class ControllerFactory {
         mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());
         mapping.put(FORMS.ADD_QUESTION, new QuestionAddController());
         mapping.put(FORMS.REMOVE_QUESTION, new QuestionRemoveController());
-        mapping.put(FORMS.QUIZ_QUESTIONS, new QuizQuestionsController());
 
         mapping.values().forEach(AbstractController::init);
     }
