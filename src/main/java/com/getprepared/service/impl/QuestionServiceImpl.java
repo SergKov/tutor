@@ -23,6 +23,13 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
 
+    public QuestionServiceImpl() { }
+
+    @Override
+    public void init() {
+        super.init();
+    }
+
     @Override
     public void save(final Question question) throws EntityExistsException {
         try {

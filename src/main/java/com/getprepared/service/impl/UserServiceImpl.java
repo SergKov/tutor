@@ -116,6 +116,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     private ResultService getResultService() {
-        return getServiceFactory().getService(RESULT_SERVICE, ResultService.class);
+        return ServiceFactory.getInstance().getService(RESULT_SERVICE, ResultService.class);
     }
 }

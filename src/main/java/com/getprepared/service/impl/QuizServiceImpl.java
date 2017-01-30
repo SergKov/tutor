@@ -93,10 +93,10 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     private QuestionService getQuestionService() {
-        return getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
+        return ServiceFactory.getInstance().getService(QUESTION_SERVICE, QuestionService.class);
     }
 
     private AnswerService getAnswerService() {
-        return getServiceFactory().getService(ANSWER_SERVICE, AnswerService.class);
+        return ServiceFactory.getInstance().getService(ANSWER_SERVICE, AnswerService.class);
     }
 }

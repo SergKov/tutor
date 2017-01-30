@@ -19,6 +19,13 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
 
     private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
 
+    public ResultServiceImpl() { }
+
+    @Override
+    public void init() {
+        super.init();
+    }
+
     @Override
     public void save(final Result result) throws EntityExistsException {
         try {
