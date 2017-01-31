@@ -4,22 +4,24 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by koval on 29.01.2017.
+ * Created by koval on 31.01.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class UserGuestFilterTest {
+public class EncodingFilterTest {
+
+    private static final String ENCODING = "UTF-8";
 
     @Mock
     private HttpServletRequest request;
@@ -37,19 +39,25 @@ public class UserGuestFilterTest {
 
     @Before
     public void setUp() {
-        filter = new UserGuestFilter();
+        filter = new EncodingFilter();
     }
 
     @Test
-    public void requireInteractionsWithFilterConfig() throws Exception {
+    public void requireNoInteractionsWithFilterConfig() throws Exception {
         filter.init(config);
-        verify(config, times(2)).getInitParameter(anyString());
+        verify(config, never()).getInitParameter(anyString());
     }
 
     @Test
-    public void requireNoInteractionsDoFilterWhenNoSession() throws Exception {
+    public void requireSetEncoding() throws Exception {
         filter.doFilter(request, response, chain);
-        verify(chain, never()).doFilter(request, response);
+        verify(request, only()).setCharacterEncoding(ENCODING);
+    }
+
+    @Test
+    public void requireInteractionsDoFilter() throws Exception {
+        filter.doFilter(request, response, chain);
+        verify(chain, only()).doFilter(request, response);
     }
 
     @Test

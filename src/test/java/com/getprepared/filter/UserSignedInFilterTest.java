@@ -4,22 +4,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by koval on 29.01.2017.
+ * Created by koval on 31.01.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class UserGuestFilterTest {
+public class UserSignedInFilterTest {
 
     @Mock
     private HttpServletRequest request;
@@ -37,7 +37,7 @@ public class UserGuestFilterTest {
 
     @Before
     public void setUp() {
-        filter = new UserGuestFilter();
+        filter = new UserSignedInFilter();
     }
 
     @Test
@@ -47,9 +47,9 @@ public class UserGuestFilterTest {
     }
 
     @Test
-    public void requireNoInteractionsDoFilterWhenNoSession() throws Exception {
+    public void requireInteractionsDoFilter() throws Exception {
         filter.doFilter(request, response, chain);
-        verify(chain, never()).doFilter(request, response);
+        verify(chain, only()).doFilter(request, response);
     }
 
     @Test
