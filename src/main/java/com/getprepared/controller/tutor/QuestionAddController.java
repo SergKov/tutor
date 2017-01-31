@@ -30,7 +30,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 26.01.2017.
  */
-public class QuestionAddController extends AbstractQuestionAddController { //TODO
+public class QuestionAddController extends AbstractQuestionAddController {
 
     private static final Logger LOG = Logger.getLogger(QuestionAddController.class);
 
@@ -80,7 +80,7 @@ public class QuestionAddController extends AbstractQuestionAddController { //TOD
                 question.setAnswers(answers);
                 validation.validateQuestion(question);
                 questionService.save(question);
-                response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+                response.sendRedirect(LINKS.QUESTIONS);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {

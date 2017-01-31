@@ -54,7 +54,7 @@ public class PageConstants {
 
         public static final String ADD_QUIZ = "/tutor/quizzes/addQuiz";
 
-        public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
+        public static final String QUESTIONS = "/tutor/quizzes/questions";
 
         public static final String ADD_QUESTION = "/tutor/quizzes/questions/addQuestion";
 

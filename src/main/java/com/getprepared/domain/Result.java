@@ -7,17 +7,25 @@ import java.time.LocalDateTime;
  */
 public class Result extends Entity {
 
+    public static final String QUIZ_ID_KEY = "quiz_id";
     public static final String USER_ID_KEY = "user_id";
     public static final String MARK_KEY = "mark";
-    public static final String QUIZ_NAME_KEY = "quiz_name";
     public static final String CREATION_DATETIME_KEY = "creation_datetime";
 
+    private Quiz quiz;
     private User user;
     private Byte mark;
-    private String quizName;
     private LocalDateTime creationDateTime;
 
     public Result() { }
+
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
 
     public User getUser() {
         return user;
@@ -33,14 +41,6 @@ public class Result extends Entity {
 
     public void setMark(Byte mark) {
         this.mark = mark;
-    }
-
-    public String getQuizName() {
-        return quizName;
-    }
-
-    public void setQuizName(String quizName) {
-        this.quizName = quizName;
     }
 
     public LocalDateTime getCreationDateTime() {

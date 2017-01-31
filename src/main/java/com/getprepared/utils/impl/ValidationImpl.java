@@ -73,6 +73,10 @@ public class ValidationImpl implements Validation {
             throw new ValidationException("Result is missing.");
         }
 
+        if (result.getQuiz() == null) {
+            throw new ValidationException("Result's quiz is missing.");
+        }
+
         if (result.getUser() == null) {
             throw new ValidationException("Result's user is missing.");
         }
@@ -81,9 +85,7 @@ public class ValidationImpl implements Validation {
             throw new ValidationException("Result's creation date is missing.");
         }
 
-        validateName(result.getQuizName());
         validateMark(result.getMark());
-
     }
 
     private void validateMark(final Byte mark) throws ValidationException {

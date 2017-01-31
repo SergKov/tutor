@@ -45,7 +45,7 @@ public class QuestionRemoveController extends AbstractQuestionsController {
             final Question question = questionService.findById(questionId);
             validation.validateQuestion(question);
             questionService.remove(question);
-            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+            response.sendRedirect(LINKS.QUESTIONS);
             return REDIRECT;
         } catch (ValidationException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);

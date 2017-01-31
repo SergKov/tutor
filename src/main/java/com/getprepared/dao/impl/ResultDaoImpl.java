@@ -1,6 +1,8 @@
 package com.getprepared.dao.impl;
 
 import com.getprepared.dao.ResultDao;
+import com.getprepared.domain.Question;
+import com.getprepared.domain.Quiz;
 import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
@@ -37,9 +39,9 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
     public void save(final Result result) throws EntityExistsException {
         getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), result,
                 ps -> {
-                    ps.setLong(1, result.getUser().getId());
-                    ps.setByte(2, result.getMark());
-                    ps.setString(3, result.getQuizName());
+                    ps.setLong(1, result.getQuiz().getId());
+                    ps.setLong(2, result.getUser().getId());
+                    ps.setByte(3, result.getMark());
                     ps.setTimestamp(4, Timestamp.valueOf(result.getCreationDateTime()));
                 }, PreparedStatement.RETURN_GENERATED_KEYS);
     }
@@ -63,19 +65,20 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
             final Long id = rs.getLong(ID_KEY);
             final User user = new User();
             user.setId(rs.getLong(USER_ID_KEY));
+            final Quiz quiz = new Quiz();
+            quiz.setId(rs.getLong(QUIZ_ID_KEY));
             final Byte mark = rs.getByte(MARK_KEY);
-            final String quizName = rs.getString(QUIZ_NAME_KEY);
             final LocalDateTime dateTime = rs.getTimestamp(CREATION_DATETIME_KEY).toLocalDateTime();
-            return fillResult(id, user, mark, quizName, dateTime);
+            return fillResult(id, quiz, user, mark, dateTime);
         }
 
-        private Result fillResult(final Long id, final User user, final Byte mark, final String name,
+        private Result fillResult(final Long id, final Quiz quiz, final User user, final Byte mark,
                                   final LocalDateTime dateTime) {
             final Result result = new Result();
             result.setId(id);
+            result.setQuiz(quiz);
             result.setUser(user);
             result.setMark(mark);
-            result.setQuizName(name);
             result.setCreationDateTime(dateTime);
             return result;
         }
