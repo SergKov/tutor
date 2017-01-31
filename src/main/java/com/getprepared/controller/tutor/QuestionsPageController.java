@@ -44,7 +44,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
 
         final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
 
-        if (StringUtils.isNumericSpace(questionIdString)) {
+        if (StringUtils.isNumeric(questionIdString)) {
             try {
                 request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTION, request.getLocale()));
 

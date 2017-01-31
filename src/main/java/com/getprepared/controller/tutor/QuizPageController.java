@@ -47,7 +47,7 @@ public class QuizPageController extends AbstractQuizController {
 
         final String quizIdString = request.getParameter(INPUTS.QUIZ_ID);
 
-        if (StringUtils.isNumericSpace(quizIdString)) {
+        if (StringUtils.isNumeric(quizIdString)) {
             try {
                 request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTIONS, request.getLocale()));
 
