@@ -12,6 +12,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.getprepared.constant.WebConstants.FILTERS_VARIABLE.ENCODING;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -20,8 +21,6 @@ import static org.mockito.Mockito.*;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class EncodingFilterTest {
-
-    private static final String ENCODING = "UTF-8";
 
     @Mock
     private HttpServletRequest request;

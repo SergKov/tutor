@@ -36,13 +36,4 @@ public class ServerConstants {
 
         public static final String USER_SERVICE = "userService";
     }
-
-    public static class FILTERS_PARAM {
-
-        private FILTERS_PARAM() { }
-
-        public static final String ROLE = "role";
-
-        public static final String HOME_PAGE = "homePage";
-    }
 }

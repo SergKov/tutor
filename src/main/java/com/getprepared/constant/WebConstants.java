@@ -99,4 +99,15 @@ public class WebConstants {
 
         public static final String QUIZ = "quiz";
     }
+
+    public static class FILTERS_VARIABLE {
+
+        private FILTERS_VARIABLE() { }
+
+        public static final String ROLE = "role";
+
+        public static final String HOME_PAGE = "homePage";
+
+        public static final String ENCODING = "UTF-8";
+    }
 }

@@ -3,12 +3,12 @@ package com.getprepared.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
+import static com.getprepared.constant.WebConstants.FILTERS_VARIABLE.ENCODING;
+
 /**
  * Created by koval on 20.01.2017.
  */
 public class EncodingFilter implements Filter {
-
-    private static final String ENCODING = "UTF-8";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException { }
