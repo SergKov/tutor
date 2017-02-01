@@ -57,6 +57,6 @@ public class QuestionRemoveController extends AbstractQuestionsController {
         }
 
         fillPage(request, quizService, questionService);
-        return PAGES.QUESTIONS;
+        return PAGES.TUTOR_QUESTIONS;
     }
 }

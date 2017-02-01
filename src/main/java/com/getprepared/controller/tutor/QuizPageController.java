@@ -2,8 +2,6 @@ package com.getprepared.controller.tutor;
 
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.domain.Question;
-import com.getprepared.domain.Quiz;
-import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
@@ -20,7 +18,7 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.INPUTS.QUIZ_ID;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTIONS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
@@ -45,7 +43,7 @@ public class QuizPageController extends AbstractQuizController {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        final String quizIdString = request.getParameter(INPUTS.QUIZ_ID);
+        final String quizIdString = request.getParameter(QUIZ_ID);
 
         if (StringUtils.isNumeric(quizIdString)) {
             try {
@@ -53,6 +51,7 @@ public class QuizPageController extends AbstractQuizController {
 
                 final Long quizId = Long.valueOf(quizIdString);
                 validation.validateId(quizId);
+                request.setAttribute(QUIZ_ID, quizId);
                 final List<Question> questions = questionService.findByQuizId(quizId);
                 request.setAttribute(QUESTIONS, questions);
             } catch (final ValidationException e) {
@@ -60,7 +59,7 @@ public class QuizPageController extends AbstractQuizController {
                 LOG.warn(e.getMessage(), e);
                 return REDIRECT;
             }
-            return PAGES.QUESTIONS;
+            return PAGES.TUTOR_QUESTIONS;
         } else {
             fillPage(request, quizService);
             return PAGES.TUTOR_QUIZZES;

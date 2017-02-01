@@ -30,6 +30,6 @@ public class TestPageController extends AbstractTestController {
             return REDIRECT;
         }
 
-        return PAGES.TEST;
+        return PAGES.STUDENT_TEST;
     }
 }

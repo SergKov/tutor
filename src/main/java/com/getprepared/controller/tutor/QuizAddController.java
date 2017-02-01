@@ -14,7 +14,6 @@ import java.io.IOException;
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
@@ -52,6 +51,6 @@ public class QuizAddController extends AbstractQuizAddController {
         }
 
         fillPage(request);
-        return PAGES.ADD_QUIZ;
+        return PAGES.TUTOR_ADD_QUIZ;
     }
 }

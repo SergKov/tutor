@@ -59,7 +59,7 @@
 
         <div class="row">
             <div class="col-xs-1 col-xs-offset-11">
-                <a href="/tutor/quizzes/questions/addQuestion" id="add_question">
+                <a href="/tutor/quizzes?quizId=${quizId}" id="add_question">
                     <img src="/resource/img/plus.ico" width="25px" height="25px">
                 </a>
             </div>

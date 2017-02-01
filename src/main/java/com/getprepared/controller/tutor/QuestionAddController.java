@@ -25,7 +25,6 @@ import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 26.01.2017.
@@ -50,7 +49,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
 
-        final Object quizIdObject = request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+        final Object quizIdObject = request.getParameter(INPUTS.QUIZ_ID);
         final Long quizId = (Long) (quizIdObject);
         final Question question = new Question();
 
@@ -96,6 +95,6 @@ public class QuestionAddController extends AbstractQuestionAddController {
         }
 
         fillPage(request);
-        return PAGES.ADD_QUESTION;
+        return PAGES.TUTOR_ADD_QUESTION;
     }
 }

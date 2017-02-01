@@ -87,7 +87,7 @@
 
     <filter-mapping>
         <filter-name>TutorSignedInFilter</filter-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/tutor</url-pattern>
         <url-pattern>/signUp</url-pattern>
     </filter-mapping>
 

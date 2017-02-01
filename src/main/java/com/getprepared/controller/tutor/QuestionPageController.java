@@ -24,9 +24,9 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 25.01.2017.
  */
-public class QuestionsPageController extends AbstractQuestionsController {
+public class QuestionPageController extends AbstractQuestionsController {
 
-    private static final Logger LOG = Logger.getLogger(QuestionsPageController.class);
+    private static final Logger LOG = Logger.getLogger(QuestionPageController.class);
 
     private QuizService quizService;
     private QuestionService questionService;
@@ -57,10 +57,10 @@ public class QuestionsPageController extends AbstractQuestionsController {
                 LOG.warn(e.getMessage(), e);
                 return REDIRECT;
             }
-            return PAGES.QUESTION;
+            return PAGES.TUTOR_QUESTION;
         } else {
             fillPage(request, quizService, questionService);
-            return PAGES.QUESTIONS;
+            return PAGES.TUTOR_QUESTIONS;
         }
     }
 }

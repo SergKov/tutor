@@ -17,6 +17,6 @@ public class QuizPageAddController extends AbstractQuizAddController {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGES.ADD_QUIZ;
+        return PAGES.TUTOR_ADD_QUIZ;
     }
 }

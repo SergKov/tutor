@@ -15,29 +15,33 @@ public class PageConstants {
 
         private static final String PREFIX = "/WEB-INF/pages/";
 
-        private static final String SUFFIX = ".jsp";
+        private static final String STUDENT_PREFIX = "/WEB-INF/pages/student/";
 
-        public static final String STUDENT_SIGN_IN = PREFIX + "studentSignIn" + SUFFIX;
+        private static final String TUTOR_PREFIX = "/WEB-INF/pages/tutor/";
+
+        private static final String SUFFIX = ".jsp";
 
         public static final String NOT_FOUND = PREFIX + "pageNotFound" + SUFFIX;
 
         public static final String SIGN_UP = PREFIX + "signUp" + SUFFIX;
 
-        public static final String STUDENT_HOME_PAGE = PREFIX + "studentHomePage" + SUFFIX;
+        public static final String STUDENT_SIGN_IN = STUDENT_PREFIX + "signIn" + SUFFIX;
 
-        public static final String TUTOR_SIGN_IN = PREFIX + "tutorSignIn" + SUFFIX;
+        public static final String STUDENT_HOME_PAGE = STUDENT_PREFIX + "homePage" + SUFFIX;
 
-        public static final String TUTOR_QUIZZES = PREFIX + "tutorQuizzes" + SUFFIX;
+        public static final String STUDENT_TEST = STUDENT_PREFIX + "test" + SUFFIX;
 
-        public static final String ADD_QUIZ = PREFIX + "addQuiz" + SUFFIX;
+        public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
 
-        public static final String QUESTIONS = PREFIX + "questionsPage" + SUFFIX;
+        public static final String TUTOR_QUIZZES = TUTOR_PREFIX + "quizzes" + SUFFIX;
 
-        public static final String QUESTION = PREFIX + "question" + SUFFIX;
+        public static final String TUTOR_ADD_QUIZ = TUTOR_PREFIX + "quizAdd" + SUFFIX;
 
-        public static final String ADD_QUESTION = PREFIX + "addQuestion" + SUFFIX;
+        public static final String TUTOR_QUESTIONS = TUTOR_PREFIX + "questions" + SUFFIX;
 
-        public static final String TEST = PREFIX + "test" + SUFFIX;
+        public static final String TUTOR_QUESTION = TUTOR_PREFIX + "question" + SUFFIX;
+
+        public static final String TUTOR_ADD_QUESTION = TUTOR_PREFIX + "questionAdd" + SUFFIX;
     }
 
     public static class LINKS {
