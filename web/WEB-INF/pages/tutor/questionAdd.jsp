@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="form-group">
                     <textarea class="form-control question-border" rows="3" id="question" name="questionText"
-                              required></textarea>
+                              required>${questionText}</textarea>
                 </div>
             </div>
 

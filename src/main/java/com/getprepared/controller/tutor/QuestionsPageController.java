@@ -43,8 +43,6 @@ public class QuestionsPageController extends AbstractQuestionsController {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        request.setAttribute(CONFIRM_MSG, getMessages().getMessage(CONFIRMS.ARE_YOU_SURE, request.getLocale())); //TODO
-
         final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
 
         if (StringUtils.isNumeric(questionIdString)) {

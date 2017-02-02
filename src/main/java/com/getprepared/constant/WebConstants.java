@@ -74,6 +74,8 @@ public class WebConstants {
 
         public static final String QUESTIONS = "questions";
 
+        public static final String QUESTION_TEXT = "questionText";
+
         public static final String ANSWER_TYPE_REGEX = "answerTypeRegex";
 
         public static final String ADD_QUESTION = "addQuestion";

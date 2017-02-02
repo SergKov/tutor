@@ -40,8 +40,7 @@ public class QuestionRemoveController extends AbstractQuestionsController {
             final Question question = questionService.findById(questionId);
             validation.validateQuestion(question);
             questionService.remove(question);
-            final String quizId = request.getParameter(INPUTS.QUIZ_ID);
-            response.sendRedirect(String.format("%s?quiz-id=%s", LINKS.QUESTIONS, quizId));
+            response.sendRedirect(LINKS.QUESTIONS);
             return REDIRECT;
         } catch (ValidationException | NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);

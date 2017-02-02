@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
@@ -22,6 +23,7 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
@@ -60,6 +62,8 @@ public class QuestionAddController extends AbstractQuestionAddController {
             final String questionText = request.getParameter(INPUTS.QUESTION_TEXT);
             question.setText(questionText);
 
+            request.setAttribute(REQUEST_ATTRIBUTES.QUESTION_TEXT, questionText);
+
             final String[] answersText = request.getParameterValues(INPUTS.ANSWER_TEXT);
             final String[] answersType = request.getParameterValues(INPUTS.ANSWER_TYPE);
 
@@ -80,7 +84,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
                 question.setAnswers(answers);
                 validation.validateQuestion(question);
                 questionService.save(question);
-                response.sendRedirect(String.format("%s?quiz-id=%s", LINKS.QUESTIONS, quizId));
+                response.sendRedirect(LINKS.QUESTIONS);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {

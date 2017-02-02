@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-xs-1">
-                            <form action="${addQuestionAction}" method="GET" class="form-horizontal">
+                            <form action="${seeQuestionAction}" method="GET" class="form-horizontal">
                                 <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input type="image" id="question" class="see_btn"
