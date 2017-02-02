@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.getprepared.constant.PageConstants.ERRORS;
 import static com.getprepared.constant.PageConstants.NAMES.SIGN_UP;
 import static com.getprepared.constant.UtilsConstant.REGEX;
 import static com.getprepared.constant.WebConstants.INPUTS;
@@ -27,6 +28,7 @@ public abstract class AbstractSignUpPageController extends AbstractController {
         request.setAttribute(SURNAME_REGEX, REGEX.SURNAME);
         request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);
         request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
+        request.setAttribute(REPEAT_PWD_MSG, getMessages().getMessage(ERRORS.PASSWORDS_NOT_MATCH, request.getLocale()));
     }
 
     protected User convertInputToUser(final HttpServletRequest request) throws ValidationException {

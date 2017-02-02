@@ -60,7 +60,7 @@ public class PageConstants {
 
         public static final String QUESTIONS = "/tutor/quizzes/questions";
 
-        public static final String ADD_QUESTION = "/tutor/quizzes/questions/addQuestion";
+        public static final String ADD_QUESTION = "/tutor/quizzes/questions/add";
 
         public static final String TEST = "/test";
 
@@ -130,6 +130,8 @@ public class PageConstants {
         public static final String CREDENTIALS_INVALIDATED = "YouHaveEnteredInvalidatedCredentials";
 
         public static final String DATA_INVALIDATED = "YouHaveEnteredInvalidatedData";
+
+        public static final String PASSWORDS_NOT_MATCH = "PasswordsNotMatch";
 
         public static final String USER_EXISTS = "UserExists";
 

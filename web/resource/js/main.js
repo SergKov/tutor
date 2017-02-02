@@ -6,10 +6,11 @@ $(document).ready(function() {
     $("#confirm_psw").keyup(function () {
         var password = $("#psw").val();
         var $errorMsg = $("#errorMsg");
-        if (password == $(this).val()) {
+        if (password === $(this).val() || password === '') {
             $errorMsg.hide();
         } else {
-            $errorMsg.html("Passwords do not match!");
+            var errorMsg = $('.js-sign_up').data('msg-repeat');
+            $errorMsg.html(errorMsg);
             $errorMsg.show();
         }
     });

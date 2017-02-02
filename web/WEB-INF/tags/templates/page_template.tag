@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ attribute name="header" fragment="true" %>
+<fmt:setBundle basename="messages.base"/>
 <html>
 <head>
     <title>${title}</title>
@@ -47,8 +48,7 @@
 <div id="body">
     <div class="container">
         <div class="row alert alert-danger" <c:if test="${empty errorMsg}"> style="display: none;" </c:if>
-             id="errorMsg">
-            ${errorMsg}
+             id="errorMsg"> ${errorMsg}
         </div>
         <jsp:doBody/>
     </div>

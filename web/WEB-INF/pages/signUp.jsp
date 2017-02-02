@@ -18,7 +18,7 @@
 
     <jsp:body>
         <div class="well">
-            <form action="/signUp" method="POST" class="form-horizontal">
+            <form action="/signUp" method="POST" class="form-horizontal js-sign_up" data-msg-repeat="${repeatPassword}">
                 <div class="row">
                     <input type="hidden" name="controller" value="signUp"/>
 
@@ -43,8 +43,7 @@
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${nameRegex}" class="form-control" id="name" name="name"
-                                   value="${user.name}"
-                                   placeholder="<fmt:message key="signUp.enterName"/>" required>
+                                   value="${user.name}" placeholder="<fmt:message key="signUp.enterName"/>" required>
                         </div>
                     </div>
                 </div>
@@ -79,8 +78,7 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
-                                   name="password"
-                                   placeholder="<fmt:message key="homePage.enterPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="homePage.enterPassword"/>" required>
                         </div>
                     </div>
                 </div>
@@ -92,8 +90,7 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
-                                   name="password"
-                                   placeholder="<fmt:message key="homePage.enterPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="homePage.enterPassword"/>" required>
                         </div>
                     </div>
                 </div>

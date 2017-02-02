@@ -51,10 +51,4 @@ public class UserGuestFilterTest {
         filter.doFilter(request, response, chain);
         verify(chain, never()).doFilter(request, response);
     }
-
-    @Test
-    public void requireNoInteractionWithDestroy() {
-        filter.destroy();
-        verifyNoMoreInteractions(config);
-    }
 }

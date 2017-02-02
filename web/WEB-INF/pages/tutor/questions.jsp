@@ -11,6 +11,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
+<c:url value="/tutor/quizzes/questions/add" var="addQuestionUrl">
+    <c:param name="quizId" value="${quizId}"/>
+</c:url>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
@@ -59,7 +63,7 @@
 
         <div class="row">
             <div class="col-xs-1 col-xs-offset-11">
-                <a href="/tutor/quizzes?quizId=${quizId}" id="add_question">
+                <a href="${addQuestionUrl}" id="add_question">
                     <img src="/resource/img/plus.ico" width="25px" height="25px">
                 </a>
             </div>

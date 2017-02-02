@@ -18,7 +18,7 @@ public class TransactionalConnectionProvider {
         return instance;
     }
 
-    private final DataSource ds = DataSourceFactory.getInstance().getDataSource();
+    private DataSource dataSource = DataSourceFactory.getInstance().getDataSource();
 
     private final ThreadLocal<TransactionConnectionCounter> threadLocal = new ThreadLocal<>();
 
@@ -32,7 +32,7 @@ public class TransactionalConnectionProvider {
     }
 
     private void create() {
-        final Connection con = DataSourceUtils.getConnection(ds);
+        final Connection con = DataSourceUtils.getConnection(getDataSource());
         ConnectionUtils.setAutoCommit(con, false);
         final TransactionConnectionCounter transactionConnectionCounter = new TransactionConnectionCounter();
         transactionConnectionCounter.setConnection(con);
@@ -73,5 +73,9 @@ public class TransactionalConnectionProvider {
         }
 
         return threadLocal.get().getConnection();
+    }
+
+    public DataSource getDataSource() {
+        return dataSource;
     }
 }

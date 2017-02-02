@@ -54,6 +54,8 @@ public class WebConstants {
 
         public static final String ERROR_MSG = "errorMsg";
 
+        public static final String REPEAT_PWD_MSG = "repeatPassword";
+
         public static final String EMAIL_REGEX = "emailRegex";
 
         public static final String PASSWORD_REGEX = "passwordRegex";
@@ -81,6 +83,8 @@ public class WebConstants {
         public static final String QUESTION_NUMBER = "questionNumber";
 
         public static final String ANSWERS = "answers";
+
+        public static final String REPEAT_PASSWORD = "repeatPassword";
 
         public static final String PAGE_INDEX = "page"; //TODO
 

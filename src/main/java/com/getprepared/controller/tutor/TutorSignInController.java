@@ -23,7 +23,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 21.01.2017.
  */
-public class TutorSignInController extends AbstractSignInController { //TODO
+public class TutorSignInController extends AbstractSignInController {
 
     private static final Logger LOG = Logger.getLogger(TutorSignInController.class);
 

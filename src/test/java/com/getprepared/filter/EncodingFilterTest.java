@@ -58,10 +58,4 @@ public class EncodingFilterTest {
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
     }
-
-    @Test
-    public void requireNoInteractionWithDestroy() {
-        filter.destroy();
-        verifyNoMoreInteractions(config);
-    }
 }
