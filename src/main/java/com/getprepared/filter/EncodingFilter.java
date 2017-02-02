@@ -3,7 +3,7 @@ package com.getprepared.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
-import static com.getprepared.constant.WebConstants.FILTERS_VARIABLE.ENCODING;
+import static com.getprepared.constant.WebConstants.FILTERS_VARIABLES.ENCODING;
 
 /**
  * Created by koval on 20.01.2017.

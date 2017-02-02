@@ -56,6 +56,8 @@ public class WebConstants {
 
         public static final String REPEAT_PWD_MSG = "repeatPassword";
 
+        public static final String CONFIRM_MSG = "confirmMsg";
+
         public static final String EMAIL_REGEX = "emailRegex";
 
         public static final String PASSWORD_REGEX = "passwordRegex";
@@ -99,14 +101,12 @@ public class WebConstants {
 
         public static final String TUTOR = "tutor";
 
-        public static final String QUIZ_ID = "quizId";
-
         public static final String QUIZ = "quiz";
     }
 
-    public static class FILTERS_VARIABLE {
+    public static class FILTERS_VARIABLES {
 
-        private FILTERS_VARIABLE() { }
+        private FILTERS_VARIABLES() { }
 
         public static final String ROLE = "role";
 

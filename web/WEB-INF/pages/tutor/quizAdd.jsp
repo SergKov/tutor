@@ -18,8 +18,9 @@
     <jsp:body>
         <div class="row">
             <div class="well">
-                <form action="/tutor/quizzes/addQuiz" method="POST" class="form-horizontal">
-                    <input type="hidden" name="controller" value="addQuiz">
+                <form action="/tutor/quizzes/add" method="POST" class="form-horizontal">
+                    <input type="hidden" name="controller" value="quizAdd">
+
                     <div class="form-group">
 
                         <div class="col-xs-3">

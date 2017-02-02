@@ -12,7 +12,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.getprepared.constant.WebConstants.FILTERS_VARIABLE.ENCODING;
+import static com.getprepared.constant.WebConstants.FILTERS_VARIABLES.ENCODING;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 

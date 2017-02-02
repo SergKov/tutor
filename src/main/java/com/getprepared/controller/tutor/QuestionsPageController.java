@@ -18,15 +18,16 @@ import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.CONFIRM_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
  * Created by koval on 25.01.2017.
  */
-public class QuestionPageController extends AbstractQuestionsController {
+public class QuestionsPageController extends AbstractQuestionsController {
 
-    private static final Logger LOG = Logger.getLogger(QuestionPageController.class);
+    private static final Logger LOG = Logger.getLogger(QuestionsPageController.class);
 
     private QuizService quizService;
     private QuestionService questionService;
@@ -41,6 +42,8 @@ public class QuestionPageController extends AbstractQuestionsController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        request.setAttribute(CONFIRM_MSG, getMessages().getMessage(CONFIRMS.ARE_YOU_SURE, request.getLocale())); //TODO
 
         final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
 
@@ -58,8 +61,17 @@ public class QuestionPageController extends AbstractQuestionsController {
                 return REDIRECT;
             }
             return PAGES.TUTOR_QUESTION;
+
         } else {
-            fillPage(request, quizService, questionService);
+
+            try {
+                fillPage(request, quizService, questionService);
+            } catch (final ValidationException e) {
+                LOG.warn(e.getMessage(), e);
+                response.sendRedirect(LINKS.NOT_FOUND);
+                return REDIRECT;
+            }
+
             return PAGES.TUTOR_QUESTIONS;
         }
     }

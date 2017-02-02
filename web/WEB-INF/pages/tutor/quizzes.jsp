@@ -38,7 +38,8 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <form action="/tutor/quizzes" method="POST" class="form-horizontal">
+                            <form action="/tutor/quizzes" method="POST" class="form-horizontal js-remove-btn"
+                                  data-remove-btn="${confirmMsg}">
                                 <input type="hidden" name="quizId" value="${quiz.id}">
                                 <input id="quiz_remove" class="remove_btn" type="image"
                                        src="/resource/img/delete.ico" width="25px" height="25px"
@@ -55,7 +56,7 @@
         </c:choose>
 
         <div class="row">
-            <a href="/tutor/quizzes/addQuiz" id="add_quiz" class="col-xs-1 col-xs-offset-10">
+            <a href="/tutor/quizzes/add" id="add_quiz" class="col-xs-1 col-xs-offset-10">
                 <img src="/resource/img/plus.ico" width="25px" height="25px">
             </a>
         </div>

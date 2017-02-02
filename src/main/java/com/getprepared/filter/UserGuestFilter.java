@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static com.getprepared.constant.WebConstants.FILTERS_VARIABLE.HOME_PAGE;
-import static com.getprepared.constant.WebConstants.FILTERS_VARIABLE.ROLE;
+import static com.getprepared.constant.WebConstants.FILTERS_VARIABLES.HOME_PAGE;
+import static com.getprepared.constant.WebConstants.FILTERS_VARIABLES.ROLE;
 
 /**
  * Created by koval on 29.01.2017.

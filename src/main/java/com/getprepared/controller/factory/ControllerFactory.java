@@ -44,7 +44,7 @@ public class ControllerFactory {
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
         mapping.put(LINKS.ADD_QUIZ, new QuizPageAddController());
-        mapping.put(LINKS.QUESTIONS, new QuestionPageController());
+        mapping.put(LINKS.QUESTIONS, new QuestionsPageController());
         mapping.put(LINKS.ADD_QUESTION, new QuestionAddPageController());
         mapping.put(LINKS.SIGN_OUT, new SignOutController());
 

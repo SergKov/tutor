@@ -56,7 +56,7 @@ public class PageConstants {
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
-        public static final String ADD_QUIZ = "/tutor/quizzes/addQuiz";
+        public static final String ADD_QUIZ = "/tutor/quizzes/add";
 
         public static final String QUESTIONS = "/tutor/quizzes/questions";
 
@@ -108,7 +108,7 @@ public class PageConstants {
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
-        public static final String ADD_QUIZ = "addQuiz";
+        public static final String ADD_QUIZ = "quizAdd";
 
         public static final String REMOVE_QUIZ = "quizRemove";
 
@@ -118,7 +118,7 @@ public class PageConstants {
 
         public static final String QUESTION = "question";
 
-        public static final String ADD_QUESTION = "addQuestion";
+        public static final String ADD_QUESTION = "questionAdd";
 
         public static final String STUDENT_TEST = "studentTest";
     }
@@ -147,12 +147,15 @@ public class PageConstants {
 
         public static final String STUDENT_INVALIDATED = "StudentInvalidated";
 
-        public static final String INVALIDATED_ID = "InvalidatedId";
-
         public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
 
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
 
         public static final String INVALIDATED_ANSWERS = "InvalidatedAnswers";
+    }
+
+    public static class CONFIRMS {
+
+        public static final String ARE_YOU_SURE = "AreYouSure";
     }
 }

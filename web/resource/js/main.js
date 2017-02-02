@@ -21,13 +21,15 @@ $(document).ready(function() {
     });
 
     $(".start_btn").click(function (e) {
-        if (!confirm('Are you ready?')) {
+        var confirmMsg = $('.js-start-btn').data('start-btn');
+        if (!confirm(confirmMsg)) {
             e.preventDefault();
         }
     });
 
     $(".remove_btn").click(function (e) {
-        if (!confirm('Are you sure?')) {
+        var confirmMsg = $('.js-remove-btn').data('remove-btn');
+        if (!confirm(confirmMsg)) {
             e.preventDefault();
         }
     });
