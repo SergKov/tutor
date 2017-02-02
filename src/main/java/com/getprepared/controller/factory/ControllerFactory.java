@@ -39,7 +39,7 @@ public class ControllerFactory {
         mapping.put(LINKS.STUDENT_SIGN_IN, new StudentSignInPageController());
         mapping.put(LINKS.NOT_FOUND, new PageNotFoundController());
         mapping.put(LINKS.SIGN_UP, new SignUpPageController());
-        mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePagePageController());
+        mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePageController());
         mapping.put(LINKS.TEST, new TestPageController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
@@ -50,7 +50,7 @@ public class ControllerFactory {
 
         mapping.put(FORMS.STUDENT_SIGN_IN, new StudentSignInController());
         mapping.put(FORMS.SIGN_UP, new SignUpController());
-        mapping.put(FORMS.STUDENT_TEST, new StudentHomePageController());
+        mapping.put(FORMS.STUDENT_START_TEST, new StudentStartTestController());
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
         mapping.put(FORMS.ADD_QUIZ, new QuizAddController());
         mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());

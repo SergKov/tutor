@@ -114,7 +114,7 @@ public class PageConstants {
 
         public static final String ADD_QUESTION = "questionAdd";
 
-        public static final String STUDENT_TEST = "studentTest";
+        public static final String STUDENT_START_TEST = "studentStartTest";
     }
 
     public static class ERRORS {
@@ -146,10 +146,5 @@ public class PageConstants {
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
 
         public static final String INVALIDATED_ANSWERS = "InvalidatedAnswers";
-    }
-
-    public static class CONFIRMS {
-
-        public static final String ARE_YOU_SURE = "AreYouSure";
     }
 }

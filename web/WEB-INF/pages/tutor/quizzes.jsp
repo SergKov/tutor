@@ -39,8 +39,9 @@
 
                         <div class="col-xs-2">
                             <form action="/tutor/quizzes" method="POST" class="form-horizontal js-remove-btn"
-                                  data-remove-btn="${confirmMsg}">
+                                  data-remove-btn="<fmt:message key="quizzes.delete.confirm"/>">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
+
                                 <input id="quiz_remove" class="remove_btn" type="image"
                                        src="/resource/img/delete.ico" width="25px" height="25px"
                                        name="controller" value="quizRemove">

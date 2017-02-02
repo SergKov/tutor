@@ -10,6 +10,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
+<c:url value="/sign-up" var="signUpAction"/>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
@@ -18,7 +20,8 @@
 
     <jsp:body>
         <div class="well">
-            <form action="/sign-up" method="POST" class="form-horizontal js-sign_up" data-msg-repeat="${repeatPassword}">
+            <form action="${signUpAction}" method="POST" class="form-horizontal js-sign_up"
+                  data-msg-repeat="${repeatPassword}">
                 <div class="row">
                     <input type="hidden" name="controller" value="signUp"/>
 

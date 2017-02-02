@@ -7,7 +7,11 @@
 --%>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
+
+<c:url value="/tutor" var="tutorAction"/>
+<c:url value="/sign-up" var="signUpAction"/>
 
 <templates:page_template>
 
@@ -17,7 +21,7 @@
 
     <jsp:body>
         <div class="well">
-            <form action="/tutor" method="POST" class="form-horizontal">
+            <form action="${tutorAction}" method="POST" class="form-horizontal">
                 <input type="hidden" name="controller" value="tutorSignIn">
 
                 <div class="row">
@@ -52,7 +56,7 @@
                 </div>
 
                 <div class="row">
-                    <p class="text-center"><a href="/sign-up"><fmt:message key="homePage.register"/></a></p>
+                    <p class="text-center"><a href="${signUpAction}"><fmt:message key="homePage.register"/></a></p>
                 </div>
             </form>
         </div>

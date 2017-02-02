@@ -27,10 +27,10 @@ $(document).ready(function() {
         }
     });
 
-    $(".remove_btn").click(function (e) { //TODO
+    $(".remove_btn").click(function (e) {
         var confirmMsg = $('.js-remove-btn').data('remove-btn');
         if (!confirm(confirmMsg)) {
-            e.preventDefault();
+            return;
         }
     });
 

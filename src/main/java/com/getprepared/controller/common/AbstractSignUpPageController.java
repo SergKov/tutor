@@ -39,7 +39,7 @@ public abstract class AbstractSignUpPageController extends AbstractController {
             final String email = request.getParameter(INPUTS.EMAIL);
             final String password = request.getParameter(INPUTS.PASSWORD);
             return fillUser(role, name, surname, email, password);
-        } catch (final Exception e) {
+        } catch (final RuntimeException e) {
             LOG.warn(e.getMessage(), e);
             throw new ValidationException("Failed to validate data", e);
         }

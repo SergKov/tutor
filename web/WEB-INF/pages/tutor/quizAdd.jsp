@@ -7,7 +7,10 @@
 --%>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
+
+<c:url value="/tutor/quizzes/add" var="addQuizAction"/>
 
 <templates:page_template>
 
@@ -18,7 +21,7 @@
     <jsp:body>
         <div class="row">
             <div class="well">
-                <form action="/tutor/quizzes/add" method="POST" class="form-horizontal">
+                <form action="${addQuizAction}" method="POST" class="form-horizontal">
                     <input type="hidden" name="controller" value="quizAdd">
 
                     <div class="form-group">
