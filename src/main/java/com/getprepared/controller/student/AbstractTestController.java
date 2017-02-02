@@ -17,11 +17,6 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 public abstract class AbstractTestController extends AbstractController {
 
     public void fillPage(final HttpServletRequest request) throws IOException {
-
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.TEST, request.getLocale()));
-
-        final Object quizObject = request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ);
-        final Quiz quiz = (Quiz) quizObject;
-        request.setAttribute(QUIZ, quiz);
     }
 }

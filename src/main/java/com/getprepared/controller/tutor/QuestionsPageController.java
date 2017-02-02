@@ -55,7 +55,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
                 validation.validateId(questionId);
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
-            } catch (final NumberFormatException | ValidationException | EntityNotFoundException e) {
+            } catch (NumberFormatException | ValidationException | EntityNotFoundException e) {
                 response.sendRedirect(LINKS.NOT_FOUND);
                 LOG.warn(e.getMessage(), e);
                 return REDIRECT;
@@ -65,7 +65,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
         } else {
 
             try {
-                fillPage(request, quizService, questionService);
+                fillPage(request, quizService, questionService, validation);
             } catch (final ValidationException e) {
                 LOG.warn(e.getMessage(), e);
                 response.sendRedirect(LINKS.NOT_FOUND);

@@ -50,9 +50,9 @@ public class PageConstants {
 
         public static final String STUDENT_SIGN_IN = "/";
 
-        public static final String SIGN_UP = "/signUp";
+        public static final String SIGN_UP = "/sign-up";
 
-        public static final String STUDENT_HOME_PAGE = "/studentHomePage";
+        public static final String STUDENT_HOME_PAGE = "/student-home-page";
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
@@ -64,11 +64,11 @@ public class PageConstants {
 
         public static final String TEST = "/test";
 
-        public static final String NOT_FOUND = "/pageNotFound";
+        public static final String NOT_FOUND = "/page-not-found";
 
         public static final String TUTOR_SIGN_IN = "/tutor";
 
-        public static final String SIGN_OUT = "/signOut";
+        public static final String SIGN_OUT = "/sign-out";
     }
 
     public static class NAMES {
@@ -104,8 +104,6 @@ public class PageConstants {
 
         public static final String SIGN_UP = "signUp";
 
-        public static final String STUDENT_HOME_PAGE = "studentHomePage";
-
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
         public static final String ADD_QUIZ = "quizAdd";
@@ -113,10 +111,6 @@ public class PageConstants {
         public static final String REMOVE_QUIZ = "quizRemove";
 
         public static final String REMOVE_QUESTION = "questionRemove";
-
-        public static final String QUIZ_QUESTIONS = "quizQuestions";
-
-        public static final String QUESTION = "question";
 
         public static final String ADD_QUESTION = "questionAdd";
 

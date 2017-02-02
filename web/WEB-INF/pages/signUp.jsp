@@ -18,7 +18,7 @@
 
     <jsp:body>
         <div class="well">
-            <form action="/signUp" method="POST" class="form-horizontal js-sign_up" data-msg-repeat="${repeatPassword}">
+            <form action="/sign-up" method="POST" class="form-horizontal js-sign_up" data-msg-repeat="${repeatPassword}">
                 <div class="row">
                     <input type="hidden" name="controller" value="signUp"/>
 

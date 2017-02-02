@@ -12,13 +12,13 @@
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url value="/tutor/quizzes/questions/add" var="addQuestionUrl">
-    <c:param name="quizId" value="${quizId}"/>
+    <c:param name="quiz-id" value="${quizId}"/>
 </c:url>
 
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="questionPage.welcome"/> ${tutor.name}
+        <fmt:message key="questionPage.welcome"/><c:out value="${tutor.name} !"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -35,7 +35,7 @@
 
                         <div class="col-xs-1">
                             <form action="/tutor/quizzes/questions" method="GET" class="form-horizontal">
-                                <input type="hidden" name="questionId" value="${question.id}">
+                                <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input type="image" id="question" class="see_btn"
                                        src="/resource/img/see.ico" width="25px" height="25px">
@@ -44,7 +44,7 @@
 
                         <div class="col-xs-2">
                             <form action="/tutor/quizzes/questions" method="POST" class="form-horizontal">
-                                <input type="hidden" name="questionId" value="${question.id}">
+                                <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input id="question_remove" class="remove_btn" type="image"
                                        src="/resource/img/delete.ico" width="25px" height="25px"

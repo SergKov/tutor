@@ -15,7 +15,6 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.CONFIRM_MSG;
 
 /**
  * Created by koval on 24.01.2017.
@@ -36,13 +35,13 @@ public class QuestionRemoveController extends AbstractQuestionsController {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-
             final Long questionId = Long.parseLong(request.getParameter(INPUTS.QUESTION_ID));
             validation.validateId(questionId);
             final Question question = questionService.findById(questionId);
             validation.validateQuestion(question);
             questionService.remove(question);
-            response.sendRedirect(LINKS.QUESTIONS);
+            final String quizId = request.getParameter(INPUTS.QUIZ_ID);
+            response.sendRedirect(String.format("%s?quiz-id=%s", LINKS.QUESTIONS, quizId));
             return REDIRECT;
         } catch (ValidationException | NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);

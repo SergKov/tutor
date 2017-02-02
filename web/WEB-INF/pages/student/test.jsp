@@ -14,7 +14,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        ${quiz.name}
+        <c:out value="${quiz.name} !"/>
     </jsp:attribute>
 
     <jsp:body>

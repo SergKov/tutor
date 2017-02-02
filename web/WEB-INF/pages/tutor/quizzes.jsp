@@ -13,7 +13,7 @@
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="quizPage.hello"/> ${tutor.name} !
+    <fmt:message key="quizPage.hello"/><c:out value="${tutor.name} !"/>
 </jsp:attribute>
 
     <jsp:body>
@@ -24,14 +24,14 @@
                         <div class="col-xs-6 col-xs-offset-2">
                             <div class="form-group">
                                 <input id="quiz_name" type="text" class="form-control"
-                                       name="quizName"
-                                       value="${quiz.name}" readonly="readonly">
+                                       name="quiz-name" value="${quiz.name}" readonly="readonly">
                             </div>
                         </div>
 
                         <div class="col-xs-1">
                             <form action="/tutor/quizzes" method="GET" class="form-horizontal">
-                                <input type="hidden" name="quizId" value="${quiz.id}">
+                                <input type="hidden" name="quiz-id" value="${quiz.id}">
+
                                 <input type="image" id="question" class="see_btn"
                                        src="/resource/img/see.ico" width="25px" height="25px">
                             </form>
@@ -40,7 +40,7 @@
                         <div class="col-xs-2">
                             <form action="/tutor/quizzes" method="POST" class="form-horizontal js-remove-btn"
                                   data-remove-btn="${confirmMsg}">
-                                <input type="hidden" name="quizId" value="${quiz.id}">
+                                <input type="hidden" name="quiz-id" value="${quiz.id}">
                                 <input id="quiz_remove" class="remove_btn" type="image"
                                        src="/resource/img/delete.ico" width="25px" height="25px"
                                        name="controller" value="quizRemove">

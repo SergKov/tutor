@@ -49,11 +49,12 @@ public class QuestionAddController extends AbstractQuestionAddController {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
 
-        final Object quizIdObject = request.getParameter(INPUTS.QUIZ_ID);
-        final Long quizId = (Long) (quizIdObject);
-        final Question question = new Question();
+        final Object quizIdObject = request.getSession().getAttribute(INPUTS.QUIZ_ID);
 
         try {
+            final Long quizId = (Long) (quizIdObject);
+
+            final Question question = new Question();
             final Quiz quiz = quizService.findById(quizId);
             question.setQuiz(quiz);
             final String questionText = request.getParameter(INPUTS.QUESTION_TEXT);
@@ -79,7 +80,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
                 question.setAnswers(answers);
                 validation.validateQuestion(question);
                 questionService.save(question);
-                response.sendRedirect(LINKS.QUESTIONS);
+                response.sendRedirect(String.format("%s?quiz-id=%s", LINKS.QUESTIONS, quizId));
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {
@@ -94,7 +95,13 @@ public class QuestionAddController extends AbstractQuestionAddController {
             LOG.warn(e.getMessage(), e);
         }
 
-        fillPage(request);
+        try {
+            fillPage(request, validation);
+        } catch (final ValidationException e) {
+            LOG.warn(e.getMessage(), e);
+            response.sendRedirect(LINKS.NOT_FOUND);
+        }
+
         return PAGES.TUTOR_ADD_QUESTION;
     }
 }

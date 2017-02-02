@@ -23,11 +23,11 @@ public class WebConstants {
 
         public static final String QUIZ = "quiz";
 
-        public static final String QUESTION_ID = "questionId";
+        public static final String QUESTION_ID = "question-id";
 
-        public static final String QUIZ_ID = "quizId";
+        public static final String QUIZ_ID = "quiz-id";
 
-        public static final String QUIZ_NAME = "quizName";
+        public static final String QUIZ_NAME = "quiz-name";
 
         public static final String QUESTION_TEXT = "questionText";
 
@@ -100,6 +100,8 @@ public class WebConstants {
         public static final String STUDENT = "student";
 
         public static final String TUTOR = "tutor";
+
+        public static final String QUIZ_ID = "quiz-id";
 
         public static final String QUIZ = "quiz";
     }

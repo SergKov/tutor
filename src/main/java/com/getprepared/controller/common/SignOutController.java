@@ -1,6 +1,5 @@
 package com.getprepared.controller.common;
 
-import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,10 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.PageConstants.PAGES;
+import static com.getprepared.constant.PageConstants.LINKS;
+import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.STUDENT;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
 
 /**
  * Created by koval on 22.01.2017.

@@ -51,7 +51,7 @@ public class QuizPageController extends AbstractQuizController {
 
                 final Long quizId = Long.valueOf(quizIdString);
                 validation.validateId(quizId);
-                request.setAttribute(QUIZ_ID, quizId);
+                request.getSession().setAttribute(QUIZ_ID, quizId);
                 final List<Question> questions = questionService.findByQuizId(quizId);
                 request.setAttribute(QUESTIONS, questions);
             } catch (final ValidationException e) {
