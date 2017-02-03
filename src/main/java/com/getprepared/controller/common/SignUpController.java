@@ -59,11 +59,11 @@ public class SignUpController extends AbstractSignUpPageController {
                 return REDIRECT;
             }
         } catch (final ValidationException e) {
+            LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
-            LOG.warn(e.getMessage(), e);
         } catch (final EntityExistsException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_EXISTS, request.getLocale()));
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_EXISTS, request.getLocale()));
         }
 
         fillPage(request);

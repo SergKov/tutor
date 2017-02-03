@@ -31,7 +31,7 @@
                         <div class="col-xs-3">
                             <select class="form-control" id="role" name="role">
                                 <c:forEach items="${roles}" var="role">
-                                    <option value="${role}">
+                                    <option value="${role}" ${role == user.role ? "selected" : ""}>
                                         <fmt:message key="signUp.${role}"/>
                                     </option>
                                 </c:forEach>

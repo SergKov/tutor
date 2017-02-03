@@ -31,7 +31,7 @@ public abstract class AbstractQuestionAddController extends AbstractController {
             final Long quizId = (Long) quizIdObject;
             validation.validateId(quizId);
             request.setAttribute(INPUTS.QUIZ_ID, quizId);
-        } catch (ClassCastException | ValidationException e) {
+        } catch (ValidationException | ClassCastException e) {
             LOG.warn(e.getMessage(), e);
             throw new ValidationException(String.format("Illegal quizId %s", quizIdObject), e);
         }

@@ -43,11 +43,11 @@ public class QuizAddController extends AbstractQuizAddController {
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;
         } catch (final ValidationException e) {
+            LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
-            LOG.warn(e.getMessage(), e);
         } catch (final EntityExistsException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
         }
 
         fillPage(request);

@@ -42,7 +42,7 @@ public abstract class AbstractQuestionsController extends AbstractController {
             if (!CollectionUtils.isEmpty(questions)) {
                 request.setAttribute(REQUEST_ATTRIBUTES.QUESTIONS, questions);
             }
-        } catch (ClassCastException | ValidationException | EntityNotFoundException e) {
+        } catch (ValidationException | EntityNotFoundException | ClassCastException e) {
             LOG.warn(e.getMessage(), e);
             throw new ValidationException(String.format("Illegal quizId %s", quizIdObject), e);
         }

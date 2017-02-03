@@ -92,11 +92,11 @@ public class QuestionAddController extends AbstractQuestionAddController {
             response.sendRedirect(LINKS.NOT_FOUND);
             return REDIRECT;
         } catch (ValidationException | IllegalArgumentException e) {
+            LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ANSWERS, request.getLocale()));
-            LOG.warn(e.getMessage(), e);
         } catch (final EntityExistsException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
         }
 
         try {

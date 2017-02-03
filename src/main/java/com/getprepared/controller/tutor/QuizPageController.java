@@ -55,8 +55,8 @@ public class QuizPageController extends AbstractQuizController {
                 final List<Question> questions = questionService.findByQuizId(quizId);
                 request.setAttribute(QUESTIONS, questions);
             } catch (final ValidationException e) {
-                response.sendRedirect(PAGES.NOT_FOUND);
                 LOG.warn(e.getMessage(), e);
+                response.sendRedirect(PAGES.NOT_FOUND);
                 return REDIRECT;
             }
             return PAGES.TUTOR_QUESTIONS;

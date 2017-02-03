@@ -48,8 +48,8 @@ public class QuizRemoveController extends AbstractQuizController {
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
         } catch (ValidationException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);

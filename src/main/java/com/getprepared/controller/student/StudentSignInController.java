@@ -61,12 +61,12 @@ public class StudentSignInController extends AbstractSignInController {
                 return REDIRECT;
             }
         } catch (final ValidationException e) {
+            LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
-            LOG.warn(e.getMessage(), e);
         } catch (final EntityNotFoundException e) {
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_NOT_FOUND, request.getLocale()));
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_NOT_FOUND, request.getLocale()));
         }
 
         fillPage(request);

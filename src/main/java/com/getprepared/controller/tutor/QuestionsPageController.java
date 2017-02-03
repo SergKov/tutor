@@ -54,14 +54,12 @@ public class QuestionsPageController extends AbstractQuestionsController {
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
             } catch (NumberFormatException | ValidationException | EntityNotFoundException e) {
-                response.sendRedirect(LINKS.NOT_FOUND);
                 LOG.warn(e.getMessage(), e);
+                response.sendRedirect(LINKS.NOT_FOUND);
                 return REDIRECT;
             }
             return PAGES.TUTOR_QUESTION;
-
         } else {
-
             try {
                 fillPage(request, quizService, questionService, validation);
             } catch (final ValidationException e) {
