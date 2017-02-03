@@ -11,10 +11,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
+<c:url value="/test" var="testAction"/>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <c:out value="${quiz.name} !"/>
+        <c:out value=" ${quiz.name} !"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -23,7 +25,7 @@
             <c:out value="${question}"/>
         </textarea>
 
-        <form action="/test" method="POST">
+        <form action="${testAction}" method="POST">
 
             <input type="hidden" name="controller" value="testPage"/>
 

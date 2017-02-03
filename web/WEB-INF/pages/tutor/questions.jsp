@@ -18,7 +18,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="questionPage.welcome"/><c:out value="${tutor.name} !"/>
+        <fmt:message key="questionPage.welcome"/><c:out value=" ${tutor.name} !"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -26,11 +26,10 @@
         <c:choose>
             <c:when test="${not empty questions}">
                 <c:forEach items="${questions}" var="question">
-
                     <div class="row">
                         <div class="col-xs-6 col-xs-offset-2">
                             <c:set var="shortText" value="${fn:substring(question.text, 0, 50)}"/>
-                                ${shortText}
+                                <c:out value="${shortText}"/>
                         </div>
 
                         <div class="col-xs-1">
@@ -43,7 +42,8 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <form action="${seeQuestionAction}" method="POST" class="form-horizontal">
+                            <form action="${seeQuestionAction}" method="POST" class="form-horizontal js-remove-btn"
+                                  data-remove-btn="<fmt:message key="quizzes.delete.confirm"/>">
                                 <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input id="question_remove" class="remove_btn" type="image"
@@ -51,9 +51,7 @@
                                        name="controller" value="questionRemove">
                             </form>
                         </div>
-
                     </div>
-
                 </c:forEach>
             </c:when>
             <c:otherwise>

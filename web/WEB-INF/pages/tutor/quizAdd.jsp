@@ -25,7 +25,6 @@
                     <input type="hidden" name="controller" value="quizAdd">
 
                     <div class="form-group">
-
                         <div class="col-xs-3">
                             <input type="text" class="form-control" id="quiz_id"
                                    value="${quizName}" pattern="${quizRegex}"

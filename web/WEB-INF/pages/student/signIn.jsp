@@ -7,7 +7,10 @@
 --%>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
+
+<c:url value="/" var="signInAction"/>
 
 <templates:page_template>
 
@@ -17,7 +20,7 @@
 
     <jsp:body>
         <div class="well">
-            <form action="/" method="POST" class="form-horizontal">
+            <form action="${signInAction}" method="POST" class="form-horizontal">
                 <div class="row">
                     <input type="hidden" name="controller" value="studentSignIn">
 

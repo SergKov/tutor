@@ -13,7 +13,7 @@
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="quizPage.hello"/><c:out value="${tutor.name} !"/>
+    <fmt:message key="quizPage.hello"/><c:out value=" ${tutor.name} !"/>
 </jsp:attribute>
 
     <jsp:body>

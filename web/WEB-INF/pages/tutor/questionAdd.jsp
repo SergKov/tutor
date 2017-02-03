@@ -10,9 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/tutor/quizzes/questions/add" var="addQuestionAction">
-    <c:param name="quiz-id" value="${quizId}"/>
-</c:url>
+<c:url value="/tutor/quizzes/questions/add" var="addQuestionAction"/>
 
 <templates:page_template>
 
@@ -25,7 +23,7 @@
             <input type="hidden" name="controller" value="questionAdd"/>
 
             <div class="row">
-                <label for="question"><fmt:message key="addQuestion.question"/> </label>
+                <label for="question"><fmt:message key="addQuestion.question"/></label>
             </div>
 
             <div class="row">
@@ -64,15 +62,11 @@
 
             <div class="row answers-manipulate">
                 <div class="col-xs-1 col-xs-offset-10">
-                    <img id="plusAnswer" src="/resource/img/plus.ico"
-                         width="25px"
-                         height="25px">
+                    <img id="plusAnswer" src="/resource/img/plus.ico" width="25px" height="25px">
                 </div>
 
                 <div class="col-xs-1">
-                    <img id="minusAnswer" src="/resource/img/minus.ico"
-                         width="25px"
-                         height="25px">
+                    <img id="minusAnswer" src="/resource/img/minus.ico" width="25px" height="25px">
                 </div>
             </div>
 

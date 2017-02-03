@@ -20,10 +20,10 @@ $(document).ready(function() {
         parent.history.back();
     });
 
-    $(".start_btn").click(function (e) {
+    $(".start_btn").click(function (e) { //TODO
         var confirmMsg = $('.js-start-btn').data('start-btn');
         if (!confirm(confirmMsg)) {
-            e.preventDefault();
+            return;
         }
     });
 
