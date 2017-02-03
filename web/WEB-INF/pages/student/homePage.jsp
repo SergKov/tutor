@@ -10,6 +10,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
+<c:url value="/student-home-page" var="homePageAction"/>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
@@ -28,7 +30,8 @@
                     </div>
                 </div>
 
-                <form action="/studentHomePage" method="POST">
+                <form action="${homePageAction}" method="POST" class="js-start-btn"
+                      data-start-btn="<fmt:message key="homePage.ready.confirm"/>">
                     <input type="hidden" name="controller" value="studentTest">
 
                     <div class="row">

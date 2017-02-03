@@ -20,7 +20,7 @@ $(document).ready(function() {
         parent.history.back();
     });
 
-    $(".start_btn").click(function (e) { //TODO
+    $("#start_btn").click(function (e) {
         var confirmMsg = $('.js-start-btn').data('start-btn');
         if (!confirm(confirmMsg)) {
             return;
