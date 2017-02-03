@@ -42,10 +42,9 @@ public class QuestionChangeController extends AbstractTestController {
         fillPage(request);
 
         final String stringNumber = request.getParameter(REQUEST_ATTRIBUTES.QUESTION_NUMBER);
-        final Integer intNumber;
 
         try {
-            intNumber = Integer.parseInt(stringNumber);
+            final Integer intNumber = Integer.parseInt(stringNumber);
             // TODO add validation
             final Long longNumber = Long.parseLong(stringNumber);
             final Quiz quiz = quizService.findById(longNumber);

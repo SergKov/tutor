@@ -27,7 +27,8 @@ public abstract class AbstractQuestionsController extends AbstractController {
     private static final Logger LOG = Logger.getLogger(AbstractQuestionsController.class);
 
     protected void fillPage(final HttpServletRequest request, final QuizService quizService,
-                            final QuestionService questionService, final Validation validation) throws ValidationException {
+                            final QuestionService questionService,
+                            final Validation validation) throws ValidationException {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTIONS, request.getLocale()));
 
