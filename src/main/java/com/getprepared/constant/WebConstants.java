@@ -76,6 +76,8 @@ public class WebConstants {
 
         public static final String QUESTION_TEXT = "questionText";
 
+        public static final String QUESTION_NUMBER = "questionNumber";
+
         public static final String ANSWER_TYPE_REGEX = "answerTypeRegex";
 
         public static final String ADD_QUESTION = "addQuestion";
@@ -84,11 +86,7 @@ public class WebConstants {
 
         public static final String QUESTIONS_LENGTH = "questionsLength";
 
-        public static final String QUESTION_NUMBER = "questionNumber";
-
         public static final String ANSWERS = "answers";
-
-        public static final String REPEAT_PASSWORD = "repeatPassword";
 
         public static final String PAGE_INDEX = "page"; //TODO
 

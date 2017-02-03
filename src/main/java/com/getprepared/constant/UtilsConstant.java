@@ -11,8 +11,6 @@ public class UtilsConstant {
 
     public static final String VALIDATION = "validation";
 
-    public static final String PARSER = "parser";
-
     public static class REGEX {
 
         private REGEX() { }

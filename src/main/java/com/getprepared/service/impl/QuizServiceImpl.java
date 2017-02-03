@@ -48,6 +48,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             final Quiz quiz = quizDao.findById(id);
             final QuestionService questionService = getQuestionService();
             final List<Question> questions = questionService.findByQuizId(id);
+            quiz.setQuestions(questions);
             final AnswerService answerService = getAnswerService();
 
             for (Question question : questions) {

@@ -24,7 +24,7 @@
             <input type="hidden" name="controller" value="studentStartTest"/>
 
             <textarea class="form-control question-border" rows="3" id="question" disabled>
-                <c:out value="${question}"/>
+                <c:out value="${question.text}"/>
             </textarea>
 
             <c:forEach items="${question.answers}" var="answer">
@@ -40,7 +40,7 @@
             <ul class="pagination">
                 <c:forEach var="i" begin="1" end="${fn:length(quiz.questions)}">
                     <li>
-                        <button name="questionNumber" value="${i}">${i}</button>
+                        <button name="questionNumber" value="${i}"><c:out value="${i}"/></button>
                     </li>
                 </c:forEach>
             </ul>

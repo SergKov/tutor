@@ -1,13 +1,16 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static com.getprepared.constant.PageConstants.*;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUIZ;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
@@ -19,12 +22,10 @@ public class TestPageController extends AbstractTestController {
     private static final Logger LOG = Logger.getLogger(TestPageController.class);
 
     @Override
-    public void init() {
-    }
+    public void init() { }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         fillPage(request);
 
         final Object quizObject = request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ);
@@ -35,6 +36,9 @@ public class TestPageController extends AbstractTestController {
 
         final Quiz quiz = (Quiz) quizObject;
         request.setAttribute(QUIZ, quiz);
+        final List<Question> questions = quiz.getQuestions();
+        final Question question = questions.get(0);
+        request.setAttribute(QUESTION, question);
         return PAGES.STUDENT_TEST;
     }
 }
