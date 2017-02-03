@@ -23,14 +23,14 @@ $(document).ready(function() {
     $("#start_btn").click(function (e) {
         var confirmMsg = $('.js-start-btn').data('start-btn');
         if (!confirm(confirmMsg)) {
-            return;
+            e.preventDefault();
         }
     });
 
     $(".remove_btn").click(function (e) {
         var confirmMsg = $('.js-remove-btn').data('remove-btn');
         if (!confirm(confirmMsg)) {
-            return;
+            e.preventDefault();
         }
     });
 

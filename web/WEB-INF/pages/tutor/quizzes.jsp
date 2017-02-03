@@ -47,7 +47,6 @@
                                        name="controller" value="quizRemove">
                             </form>
                         </div>
-                        </form>
                     </div>
                 </c:forEach>
             </c:when>

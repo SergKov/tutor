@@ -79,9 +79,7 @@
                 </div>
             </div>
             </p>
-
         </form>
-
     </jsp:body>
 
 </templates:page_template>

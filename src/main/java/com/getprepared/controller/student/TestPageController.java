@@ -1,7 +1,5 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.constant.PageConstants;
-import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Quiz;
 import org.apache.log4j.Logger;
 
@@ -10,10 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.PageConstants.PAGES;
-import static com.getprepared.constant.PageConstants.REDIRECT;
-import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUIZ;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 30.01.2017.
@@ -28,6 +24,7 @@ public class TestPageController extends AbstractTestController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
         fillPage(request);
 
         final Object quizObject = request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ);

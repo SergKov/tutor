@@ -21,7 +21,6 @@
     <jsp:body>
         <c:choose>
             <c:when test="${not empty quizzes}">
-
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-5">
                         <label class="control-label" for="quiz">
@@ -32,7 +31,7 @@
 
                 <form action="${homePageAction}" method="POST" class="js-start-btn"
                       data-start-btn="<fmt:message key="homePage.ready.confirm"/>">
-                    <input type="hidden" name="controller" value="studentTest">
+                    <input type="hidden" name="controller" value="studentStartTest">
 
                     <div class="row">
                         <div class="col-xs-offset-5 col-xs-2">
@@ -40,7 +39,7 @@
                                 <select id="quiz" class="form-control" name="quiz">
                                     <c:forEach items="${quizzes}" var="quiz">
                                         <option value="${quiz.id}">
-                                                ${quiz.name}
+                                            <c:out value="${quiz.name}"/>
                                         </option>
                                     </c:forEach>
                                 </select>
@@ -56,7 +55,6 @@
                         </div>
                     </div>
                 </form>
-
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="studentHomePage.empty"/></h1>

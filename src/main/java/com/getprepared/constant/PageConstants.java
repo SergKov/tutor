@@ -133,13 +133,9 @@ public class PageConstants {
 
         public static final String TUTOR_NOT_FOUND = "TutorNotExists";
 
-        public static final String QUIZ_NOT_FOUND = "QuizIsNotFound";
-
         public static final String QUESTION_NOT_FOUND = "QuestionIsNotFound";
 
         public static final String QUESTION_EXISTS = "QuestionExists";
-
-        public static final String STUDENT_INVALIDATED = "StudentInvalidated";
 
         public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
 

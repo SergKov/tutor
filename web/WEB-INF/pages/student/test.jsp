@@ -20,18 +20,28 @@
     </jsp:attribute>
 
     <jsp:body>
-
-        <textarea class="form-control question-border" rows="3" id="question" disabled>
-            <c:out value="${question}"/>
-        </textarea>
-
         <form action="${testAction}" method="POST">
+            <input type="hidden" name="controller" value="studentStartTest"/>
 
-            <input type="hidden" name="controller" value="testPage"/>
+            <textarea class="form-control question-border" rows="3" id="question" disabled>
+                <c:out value="${question}"/>
+            </textarea>
+
+            <c:forEach items="${question.answers}" var="answer">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <input class="form-control" value="${answer.text}" readonly/>
+                    </div>
+
+                    <div class="checkbox col-xs-2 col-xs-offset-2"></div>
+                </div>
+            </c:forEach>
 
             <ul class="pagination">
                 <c:forEach var="i" begin="1" end="${fn:length(quiz.questions)}">
-                    <li><button name="questionNumber" value="${i}">${i}</button></li>
+                    <li>
+                        <button name="questionNumber" value="${i}">${i}</button>
+                    </li>
                 </c:forEach>
             </ul>
         </form>

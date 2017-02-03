@@ -39,12 +39,12 @@ public class StudentStartTestController extends AbstractStudentHomePageControlle
             final HttpSession httpSession = request.getSession();
             final Quiz quiz = quizService.findById(id);
             httpSession.setAttribute(SESSION_ATTRIBUTES.QUIZ, quiz);
+            response.sendRedirect(LINKS.TEST);
+            return REDIRECT;
         } catch (NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(PAGES.NOT_FOUND);
             return REDIRECT;
         }
-
-        return PAGES.STUDENT_TEST;
     }
 }

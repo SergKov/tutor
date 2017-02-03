@@ -41,7 +41,6 @@
         </div>
 
         <c:forEach items="${question.answers}" var="answer">
-
             <div class="row">
                 <div class="col-xs-8">
                     <input class="form-control" value="${answer.text}" readonly/>
@@ -51,9 +50,7 @@
                     <input class="form-control" value="${answer.type}" readonly/>
                 </div>
             </div>
-
         </c:forEach>
-
 
         <div class="row">
             <div class="col-xs-3 col-xs-offset-10">
@@ -62,8 +59,6 @@
                 </button>
             </div>
         </div>
-
-
     </jsp:body>
 
 </templates:page_template>
