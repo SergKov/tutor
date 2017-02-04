@@ -55,25 +55,24 @@
                         </div>
                     </div>
                 </c:forEach>
-
-                <br/><br/>
-
-                <div class="row">
-                    <div class="col-xs-offset-5 col-xs-2">
-                        <form action="${quizzesAction}" method="POST" class="form-horizontal">
-                            <input type="hidden" name="controller" value="quizChange">
-
-                            <button class="btn btn-block btn-link" id="change">
-                                <fmt:message key="questions.changeQuiz"/>
-                            </button>
-                        </form>
-                    </div>
-                </div>
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="questionPage.text"/></h1>
             </c:otherwise>
         </c:choose>
+
+        <br/><br/>
+        <div class="row">
+            <div class="col-xs-offset-5 col-xs-2">
+                <form action="${quizzesAction}" method="POST" class="form-horizontal">
+                    <input type="hidden" name="controller" value="quizChange">
+
+                    <button class="btn btn-block btn-link" id="change">
+                        <fmt:message key="questions.changeQuiz"/>
+                    </button>
+                </form>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-xs-1 col-xs-offset-11">

@@ -1,6 +1,5 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.exception.ValidationException;
@@ -10,12 +9,9 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.PageConstants.NAMES;
-import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.UtilsConstant.REGEX;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
