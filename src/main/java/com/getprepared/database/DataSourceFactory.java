@@ -35,9 +35,9 @@ public class DataSourceFactory {
 
     public DataSource getTestDataSource() {
         final MysqlDataSource source = new MysqlDataSource();
-        source.setURL(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.URL));
-        source.setUser(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.USER));
-        source.setPassword(initProp(FILES_NAMES.DS_SETTING).getProperty(KEYS.PASSWORD));
+        source.setURL(initProp(FILES_NAMES.DS_TEST_SETTING).getProperty(KEYS.URL));
+        source.setUser(initProp(FILES_NAMES.DS_TEST_SETTING).getProperty(KEYS.USER));
+        source.setPassword(initProp(FILES_NAMES.DS_TEST_SETTING).getProperty(KEYS.PASSWORD));
         return source;
     }
 }

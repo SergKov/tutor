@@ -1,11 +1,13 @@
 package com.getprepared.service;
 
+import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by koval on 09.01.2017.
@@ -16,7 +18,9 @@ public interface QuestionService {
 
     Question findById(Long id) throws EntityNotFoundException;
 
-    List<Question> findByQuizId(Long id) ;
+    List<Question> findByQuizId(Long id);
 
     void remove(Question question) throws EntityNotFoundException;
+
+    Map<Question, List<Answer>> createNewQuiz(Long quizId);
 }

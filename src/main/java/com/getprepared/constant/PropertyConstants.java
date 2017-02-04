@@ -17,17 +17,13 @@ public class PropertyConstants {
 
         private static final String SUFFIX = ".properties";
 
-        public static final String DS_TEST_SETTING = PREFIX_DS + "mysql" + SUFFIX; // TODO rename
-
-        public static final String DS_SETTING = PREFIX_DS + "setting" + SUFFIX; // TODO rename
+        public static final String DS_TEST_SETTING = PREFIX_DS + "testDataSource" + SUFFIX;
 
         public static final String ANSWER = PREFIX_SQL + "answer" + SUFFIX;
 
         public static final String QUESTION = PREFIX_SQL + "question" + SUFFIX;
 
         public static final String QUIZ = PREFIX_SQL + "quiz" + SUFFIX;
-
-        public static final String SPECIALITY = PREFIX_SQL + "speciality" + SUFFIX;
 
         public static final String USER = PREFIX_SQL + "user" + SUFFIX;
 
@@ -37,8 +33,6 @@ public class PropertyConstants {
     public static class KEYS {
 
         private KEYS() { }
-
-        public static final String DS = "datasource"; //TODO rename
 
         public static final String URL = "url";
 

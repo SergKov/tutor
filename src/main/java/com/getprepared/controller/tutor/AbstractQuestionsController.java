@@ -32,7 +32,7 @@ public abstract class AbstractQuestionsController extends AbstractController {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTIONS, request.getLocale()));
 
-        final Object quizIdObject = request.getAttribute(INPUTS.QUIZ_ID);
+        final Object quizIdObject = request.getSession().getAttribute(INPUTS.QUIZ_ID);
 
         try {
             final Long quizId = (Long) quizIdObject;

@@ -54,6 +54,7 @@ public class ControllerFactory {
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
         mapping.put(FORMS.ADD_QUIZ, new QuizAddController());
         mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());
+        mapping.put(FORMS.QUIZ_CHANGE, new QuizChangeController());
         mapping.put(FORMS.ADD_QUESTION, new QuestionAddController());
         mapping.put(FORMS.REMOVE_QUESTION, new QuestionRemoveController());
 

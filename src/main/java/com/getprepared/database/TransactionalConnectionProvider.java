@@ -18,7 +18,7 @@ public class TransactionalConnectionProvider {
         return instance;
     }
 
-    private DataSource dataSource = DataSourceFactory.getInstance().getDataSource();
+    private final DataSource dataSource = getDataSourceFactory().getDataSource();
 
     private final ThreadLocal<TransactionConnectionCounter> threadLocal = new ThreadLocal<>();
 
@@ -77,5 +77,9 @@ public class TransactionalConnectionProvider {
 
     public DataSource getDataSource() {
         return dataSource;
+    }
+
+    private DataSourceFactory getDataSourceFactory() {
+        return DataSourceFactory.getInstance();
     }
 }

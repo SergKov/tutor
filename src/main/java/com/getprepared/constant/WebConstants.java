@@ -31,6 +31,8 @@ public class WebConstants {
 
         public static final String QUESTION_TEXT = "questionText";
 
+        public static final String QUESTION_NUMBER = "questionNumber";
+
         public static final String ANSWER_TEXT = "answerText[]";
 
         public static final String ANSWER_TYPE = "answerType[]";
@@ -75,8 +77,6 @@ public class WebConstants {
         public static final String QUESTIONS = "questions";
 
         public static final String QUESTION_TEXT = "questionText";
-
-        public static final String QUESTION_NUMBER = "questionNumber";
 
         public static final String ANSWER_TYPE_REGEX = "answerTypeRegex";
 

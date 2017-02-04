@@ -43,7 +43,7 @@ public class PageConstants {
 
         public static final String TUTOR_ADD_QUESTION = TUTOR_PREFIX + "questionAdd" + SUFFIX;
 
-        public static final String NOT_FOUND = ERROR_PREFIX + "pageNotFound" + SUFFIX;
+        public static final String NOT_FOUND = ERROR_PREFIX + "notFound" + SUFFIX;
     }
 
     public static class LINKS {
@@ -111,6 +111,8 @@ public class PageConstants {
         public static final String ADD_QUIZ = "quizAdd";
 
         public static final String REMOVE_QUIZ = "quizRemove";
+
+        public static final String QUIZ_CHANGE = "quizChange";
 
         public static final String REMOVE_QUESTION = "questionRemove";
 

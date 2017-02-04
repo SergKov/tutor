@@ -11,10 +11,13 @@ import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import org.apache.log4j.Logger;
 
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.*;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUESTION_DAO;
 import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
+import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 
 /**
  * Created by koval on 14.01.2017.
@@ -102,6 +105,14 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             LOG.warn(e.getMessage(), e);
             throw e;
         }
+    }
+
+    @Override
+    public Map<Question, List<Answer>> createNewQuiz(Long quizId) {
+        final List<Question> questions = findByQuizId(quizId);
+        final Map<Question, List<Answer>> quiz = new LinkedHashMap<>();
+        questions.forEach(question -> quiz.put(question, Collections.EMPTY_LIST));
+        return quiz;
     }
 
     private QuestionDao getDao() {
