@@ -40,7 +40,7 @@ public class QuestionChangeController extends AbstractTestController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
 
         final String stringNumber = request.getParameter(INPUTS.QUESTION_NUMBER);

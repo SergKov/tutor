@@ -39,7 +39,7 @@ public class SignUpController extends AbstractSignUpPageController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
             final User user = convertInputToUser(request);
             validation.validateUser(user);

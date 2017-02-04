@@ -18,7 +18,7 @@ public class PageNotFoundController extends AbstractController {
     public void init() { }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) {
         request.setAttribute(TITLE, PAGE_NOT_FOUND);
         return PAGES.NOT_FOUND;
     }

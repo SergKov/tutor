@@ -37,13 +37,15 @@ public class QuizRemoveController extends AbstractQuizController {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        final String quizIdString = request.getParameter(INPUTS.QUIZ_ID);
+        final String quizId = request.getParameter(INPUTS.QUIZ_ID);
 
         try {
-            final Long quizId = Long.parseLong(quizIdString);
-            validation.validateId(quizId);
-            final Quiz quiz = quizService.findById(quizId);
+            final Long parsedQuizId = Long.parseLong(quizId);
+            validation.validateId(parsedQuizId);
+
+            final Quiz quiz = quizService.findById(parsedQuizId);
             validation.validateQuiz(quiz);
+
             quizService.remove(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;

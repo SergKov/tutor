@@ -3,21 +3,17 @@ package com.getprepared.service.impl;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
-import com.getprepared.domain.Quiz;
+import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUESTION_DAO;
 import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 
 /**
  * Created by koval on 14.01.2017.
@@ -108,11 +104,11 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public Map<Question, List<Answer>> createNewQuiz(Long quizId) {
+    public List<TestQuestion> startTest(final Long quizId) {
         final List<Question> questions = findByQuizId(quizId);
-        final Map<Question, List<Answer>> quiz = new LinkedHashMap<>();
-        questions.forEach(question -> quiz.put(question, Collections.EMPTY_LIST));
-        return quiz;
+        final List<TestQuestion> testQuestions = new ArrayList<>();
+        questions.forEach(question -> testQuestions.add(new TestQuestion(question, Collections.EMPTY_LIST)));
+        return testQuestions;
     }
 
     private QuestionDao getDao() {

@@ -31,7 +31,7 @@
 
                 <form action="${homePageAction}" method="POST" class="js-start-btn"
                       data-start-btn="<fmt:message key="homePage.ready.confirm"/>">
-                    <input type="hidden" name="controller" value="studentStartTest">
+                    <input type="hidden" name="controller" value="startTest"/>
 
                     <div class="row">
                         <div class="col-xs-offset-5 col-xs-2">

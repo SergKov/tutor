@@ -38,4 +38,24 @@ public class Answer extends Entity {
     public void setType(AnswerType type) {
         this.type = type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Answer answer = (Answer) o;
+
+        if (question != null ? !question.equals(answer.question) : answer.question != null) return false;
+        if (text != null ? !text.equals(answer.text) : answer.text != null) return false;
+        return type == answer.type;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = question != null ? question.hashCode() : 0;
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
+    }
 }

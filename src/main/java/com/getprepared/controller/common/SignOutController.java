@@ -20,7 +20,7 @@ public class SignOutController extends AbstractController {
     public void init() { }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         final HttpSession httpSession = request.getSession(false);
 
         if (httpSession.getAttribute(STUDENT) != null) {

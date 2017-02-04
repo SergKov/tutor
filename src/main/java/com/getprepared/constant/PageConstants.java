@@ -112,13 +112,11 @@ public class PageConstants {
 
         public static final String REMOVE_QUIZ = "quizRemove";
 
-        public static final String QUIZ_CHANGE = "quizChange";
-
         public static final String REMOVE_QUESTION = "questionRemove";
 
         public static final String ADD_QUESTION = "questionAdd";
 
-        public static final String STUDENT_START_TEST = "studentStartTest";
+        public static final String STUDENT_START_TEST = "startTest";
     }
 
     public static class ERRORS {
@@ -146,5 +144,7 @@ public class PageConstants {
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
 
         public static final String INVALIDATED_ANSWERS = "InvalidatedAnswers";
+
+        public static final String INVALIDATED_QUESTION_NUMBER = "InvalidatedQuestionNumber";
     }
 }

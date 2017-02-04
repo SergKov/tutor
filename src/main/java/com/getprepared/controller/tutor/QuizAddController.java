@@ -34,7 +34,7 @@ public class QuizAddController extends AbstractQuizAddController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
             final Quiz quiz = convertInputToQuiz(request);
             request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());

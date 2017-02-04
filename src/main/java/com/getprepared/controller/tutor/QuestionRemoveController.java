@@ -33,7 +33,7 @@ public class QuestionRemoveController extends AbstractQuestionsController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
             final Long questionId = Long.parseLong(request.getParameter(INPUTS.QUESTION_ID));
             validation.validateId(questionId);

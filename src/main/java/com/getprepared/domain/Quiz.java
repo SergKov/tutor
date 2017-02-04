@@ -29,4 +29,22 @@ public class Quiz extends Entity {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Quiz quiz = (Quiz) o;
+
+        if (name != null ? !name.equals(quiz.name) : quiz.name != null) return false;
+        return questions != null ? questions.equals(quiz.questions) : quiz.questions == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (questions != null ? questions.hashCode() : 0);
+        return result;
+    }
 }

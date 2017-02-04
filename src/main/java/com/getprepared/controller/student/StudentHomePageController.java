@@ -22,7 +22,7 @@ public class StudentHomePageController extends AbstractStudentHomePageController
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request, quizService);
         return PAGES.STUDENT_HOME_PAGE;
     }

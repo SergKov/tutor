@@ -1,5 +1,6 @@
 package com.getprepared.service;
 
+import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
@@ -22,5 +23,5 @@ public interface QuestionService {
 
     void remove(Question question) throws EntityNotFoundException;
 
-    Map<Question, List<Answer>> createNewQuiz(Long quizId);
+    List<TestQuestion> startTest(Long quizId);
 }

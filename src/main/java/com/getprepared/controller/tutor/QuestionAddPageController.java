@@ -22,7 +22,7 @@ public class QuestionAddPageController extends AbstractQuestionAddController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         return fillPage(request, response, validation);
     }
 }

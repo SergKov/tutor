@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/tutor/quizzes/questions/add" var="addQuestionHref"/>
+<c:url value="/tutor/quizzes/questions/add" var="addQuestionAction"/>
 <c:url value="/resource/img/plus.ico" var="plusAnswerIcon"/>
 <c:url value="/resource/img/minus.ico" var="minusAnswerIcon"/>
 
@@ -21,7 +21,7 @@
     </jsp:attribute>
 
     <jsp:body>
-        <form action="${addQuestionHref}" method="POST" class="form-horizontal">
+        <form action="${addQuestionAction}" method="POST" class="form-horizontal">
             <input type="hidden" name="controller" value="questionAdd"/>
 
             <div class="row">
@@ -37,7 +37,7 @@
 
             <div class="row">
                 <div class="col-xs-8">
-                    <span><fmt:message key="addQuestion.answer"/> </span>
+                    <span><fmt:message key="addQuestion.answer"/></span>
                 </div>
                 <div class="col-xs-1 col-xs-offset-2">
                     <span><fmt:message key="addQuestion.type"/> </span>
@@ -62,6 +62,7 @@
                 </div>
             </div>
 
+
             <div class="row answers-manipulate">
                 <div class="col-xs-1 col-xs-offset-10">
                     <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px">
@@ -71,6 +72,7 @@
                     <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px">
                 </div>
             </div>
+
 
             <p>
             <div class="row">

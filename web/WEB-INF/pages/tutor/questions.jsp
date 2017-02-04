@@ -11,9 +11,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/tutor/quizzes" var="quizzesAction"/>
 <c:url value="/tutor/quizzes/questions" var="questionAction"/>
 <c:url value="/tutor/quizzes/questions/add" var="addQuestionHref"/>
+<c:url value="/tutor/quizzes" var="quizzesHref"/>
 <c:url value="/resource/img/see.ico" var="seeQuestionIcon"/>
 <c:url value="/resource/img/delete.ico" var="deleteQuestionIcon"/>
 <c:url value="/resource/img/plus.ico" var="addQuestionIcon"/>
@@ -64,13 +64,9 @@
         <br/><br/>
         <div class="row">
             <div class="col-xs-offset-5 col-xs-2">
-                <form action="${quizzesAction}" method="POST" class="form-horizontal">
-                    <input type="hidden" name="controller" value="quizChange">
-
-                    <button class="btn btn-block btn-link" id="change">
-                        <fmt:message key="questions.changeQuiz"/>
-                    </button>
-                </form>
+                <a href="${quizzesHref}">
+                    <fmt:message key="questions.changeQuiz"/>
+                </a>
             </div>
         </div>
 

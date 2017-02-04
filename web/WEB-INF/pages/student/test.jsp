@@ -21,7 +21,7 @@
 
     <jsp:body>
         <form action="${testAction}" method="POST">
-            <input type="hidden" name="controller" value="studentStartTest"/>
+            <input type="hidden" name="controller" value="testPage"/>
 
             <textarea class="form-control question-border" rows="3" id="question" disabled>
                 <c:out value="${question.text}"/>

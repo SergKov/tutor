@@ -34,15 +34,15 @@ public class QuizPageController extends AbstractQuizController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final String quizIdString = request.getParameter(QUIZ_ID);
+        final String quizId = request.getParameter(QUIZ_ID);
 
-        if (StringUtils.isNumeric(quizIdString)) {
+        if (StringUtils.isNumeric(quizId)) {
             try {
-                final Long quizId = Long.valueOf(quizIdString);
-                validation.validateId(quizId);
-                request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, quizId);
+                final Long parsedQuizId = Long.valueOf(quizId);
+                validation.validateId(parsedQuizId);
+                request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
                 response.sendRedirect(LINKS.QUESTIONS);
             } catch (final ValidationException e) {
                 LOG.warn(e.getMessage(), e);

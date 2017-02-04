@@ -21,19 +21,19 @@ public class FrontController extends HttpServlet {
     private static final String CONTROLLER_KEY = "controller";
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    public void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, ServletException {
         final String controllerKey = req.getRequestURI();
         getPage(req, resp, controllerKey);
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+    public void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, ServletException {
         final String controllerKey = req.getParameter(CONTROLLER_KEY);
         getPage(req, resp, controllerKey);
     }
 
-    private void getPage(HttpServletRequest req, HttpServletResponse resp,
-                         String controllerKey) throws IOException, ServletException {
+    private void getPage(final HttpServletRequest req, final HttpServletResponse resp,
+                         final String controllerKey) throws IOException, ServletException {
 
         final Controller controller = ControllerFactory.getInstance().getController(controllerKey);
 

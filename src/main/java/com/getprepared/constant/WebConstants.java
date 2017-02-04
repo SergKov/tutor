@@ -80,6 +80,10 @@ public class WebConstants {
 
         public static final String ANSWER_TYPE_REGEX = "answerTypeRegex";
 
+        public static final String ANSWER_TEXT = "answerText";
+
+        public static final String ANSWER_TYPE = "answerType";
+
         public static final String ADD_QUESTION = "addQuestion";
 
         public static final String ANSWER_TYPES = "answerTypes";
@@ -104,6 +108,8 @@ public class WebConstants {
         public static final String QUIZ_ID = "quiz-id";
 
         public static final String QUIZ = "quiz";
+
+        public static final String TEST = "test";
     }
 
     public static class FILTERS_VARIABLES {

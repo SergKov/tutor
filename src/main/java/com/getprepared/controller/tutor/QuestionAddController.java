@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.getprepared.constant.PageConstants.*;
@@ -25,6 +26,7 @@ import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.REPEAT_PWD_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
@@ -46,15 +48,13 @@ public class QuestionAddController extends AbstractQuestionAddController {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
 
-        final Object quizIdObject = request.getSession().getAttribute(INPUTS.QUIZ_ID);
+        final Long quizId = (Long) request.getSession().getAttribute(INPUTS.QUIZ_ID);
 
         try {
-            final Long quizId = (Long) (quizIdObject);
-
             final Question question = new Question();
             final Quiz quiz = quizService.findById(quizId);
             question.setQuiz(quiz);

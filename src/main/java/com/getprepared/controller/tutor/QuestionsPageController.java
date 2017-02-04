@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
@@ -17,6 +18,7 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.CONFIRM_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
@@ -46,6 +48,11 @@ public class QuestionsPageController extends AbstractQuestionsController {
         final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
 
         if (StringUtils.isNumeric(questionIdString)) {
+
+            if (request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID) != null) {
+                request.getSession().removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+            }
+
             try {
                 request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTION, request.getLocale()));
 
