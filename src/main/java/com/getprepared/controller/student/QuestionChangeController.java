@@ -1,6 +1,7 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.constant.PageConstants;
+import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityNotFoundException;
@@ -18,6 +19,7 @@ import static com.getprepared.constant.PageConstants.LINKS;
 import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
+import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 
@@ -41,7 +43,7 @@ public class QuestionChangeController extends AbstractTestController {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         fillPage(request);
 
-        final String stringNumber = request.getParameter(REQUEST_ATTRIBUTES.QUESTION_NUMBER);
+        final String stringNumber = request.getParameter(INPUTS.QUESTION_NUMBER);
 
         try {
             final Integer intNumber = Integer.parseInt(stringNumber);

@@ -9,7 +9,7 @@ public class CollectionUtils {
 
     private CollectionUtils() { }
 
-    public static boolean isEmpty(Collection coll) {
-        return coll != null && coll.isEmpty();
+    public static boolean isEmpty(final Collection coll) {
+        return coll == null || coll.isEmpty();
     }
 }

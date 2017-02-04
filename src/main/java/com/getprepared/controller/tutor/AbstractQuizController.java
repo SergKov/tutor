@@ -20,7 +20,7 @@ public abstract class AbstractQuizController extends AbstractController {
     protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUIZZES, request.getLocale()));
-        final List<Quiz> quizzes = quizService.findAll();
+        final List<Quiz> quizzes = quizService.findAllCreated();
         if (!CollectionUtils.isEmpty(quizzes)) {
             request.setAttribute(REQUEST_ATTRIBUTES.QUIZZES, quizzes);
         }

@@ -9,8 +9,11 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
+import com.getprepared.utils.impl.CollectionUtils;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUIZ_DAO;
@@ -71,8 +74,34 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         getTransactionManager().begin();
         final QuizDao quizDao = getDao();
         final List<Quiz> quizzes = quizDao.findAll();
+
+        quizzes.forEach(quiz -> {
+            final QuestionService questionService = getQuestionService();
+            final List<Question> questions = questionService.findByQuizId(quiz.getId());
+
+            questions.forEach(question -> {
+                final AnswerService answerService = getAnswerService();
+                final List<Answer> answers = answerService.findByQuestionId(question.getId());
+                question.setAnswers(answers);
+            });
+
+            quiz.setQuestions(questions);
+        });
         getTransactionManager().commit();
         return quizzes;
+    }
+
+    @Override
+    public List<Quiz> findAllCreated() {
+        final List<Quiz> allQuizzes = findAll();
+        final List<Quiz> createdQuizzes = new ArrayList<>();
+
+        allQuizzes.forEach(quiz -> {
+            if (!CollectionUtils.isEmpty(quiz.getQuestions()) && quiz.getQuestions().size() >= 2) {
+                createdQuizzes.add(quiz);
+            }
+        });
+        return createdQuizzes;
     }
 
     @Override

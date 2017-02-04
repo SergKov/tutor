@@ -24,7 +24,7 @@ public abstract class AbstractStudentHomePageController extends AbstractControll
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.HOME_PAGE, request.getLocale()));
         request.setAttribute(QUIZ, REGEX.QUIZ_NAME);
 
-        final List<Quiz> quizList = quizService.findAll();
+        final List<Quiz> quizList = quizService.findAllCreated();
 
         if (!CollectionUtils.isEmpty(quizList)) {
             request.setAttribute(QUIZZES, quizList);
