@@ -32,20 +32,22 @@ public abstract class AbstractQuestionsController extends AbstractController {
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTIONS, request.getLocale()));
 
-        final Object quizIdObject = request.getSession().getAttribute(INPUTS.QUIZ_ID);
+        final Object quizId = request.getSession().getAttribute(INPUTS.QUIZ_ID);
 
         try {
-            final Long quizId = (Long) quizIdObject;
-            validation.validateId(quizId);
-            final Quiz quiz = quizService.findById(quizId);
+            final Long parsedQuizId = (Long) quizId;
+            validation.validateId(parsedQuizId);
+
+            final Quiz quiz = quizService.findById(parsedQuizId);
             request.setAttribute(REQUEST_ATTRIBUTES.QUIZ, quiz);
-            final List<Question> questions = questionService.findByQuizId(quizId);
+
+            final List<Question> questions = questionService.findByQuizId(parsedQuizId);
             if (!CollectionUtils.isEmpty(questions)) {
                 request.setAttribute(REQUEST_ATTRIBUTES.QUESTIONS, questions);
             }
         } catch (ValidationException | EntityNotFoundException | ClassCastException e) {
             LOG.warn(e.getMessage(), e);
-            throw new ValidationException(String.format("Illegal quizId %s", quizIdObject), e);
+            throw new ValidationException(String.format("Illegal quizId %s", quizId), e);
         }
     }
 }

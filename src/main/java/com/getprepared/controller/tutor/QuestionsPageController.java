@@ -1,6 +1,5 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
@@ -18,11 +17,10 @@ import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
-import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.INPUTS;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.CONFIRM_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 25.01.2017.
@@ -58,6 +56,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
 
                 final Long questionId = Long.valueOf(questionIdString);
                 validation.validateId(questionId);
+                
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
             } catch (NumberFormatException | ValidationException | EntityNotFoundException e) {

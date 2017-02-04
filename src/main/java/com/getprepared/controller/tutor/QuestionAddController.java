@@ -54,10 +54,12 @@ public class QuestionAddController extends AbstractQuestionAddController {
 
         final Long quizId = (Long) request.getSession().getAttribute(INPUTS.QUIZ_ID);
 
+        final Question question = new Question();
+
         try {
-            final Question question = new Question();
             final Quiz quiz = quizService.findById(quizId);
             question.setQuiz(quiz);
+
             final String questionText = request.getParameter(INPUTS.QUESTION_TEXT);
             question.setText(questionText);
 
@@ -83,6 +85,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
                 question.setAnswers(answers);
                 validation.validateQuestion(question);
                 questionService.save(question);
+                
                 response.sendRedirect(LINKS.QUESTIONS);
                 return REDIRECT;
             }

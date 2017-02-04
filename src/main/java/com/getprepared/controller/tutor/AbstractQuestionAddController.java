@@ -26,25 +26,22 @@ public abstract class AbstractQuestionAddController extends AbstractController {
 
     protected void fillPage(final HttpServletRequest request, final Validation validation) throws ValidationException {
 
-        final HttpSession session = request.getSession();
-        final Object quizIdObject = session.getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+        final Object quizId = request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+        final Long parsedQuizId = (Long) quizId;
 
         try {
-            final Long quizId = (Long) quizIdObject;
-            validation.validateId(quizId);
-            request.setAttribute(INPUTS.QUIZ_ID, quizId);
+            validation.validateId(parsedQuizId);
+            request.setAttribute(INPUTS.QUIZ_ID, parsedQuizId);
         } catch (ValidationException | ClassCastException e) {
             LOG.warn(e.getMessage(), e);
-            throw new ValidationException(String.format("Illegal quizId %s", quizIdObject), e);
+            throw new ValidationException(String.format("Illegal quizId %s", quizId), e);
         }
-
 
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
         request.setAttribute(ANSWER_TYPES, AnswerType.values());
         request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
     }
 
-    /* check if quiz was deleted - pageNotFound */
     protected String fillPage(final HttpServletRequest request, final HttpServletResponse response,
                               final Validation validation) throws IOException {
         try {

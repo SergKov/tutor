@@ -37,8 +37,10 @@ public class QuestionRemoveController extends AbstractQuestionsController {
         try {
             final Long questionId = Long.parseLong(request.getParameter(INPUTS.QUESTION_ID));
             validation.validateId(questionId);
+
             final Question question = questionService.findById(questionId);
             validation.validateQuestion(question);
+            
             questionService.remove(question);
             response.sendRedirect(LINKS.QUESTIONS);
             return REDIRECT;

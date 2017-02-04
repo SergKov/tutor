@@ -48,8 +48,6 @@ public class TutorSignInController extends AbstractSignInController {
         final String email = request.getParameter(INPUTS.EMAIL);
         final String password = request.getParameter(INPUTS.PASSWORD);
 
-        request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
-
         try {
             validation.validateEmail(email);
             validation.validatePassword(password);
@@ -64,9 +62,11 @@ public class TutorSignInController extends AbstractSignInController {
 
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
         } catch (final ValidationException e) {
             LOG.warn(e.getMessage(), e);
+            request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
         }

@@ -39,6 +39,7 @@ public class QuizAddController extends AbstractQuizAddController {
             final Quiz quiz = convertInputToQuiz(request);
             request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());
             validation.validateQuiz(quiz);
+            
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;
