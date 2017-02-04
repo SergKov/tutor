@@ -11,6 +11,8 @@
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url value="/tutor/quizzes/questions/add" var="addQuestionHref"/>
+<c:url value="/resource/img/plus.ico" var="plusAnswerIcon"/>
+<c:url value="/resource/img/minus.ico" var="minusAnswerIcon"/>
 
 <templates:page_template>
 
@@ -62,11 +64,11 @@
 
             <div class="row answers-manipulate">
                 <div class="col-xs-1 col-xs-offset-10">
-                    <img id="plusAnswer" src="/resource/img/plus.ico" width="25px" height="25px">
+                    <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px">
                 </div>
 
                 <div class="col-xs-1">
-                    <img id="minusAnswer" src="/resource/img/minus.ico" width="25px" height="25px">
+                    <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px">
                 </div>
             </div>
 

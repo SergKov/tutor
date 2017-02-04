@@ -12,6 +12,9 @@
 
 <c:url value="/tutor/quizzes" var="quizzesAction"/>
 <c:url value="/tutor/quizzes/add" var="addQuizHref"/>
+<c:url value="/resource/img/see.ico" var="seeQuestionsIcon"/>
+<c:url value="/resource/img/delete.ico" var="deleteQuizIcon"/>
+<c:url value="/resource/img/plus.ico" var="plusQuestionIcon"/>
 
 <templates:page_template>
 
@@ -36,7 +39,7 @@
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
                                 <input type="image" id="question" class="see_btn"
-                                       src="/resource/img/see.ico" width="25px" height="25px">
+                                       src="${seeQuestionsIcon}" width="25px" height="25px">
                             </form>
                         </div>
 
@@ -46,7 +49,7 @@
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
                                 <input id="quiz_remove" class="remove_btn" type="image"
-                                       src="/resource/img/delete.ico" width="25px" height="25px"
+                                       src="${deleteQuizIcon}" width="25px" height="25px"
                                        name="controller" value="quizRemove">
                             </form>
                         </div>
@@ -60,7 +63,7 @@
 
         <div class="row">
             <a href="${addQuizHref}" id="add_quiz" class="col-xs-1 col-xs-offset-10">
-                <img src="/resource/img/plus.ico" width="25px" height="25px">
+                <img src="${plusQuestionIcon}" width="25px" height="25px">
             </a>
         </div>
 

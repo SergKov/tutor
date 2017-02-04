@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.exception.ValidationException;
@@ -7,9 +8,14 @@ import com.getprepared.utils.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.IOException;
+
+import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.PageConstants.NAMES;
+import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.UtilsConstant.REGEX;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
@@ -40,5 +46,19 @@ public abstract class AbstractQuestionAddController extends AbstractController {
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
         request.setAttribute(ANSWER_TYPES, AnswerType.values());
         request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
+    }
+
+    /* check if quiz was deleted - pageNotFound */
+    protected String fillPage(final HttpServletRequest request, final HttpServletResponse response,
+                              final Validation validation) throws IOException {
+        try {
+            fillPage(request, validation);
+        } catch (final ValidationException e) {
+            LOG.warn(e.getMessage(), e);
+            response.sendRedirect(LINKS.NOT_FOUND);
+            return REDIRECT;
+        }
+
+        return PAGES.TUTOR_ADD_QUESTION;
     }
 }

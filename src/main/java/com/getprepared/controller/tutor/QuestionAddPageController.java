@@ -31,13 +31,6 @@ public class QuestionAddPageController extends AbstractQuestionAddController {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            fillPage(request, validation);
-        } catch (final ValidationException e) {
-            LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINKS.NOT_FOUND);
-            return REDIRECT;
-        }
-        return PAGES.TUTOR_ADD_QUESTION;
+        return fillPage(request, response, validation);
     }
 }
