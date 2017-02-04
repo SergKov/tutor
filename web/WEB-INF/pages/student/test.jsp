@@ -29,11 +29,13 @@
 
             <c:forEach items="${question.answers}" var="answer">
                 <div class="row">
-                    <div class="col-xs-8">
-                        <input class="form-control" value="${answer.text}" readonly/>
+                    <br/>
+                    <div class="col-xs-10">
+                        <c:out value="${answer.text}"/>
                     </div>
-
-                    <div class="checkbox col-xs-2 col-xs-offset-2"></div>
+                    <div class="col-xs-2">
+                        <input type="checkbox" value="" name="answerText[]">
+                    </div>
                 </div>
             </c:forEach>
 

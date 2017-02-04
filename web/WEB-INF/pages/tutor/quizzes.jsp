@@ -10,6 +10,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
+<c:url value="/tutor/quizzes" var="quizzesAction"/>
+<c:url value="/tutor/quizzes/add" var="addQuizHref"/>
+
 <templates:page_template>
 
 <jsp:attribute name="header">
@@ -29,7 +32,7 @@
                         </div>
 
                         <div class="col-xs-1">
-                            <form action="/tutor/quizzes" method="GET" class="form-horizontal">
+                            <form action="${quizzesAction}" method="GET" class="form-horizontal">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
                                 <input type="image" id="question" class="see_btn"
@@ -38,7 +41,7 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <form action="/tutor/quizzes" method="POST" class="form-horizontal js-remove-btn"
+                            <form action="${quizzesAction}" method="POST" class="form-horizontal js-remove-btn"
                                   data-remove-btn="<fmt:message key="quizzes.delete.confirm"/>">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
@@ -56,7 +59,7 @@
         </c:choose>
 
         <div class="row">
-            <a href="/tutor/quizzes/add" id="add_quiz" class="col-xs-1 col-xs-offset-10">
+            <a href="${addQuizHref}" id="add_quiz" class="col-xs-1 col-xs-offset-10">
                 <img src="/resource/img/plus.ico" width="25px" height="25px">
             </a>
         </div>

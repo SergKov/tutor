@@ -17,6 +17,8 @@
 </head>
 <body>
 
+<c:url value="/sign-out" var="signOutHref"/>
+
 <div id="pageheader">
     <h1 class="text-primary text-center">
         <jsp:invoke fragment="header"/>
@@ -26,7 +28,7 @@
         <c:when test="${not empty student}">
             <ul>
                 <li>
-                    <a href="/sign-out">
+                    <a href="${signOutHref}">
                         <fmt:message key="signOut.signOut"/>
                     </a>
                 </li>
@@ -36,7 +38,7 @@
         <c:when test="${not empty tutor}">
             <ul>
                 <li>
-                    <a href="/sign-out">
+                    <a href="${signOutHref}">
                         <fmt:message key="signOut.signOut"/>
                     </a>
                 </li>

@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/tutor/quizzes/questions/add" var="addQuestionAction"/>
+<c:url value="/tutor/quizzes/questions/add" var="addQuestionHref"/>
 
 <templates:page_template>
 
@@ -19,7 +19,7 @@
     </jsp:attribute>
 
     <jsp:body>
-        <form action="${addQuestionAction}" method="POST" class="form-horizontal">
+        <form action="${addQuestionHref}" method="POST" class="form-horizontal">
             <input type="hidden" name="controller" value="questionAdd"/>
 
             <div class="row">

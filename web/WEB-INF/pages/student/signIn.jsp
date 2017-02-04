@@ -11,6 +11,7 @@
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url value="/" var="signInAction"/>
+<c:url value="/sign-up" var="signUpHref"/>
 
 <templates:page_template>
 
@@ -53,7 +54,7 @@
                 </div>
 
                 <div class="row">
-                    <p class="text-center"><a href="/sign-up"><fmt:message key="homePage.register"/></a></p>
+                    <p class="text-center"><a href="${signUpHref}"><fmt:message key="homePage.register"/></a></p>
                 </div>
             </form>
         </div>

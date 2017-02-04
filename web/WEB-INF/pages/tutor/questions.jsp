@@ -11,9 +11,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/tutor/quizzes/questions/add" var="addQuestionAction"/>
-<c:url value="/tutor/quizzes/questions" var="seeQuestionAction"/>
-<c:url value="/tutor/quizzes/questions" var="removeQuestionAction"/>
+<c:url value="/tutor/quizzes" var="quizzesAction"/>
+<c:url value="/tutor/quizzes/questions" var="questionAction"/>
+<c:url value="/tutor/quizzes/questions/add" var="addQuestionHref"/>
 
 <templates:page_template>
 
@@ -22,7 +22,6 @@
     </jsp:attribute>
 
     <jsp:body>
-
         <c:choose>
             <c:when test="${not empty questions}">
                 <c:forEach items="${questions}" var="question">
@@ -33,7 +32,7 @@
                         </div>
 
                         <div class="col-xs-1">
-                            <form action="${seeQuestionAction}" method="GET" class="form-horizontal">
+                            <form action="${questionAction}" method="GET" class="form-horizontal">
                                 <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input type="image" id="question" class="see_btn"
@@ -42,7 +41,7 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <form action="${seeQuestionAction}" method="POST" class="form-horizontal js-remove-btn"
+                            <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
                                   data-remove-btn="<fmt:message key="quizzes.delete.confirm"/>">
                                 <input type="hidden" name="question-id" value="${question.id}">
 
@@ -58,7 +57,7 @@
 
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-2">
-                        <form action="/tutor/quizzes" method="POST" class="form-horizontal">
+                        <form action="${quizzesAction}" method="POST" class="form-horizontal">
                             <input type="hidden" name="controller" value="quizChange">
 
                             <button class="btn btn-block btn-link" id="change">
@@ -75,7 +74,7 @@
 
         <div class="row">
             <div class="col-xs-1 col-xs-offset-11">
-                <a href="${addQuestionAction}" id="add_question">
+                <a href="${addQuestionHref}" id="add_question">
                     <img src="/resource/img/plus.ico" width="25px" height="25px">
                 </a>
             </div>
