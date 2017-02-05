@@ -17,9 +17,9 @@
 
     <jsp:body>
         <form action="${testAction}" method="POST">
-            <input type="hidden" name="controller" value="startTest"/>
+            <input type="hidden" name="controller" value="saveAnswer"/>
 
-            <textarea class="form-control question-border" rows="3" id="question" disabled>
+            <textarea class="form-control question-border" rows="3" name="questionText" id="question" disabled>
                 <c:out value="${question.text}"/>
             </textarea>
 

@@ -52,7 +52,7 @@ public class StudentChangeQuestionController extends AbstractController {
             LOG.warn(e.getMessage(), e);
         }
 
-        request.setAttribute(QUESTION, question == null ? test.get(FIRST_QUESTION) : question);
+        request.setAttribute(QUESTION, question == null ? test.get(FIRST_QUESTION).getQuestion() : question);
 
         return PAGES.STUDENT_TEST;
     }
