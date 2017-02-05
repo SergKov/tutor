@@ -32,9 +32,6 @@ public class StudentChangeQuestionController extends AbstractController {
     private static final int FIRST_QUESTION = 0;
 
     @Override
-    public void init() { }
-
-    @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
         request.setAttribute(TITLE, getMessages().getMessage(PageConstants.NAMES.TEST, request.getLocale()));

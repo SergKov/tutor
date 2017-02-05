@@ -12,9 +12,6 @@ import static com.getprepared.constant.PageConstants.PAGES;
 public class QuizPageAddController extends AbstractQuizAddController {
 
     @Override
-    public void init() { }
-
-    @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
         return PAGES.TUTOR_ADD_QUIZ;

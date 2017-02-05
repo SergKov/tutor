@@ -16,9 +16,6 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 public class TutorSignInPageController extends AbstractSignInController {
 
     @Override
-    public void init() { }
-
-    @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
         return PAGES.TUTOR_SIGN_IN;
