@@ -1,6 +1,8 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.dto.TestQuestion;
+import com.getprepared.domain.Question;
 import com.getprepared.service.QuestionService;
 import com.getprepared.utils.Validation;
 import org.apache.log4j.Logger;
@@ -20,18 +22,14 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 30.01.2017.
  */
-public class TestStartController extends AbstractTestController {
+public class StudentChangeQuestionController extends AbstractTestController {
 
-    private static final Logger LOG = Logger.getLogger(TestStartController.class);
+    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);
 
-    private QuestionService questionService;
-    private Validation validation;
+    private static final int FIRST_QUESTION = 0;
 
     @Override
-    public void init() {
-        questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    public void init() { }
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
@@ -41,12 +39,17 @@ public class TestStartController extends AbstractTestController {
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST);
 
-        Integer questionNumber = (Integer) request.getAttribute(INPUTS.QUESTION_NUMBER);
-        if (questionNumber == null || questionNumber > test.size() || questionNumber < 0) {
-            questionNumber = 1;
+        Question question = null;
+        try {
+            final Integer questionNumber = Integer.valueOf(request.getParameter(INPUTS.QUESTION_NUMBER));
+            if (questionNumber <= test.size() && questionNumber > 0) {
+                question = test.get(questionNumber - 1).getQuestion();
+            }
+        } catch (final NumberFormatException e) {
+            LOG.warn(e.getMessage(), e);
         }
 
-        request.setAttribute(QUESTION, test.get(questionNumber - 1).getQuestion());
+        request.setAttribute(QUESTION, question == null ? test.get(FIRST_QUESTION) : question);
 
         return PAGES.STUDENT_TEST;
     }

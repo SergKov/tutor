@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-xs-offset-5 col-xs-2">
                             <div class="form-group">
-                                <select id="quiz" class="form-control" name="quiz">
+                                <select id="quiz" name="quiz-id" class="form-control">
                                     <c:forEach items="${quizzes}" var="quiz">
                                         <option value="${quiz.id}">
                                             <c:out value="${quiz.name}"/>

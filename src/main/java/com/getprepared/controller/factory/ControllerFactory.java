@@ -40,7 +40,7 @@ public class ControllerFactory {
         mapping.put(LINKS.NOT_FOUND, new PageNotFoundController());
         mapping.put(LINKS.SIGN_UP, new SignUpPageController());
         mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePageController());
-        mapping.put(LINKS.TEST, new TestStartController());
+        mapping.put(LINKS.TEST, new StudentChangeQuestionController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
         mapping.put(LINKS.ADD_QUIZ, new QuizPageAddController());

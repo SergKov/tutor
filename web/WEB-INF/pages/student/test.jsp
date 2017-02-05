@@ -15,13 +15,9 @@
 
 <templates:page_template>
 
-    <jsp:attribute name="header">
-        <c:out value=" ${quiz.name} !"/>
-    </jsp:attribute>
-
     <jsp:body>
         <form action="${testAction}" method="POST">
-            <input type="hidden" name="controller" value="testPage"/>
+            <input type="hidden" name="controller" value="startTest"/>
 
             <textarea class="form-control question-border" rows="3" id="question" disabled>
                 <c:out value="${question.text}"/>
@@ -38,9 +34,11 @@
                     </div>
                 </div>
             </c:forEach>
+        </form>
 
+        <form action="${testAction}" method="GET">
             <ul class="pagination">
-                <c:forEach var="i" begin="1" end="${fn:length(quiz.questions)}">
+                <c:forEach var="i" begin="1" end="${fn:length(test)}">
                     <li>
                         <button name="questionNumber" value="${i}"><c:out value="${i}"/></button>
                     </li>
