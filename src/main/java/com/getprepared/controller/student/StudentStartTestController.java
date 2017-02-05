@@ -23,6 +23,7 @@ import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE
 import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
@@ -32,13 +33,11 @@ public class StudentStartTestController extends AbstractStudentHomePageControlle
 
     private static final Logger LOG = Logger.getLogger(StudentStartTestController.class);
 
-    private QuizService quizService;
     private QuestionService questionService;
     private Validation validation;
 
     @Override
     public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
         questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
         validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
     }
