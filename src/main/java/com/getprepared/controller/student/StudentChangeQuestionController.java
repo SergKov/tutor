@@ -25,11 +25,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 30.01.2017.
  */
-public class StudentChangeQuestionController extends AbstractController {
-
-    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);
-
-    private static final int FIRST_QUESTION = 0;
+public class StudentChangeQuestionController extends AbstractTestController {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
@@ -39,17 +35,8 @@ public class StudentChangeQuestionController extends AbstractController {
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST);
 
-        Question question = null;
-        try {
-            final Integer questionNumber = Integer.valueOf(request.getParameter(INPUTS.QUESTION_NUMBER));
-            if (questionNumber <= test.size() && questionNumber > 0) {
-                question = test.get(questionNumber - 1).getQuestion();
-            }
-        } catch (final NumberFormatException e) {
-            LOG.warn(e.getMessage(), e);
-        }
-
-        request.setAttribute(QUESTION, question == null ? test.get(FIRST_QUESTION).getQuestion() : question);
+        final Integer questionNumber = getQuestionNumber(request, test);
+        request.setAttribute(QUESTION, test.get(questionNumber).getQuestion());
 
         return PAGES.STUDENT_TEST;
     }
