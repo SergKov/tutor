@@ -24,4 +24,6 @@ public interface QuestionService {
     void remove(Question question) throws EntityNotFoundException;
 
     List<TestQuestion> startTest(Long quizId);
+
+    Byte endTest(List<TestQuestion> test);
 }

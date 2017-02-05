@@ -56,15 +56,17 @@ public class PageConstants {
 
         public static final String STUDENT_HOME_PAGE = "/student-home-page";
 
+        public static final String STUDENT_TEST = "/test";
+
+        public static final String STUDENT_RESULT = "/test/result";
+
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
-        public static final String ADD_QUIZ = "/tutor/quizzes/add";
+        public static final String TUTOR_ADD_QUIZ = "/tutor/quizzes/add";
 
-        public static final String QUESTIONS = "/tutor/quizzes/questions";
+        public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
 
-        public static final String ADD_QUESTION = "/tutor/quizzes/questions/add";
-
-        public static final String TEST = "/test";
+        public static final String TUTOR_ADD_QUESTION = "/tutor/quizzes/questions/add";
 
         public static final String TUTOR_SIGN_IN = "/tutor";
 
@@ -104,19 +106,21 @@ public class PageConstants {
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
-        public static final String SIGN_UP = "signUp";
+        public static final String STUDENT_START_TEST = "startTest";
+
+        public static final String STUDENT_END_TEST = "endTest";
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
-        public static final String ADD_QUIZ = "quizAdd";
+        public static final String TUTOR_ADD_QUIZ = "quizAdd";
 
-        public static final String REMOVE_QUIZ = "quizRemove";
+        public static final String TUTOR_REMOVE_QUIZ = "quizRemove";
 
-        public static final String REMOVE_QUESTION = "questionRemove";
+        public static final String TUTOR_REMOVE_QUESTION = "questionRemove";
 
-        public static final String ADD_QUESTION = "questionAdd";
+        public static final String TUTOR_ADD_QUESTION = "questionAdd";
 
-        public static final String STUDENT_START_TEST = "startTest";
+        public static final String SIGN_UP = "signUp";
     }
 
     public static class ERRORS {
@@ -144,7 +148,5 @@ public class PageConstants {
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
 
         public static final String INVALIDATED_ANSWERS = "InvalidatedAnswers";
-
-        public static final String INVALIDATED_QUESTION_NUMBER = "InvalidatedQuestionNumber";
     }
 }

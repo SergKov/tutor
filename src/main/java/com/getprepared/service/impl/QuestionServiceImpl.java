@@ -107,8 +107,14 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     public List<TestQuestion> startTest(final Long quizId) {
         final List<Question> questions = findByQuizId(quizId);
         final List<TestQuestion> testQuestions = new ArrayList<>();
-        questions.forEach(question -> testQuestions.add(new TestQuestion(question, Collections.EMPTY_LIST)));
+        questions.forEach(question -> testQuestions.add(new TestQuestion(question, Collections.emptyList())));
         return testQuestions;
+    }
+
+    @Override
+    public Byte endTest(final List<TestQuestion> test) {
+        final int oneAnswer = 100 / test.size();
+        return null;
     }
 
     private QuestionDao getDao() {

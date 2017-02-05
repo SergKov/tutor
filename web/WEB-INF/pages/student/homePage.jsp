@@ -61,14 +61,6 @@
                 <h3 class="text-muted text-center"><fmt:message key="studentHomePage.tryLater"/></h3>
             </c:otherwise>
         </c:choose>
-
-        <div class="row">
-            <div class="col-xs-offset-5 col-xs-2">
-                <button class="btn btn-block btn-link" id="back_btn">
-                    <fmt:message key="studentHomePage.back"/>
-                </button>
-            </div>
-        </div>
     </jsp:body>
 
 </templates:page_template>

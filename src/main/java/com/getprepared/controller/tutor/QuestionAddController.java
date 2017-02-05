@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static com.getprepared.constant.PageConstants.*;
@@ -26,7 +25,6 @@ import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.REPEAT_PWD_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
@@ -86,7 +84,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
                 validation.validateQuestion(question);
                 questionService.save(question);
                 
-                response.sendRedirect(LINKS.QUESTIONS);
+                response.sendRedirect(LINKS.TUTOR_QUESTIONS);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {

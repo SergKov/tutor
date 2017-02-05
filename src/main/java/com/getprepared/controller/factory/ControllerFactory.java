@@ -40,22 +40,23 @@ public class ControllerFactory {
         mapping.put(LINKS.NOT_FOUND, new PageNotFoundController());
         mapping.put(LINKS.SIGN_UP, new SignUpPageController());
         mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePageController());
-        mapping.put(LINKS.TEST, new StudentChangeQuestionController());
+        mapping.put(LINKS.STUDENT_TEST, new StudentChangeQuestionController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
-        mapping.put(LINKS.ADD_QUIZ, new QuizPageAddController());
-        mapping.put(LINKS.QUESTIONS, new QuestionsPageController());
-        mapping.put(LINKS.ADD_QUESTION, new QuestionAddPageController());
+        mapping.put(LINKS.TUTOR_ADD_QUIZ, new QuizPageAddController());
+        mapping.put(LINKS.TUTOR_QUESTIONS, new QuestionsPageController());
+        mapping.put(LINKS.TUTOR_ADD_QUESTION, new QuestionAddPageController());
         mapping.put(LINKS.SIGN_OUT, new SignOutController());
 
         mapping.put(FORMS.STUDENT_SIGN_IN, new StudentSignInController());
         mapping.put(FORMS.SIGN_UP, new SignUpController());
         mapping.put(FORMS.STUDENT_START_TEST, new StudentStartTestController());
+        mapping.put(FORMS.STUDENT_END_TEST, new StudentEndTestController());
         mapping.put(FORMS.TUTOR_SIGN_IN, new TutorSignInController());
-        mapping.put(FORMS.ADD_QUIZ, new QuizAddController());
-        mapping.put(FORMS.REMOVE_QUIZ, new QuizRemoveController());
-        mapping.put(FORMS.ADD_QUESTION, new QuestionAddController());
-        mapping.put(FORMS.REMOVE_QUESTION, new QuestionRemoveController());
+        mapping.put(FORMS.TUTOR_ADD_QUIZ, new QuizAddController());
+        mapping.put(FORMS.TUTOR_REMOVE_QUIZ, new QuizRemoveController());
+        mapping.put(FORMS.TUTOR_ADD_QUESTION, new QuestionAddController());
+        mapping.put(FORMS.TUTOR_REMOVE_QUESTION, new QuestionRemoveController());
 
         mapping.values().forEach(AbstractController::init);
     }

@@ -58,8 +58,6 @@ public class WebConstants {
 
         public static final String REPEAT_PWD_MSG = "repeatPassword";
 
-        public static final String CONFIRM_MSG = "confirmMsg";
-
         public static final String EMAIL_REGEX = "emailRegex";
 
         public static final String PASSWORD_REGEX = "passwordRegex";
@@ -90,8 +88,6 @@ public class WebConstants {
 
         public static final String QUESTIONS_LENGTH = "questionsLength";
 
-        public static final String ANSWERS = "answers";
-
         public static final String PAGE_INDEX = "page"; //TODO
 
         public static final String PAGE_SIZE = "size"; //TODO
@@ -107,9 +103,9 @@ public class WebConstants {
 
         public static final String QUIZ_ID = "quiz-id";
 
-        public static final String QUIZ = "quiz";
-
         public static final String TEST = "test";
+
+        public static final String MARK = "mark";
     }
 
     public static class FILTERS_VARIABLES {

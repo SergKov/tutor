@@ -44,7 +44,7 @@ public class QuizPageController extends AbstractQuizController {
                 validation.validateId(parsedQuizId);
 
                 request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
-                response.sendRedirect(LINKS.QUESTIONS);
+                response.sendRedirect(LINKS.TUTOR_QUESTIONS);
             } catch (final ValidationException e) {
                 LOG.warn(e.getMessage(), e);
                 response.sendRedirect(PAGES.NOT_FOUND);

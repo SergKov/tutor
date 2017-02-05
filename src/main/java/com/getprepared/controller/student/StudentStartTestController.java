@@ -1,29 +1,20 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.controller.dto.TestQuestion;
-import com.getprepared.domain.Answer;
-import com.getprepared.domain.Question;
-import com.getprepared.domain.Quiz;
-import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
-import com.getprepared.service.QuizService;
 import com.getprepared.utils.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import static com.getprepared.constant.PageConstants.*;
 import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
@@ -54,7 +45,7 @@ public class StudentStartTestController extends AbstractStudentHomePageControlle
 
             final List<TestQuestion> test = questionService.startTest(parsedQuizId);
             request.getSession().setAttribute(SESSION_ATTRIBUTES.TEST, test);
-            response.sendRedirect(LINKS.TEST);
+            response.sendRedirect(LINKS.STUDENT_TEST);
             return REDIRECT;
         } catch (ValidationException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);

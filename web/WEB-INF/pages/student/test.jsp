@@ -30,7 +30,7 @@
                         <c:out value="${answer.text}"/>
                     </div>
                     <div class="col-xs-2">
-                        <input type="checkbox" value="" name="answerText[]">
+                        <input type="checkbox" value="" name="answerType[]">
                     </div>
                 </div>
             </c:forEach>
@@ -44,6 +44,18 @@
                     </li>
                 </c:forEach>
             </ul>
+        </form>
+
+        <form action="${testAction}" method="POST">
+            <input type="hidden" name="controller" value="endTest">
+
+            <div class="row">
+                <div class="col-xs-offset-7 col-xs-5">
+                    <button type="submit" id="start_btn" class="btn btn-info btn-md">
+                        <fmt:message key="test.submit"/>
+                    </button>
+                </div>
+            </div>
         </form>
     </jsp:body>
 
