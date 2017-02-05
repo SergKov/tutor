@@ -1,7 +1,6 @@
 package com.getprepared.utils.impl;
 
 import com.getprepared.utils.PasswordEncoder;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Base64;
 
@@ -11,7 +10,7 @@ import java.util.Base64;
 public class PasswordEncoderImpl implements PasswordEncoder {
 
     @Override
-    public String encode(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
+    public String encode(final String password) {
+        return Base64.getEncoder().encodeToString(password.getBytes());
     }
 }
