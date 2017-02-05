@@ -42,7 +42,7 @@ public class QuizPageController extends AbstractQuizController {
             try {
                 final Long parsedQuizId = Long.valueOf(quizId);
                 validation.validateId(parsedQuizId);
-                
+
                 request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
                 response.sendRedirect(LINKS.QUESTIONS);
             } catch (final ValidationException e) {
@@ -51,6 +51,7 @@ public class QuizPageController extends AbstractQuizController {
             }
             return REDIRECT;
         } else {
+            request.removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
             fillPage(request, quizService);
             return PAGES.TUTOR_QUIZZES;
         }

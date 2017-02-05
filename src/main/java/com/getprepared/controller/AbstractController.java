@@ -9,7 +9,7 @@ import com.getprepared.utils.impl.Messages;
  */
 public abstract class AbstractController implements Controller {
 
-    public abstract void init();
+    public void init() { }
 
     protected Messages getMessages() {
         return Messages.getInstance();

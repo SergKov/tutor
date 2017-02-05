@@ -46,11 +46,6 @@ public class QuestionsPageController extends AbstractQuestionsController {
         final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
 
         if (StringUtils.isNumeric(questionIdString)) {
-
-            if (request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID) != null) {
-                request.getSession().removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
-            }
-
             try {
                 request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTION, request.getLocale()));
 
