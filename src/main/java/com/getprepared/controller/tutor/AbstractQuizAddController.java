@@ -22,11 +22,4 @@ public abstract class AbstractQuizAddController extends AbstractController {
         request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUIZ, request.getLocale()));
         request.setAttribute(QUIZ_NAME_REGEX, REGEX.QUIZ_NAME);
     }
-
-    protected Quiz convertInputToQuiz(final HttpServletRequest request) throws ValidationException {
-        final String name = request.getParameter(INPUTS.QUIZ_NAME);
-        final Quiz quiz = new Quiz();
-        quiz.setName(name);
-        return quiz;
-    }
 }

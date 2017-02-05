@@ -30,29 +30,4 @@ public abstract class AbstractSignUpPageController extends AbstractController {
         request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
         request.setAttribute(REPEAT_PWD_MSG, getMessages().getMessage(ERRORS.PASSWORDS_NOT_MATCH, request.getLocale()));
     }
-
-    protected User convertInputToUser(final HttpServletRequest request) throws ValidationException {
-        try {
-            final String role = request.getParameter(INPUTS.ROLE);
-            final String name = request.getParameter(INPUTS.NAME);
-            final String surname = request.getParameter(INPUTS.SURNAME);
-            final String email = request.getParameter(INPUTS.EMAIL);
-            final String password = request.getParameter(INPUTS.PASSWORD);
-            return fillUser(role, name, surname, email, password);
-        } catch (final RuntimeException e) {
-            LOG.warn(e.getMessage(), e);
-            throw new ValidationException("Failed to validate data", e);
-        }
-    }
-
-    private User fillUser(final String role, final String name, final String surname, final String email,
-                          final String password) {
-        final User user = new User();
-        user.setRole(Role.valueOf(role));
-        user.setName(name);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setPassword(password);
-        return user;
-    }
 }

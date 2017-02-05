@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
@@ -35,9 +36,10 @@ public class QuizAddController extends AbstractQuizAddController {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
+        final Quiz quiz = new Quiz();
+        final String quizName = request.getParameter(WebConstants.INPUTS.QUIZ_NAME);
         try {
-            final Quiz quiz = convertInputToQuiz(request);
-            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());
+            quiz.setName(quizName);
             validation.validateQuiz(quiz);
             
             quizService.save(quiz);
@@ -50,6 +52,7 @@ public class QuizAddController extends AbstractQuizAddController {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
         }
+        request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());
 
         fillPage(request);
         return PAGES.TUTOR_ADD_QUIZ;
