@@ -51,7 +51,7 @@ public class QuizPageController extends AbstractQuizController {
             }
             return REDIRECT;
         } else {
-            request.removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+            request.getSession().removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
             fillPage(request, quizService);
             return PAGES.TUTOR_QUIZZES;
         }
