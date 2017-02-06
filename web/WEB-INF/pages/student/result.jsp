@@ -5,12 +5,15 @@
   Time: 22:43
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-</body>
-</html>
+<templates:page_template>
+
+    <jsp:attribute name="header">
+        <h1 class="text-primary text-center"><c:out value="${mark}"></c:out></h1>
+    </jsp:attribute>
+
+</templates:page_template>

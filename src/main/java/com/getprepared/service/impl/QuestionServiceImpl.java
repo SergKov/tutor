@@ -125,7 +125,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
                     .collect(toList());
             return testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;
         }).sum();
-        return (double) countCorrectAnswers / test.size();
+        return (double) countCorrectAnswers / test.size() * 100;
     }
 
     private QuestionDao getDao() {

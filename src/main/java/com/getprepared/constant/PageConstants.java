@@ -31,6 +31,8 @@ public class PageConstants {
 
         public static final String STUDENT_TEST = STUDENT_PREFIX + "test" + SUFFIX;
 
+        public static final String STUDENT_GET_RESULT = STUDENT_PREFIX + "result" + SUFFIX;
+
         public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
 
         public static final String TUTOR_QUIZZES = TUTOR_PREFIX + "quizzes" + SUFFIX;
@@ -52,13 +54,15 @@ public class PageConstants {
 
         public static final String STUDENT_SIGN_IN = "/";
 
+        public static final String LOCALE = "/locale";
+
         public static final String SIGN_UP = "/sign-up";
 
         public static final String STUDENT_HOME_PAGE = "/student";
 
         public static final String STUDENT_TEST = "/student/test";
 
-        public static final String STUDENT_RESULT = "/student/test/result";
+        public static final String STUDENT_GET_RESULT = "/student/test/result";
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 

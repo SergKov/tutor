@@ -45,7 +45,7 @@
 
                         <div class="col-xs-2">
                             <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
-                                  data-remove-btn="<fmt:message key="quizzes.delete.confirm"/>">
+                                  data-remove-btn="<fmt:message key="quizzes.confirm"/>">
                                 <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input id="question_remove" class="remove_btn" type="image"

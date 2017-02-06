@@ -88,15 +88,8 @@ public class WebConstants {
 
         public static final String ANSWER_TYPE = "answerType";
 
-        public static final String ADD_QUESTION = "addQuestion";
-
         public static final String ANSWER_TYPES = "answerTypes";
 
-        public static final String QUESTIONS_LENGTH = "questionsLength";
-
-        public static final String PAGE_INDEX = "page"; //TODO
-
-        public static final String PAGE_SIZE = "size"; //TODO
     }
 
     public static class SESSION_ATTRIBUTES {
@@ -123,5 +116,7 @@ public class WebConstants {
         public static final String HOME_PAGE = "homePage";
 
         public static final String ENCODING = "UTF-8";
+
+        public static final String LANG_KEY = "lang";
     }
 }
