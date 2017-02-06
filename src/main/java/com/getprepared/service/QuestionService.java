@@ -25,5 +25,5 @@ public interface QuestionService {
 
     List<TestQuestion> startTest(Long quizId);
 
-    Byte endTest(List<TestQuestion> test);
+    double endTest(List<TestQuestion> test);
 }

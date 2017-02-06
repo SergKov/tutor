@@ -1,19 +1,23 @@
 package com.getprepared.service.impl;
 
+import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Answer;
+import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
-import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUESTION_DAO;
 import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by koval on 14.01.2017.
@@ -22,7 +26,8 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
 
-    public QuestionServiceImpl() { }
+    public QuestionServiceImpl() {
+    }
 
     @Override
     public void init() {
@@ -111,9 +116,16 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public Byte endTest(final List<TestQuestion> test) {
-        final int oneAnswer = 100 / test.size();
-        return null;
+    public double endTest(final List<TestQuestion> test) {
+        final int countCorrectAnswers = test.stream().mapToInt(testQuestion -> {
+            final List<Answer> correctAnswers = testQuestion.getQuestion()
+                    .getAnswers()
+                    .stream()
+                    .filter(answer -> answer.getType().equals(AnswerType.CORRECT))
+                    .collect(toList());
+            return testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;
+        }).sum();
+        return (double) countCorrectAnswers / test.size();
     }
 
     private QuestionDao getDao() {
