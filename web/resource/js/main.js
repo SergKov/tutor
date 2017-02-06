@@ -27,6 +27,13 @@ $(document).ready(function() {
         }
     });
 
+    $("#finish_btn").click(function (e) {
+        var confirmMsg = $('.js-finish-btn').data('finish-btn');
+        if (!confirm(confirmMsg)) {
+            e.preventDefault();
+        }
+    });
+
     $(".remove_btn").click(function (e) {
         var confirmMsg = $('.js-remove-btn').data('remove-btn');
         if (!confirm(confirmMsg)) {

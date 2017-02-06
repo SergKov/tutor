@@ -53,17 +53,16 @@
             </ul>
         </form>
 
-        <div class="row">
-            <form action="${testAction}" method="POST">
-                <input type="hidden" name="controller" value="endTest">
+        <form action="${testAction}" method="POST" class="form-horizontal js-finish-btn"
+              data-finish-btn="<fmt:message key="test.confirm.finish"/>">
+            <input type="hidden" name="controller" value="endTest">
 
-                <div class="col-xs-5">
-                    <button type="submit" id="start_btn" class="btn btn-info btn-md">
-                        <fmt:message key="test.submit"/>
-                    </button>
-                </div>
-            </form>
-        </div>
+            <div class="col-xs-5">
+                <button type="submit" id="finish_btn" class="btn btn-info btn-md">
+                    <fmt:message key="test.submit"/>
+                </button>
+            </div>
+        </form>
     </jsp:body>
 
 </templates:page_template>
