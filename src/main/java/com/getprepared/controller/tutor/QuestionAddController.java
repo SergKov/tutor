@@ -54,6 +54,8 @@ public class QuestionAddController extends AbstractQuestionAddController {
 
         final Question question = new Question();
 
+        String[] answersText = null;
+        String[] answersType = null;
         try {
             final Quiz quiz = quizService.findById(quizId);
             question.setQuiz(quiz);
@@ -63,8 +65,8 @@ public class QuestionAddController extends AbstractQuestionAddController {
 
             request.setAttribute(REQUEST_ATTRIBUTES.QUESTION_TEXT, questionText);
 
-            final String[] answersText = request.getParameterValues(INPUTS.ANSWER_TEXT);
-            final String[] answersType = request.getParameterValues(INPUTS.ANSWER_TYPE);
+            answersText = request.getParameterValues(INPUTS.ANSWER_TEXT);
+            answersType = request.getParameterValues(INPUTS.ANSWER_TYPE);
 
             if (answersText.length != answersType.length) {
                 request.setAttribute(ERROR_MSG, ERRORS.FILL_NOT_ALL_FIELDS);
@@ -98,6 +100,9 @@ public class QuestionAddController extends AbstractQuestionAddController {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
         }
+
+        request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TYPE, answersType);
+        request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TEXT, answersText);
 
         return fillPage(request, response, validation);
     }

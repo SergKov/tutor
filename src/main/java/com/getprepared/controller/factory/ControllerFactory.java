@@ -3,10 +3,7 @@ package com.getprepared.controller.factory;
 import com.getprepared.constant.PageConstants.LINKS;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.Controller;
-import com.getprepared.controller.common.PageNotFoundController;
-import com.getprepared.controller.common.SignOutController;
-import com.getprepared.controller.common.SignUpController;
-import com.getprepared.controller.common.SignUpPageController;
+import com.getprepared.controller.common.*;
 import com.getprepared.controller.student.*;
 import com.getprepared.controller.tutor.*;
 
@@ -41,6 +38,7 @@ public class ControllerFactory {
         mapping.put(LINKS.SIGN_UP, new SignUpPageController());
         mapping.put(LINKS.STUDENT_HOME_PAGE, new StudentHomePageController());
         mapping.put(LINKS.STUDENT_TEST, new StudentChangeQuestionController());
+        mapping.put(LINKS.STUDENT_GET_RESULT, new StudentResultPageController());
         mapping.put(LINKS.TUTOR_SIGN_IN, new TutorSignInPageController());
         mapping.put(LINKS.TUTOR_QUIZZES, new QuizPageController());
         mapping.put(LINKS.TUTOR_ADD_QUIZ, new QuizPageAddController());
