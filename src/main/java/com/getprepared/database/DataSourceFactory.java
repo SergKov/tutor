@@ -24,6 +24,8 @@ public class DataSourceFactory {
         return instance;
     }
 
+    private DataSourceFactory() { }
+
     public DataSource getDataSource() {
         try {
             return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/tutor");
