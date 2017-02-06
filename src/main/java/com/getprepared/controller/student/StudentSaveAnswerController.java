@@ -1,21 +1,19 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Answer;
-import com.getprepared.domain.AnswerType;
-import com.getprepared.domain.Question;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.getprepared.constant.PageConstants.PAGES;
-import static com.getprepared.constant.WebConstants.INPUTS;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
+import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TEST_QUESTION;
 
 /**
  * Created by koval on 05.02.2017.
@@ -27,31 +25,37 @@ public class StudentSaveAnswerController extends AbstractTestController {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final String[] answerTypes = request.getParameterValues(INPUTS.ANSWER_TYPE);
+        final String[] chosenAnswersId = request.getParameterValues(INPUTS.CHOSEN_ANSWER_ID);
 
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST);
 
-        Question question = null;
+        Integer questionNumber = null;
         try {
-            final Integer questionNumber = Integer.valueOf(request.getParameter(INPUTS.QUESTION_NUMBER));
+            questionNumber = Integer.valueOf(request.getParameter(INPUTS.QUESTION_NUMBER));
             if (questionNumber <= test.size() && questionNumber > 0) {
-                question = test.get(questionNumber - 1).getQuestion();
+                final TestQuestion testQuestion = test.get(questionNumber - 1);
 
-                final TestQuestion testQuestion = test.get(questionNumber);
-                final List<Answer> answers = testQuestion.getQuestion().getAnswers();
+                final List<Answer> chosenAnswers = new ArrayList<>();
 
-                for (int i = 0; i < answerTypes.length; i++) {
-                    if (answerTypes[i].equals(AnswerType.CORRECT.name())) {
-                        testQuestion.getAnswers().add(answers.get(i));
-                    }
+                if (chosenAnswersId.length > 0) {
+                    testQuestion.getQuestion().getAnswers().forEach(answer -> {
+                        final String stringAnswerId = String.valueOf(answer.getId());
+                        if (ArrayUtils.contains(chosenAnswersId, stringAnswerId)) {
+                            chosenAnswers.add(answer);
+                        }
+                    });
                 }
+
+                testQuestion.setAnswers(chosenAnswers);
             }
         } catch (final NumberFormatException e) {
-            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage());
+            questionNumber = FIRST_QUESTION;
         }
 
-        request.setAttribute(QUESTION, question == null ? test.get(FIRST_QUESTION).getQuestion() : question);
+        request.setAttribute(TEST_QUESTION, test.get(questionNumber - 1));
+        request.setAttribute(REQUEST_ATTRIBUTES.CURRENT_QUESTION, questionNumber);
 
         return PAGES.STUDENT_TEST;
     }

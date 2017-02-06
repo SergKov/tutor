@@ -108,6 +108,8 @@ public class PageConstants {
 
         public static final String STUDENT_START_TEST = "startTest";
 
+        public static final String STUDENT_SAVE_ANSWER = "saveAnswer";
+
         public static final String STUDENT_END_TEST = "endTest";
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";

@@ -18,22 +18,29 @@
     <jsp:body>
         <form action="${testAction}" method="POST">
             <input type="hidden" name="controller" value="saveAnswer"/>
+            <input type="hidden" name="questionNumber" value="${currentQuestion}"/>
 
             <textarea class="form-control question-border" rows="3" name="questionText" id="question" disabled>
-                <c:out value="${question.text}"/>
+                <c:out value="${testQuestion.question.text}"/>
             </textarea>
 
-            <c:forEach items="${question.answers}" var="answer">
+            <c:forEach items="${testQuestion.question.answers}" var="answer">
                 <div class="row">
                     <br/>
                     <div class="col-xs-10">
                         <c:out value="${answer.text}"/>
                     </div>
                     <div class="col-xs-2">
-                        <input type="checkbox" value="" name="answerType[]">
+                        <input type="checkbox" value="${answer.id}" name="chosenAnswersId[]"
+                               <c:if test="${fn:contains(testQuestion.answers, answer)}">checked</c:if>
+                        >
                     </div>
                 </div>
             </c:forEach>
+
+            <button type="submit" id="save_btn" class="col-xs-2 btn btn-info btn-md">
+                <fmt:message key="test.answer.save"/>
+            </button>
         </form>
 
         <form action="${testAction}" method="GET">
@@ -46,17 +53,17 @@
             </ul>
         </form>
 
-        <form action="${testAction}" method="POST">
-            <input type="hidden" name="controller" value="endTest">
+        <div class="row">
+            <form action="${testAction}" method="POST">
+                <input type="hidden" name="controller" value="endTest">
 
-            <div class="row">
-                <div class="col-xs-offset-7 col-xs-5">
+                <div class="col-xs-5">
                     <button type="submit" id="start_btn" class="btn btn-info btn-md">
                         <fmt:message key="test.submit"/>
                     </button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </jsp:body>
 
 </templates:page_template>

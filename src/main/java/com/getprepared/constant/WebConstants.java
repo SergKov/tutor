@@ -36,6 +36,8 @@ public class WebConstants {
         public static final String ANSWER_TEXT = "answerText[]";
 
         public static final String ANSWER_TYPE = "answerType[]";
+
+        public static final String CHOSEN_ANSWER_ID = "chosenAnswersId[]";
     }
 
     public static class REQUEST_ATTRIBUTES {
@@ -72,11 +74,15 @@ public class WebConstants {
 
         public static final String QUESTION = "question";
 
+        public static final String TEST_QUESTION = "testQuestion";
+
         public static final String QUESTIONS = "questions";
 
         public static final String QUESTION_TEXT = "questionText";
 
         public static final String ANSWER_TYPE_REGEX = "answerTypeRegex";
+
+        public static final String CURRENT_QUESTION = "currentQuestion";
 
         public static final String ANSWER_TEXT = "answerText";
 

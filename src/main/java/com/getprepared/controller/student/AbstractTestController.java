@@ -18,16 +18,16 @@ public abstract class AbstractTestController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(AbstractTestController.class);
 
-    protected static final int FIRST_QUESTION = 0;
+    protected static final int FIRST_QUESTION = 1;
 
     protected Integer getQuestionNumber(final HttpServletRequest request, final List<TestQuestion> test) {
         try {
             final Integer questionNumber = Integer.valueOf(request.getParameter(INPUTS.QUESTION_NUMBER));
             if (questionNumber <= test.size() && questionNumber > 0) {
-                return questionNumber - 1;
+                return questionNumber;
             }
         } catch (final NumberFormatException e) {
-            LOG.warn(e.getMessage(), e);
+            LOG.warn(e.getMessage());
         }
 
         return FIRST_QUESTION;

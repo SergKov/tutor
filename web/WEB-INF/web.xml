@@ -29,7 +29,8 @@
     
     <filter-mapping>
         <filter-name>StudentGuestFilter</filter-name>
-        <url-pattern>/student-home-page/*</url-pattern>
+        <url-pattern>/student-home-page</url-pattern>
+        <url-pattern>/test/*</url-pattern>
     </filter-mapping>
     
     <filter>
