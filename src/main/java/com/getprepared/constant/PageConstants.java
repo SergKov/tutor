@@ -102,6 +102,8 @@ public class PageConstants {
         public static final String ADD_QUESTION = "AddQuestion";
 
         public static final String TEST = "Test";
+
+        public static final String RESULT = "Result";
     }
 
     public static class FORMS {
