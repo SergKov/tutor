@@ -38,7 +38,7 @@ public class StudentSaveAnswerController extends AbstractTestController {
 
                 final List<Answer> chosenAnswers = new ArrayList<>();
 
-                if (chosenAnswersId.length > 0) {
+                if (ArrayUtils.isNotEmpty(chosenAnswersId) && chosenAnswersId.length > 0) {
                     testQuestion.getQuestion().getAnswers().forEach(answer -> {
                         final String stringAnswerId = String.valueOf(answer.getId());
                         if (ArrayUtils.contains(chosenAnswersId, stringAnswerId)) {

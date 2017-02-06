@@ -1,15 +1,13 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
-import com.getprepared.domain.Question;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.WebConstants.INPUTS;
 
 /**
  * Created by koval on 05.02.2017.

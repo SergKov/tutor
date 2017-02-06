@@ -31,7 +31,7 @@ public class WebConstants {
 
         public static final String QUESTION_TEXT = "questionText";
 
-        public static final String QUESTION_NUMBER = "questionNumber";
+        public static final String QUESTION_NUMBER = "question-number";
 
         public static final String ANSWER_TEXT = "answerText[]";
 

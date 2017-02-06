@@ -29,8 +29,7 @@
     
     <filter-mapping>
         <filter-name>StudentGuestFilter</filter-name>
-        <url-pattern>/student-home-page</url-pattern>
-        <url-pattern>/test/*</url-pattern>
+        <url-pattern>/student/*</url-pattern>
     </filter-mapping>
     
     <filter>
@@ -62,7 +61,7 @@
         </init-param>
         <init-param>
             <param-name>homePage</param-name>
-            <param-value>/student-home-page</param-value>
+            <param-value>/student</param-value>
         </init-param>
     </filter>
 

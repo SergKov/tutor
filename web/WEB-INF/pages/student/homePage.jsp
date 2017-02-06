@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/student-home-page" var="homePageAction"/>
+<c:url value="/student" var="homePageAction"/>
 
 <templates:page_template>
 

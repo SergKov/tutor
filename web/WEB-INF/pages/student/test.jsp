@@ -11,14 +11,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/test" var="testAction"/>
+<c:url value="/student/test" var="testAction"/>
 
 <templates:page_template>
 
     <jsp:body>
         <form action="${testAction}" method="POST">
             <input type="hidden" name="controller" value="saveAnswer"/>
-            <input type="hidden" name="questionNumber" value="${currentQuestion}"/>
+            <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
             <textarea class="form-control question-border" rows="3" name="questionText" id="question" disabled>
                 <c:out value="${testQuestion.question.text}"/>
@@ -47,7 +47,7 @@
             <ul class="pagination">
                 <c:forEach var="i" begin="1" end="${fn:length(test)}">
                     <li>
-                        <button name="questionNumber" value="${i}"><c:out value="${i}"/></button>
+                        <button name="question-number" value="${i}"><c:out value="${i}"/></button>
                     </li>
                 </c:forEach>
             </ul>

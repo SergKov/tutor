@@ -54,11 +54,11 @@ public class PageConstants {
 
         public static final String SIGN_UP = "/sign-up";
 
-        public static final String STUDENT_HOME_PAGE = "/student-home-page";
+        public static final String STUDENT_HOME_PAGE = "/student";
 
-        public static final String STUDENT_TEST = "/test";
+        public static final String STUDENT_TEST = "/student/test";
 
-        public static final String STUDENT_RESULT = "/test/result";
+        public static final String STUDENT_RESULT = "/student/test/result";
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
