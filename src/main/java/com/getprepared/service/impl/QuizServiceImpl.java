@@ -52,14 +52,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             final QuestionService questionService = getQuestionService();
             final List<Question> questions = questionService.findByQuizId(id);
             quiz.setQuestions(questions);
-            final AnswerService answerService = getAnswerService();
-
-            for (Question question : questions) {
-                final Long questionId = question.getId();
-                final List<Answer> answers = answerService.findByQuestionId(questionId);
-                question.setAnswers(answers);
-            }
-
             getTransactionManager().commit();
             return quiz;
         } catch (final EntityNotFoundException e) {

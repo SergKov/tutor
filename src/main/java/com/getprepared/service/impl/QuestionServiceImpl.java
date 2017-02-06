@@ -86,7 +86,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
         getTransactionManager().commit();
         return questions;
-
     }
 
     @Override
