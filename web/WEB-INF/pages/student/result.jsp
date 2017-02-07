@@ -13,7 +13,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <h1 class="text-primary text-center"><c:out value="${mark}"></c:out></h1>
+        <h1 class="text-primary text-center"><c:out value=" Your mark is ${mark} "></c:out></h1>
     </jsp:attribute>
 
 </templates:page_template>

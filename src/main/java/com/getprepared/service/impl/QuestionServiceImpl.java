@@ -124,7 +124,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
                     .filter(answer -> answer.getType().equals(AnswerType.CORRECT))
                     .collect(toList());
             return testQuestion.getAnswers().containsAll(correctAnswers) &&
-                    testQuestion.getAnswers().size() == correctAnswers.size()  ? 1 : 0;
+                    testQuestion.getAnswers().size() == correctAnswers.size() ? 1 : 0;
         }).sum();
         return (double) countCorrectAnswers / test.size() * 100;
     }
