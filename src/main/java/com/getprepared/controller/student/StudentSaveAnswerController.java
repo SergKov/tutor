@@ -1,5 +1,6 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Answer;
 import org.apache.commons.lang3.ArrayUtils;
@@ -11,16 +12,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.getprepared.constant.PageConstants.NAMES;
 import static com.getprepared.constant.PageConstants.PAGES;
-import static com.getprepared.constant.WebConstants.*;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TEST_QUESTION;
+import static com.getprepared.constant.WebConstants.INPUTS;
+import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 05.02.2017.
  */
-public class StudentSaveAnswerController extends AbstractTestController {
+public class StudentSaveAnswerController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(StudentSaveAnswerController.class);
+
+    private static final Integer FIRST_QUESTION = 1;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
@@ -55,7 +60,8 @@ public class StudentSaveAnswerController extends AbstractTestController {
         }
 
         request.setAttribute(TEST_QUESTION, test.get(questionNumber - 1));
-        request.setAttribute(REQUEST_ATTRIBUTES.CURRENT_QUESTION, questionNumber);
+        request.setAttribute(CURRENT_QUESTION, questionNumber);
+        request.setAttribute(TITLE, getMessages().getMessage(NAMES.TEST, request.getLocale()));
 
         return PAGES.STUDENT_TEST;
     }
