@@ -24,27 +24,33 @@
         <jsp:invoke fragment="header"/>
     </h1>
 
-    <c:choose>
-        <c:when test="${not empty student}">
-            <ul>
+    <c:if test="${not empty student}">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${student.name}
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
                 <li>
                     <a href="${signOutHref}">
                         <fmt:message key="signOut.signOut"/>
                     </a>
                 </li>
             </ul>
-        </c:when>
+        </div>
+    </c:if>
 
-        <c:when test="${not empty tutor}">
-            <ul>
+    <c:if test="${not empty tutor}">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${tutor.name}
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
                 <li>
                     <a href="${signOutHref}">
                         <fmt:message key="signOut.signOut"/>
                     </a>
                 </li>
             </ul>
-        </c:when>
-    </c:choose>
+        </div>
+    </c:if>
 </div>
 
 <div id="body">

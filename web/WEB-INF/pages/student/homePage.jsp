@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-5">
                         <label class="control-label" for="quiz">
-                            <h3><fmt:message key="studentHomePage.chooseQuiz"/></h3>
+                            <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"/></h3>
                         </label>
                     </div>
                 </div>
