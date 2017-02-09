@@ -57,4 +57,8 @@ $(document).ready(function() {
             $answers.last().remove();
         }
     });
+
+    $("#test").bind("cut copy paste", function (e) {
+        e.preventDefault();
+    });
 });

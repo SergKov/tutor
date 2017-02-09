@@ -38,8 +38,7 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message
-                                key="tutorSignIn.password"/></label>
+                        <label class="control-label col-xs-5" for="psw"><fmt:message key="tutorSignIn.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"

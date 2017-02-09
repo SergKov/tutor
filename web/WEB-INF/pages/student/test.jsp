@@ -20,9 +20,9 @@
             <input type="hidden" name="controller" value="saveAnswer"/>
             <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
-            <textarea class="form-control question-border" rows="3" name="questionText" id="question" disabled>
+            <div class="question-border col-xs-8" id="test">
                 <c:out value="${testQuestion.question.text}"/>
-            </textarea>
+            </div>
 
             <c:forEach items="${testQuestion.question.answers}" var="answer">
                 <div class="row">
@@ -58,7 +58,7 @@
             <input type="hidden" name="controller" value="endTest">
 
             <div class="col-xs-5">
-                <button type="submit" id="finish_btn" class="btn btn-info btn-md">
+                <button type="submit" id="finish_btn" class="btn btn-danger btn-md">
                     <fmt:message key="test.submit"/>
                 </button>
             </div>
