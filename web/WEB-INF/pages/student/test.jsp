@@ -20,7 +20,7 @@
             <input type="hidden" name="controller" value="saveAnswer"/>
             <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
-            <div class="question-border col-xs-8" id="test">
+            <div class="form-control question-border col-xs-8" id="test">
                 <c:out value="${testQuestion.question.text}"/>
             </div>
 

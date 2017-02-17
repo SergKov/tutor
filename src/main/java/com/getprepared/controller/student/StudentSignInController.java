@@ -39,18 +39,14 @@ public class StudentSignInController extends AbstractSignInController {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final HttpSession httpSession = request.getSession();
-        if (httpSession.getAttribute(SESSION_ATTRIBUTES.STUDENT) != null) {
-            response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
-            return REDIRECT;
-        }
-
         final String email = request.getParameter(INPUTS.EMAIL);
         final String password = request.getParameter(INPUTS.PASSWORD);
 
         try {
             validation.validateEmail(email);
             validation.validatePassword(password);
+
+            final HttpSession httpSession = request.getSession();
 
             final User user = userService.signInStudent(email, password);
             if (user != null && user.getRole() == Role.STUDENT) {

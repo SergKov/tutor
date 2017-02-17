@@ -39,12 +39,6 @@ public class TutorSignInController extends AbstractSignInController {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final HttpSession httpSession = request.getSession();
-        if (httpSession.getAttribute(SESSION_ATTRIBUTES.TUTOR) != null) {
-            response.sendRedirect(LINKS.TUTOR_QUIZZES);
-            return REDIRECT;
-        }
-
         final String email = request.getParameter(INPUTS.EMAIL);
         final String password = request.getParameter(INPUTS.PASSWORD);
 
@@ -53,6 +47,8 @@ public class TutorSignInController extends AbstractSignInController {
             validation.validatePassword(password);
 
             final User user = userService.signInTutor(email, password);
+
+            final HttpSession httpSession = request.getSession();
 
             if (user != null) {
                 httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
