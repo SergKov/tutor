@@ -1,11 +1,11 @@
 package com.getprepared.database.template;
 
-import com.getprepared.domain.Entity;
-import com.getprepared.exception.EntityExistsException;
-import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.database.TransactionalConnectionProvider;
 import com.getprepared.database.template.function.PreparedStatementSetter;
 import com.getprepared.database.template.function.RowMapper;
+import com.getprepared.domain.Entity;
+import com.getprepared.exception.EntityExistsException;
+import com.getprepared.exception.EntityNotFoundException;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -21,6 +21,8 @@ import java.util.List;
 public class JdbcTemplate {
 
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
+
+    private static final int SQL_DUPLICATE_ERROR_CODE = 1062;
 
     private TransactionalConnectionProvider provider;
 
@@ -78,10 +80,10 @@ public class JdbcTemplate {
     }
 
     private void checkException(final SQLException e, final String sql) throws EntityExistsException {
-        if (e.getErrorCode() == 1062) {
+        if (e.getErrorCode() == SQL_DUPLICATE_ERROR_CODE) {
             final String errorMsg = String.format("Entity by this query %s is already exists", sql);
             LOG.warn(errorMsg);
-            throw new EntityExistsException(String.format("Entity by this query %s is already exists", sql));
+            throw new EntityExistsException(errorMsg, e);
         }
     }
 

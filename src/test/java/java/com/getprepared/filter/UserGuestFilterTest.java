@@ -1,25 +1,26 @@
-package com.getprepared.filter;
+package java.com.getprepared.filter;
 
+import com.getprepared.filter.UserGuestFilter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static org.mockito.Matchers.anyString;
+import java.io.IOException;
+
 import static org.mockito.Mockito.*;
 
 /**
- * Created by koval on 31.01.2017.
+ * Created by koval on 29.01.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class UserSignedInFilterTest {
+public class UserGuestFilterTest {
 
     @Mock
     private HttpServletRequest request;
@@ -37,7 +38,7 @@ public class UserSignedInFilterTest {
 
     @Before
     public void setUp() {
-        filter = new UserSignedInFilter();
+        filter = new UserGuestFilter();
     }
 
     @Test
@@ -47,8 +48,8 @@ public class UserSignedInFilterTest {
     }
 
     @Test
-    public void requireInteractionsDoFilter() throws Exception {
+    public void requireNoInteractionsDoFilterWhenNoSession() throws Exception {
         filter.doFilter(request, response, chain);
-        verify(chain, only()).doFilter(request, response);
+        verify(chain, never()).doFilter(request, response);
     }
 }

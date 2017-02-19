@@ -1,5 +1,6 @@
-package com.getprepared.filter;
+package java.com.getprepared.filter;
 
+import com.getprepared.filter.EncodingFilter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
