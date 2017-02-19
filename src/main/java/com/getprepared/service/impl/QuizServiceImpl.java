@@ -9,11 +9,10 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.impl.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstants.DAOS.QUIZ_DAO;

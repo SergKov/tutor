@@ -3,7 +3,7 @@ package com.getprepared.controller.student;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.Quiz;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.impl.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

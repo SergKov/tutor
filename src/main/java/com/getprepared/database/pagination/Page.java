@@ -1,6 +1,6 @@
 package com.getprepared.database.pagination;
 
-import com.getprepared.utils.impl.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 

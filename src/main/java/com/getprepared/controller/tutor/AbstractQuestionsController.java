@@ -9,7 +9,7 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import com.getprepared.utils.Validation;
-import com.getprepared.utils.impl.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
