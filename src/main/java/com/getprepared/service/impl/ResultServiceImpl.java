@@ -17,8 +17,6 @@ import static com.getprepared.constant.ServerConstants.DAOS.RESULT_DAO;
  */
 public class ResultServiceImpl extends AbstractService implements ResultService {
 
-    private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
-
     public ResultServiceImpl() { }
 
     @Override
@@ -35,7 +33,6 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             getTransactionManager().commit();
         } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -50,7 +47,6 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             return result;
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

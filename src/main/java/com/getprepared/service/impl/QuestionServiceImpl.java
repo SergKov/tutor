@@ -24,8 +24,6 @@ import static java.util.stream.Collectors.toList;
  */
 public class QuestionServiceImpl extends AbstractService implements QuestionService {
 
-    private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
-
     public QuestionServiceImpl() {
     }
 
@@ -52,7 +50,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().commit();
         } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -70,7 +67,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             return question;
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -102,7 +98,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             getTransactionManager().commit();
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

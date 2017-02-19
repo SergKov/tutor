@@ -24,8 +24,6 @@ import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE
  */
 public class QuizServiceImpl extends AbstractService implements QuizService {
 
-    private static final Logger LOG = Logger.getLogger(QuizServiceImpl.class);
-
     public QuizServiceImpl() { }
 
     @Override
@@ -37,7 +35,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().commit();
         } catch (final EntityExistsException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -55,7 +52,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             return quiz;
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }
@@ -104,7 +100,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
             getTransactionManager().commit();
         } catch (final EntityNotFoundException e) {
             getTransactionManager().rollback();
-            LOG.warn(e.getMessage(), e);
             throw e;
         }
     }

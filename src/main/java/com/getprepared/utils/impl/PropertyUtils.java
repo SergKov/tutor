@@ -27,6 +27,5 @@ public class PropertyUtils {
             LOG.warn(String.format("Failed to load file %s", fileName), e);
             throw new IllegalStateException(e);
         }
-
     }
 }
