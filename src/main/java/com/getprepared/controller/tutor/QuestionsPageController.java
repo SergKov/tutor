@@ -20,7 +20,6 @@ import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 25.01.2017.

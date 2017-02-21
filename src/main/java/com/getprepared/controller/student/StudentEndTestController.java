@@ -18,11 +18,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.RESULT_SERVICE;
-import static com.getprepared.constant.WebConstants.*;
+import static com.getprepared.constant.PageConstants.LINKS;
+import static com.getprepared.constant.PageConstants.REDIRECT;
+import static com.getprepared.constant.ServerConstants.SERVICES.*;
+import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 05.02.2017.

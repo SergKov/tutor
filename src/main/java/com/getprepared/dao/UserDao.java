@@ -13,7 +13,7 @@ public interface UserDao {
 
     User findById(Long id) throws EntityNotFoundException;
 
-    User findByStudentCredentials(String email, String password) throws EntityNotFoundException;
+    User findByStudentEmail(String email) throws EntityNotFoundException;
 
-    User findByTutorCredentials(String email, String password) throws EntityNotFoundException;
+    User findByTutorEmail(String email) throws EntityNotFoundException;
 }

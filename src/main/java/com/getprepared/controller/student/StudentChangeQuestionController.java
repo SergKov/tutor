@@ -1,7 +1,6 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.constant.PageConstants;
-import com.getprepared.constant.WebConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
 import org.apache.log4j.Logger;
@@ -14,9 +13,7 @@ import java.util.List;
 import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.WebConstants.*;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 30.01.2017.

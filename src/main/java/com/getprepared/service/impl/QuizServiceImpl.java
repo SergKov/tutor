@@ -10,7 +10,6 @@ import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

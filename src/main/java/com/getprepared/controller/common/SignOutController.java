@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import static com.getprepared.constant.PageConstants.LINKS;
 import static com.getprepared.constant.PageConstants.REDIRECT;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.STUDENT;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
 
 /**

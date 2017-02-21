@@ -2,16 +2,12 @@ package com.getprepared.controller.common;
 
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.Role;
-import com.getprepared.domain.User;
-import com.getprepared.exception.ValidationException;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static com.getprepared.constant.PageConstants.ERRORS;
 import static com.getprepared.constant.PageConstants.NAMES.SIGN_UP;
 import static com.getprepared.constant.UtilsConstant.REGEX;
-import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 
 /**

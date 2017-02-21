@@ -1,7 +1,6 @@
 package com.getprepared.controller.tutor;
 
 import com.getprepared.utils.Validation;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

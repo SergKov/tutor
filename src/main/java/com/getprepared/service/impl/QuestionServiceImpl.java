@@ -9,7 +9,6 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.service.AnswerService;
 import com.getprepared.service.QuestionService;
-import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;

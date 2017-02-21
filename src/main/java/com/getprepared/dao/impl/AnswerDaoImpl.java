@@ -1,13 +1,13 @@
 package com.getprepared.dao.impl;
 
 import com.getprepared.dao.AnswerDao;
+import com.getprepared.database.template.JdbcTemplate;
+import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;

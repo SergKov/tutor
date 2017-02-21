@@ -3,7 +3,6 @@ package com.getprepared.service;
 import com.getprepared.domain.Result;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 
 import java.util.List;
 

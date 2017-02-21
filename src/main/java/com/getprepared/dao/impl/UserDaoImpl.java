@@ -1,12 +1,12 @@
 package com.getprepared.dao.impl;
 
 import com.getprepared.dao.UserDao;
+import com.getprepared.database.template.JdbcTemplate;
+import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
@@ -49,21 +49,15 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public User findByStudentCredentials(final String email, final String password) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_STUDENT_CREDENTIALS),
-                rs -> {
-                    rs.setString(1, email);
-                    rs.setString(2, password);
-                }, new UserMapper());
+    public User findByStudentEmail(final String email) throws EntityNotFoundException {
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_STUDENT_EMAIL), rs -> rs.setString(1, email),
+                new UserMapper());
     }
 
     @Override
-    public User findByTutorCredentials(String email, String password) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_TUTOR_CREDENTIALS),
-                rs -> {
-                    rs.setString(1, email);
-                    rs.setString(2, password);
-                }, new UserMapper());
+    public User findByTutorEmail(String email) throws EntityNotFoundException {
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_TUTOR_EMAIL), rs -> rs.setString(1, email),
+                new UserMapper());
     }
 
     private static class UserMapper implements RowMapper<User> {

@@ -1,14 +1,11 @@
 package com.getprepared.service;
 
 import com.getprepared.controller.dto.TestQuestion;
-import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by koval on 09.01.2017.

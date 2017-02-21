@@ -5,12 +5,10 @@ import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.ResultService;
 import com.getprepared.service.UserService;
 import com.getprepared.utils.PasswordEncoder;
 import com.getprepared.utils.factory.UtilsFactory;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -51,13 +49,13 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     @Override
     public User signInStudent(final String email, final String password) throws EntityNotFoundException {
-
-        final String encodedPassword = passwordEncoder.encode(password);
-
         try {
             getTransactionManager().begin();
             final UserDao userDao = getDao();
-            final User user = userDao.findByStudentCredentials(email, encodedPassword);
+            final User user = userDao.findByStudentEmail(email);
+
+            checkPassword(password, user);
+
             final List<Result> userResults = findAllResults(user.getId());
             user.setResults(userResults);
             getTransactionManager().commit();
@@ -69,14 +67,13 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public User signInTutor(String email, String password) throws EntityNotFoundException {
-
-        final String encodedPassword = passwordEncoder.encode(password);
-
+    public User signInTutor(final String email, final String password) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();
             final UserDao userDao = getDao();
-            final User user = userDao.findByTutorCredentials(email, encodedPassword);
+            final User user = userDao.findByTutorEmail(email);
+
+            checkPassword(password, user);
             getTransactionManager().commit();
             return user;
         } catch (final EntityNotFoundException e) {
@@ -85,10 +82,16 @@ public class UserServiceImpl extends AbstractService implements UserService {
         }
     }
 
+    private void checkPassword(final String password, final User user) throws EntityNotFoundException {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            final String errorMsg = String.format("%s with this password %s does not exist", user.getRole(), password);
+            throw new EntityNotFoundException(errorMsg);
+        }
+    }
+
     private List<Result> findAllResults(final Long id) {
         final ResultService resultService = getResultService();
-        final List<Result> results = resultService.findByUserId(id);
-        return results;
+        return resultService.findByUserId(id);
     }
 
     @Override

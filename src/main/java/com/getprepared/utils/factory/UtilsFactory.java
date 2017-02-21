@@ -6,7 +6,8 @@ import com.getprepared.utils.impl.ValidationImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.getprepared.constant.UtilsConstant.*;
+import static com.getprepared.constant.UtilsConstant.PASSWORD_ENCODER;
+import static com.getprepared.constant.UtilsConstant.VALIDATION;
 
 /**
  * Created by koval on 14.01.2017.

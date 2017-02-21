@@ -44,9 +44,9 @@ public class PropertyConstants {
 
         public static final String FIND_BY_ID = "findById";
 
-        public static final String FIND_BY_STUDENT_CREDENTIALS = "findByStudentCredentials";
+        public static final String FIND_BY_STUDENT_EMAIL = "findByStudentEmail";
 
-        public static final String FIND_BY_TUTOR_CREDENTIALS = "findByTutorCredentials";
+        public static final String FIND_BY_TUTOR_EMAIL = "findByTutorEmail";
 
         public static final String FIND_BY_USER_ID = "findByUserId";
 

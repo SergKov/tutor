@@ -4,9 +4,7 @@ import com.getprepared.dao.ResultDao;
 import com.getprepared.domain.Result;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.ResultService;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 

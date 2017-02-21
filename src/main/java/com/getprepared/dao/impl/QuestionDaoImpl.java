@@ -2,12 +2,12 @@ package com.getprepared.dao.impl;
 
 import com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import com.getprepared.dao.QuestionDao;
+import com.getprepared.database.template.JdbcTemplate;
+import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.utils.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;

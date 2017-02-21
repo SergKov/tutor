@@ -3,7 +3,10 @@ package com.getprepared.controller.factory;
 import com.getprepared.constant.PageConstants.LINKS;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.Controller;
-import com.getprepared.controller.common.*;
+import com.getprepared.controller.common.PageNotFoundController;
+import com.getprepared.controller.common.SignOutController;
+import com.getprepared.controller.common.SignUpController;
+import com.getprepared.controller.common.SignUpPageController;
 import com.getprepared.controller.student.*;
 import com.getprepared.controller.tutor.*;
 

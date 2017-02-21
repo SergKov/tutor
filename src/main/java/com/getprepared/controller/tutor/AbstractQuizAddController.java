@@ -1,15 +1,11 @@
 package com.getprepared.controller.tutor;
 
 import com.getprepared.controller.AbstractController;
-import com.getprepared.domain.Quiz;
-import com.getprepared.exception.ValidationException;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static com.getprepared.constant.PageConstants.NAMES;
 import static com.getprepared.constant.UtilsConstant.REGEX;
-import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUIZ_NAME_REGEX;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 

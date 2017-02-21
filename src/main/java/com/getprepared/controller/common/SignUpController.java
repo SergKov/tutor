@@ -3,7 +3,6 @@ package com.getprepared.controller.common;
 import com.getprepared.constant.PageConstants.ERRORS;
 import com.getprepared.constant.PageConstants.LINKS;
 import com.getprepared.constant.PageConstants.PAGES;
-import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
@@ -20,9 +19,7 @@ import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.*;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 17.01.2017.

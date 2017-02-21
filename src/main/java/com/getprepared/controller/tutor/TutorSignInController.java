@@ -18,7 +18,6 @@ import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
 import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
  * Created by koval on 21.01.2017.
