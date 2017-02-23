@@ -2,7 +2,7 @@ package com.getprepared.dao.impl;
 
 import com.getprepared.dao.ResultDao;
 import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
+import com.getprepared.database.template.RowMapper;
 import com.getprepared.domain.Quiz;
 import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
@@ -10,7 +10,6 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.utils.impl.PropertyUtils;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -42,7 +41,7 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
                     ps.setLong(2, result.getUser().getId());
                     ps.setByte(3, result.getMark());
                     ps.setTimestamp(4, Timestamp.valueOf(result.getCreationDateTime()));
-                }, PreparedStatement.RETURN_GENERATED_KEYS);
+                });
     }
 
     @Override

@@ -36,6 +36,19 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     }
 
     @Override
+    public void save(List<Answer> answers) throws EntityExistsException {
+        try {
+            getTransactionManager().begin();
+            final AnswerDao answerDao = getDao();
+            answerDao.saveBatch(answers);
+            getTransactionManager().commit();
+        } catch (final EntityExistsException e) {
+            getTransactionManager().rollback();
+            throw e;
+        }
+    }
+
+    @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();

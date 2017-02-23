@@ -13,6 +13,8 @@ public interface AnswerDao {
 
     void save(Answer answer) throws EntityExistsException;
 
+    void saveBatch(List<Answer> answers) throws EntityExistsException;
+
     Answer findById(Long id) throws EntityNotFoundException;
 
     List<Answer> findByQuestionId(Long questionId);

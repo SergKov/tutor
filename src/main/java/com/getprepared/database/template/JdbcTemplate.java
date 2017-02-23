@@ -1,11 +1,10 @@
 package com.getprepared.database.template;
 
 import com.getprepared.database.TransactionalConnectionProvider;
-import com.getprepared.database.template.function.PreparedStatementSetter;
-import com.getprepared.database.template.function.RowMapper;
 import com.getprepared.domain.Entity;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
+import com.getprepared.utils.jdbc.utils.ConnectionUtils;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -30,30 +29,59 @@ public class JdbcTemplate {
         this.provider = provider;
     }
 
-    public void executeUpdate(final String sql, final Entity entity, final PreparedStatementSetter setter,
-                              final int genKey) throws EntityExistsException {
+    public void executeUpdate(final String sql, final Entity entity, final PreparedStatementSetter setter)
+            throws EntityExistsException {
 
         final Connection con = provider.getConnection();
 
-        try (PreparedStatement ps = con.prepareStatement(sql, genKey)) {
+        try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             setter.setValues(ps);
 
             executeUpdate(ps, sql);
 
             final ResultSet rs = ps.getGeneratedKeys();
-
-            if (rs.next()) {
-                entity.setId(rs.getLong(1));
-            } else {
-                final String errorMsg = String.format("Failed to save entity %s", entity.getEntityName());
-                LOG.error(errorMsg);
-                throw new IllegalStateException(errorMsg);
-            }
-
+            initEntityId(entity, rs);
         } catch (final SQLException e) {
-            final String errorMsg = String.format("Failed to execute update %s with generated key %d", sql, genKey);
+            final String errorMsg = String.format("Failed to execute update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
+    public void batchUpdate(final String sql, final List<? extends Entity> entities,
+                            final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
+
+        final Connection con = provider.getConnection();
+        ConnectionUtils.setAutoCommit(con, false);
+
+        try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            final int batchSize = batchSetter.getBatchSize();
+            for (int i = 0; i < batchSize; i++) {
+                batchSetter.setValues(ps, i);
+                ps.addBatch();
+            }
+            ps.executeBatch();
+            con.commit();
+
+            final ResultSet rs = ps.getGeneratedKeys();
+            for (Entity entity : entities) {
+                initEntityId(entity, rs);
+            }
+        } catch (final SQLException e) {
+            ConnectionUtils.rollback(con);
+            final String errorMsg = String.format("Failed to execute batch update %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
+    private void initEntityId(final Entity entity, final ResultSet rs) throws SQLException {
+        if (rs.next()) {
+            entity.setId(rs.getLong(1));
+        } else {
+            final String errorMsg = String.format("Failed to save entity %s", entity.getEntityName());
+            LOG.error(errorMsg);
+            throw new IllegalStateException(errorMsg);
         }
     }
 
@@ -81,9 +109,7 @@ public class JdbcTemplate {
 
     private void checkException(final SQLException e, final String sql) throws EntityExistsException {
         if (e.getErrorCode() == SQL_DUPLICATE_ERROR_CODE) {
-            final String errorMsg = String.format("Entity by this query %s is already exists", sql);
-            LOG.warn(errorMsg);
-            throw new EntityExistsException(errorMsg, e);
+            throw new EntityExistsException(String.format("Entity by this query %s is already exists", sql), e);
         }
     }
 
@@ -113,17 +139,12 @@ public class JdbcTemplate {
             final ResultSet rs = ps.executeQuery();
 
             T entry;
-
             if (rs.next()) {
                 entry = rowMapper.mapRow(rs);
             } else {
-                final String errorMsg = String.format("Entity is not found by this query %s", sql);
-                LOG.warn(errorMsg);
-                throw new EntityNotFoundException(errorMsg);
+                throw new EntityNotFoundException(String.format("Entity is not found by this query %s", sql));
             }
-
             return entry;
-
         } catch (final SQLException e) {
             final String errorMsg = String.format("Failed to execute singleQuery %s", sql);
             LOG.error(errorMsg, e);

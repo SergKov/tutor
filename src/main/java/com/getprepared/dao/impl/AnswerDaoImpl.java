@@ -2,7 +2,8 @@ package com.getprepared.dao.impl;
 
 import com.getprepared.dao.AnswerDao;
 import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
+import com.getprepared.database.template.BatchPreparedStatementSetter;
+import com.getprepared.database.template.RowMapper;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
@@ -39,7 +40,25 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
                     ps.setLong(1, answer.getQuestion().getId());
                     ps.setString(2, answer.getText());
                     ps.setString(3, answer.getType().name());
-                }, PreparedStatement.RETURN_GENERATED_KEYS);
+                });
+    }
+
+    @Override
+    public void saveBatch(final List<Answer> answers) throws EntityExistsException {
+        getJdbcTemplate().batchUpdate(prop.getProperty(KEYS.SAVE), answers, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                final Answer answer = answers.get(i);
+                ps.setLong(1, answer.getQuestion().getId());
+                ps.setString(2, answer.getText());
+                ps.setString(3, answer.getType().name());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return answers.size();
+            }
+        });
     }
 
     @Override

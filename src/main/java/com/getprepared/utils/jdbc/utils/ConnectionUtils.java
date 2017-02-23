@@ -20,10 +20,10 @@ public class ConnectionUtils {
     }
 
     public static void setAutoCommit(final Connection con, final boolean autoCommit) {
-        run(() -> con.setAutoCommit(autoCommit) , "Failed to setAutoCommitFalse");
+        run(() -> con.setAutoCommit(autoCommit) , "Failed to set auto commit");
     }
 
     public static void close(final Connection con) {
-        run(con::close, "Failed to close");
+        run(con::close, "Failed to close connection");
     }
 }

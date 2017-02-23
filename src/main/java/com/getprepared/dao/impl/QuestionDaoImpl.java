@@ -3,14 +3,13 @@ package com.getprepared.dao.impl;
 import com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
+import com.getprepared.database.template.RowMapper;
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.utils.impl.PropertyUtils;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -38,7 +37,7 @@ public class QuestionDaoImpl extends AbstractDao<Question> implements QuestionDa
                 ps -> {
                     ps.setLong(1, question.getQuiz().getId());
                     ps.setString(2, question.getText());
-                }, PreparedStatement.RETURN_GENERATED_KEYS);
+                });
     }
 
     @Override

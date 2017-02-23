@@ -1,7 +1,5 @@
 package com.getprepared.database.template;
 
-import com.getprepared.database.template.function.PreparedStatementSetter;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

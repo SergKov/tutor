@@ -42,9 +42,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final AnswerService answerService = getAnswerService();
             final List<Answer> answers = question.getAnswers();
 
-            for (Answer answer : answers) {
-                answerService.save(answer);
-            }
+            answerService.save(answers);
 
             getTransactionManager().commit();
         } catch (final EntityExistsException e) {

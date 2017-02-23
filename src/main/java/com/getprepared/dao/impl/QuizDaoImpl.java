@@ -2,13 +2,12 @@ package com.getprepared.dao.impl;
 
 import com.getprepared.dao.QuizDao;
 import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
+import com.getprepared.database.template.RowMapper;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.utils.impl.PropertyUtils;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -32,14 +31,13 @@ public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), quiz, ps -> ps.setString(1, quiz.getName()),
-                PreparedStatement.RETURN_GENERATED_KEYS);
+        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), quiz, ps -> ps.setString(1, quiz.getName()));
     }
 
     @Override
     public Quiz findById(final Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID),
-                ps -> ps.setLong(1, id), new QuizMapper());
+        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), ps -> ps.setLong(1, id),
+                new QuizMapper());
     }
 
     @Override

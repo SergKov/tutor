@@ -2,14 +2,13 @@ package com.getprepared.dao.impl;
 
 import com.getprepared.dao.UserDao;
 import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.database.template.function.RowMapper;
+import com.getprepared.database.template.RowMapper;
 import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.utils.impl.PropertyUtils;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -39,7 +38,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                     ps.setString(3, user.getPassword());
                     ps.setString(4, user.getName());
                     ps.setString(5, user.getSurname());
-                }, PreparedStatement.RETURN_GENERATED_KEYS);
+                });
     }
 
     @Override
