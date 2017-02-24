@@ -4,7 +4,6 @@ import com.getprepared.database.TransactionalConnectionProvider;
 import com.getprepared.domain.Entity;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.utils.jdbc.utils.ConnectionUtils;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -52,7 +51,6 @@ public class JdbcTemplate {
                             final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
 
         final Connection con = provider.getConnection();
-        ConnectionUtils.setAutoCommit(con, false);
 
         try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             final int batchSize = batchSetter.getBatchSize();
@@ -61,14 +59,12 @@ public class JdbcTemplate {
                 ps.addBatch();
             }
             ps.executeBatch();
-            con.commit();
 
             final ResultSet rs = ps.getGeneratedKeys();
             for (Entity entity : entities) {
                 initEntityId(entity, rs);
             }
         } catch (final SQLException e) {
-            ConnectionUtils.rollback(con);
             final String errorMsg = String.format("Failed to execute batch update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);

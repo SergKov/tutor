@@ -22,14 +22,14 @@ public class UtilsFactory {
 
     private Map<String, Object> mapping;
 
+    private UtilsFactory() {
+        init();
+    }
+
     private void init() {
         mapping = new HashMap<>();
         mapping.put(VALIDATION, new ValidationImpl());
         mapping.put(PASSWORD_ENCODER, new PasswordEncoderImpl());
-    }
-
-    private UtilsFactory() {
-        init();
     }
 
     public <T> T getUtil(final String key, final Class<T> clazz) {
