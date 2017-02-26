@@ -1,4 +1,4 @@
-package com.getprepared.utils;
+package com.getprepared.util;
 
 import com.getprepared.domain.*;
 import com.getprepared.exception.ValidationException;

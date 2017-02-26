@@ -1,5 +1,7 @@
 package com.getprepared.database;
 
+import com.getprepared.annotation.Inject;
+
 /**
  * Created by koval on 05.01.2017.
  */
@@ -11,7 +13,8 @@ public class TransactionManager {
         return instance;
     }
 
-    private final TransactionalConnectionProvider provider = getTransactionConnectionProvider();
+    @Inject
+    private TransactionalConnectionProvider provider;
 
     public void begin() {
         provider.begin();
@@ -23,9 +26,5 @@ public class TransactionManager {
 
     public void rollback() {
         provider.rollback();
-    }
-
-    private TransactionalConnectionProvider getTransactionConnectionProvider() {
-        return TransactionalConnectionProvider.getInstance();
     }
 }

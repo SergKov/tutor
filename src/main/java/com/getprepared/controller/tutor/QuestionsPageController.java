@@ -1,11 +1,13 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -24,20 +26,19 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 25.01.2017.
  */
+@Bean("questionsPageController")
 public class QuestionsPageController extends AbstractQuestionsController {
 
     private static final Logger LOG = Logger.getLogger(QuestionsPageController.class);
 
+    @Inject
     private QuizService quizService;
-    private QuestionService questionService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private QuestionService questionService;
+
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {

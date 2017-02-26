@@ -3,13 +3,12 @@ package com.getprepared.infrastructure.context;
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
 import com.getprepared.infrastructure.BeanFactory;
-import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,17 +18,55 @@ import java.util.Map;
  */
 public class ApplicationContext implements BeanFactory {
 
+    private static final Logger LOG = Logger.getLogger(ApplicationContext.class);
+
+    private static final String PREFIX = "com.getprepared";
+
     private final Map<String, Object> map = new HashMap<>();
 
-    public ApplicationContext() { }
+    public ApplicationContext() {
+        load(String.format("%s.database", PREFIX));
+        load(String.format("%s.dao", PREFIX));
+        load(String.format("%s.service", PREFIX));
+        load(String.format("%s.util", PREFIX));
+        load(String.format("%s.controller.common", PREFIX));
+        load(String.format("%s.controller.student", PREFIX));
+        load(String.format("%s.controller.tutor", PREFIX));
+        injectFields();
+    }
 
-    private void load(final String packageName) throws IOException, IllegalAccessException, InstantiationException {
+    private void load(final String packageName)  {
         final Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
         final Collection<Class<?>> classes = reflections.getSubTypesOf(Object.class);
 
         for (Class clazz : classes) {
             if (clazz.isAnnotationPresent(Bean.class)) {
-                map.put(clazz.getName(), clazz.newInstance());
+                try {
+                    map.put(clazz.getName(), clazz.newInstance());
+                } catch (InstantiationException | IllegalAccessException e) {
+                    final String errorMsg = String.format("Failed to instantiate class %s", clazz.getName());
+                    LOG.error(errorMsg, e);
+                    throw new IllegalStateException(errorMsg, e);
+                }
+            }
+        }
+    }
+
+    private void injectFields() {
+        for (Object bean : map.values()) {
+            final Field[] fields = bean.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                if (field.isAnnotationPresent(Inject.class)) {
+                    field.setAccessible(true);
+                    final Object injectedValue = getBean(field.getName());
+                    try {
+                        field.set(bean, injectedValue);
+                    } catch (IllegalArgumentException | IllegalAccessException e) {
+                        final String errorMsg = String.format("Failed to initialize field %s", field.getName());
+                        LOG.error(errorMsg, e);
+                        throw new IllegalStateException(errorMsg, e);
+                    }
+                }
             }
         }
     }

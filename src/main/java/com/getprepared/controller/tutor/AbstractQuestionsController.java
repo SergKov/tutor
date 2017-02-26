@@ -8,7 +8,7 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 

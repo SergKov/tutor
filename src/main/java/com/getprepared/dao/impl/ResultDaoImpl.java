@@ -1,5 +1,7 @@
 package com.getprepared.dao.impl;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.dao.ResultDao;
 import com.getprepared.database.template.JdbcTemplate;
 import com.getprepared.database.template.RowMapper;
@@ -8,7 +10,7 @@ import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.utils.impl.PropertyUtils;
+import com.getprepared.util.impl.PropertyUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,17 +27,17 @@ import static com.getprepared.domain.Result.*;
 /**
  * Created by koval on 06.01.2017.
  */
-public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
+@Bean("resultDao")
+public class ResultDaoImpl implements ResultDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.RESULT);
 
-    public ResultDaoImpl(JdbcTemplate template) {
-        super(template);
-    }
+    @Inject
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(final Result result) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), result,
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), result,
                 ps -> {
                     ps.setLong(1, result.getQuiz().getId());
                     ps.setLong(2, result.getUser().getId());
@@ -46,13 +48,13 @@ public class ResultDaoImpl extends AbstractDao<Result> implements ResultDao {
 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
+        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
     @Override
     public List<Result> findByUserId(Long id) {
-        return getJdbcTemplate().executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), USER_ID_KEY),
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), USER_ID_KEY),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 

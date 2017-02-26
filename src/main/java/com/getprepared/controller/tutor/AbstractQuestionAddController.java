@@ -3,7 +3,7 @@ package com.getprepared.controller.tutor;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.exception.ValidationException;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;

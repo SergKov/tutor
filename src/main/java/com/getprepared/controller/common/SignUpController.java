@@ -1,5 +1,7 @@
 package com.getprepared.controller.common;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.constant.PageConstants.ERRORS;
 import com.getprepared.constant.PageConstants.LINKS;
 import com.getprepared.constant.PageConstants.PAGES;
@@ -8,7 +10,7 @@ import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,18 +26,16 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 17.01.2017.
  */
+@Bean("signUpController")
 public class SignUpController extends AbstractSignUpPageController {
 
     private static final Logger LOG = Logger.getLogger(SignUpController.class);
 
+    @Inject
     private UserService userService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        userService = getServiceFactory().getService(USER_SERVICE, UserService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

@@ -1,13 +1,16 @@
 package com.getprepared.dao.impl;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.dao.QuizDao;
 import com.getprepared.database.template.JdbcTemplate;
 import com.getprepared.database.template.RowMapper;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.utils.impl.PropertyUtils;
+import com.getprepared.util.impl.PropertyUtils;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,33 +24,33 @@ import static com.getprepared.domain.Quiz.NAME_KEY;
 /**
  * Created by koval on 06.01.2017.
  */
-public class QuizDaoImpl extends AbstractDao<Quiz> implements QuizDao {
+@Bean("quizDao")
+public class QuizDaoImpl implements QuizDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.QUIZ);
 
-    public QuizDaoImpl(JdbcTemplate template) {
-        super(template);
-    }
+    @Inject
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), quiz, ps -> ps.setString(1, quiz.getName()));
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), quiz, ps -> ps.setString(1, quiz.getName()));
     }
 
     @Override
     public Quiz findById(final Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), ps -> ps.setLong(1, id),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID), ps -> ps.setLong(1, id),
                 new QuizMapper());
     }
 
     @Override
     public List<Quiz> findAll() {
-        return getJdbcTemplate().executeQuery(prop.getProperty(KEYS.FIND_ALL), new QuizMapper());
+        return jdbcTemplate.executeQuery(prop.getProperty(KEYS.FIND_ALL), new QuizMapper());
     }
 
     @Override
     public void remove(final Long id) {
-        getJdbcTemplate().remove(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
+        jdbcTemplate.remove(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }
 
     private static class QuizMapper implements RowMapper<Quiz> {

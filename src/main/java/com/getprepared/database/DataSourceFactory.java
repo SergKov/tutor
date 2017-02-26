@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.constant.PropertyConstants.KEYS;
-import static com.getprepared.utils.impl.PropertyUtils.initProp;
+import static com.getprepared.util.impl.PropertyUtils.initProp;
 
 /**
  * Created by koval on 12.01.2017.

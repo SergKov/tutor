@@ -1,5 +1,7 @@
 package com.getprepared.dao.impl;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.dao.UserDao;
 import com.getprepared.database.template.JdbcTemplate;
 import com.getprepared.database.template.RowMapper;
@@ -7,7 +9,7 @@ import com.getprepared.domain.Role;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.utils.impl.PropertyUtils;
+import com.getprepared.util.impl.PropertyUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,17 +23,17 @@ import static com.getprepared.domain.User.*;
 /**
  * Created by koval on 06.01.2017.
  */
-public class UserDaoImpl extends AbstractDao<User> implements UserDao {
+@Bean("resultDao")
+public class UserDaoImpl implements UserDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.USER);
 
-    public UserDaoImpl(JdbcTemplate template) {
-        super(template);
-    }
+    @Inject
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(final User user) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), user,
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), user,
                 ps -> {
                     ps.setString(1, user.getRole().name());
                     ps.setString(2, user.getEmail());
@@ -43,19 +45,19 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User findById(final Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_ID), rs -> rs.setLong(1, id),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID), rs -> rs.setLong(1, id),
                 new UserMapper());
     }
 
     @Override
     public User findByStudentEmail(final String email) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_STUDENT_EMAIL), rs -> rs.setString(1, email),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_STUDENT_EMAIL), rs -> rs.setString(1, email),
                 new UserMapper());
     }
 
     @Override
     public User findByTutorEmail(String email) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(prop.getProperty(KEYS.FIND_BY_TUTOR_EMAIL), rs -> rs.setString(1, email),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_TUTOR_EMAIL), rs -> rs.setString(1, email),
                 new UserMapper());
     }
 

@@ -1,11 +1,13 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,18 +23,16 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 24.01.2017.
  */
+@Bean("quizRemoveController")
 public class QuizRemoveController extends AbstractQuizController {
 
     private static final Logger LOG = Logger.getLogger(QuizRemoveController.class);
 
+    @Inject
     private QuizService quizService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {

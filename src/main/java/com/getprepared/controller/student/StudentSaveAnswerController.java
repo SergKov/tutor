@@ -1,5 +1,6 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.annotation.Bean;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Answer;
@@ -21,6 +22,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 05.02.2017.
  */
+@Bean("studentSaveAnswerController")
 public class StudentSaveAnswerController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(StudentSaveAnswerController.class);

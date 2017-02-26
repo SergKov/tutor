@@ -1,5 +1,7 @@
 package com.getprepared.service.impl;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Answer;
@@ -21,27 +23,24 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by koval on 14.01.2017.
  */
+@Bean("questionService")
 public class QuestionServiceImpl extends AbstractService implements QuestionService {
 
-    public QuestionServiceImpl() {
-    }
+    @Inject
+    private QuestionDao questionDao;
 
-    @Override
-    public void init() {
-        super.init();
-    }
+    @Inject
+    private AnswerService answerService;
+
+    public QuestionServiceImpl() { }
 
     @Override
     public void save(final Question question) throws EntityExistsException {
         try {
             getTransactionManager().begin();
-
-            final QuestionDao questionDao = getDao();
             questionDao.save(question);
 
-            final AnswerService answerService = getAnswerService();
             final List<Answer> answers = question.getAnswers();
-
             answerService.save(answers);
 
             getTransactionManager().commit();
@@ -55,9 +54,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     public Question findById(final Long id) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();
-            final QuestionDao questionDao = getDao();
             final Question question = questionDao.findById(id);
-            final AnswerService answerService = getAnswerService();
             final List<Answer> answers = answerService.findByQuestionId(question.getId());
             question.setAnswers(answers);
             getTransactionManager().commit();
@@ -72,9 +69,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     public List<Question> findByQuizId(final Long id) {
 
         getTransactionManager().begin();
-        final QuestionDao questionDao = getDao();
         final List<Question> questions = questionDao.findByQuizId(id);
-        final AnswerService answerService = getAnswerService();
 
         for (Question question : questions) {
             final Long questionId = question.getId();
@@ -90,7 +85,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     public void remove(final Question question) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();
-            final QuestionDao questionDao = getDao();
             questionDao.removeById(question.getId());
             getTransactionManager().commit();
         } catch (final EntityNotFoundException e) {
@@ -119,13 +113,5 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
                     testQuestion.getAnswers().size() == correctAnswers.size() ? 1 : 0;
         }).sum();
         return (double) countCorrectAnswers / test.size() * 100;
-    }
-
-    private QuestionDao getDao() {
-        return getDaoFactory().getDao(QUESTION_DAO, QuestionDao.class);
-    }
-
-    private AnswerService getAnswerService() {
-        return ServiceFactory.getInstance().getService(ANSWER_SERVICE, AnswerService.class);
     }
 }

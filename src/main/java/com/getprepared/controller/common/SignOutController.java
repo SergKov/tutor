@@ -1,5 +1,6 @@
 package com.getprepared.controller.common;
 
+import com.getprepared.annotation.Bean;
 import com.getprepared.controller.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
 /**
  * Created by koval on 22.01.2017.
  */
+@Bean("signOutController")
 public class SignOutController extends AbstractController {
 
     @Override

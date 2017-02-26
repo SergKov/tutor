@@ -1,5 +1,7 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.service.QuizService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +14,11 @@ import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 /**
  * Created by koval on 21.01.2017.
  */
+@Bean("studentHomePageController")
 public class StudentHomePageController extends AbstractStudentHomePageController {
 
+    @Inject
     private QuizService quizService;
-
-    @Override
-    public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-    }
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

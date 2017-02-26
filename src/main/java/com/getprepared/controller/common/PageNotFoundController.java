@@ -1,5 +1,6 @@
 package com.getprepared.controller.common;
 
+import com.getprepared.annotation.Bean;
 import com.getprepared.controller.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 17.01.2017.
  */
+@Bean("pageNotFoundController")
 public class PageNotFoundController extends AbstractController {
 
     @Override

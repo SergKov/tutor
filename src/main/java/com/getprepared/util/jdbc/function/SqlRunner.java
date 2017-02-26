@@ -1,4 +1,4 @@
-package com.getprepared.utils.jdbc.function;
+package com.getprepared.util.jdbc.function;
 
 import org.apache.log4j.Logger;
 

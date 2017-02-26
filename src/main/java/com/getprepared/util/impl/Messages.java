@@ -1,4 +1,6 @@
-package com.getprepared.utils.impl;
+package com.getprepared.util.impl;
+
+import com.getprepared.annotation.Bean;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -6,6 +8,7 @@ import java.util.ResourceBundle;
 /**
  * Created by koval on 15.01.2017.
  */
+@Bean("messages")
 public class Messages {
 
     private static final String BUNDLE = "/messages/base";

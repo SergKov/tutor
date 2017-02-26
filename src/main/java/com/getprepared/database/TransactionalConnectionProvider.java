@@ -1,8 +1,10 @@
 package com.getprepared.database;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.exception.TransactionalException;
-import com.getprepared.utils.jdbc.utils.ConnectionUtils;
-import com.getprepared.utils.jdbc.utils.DataSourceUtils;
+import com.getprepared.util.jdbc.utils.ConnectionUtils;
+import com.getprepared.util.jdbc.utils.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,6 +12,7 @@ import java.sql.Connection;
 /**
  * Created by koval on 06.01.2017.
  */
+@Bean("transactionalConnectionProvider")
 public class TransactionalConnectionProvider {
 
     private static final TransactionalConnectionProvider instance = new TransactionalConnectionProvider();
@@ -18,7 +21,8 @@ public class TransactionalConnectionProvider {
         return instance;
     }
 
-    private final DataSource dataSource = getDataSourceFactory().getDataSource();
+    @Inject
+    private DataSource dataSource;
 
     private final ThreadLocal<TransactionConnectionCounter> threadLocal = new ThreadLocal<>();
 

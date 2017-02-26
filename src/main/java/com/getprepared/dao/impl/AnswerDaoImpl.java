@@ -1,5 +1,7 @@
 package com.getprepared.dao.impl;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.dao.AnswerDao;
 import com.getprepared.database.template.JdbcTemplate;
 import com.getprepared.database.template.BatchPreparedStatementSetter;
@@ -9,7 +11,7 @@ import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.utils.impl.PropertyUtils;
+import com.getprepared.util.impl.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,17 +27,17 @@ import static com.getprepared.domain.Entity.ID_KEY;
 /**
  * Created by koval on 05.01.2017.
  */
-public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
+@Bean("answerDao")
+public class AnswerDaoImpl implements AnswerDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.ANSWER);
 
-    public AnswerDaoImpl(JdbcTemplate jdbcTemplate) {
-        super(jdbcTemplate);
-    }
+    @Inject
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
-        getJdbcTemplate().executeUpdate(prop.getProperty(KEYS.SAVE), answer,
+        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), answer,
                 ps -> {
                     ps.setLong(1, answer.getQuestion().getId());
                     ps.setString(2, answer.getText());
@@ -45,9 +47,9 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     @Override
     public void saveBatch(final List<Answer> answers) throws EntityExistsException {
-        getJdbcTemplate().batchUpdate(prop.getProperty(KEYS.SAVE), answers, new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchUpdate(prop.getProperty(KEYS.SAVE), answers, new BatchPreparedStatementSetter() {
             @Override
-            public void setValues(PreparedStatement ps, int i) throws SQLException {
+            public void setValues(final PreparedStatement ps, final int i) throws SQLException {
                 final Answer answer = answers.get(i);
                 ps.setLong(1, answer.getQuestion().getId());
                 ps.setString(2, answer.getText());
@@ -63,13 +65,13 @@ public class AnswerDaoImpl extends AbstractDao<Answer> implements AnswerDao {
 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
-        return getJdbcTemplate().singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
+        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new AnswerMapper());
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        return getJdbcTemplate().executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), QUESTION_ID_KEY),
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), QUESTION_ID_KEY),
                 ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
 

@@ -1,5 +1,7 @@
 package com.getprepared.database.template;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.database.TransactionalConnectionProvider;
 import com.getprepared.domain.Entity;
 import com.getprepared.exception.EntityExistsException;
@@ -16,22 +18,24 @@ import java.util.List;
 /**
  * Created by koval on 11.01.2017.
  */
+@Bean("jdbcTemplate")
 public class JdbcTemplate {
 
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
     private static final int SQL_DUPLICATE_ERROR_CODE = 1062;
 
-    private TransactionalConnectionProvider provider;
+    @Inject
+    private TransactionalConnectionProvider transactionalConnectionProvider;
 
     public JdbcTemplate(TransactionalConnectionProvider provider) {
-        this.provider = provider;
+        this.transactionalConnectionProvider = provider;
     }
 
     public void executeUpdate(final String sql, final Entity entity, final PreparedStatementSetter setter)
             throws EntityExistsException {
 
-        final Connection con = provider.getConnection();
+        final Connection con = transactionalConnectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             setter.setValues(ps);
@@ -50,7 +54,7 @@ public class JdbcTemplate {
     public void batchUpdate(final String sql, final List<? extends Entity> entities,
                             final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
 
-        final Connection con = provider.getConnection();
+        final Connection con = transactionalConnectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             final int batchSize = batchSetter.getBatchSize();
@@ -83,7 +87,7 @@ public class JdbcTemplate {
 
     public void executeUpdate(final String sql, final PreparedStatementSetter setter) throws EntityExistsException {
 
-        final Connection con = provider.getConnection();
+        final Connection con = transactionalConnectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             setter.setValues(ps);
@@ -111,7 +115,7 @@ public class JdbcTemplate {
 
     public void remove(final String sql, final PreparedStatementSetter setter) {
 
-        final Connection con = provider.getConnection();
+        final Connection con = transactionalConnectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             setter.setValues(ps);
@@ -127,7 +131,7 @@ public class JdbcTemplate {
     public <T> T singleQuery(final String sql, final PreparedStatementSetter setter,
                                        final RowMapper<T> rowMapper) throws EntityNotFoundException {
 
-        final Connection con = provider.getConnection();
+        final Connection con = transactionalConnectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)){
             setter.setValues(ps);
@@ -153,9 +157,9 @@ public class JdbcTemplate {
     }
 
     public <T> List<T> executeQuery(final String sql, final PreparedStatementSetter setter,
-                                 final RowMapper<T> rowMapper) {
+                                    final RowMapper<T> rowMapper) {
 
-        final Connection con = provider.getConnection();
+        final Connection con = transactionalConnectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)){
             setter.setValues(ps);

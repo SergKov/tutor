@@ -1,11 +1,13 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractSignInController;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,18 +24,16 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 21.01.2017.
  */
+@Bean("tutorSignInController")
 public class TutorSignInController extends AbstractSignInController {
 
     private static final Logger LOG = Logger.getLogger(TutorSignInController.class);
 
+    @Inject
     private UserService userService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        userService = getServiceFactory().getService(USER_SERVICE, UserService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

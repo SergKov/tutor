@@ -1,9 +1,11 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,18 +23,16 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 19.01.2017.
  */
+@Bean("studentStartTestController")
 public class StudentStartTestController extends AbstractStudentHomePageController {
 
     private static final Logger LOG = Logger.getLogger(StudentStartTestController.class);
 
+    @Inject
     private QuestionService questionService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

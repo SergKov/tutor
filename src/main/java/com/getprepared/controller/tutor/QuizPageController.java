@@ -1,9 +1,11 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -20,18 +22,16 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 22.01.2017.
  */
+@Bean("quizPageController")
 public class QuizPageController extends AbstractQuizController {
 
     private static final Logger LOG = Logger.getLogger(QuizPageController.class);
 
+    @Inject
     private QuizService quizService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

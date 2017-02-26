@@ -1,5 +1,7 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Quiz;
@@ -20,26 +22,24 @@ import java.util.List;
 
 import static com.getprepared.constant.PageConstants.LINKS;
 import static com.getprepared.constant.PageConstants.REDIRECT;
-import static com.getprepared.constant.ServerConstants.SERVICES.*;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**
  * Created by koval on 05.02.2017.
  */
+@Bean("studentEndTestController")
 public class StudentEndTestController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(StudentEndTestController.class);
 
+    @Inject
     private QuizService quizService;
-    private QuestionService questionService;
-    private ResultService resultService;
 
-    @Override
-    public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
-        resultService = getServiceFactory().getService(RESULT_SERVICE, ResultService.class);
-    }
+    @Inject
+    private QuestionService questionService;
+
+    @Inject
+    private ResultService resultService;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

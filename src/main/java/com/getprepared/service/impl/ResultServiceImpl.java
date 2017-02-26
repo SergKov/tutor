@@ -1,5 +1,7 @@
 package com.getprepared.service.impl;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.dao.ResultDao;
 import com.getprepared.domain.Result;
 import com.getprepared.exception.EntityExistsException;
@@ -13,20 +15,18 @@ import static com.getprepared.constant.ServerConstants.DAOS.RESULT_DAO;
 /**
  * Created by koval on 15.01.2017.
  */
+@Bean("resultService")
 public class ResultServiceImpl extends AbstractService implements ResultService {
 
-    public ResultServiceImpl() { }
+    @Inject
+    private ResultDao resultDao;
 
-    @Override
-    public void init() {
-        super.init();
-    }
+    public ResultServiceImpl() { }
 
     @Override
     public void save(final Result result) throws EntityExistsException {
         try {
             getTransactionManager().begin();
-            final ResultDao resultDao = getDao();
             resultDao.save(result);
             getTransactionManager().commit();
         } catch (final EntityExistsException e) {
@@ -39,7 +39,6 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     public Result findById(final Long id) throws EntityNotFoundException {
         try {
             getTransactionManager().begin();
-            final ResultDao resultDao = getDao();
             final Result result = resultDao.findById(id);
             getTransactionManager().commit();
             return result;
@@ -52,13 +51,8 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public List<Result> findByUserId(final Long userId) {
         getTransactionManager().begin();
-        final ResultDao resultDao = getDao();
         final List<Result> result = resultDao.findByUserId(userId);
         getTransactionManager().commit();
         return result;
-    }
-
-    private ResultDao getDao() {
-        return getDaoFactory().getDao(RESULT_DAO, ResultDao.class);
     }
 }

@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Bean;
 import com.getprepared.controller.common.AbstractSignInController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import static com.getprepared.constant.PageConstants.PAGES;
 /**
  * Created by koval on 21.01.2017.
  */
+@Bean("tutorSignInPageController")
 public class TutorSignInPageController extends AbstractSignInController {
 
     @Override

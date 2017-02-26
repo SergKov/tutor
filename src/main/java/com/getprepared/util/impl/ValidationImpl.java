@@ -1,8 +1,9 @@
-package com.getprepared.utils.impl;
+package com.getprepared.util.impl;
 
+import com.getprepared.annotation.Bean;
 import com.getprepared.domain.*;
 import com.getprepared.exception.ValidationException;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.getprepared.constant.UtilsConstant.REGEX;
@@ -10,6 +11,7 @@ import static com.getprepared.constant.UtilsConstant.REGEX;
 /**
  * Created by koval on 14.01.2017.
  */
+@Bean("validation")
 public class ValidationImpl implements Validation {
 
     @Override

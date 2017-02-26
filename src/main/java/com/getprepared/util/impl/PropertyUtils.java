@@ -1,4 +1,4 @@
-package com.getprepared.utils.impl;
+package com.getprepared.util.impl;
 
 import org.apache.log4j.Logger;
 

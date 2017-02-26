@@ -1,5 +1,6 @@
 package com.getprepared.controller.student;
 
+import com.getprepared.annotation.Bean;
 import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
@@ -18,6 +19,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 30.01.2017.
  */
+@Bean("studentChangeQuestionController")
 public class StudentChangeQuestionController extends AbstractController {
 
     protected static final int FIRST_QUESTION = 1;

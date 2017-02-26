@@ -1,4 +1,4 @@
-package com.getprepared.utils;
+package com.getprepared.util;
 
 /**
  * Created by koval on 14.01.2017.

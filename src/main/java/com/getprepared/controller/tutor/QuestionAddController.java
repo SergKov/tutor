@@ -1,5 +1,7 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
@@ -9,7 +11,7 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.utils.Validation;
+import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,20 +32,19 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 26.01.2017.
  */
+@Bean("questionAddController")
 public class QuestionAddController extends AbstractQuestionAddController {
 
     private static final Logger LOG = Logger.getLogger(QuestionAddController.class);
 
+    @Inject
     private QuizService quizService;
-    private QuestionService questionService;
-    private Validation validation;
 
-    @Override
-    public void init() {
-        quizService = getServiceFactory().getService(QUIZ_SERVICE, QuizService.class);
-        questionService = getServiceFactory().getService(QUESTION_SERVICE, QuestionService.class);
-        validation = getUtilsFactory().getUtil(VALIDATION, Validation.class);
-    }
+    @Inject
+    private QuestionService questionService;
+
+    @Inject
+    private Validation validation;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

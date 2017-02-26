@@ -9,6 +9,8 @@ import com.getprepared.controller.common.SignUpController;
 import com.getprepared.controller.common.SignUpPageController;
 import com.getprepared.controller.student.*;
 import com.getprepared.controller.tutor.*;
+import com.getprepared.infrastructure.BeanFactory;
+import com.getprepared.infrastructure.context.ApplicationContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +27,8 @@ public class ControllerFactory {
     public static ControllerFactory getInstance() {
         return instance;
     }
+
+    public BeanFactory beanFactory = new ApplicationContext();
 
     private Map<String, AbstractController> mapping;
 
