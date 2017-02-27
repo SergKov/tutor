@@ -8,6 +8,7 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -40,6 +41,9 @@ public class QuestionsPageController extends AbstractQuestionsController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -47,7 +51,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
 
         if (StringUtils.isNumeric(questionIdString)) {
             try {
-                request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTION, request.getLocale()));
+                request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTION, request.getLocale()));
 
                 final Long questionId = Long.valueOf(questionIdString);
                 validation.validateId(questionId);

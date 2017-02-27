@@ -8,6 +8,7 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,9 @@ public class QuizAddController extends AbstractQuizAddController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         final Quiz quiz = new Quiz();
@@ -47,10 +51,10 @@ public class QuizAddController extends AbstractQuizAddController {
             return REDIRECT;
         } catch (final ValidationException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
         } catch (final EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
         }
         request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());
 

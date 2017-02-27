@@ -1,5 +1,6 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Inject;
 import com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.Question;
@@ -9,6 +10,7 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
@@ -26,11 +28,14 @@ public abstract class AbstractQuestionsController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(AbstractQuestionsController.class);
 
+    @Inject
+    private Messages messages;
+
     protected void fillPage(final HttpServletRequest request, final QuizService quizService,
                             final QuestionService questionService,
                             final Validation validation) throws ValidationException {
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUESTIONS, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTIONS, request.getLocale()));
 
         final Object quizId = request.getSession().getAttribute(INPUTS.QUIZ_ID);
 

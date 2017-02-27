@@ -12,6 +12,7 @@ import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,10 +47,13 @@ public class QuestionAddController extends AbstractQuestionAddController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
 
         final Long quizId = (Long) request.getSession().getAttribute(INPUTS.QUIZ_ID);
 
@@ -96,10 +100,10 @@ public class QuestionAddController extends AbstractQuestionAddController {
             return REDIRECT;
         } catch (ValidationException | IllegalArgumentException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.INVALIDATED_ANSWERS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.INVALIDATED_ANSWERS, request.getLocale()));
         } catch (final EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
         }
 
         request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TYPE, answersType);

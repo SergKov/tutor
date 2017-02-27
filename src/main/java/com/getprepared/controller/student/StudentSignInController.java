@@ -9,7 +9,9 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +38,9 @@ public class StudentSignInController extends AbstractSignInController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
@@ -57,12 +62,12 @@ public class StudentSignInController extends AbstractSignInController {
         } catch (final ValidationException e) {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_NOT_FOUND, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.USER_NOT_FOUND, request.getLocale()));
         }
 
         fillPage(request);

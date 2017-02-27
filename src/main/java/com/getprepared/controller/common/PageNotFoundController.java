@@ -1,7 +1,9 @@
 package com.getprepared.controller.common;
 
 import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
+import com.getprepared.util.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +18,15 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 @Bean("pageNotFoundController")
 public class PageNotFoundController extends AbstractController {
 
+    @Inject
+    private Messages messages;
+
     @Override
     public void init() { }
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) {
-        request.setAttribute(TITLE, getMessages().getMessage(PAGE_NOT_FOUND, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(PAGE_NOT_FOUND, request.getLocale()));
         return PAGES.NOT_FOUND;
     }
 }

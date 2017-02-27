@@ -1,9 +1,11 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Answer;
+import com.getprepared.util.impl.Messages;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 
@@ -28,6 +30,9 @@ public class StudentSaveAnswerController extends AbstractController {
     private static final Logger LOG = Logger.getLogger(StudentSaveAnswerController.class);
 
     private static final Integer FIRST_QUESTION = 1;
+
+    @Inject
+    private Messages messages;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
@@ -63,7 +68,7 @@ public class StudentSaveAnswerController extends AbstractController {
 
         request.setAttribute(TEST_QUESTION, test.get(questionNumber - 1));
         request.setAttribute(CURRENT_QUESTION, questionNumber);
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.TEST, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.TEST, request.getLocale()));
 
         return PAGES.STUDENT_TEST;
     }

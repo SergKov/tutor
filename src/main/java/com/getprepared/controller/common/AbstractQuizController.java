@@ -1,8 +1,10 @@
 package com.getprepared.controller.common;
 
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.Quiz;
 import com.getprepared.service.QuizService;
+import com.getprepared.util.impl.Messages;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +19,12 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
  */
 public abstract class AbstractQuizController extends AbstractController {
 
+    @Inject
+    private Messages messages;
+
     protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.QUIZZES, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.QUIZZES, request.getLocale()));
 
         final List<Quiz> quizzes = quizService.findAll();
         if (!CollectionUtils.isEmpty(quizzes)) {

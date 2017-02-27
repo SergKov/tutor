@@ -1,7 +1,9 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
+import com.getprepared.util.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,9 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 @Bean("studentResultPageController")
 public class StudentResultPageController extends AbstractController {
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
@@ -25,7 +30,7 @@ public class StudentResultPageController extends AbstractController {
             return REDIRECT;
         }
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.RESULT, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.RESULT, request.getLocale()));
         request.getSession().getAttribute(SESSION_ATTRIBUTES.MARK);
         return PAGES.STUDENT_GET_RESULT;
     }

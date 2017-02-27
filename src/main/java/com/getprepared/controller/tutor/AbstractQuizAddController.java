@@ -1,6 +1,8 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
+import com.getprepared.util.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,8 +16,11 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
  */
 public abstract class AbstractQuizAddController extends AbstractController {
 
+    @Inject
+    private Messages messages;
+
     protected void fillPage(final HttpServletRequest request) {
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUIZ, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUIZ, request.getLocale()));
         request.setAttribute(QUIZ_NAME_REGEX, REGEX.QUIZ_NAME);
     }
 }

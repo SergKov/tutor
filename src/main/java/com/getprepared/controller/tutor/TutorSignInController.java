@@ -8,6 +8,7 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,9 @@ public class TutorSignInController extends AbstractSignInController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
@@ -57,10 +61,10 @@ public class TutorSignInController extends AbstractSignInController {
 
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
         } catch (final ValidationException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.CREDENTIALS_INVALIDATED,
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.CREDENTIALS_INVALIDATED,
                     request.getLocale()));
         }
 

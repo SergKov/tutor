@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,18 +19,12 @@ public class ApplicationContext implements BeanFactory {
 
     private static final Logger LOG = Logger.getLogger(ApplicationContext.class);
 
-    private static final String PREFIX = "com.getprepared";
+    private static final String PACKAGE = "com.getprepared";
 
     private final Map<String, Object> map = new HashMap<>();
 
     public ApplicationContext() {
-        load(String.format("%s.database", PREFIX));
-        load(String.format("%s.dao", PREFIX));
-        load(String.format("%s.service", PREFIX));
-        load(String.format("%s.util", PREFIX));
-        load(String.format("%s.controller.common", PREFIX));
-        load(String.format("%s.controller.student", PREFIX));
-        load(String.format("%s.controller.tutor", PREFIX));
+        load(PACKAGE);
         injectFields();
     }
 

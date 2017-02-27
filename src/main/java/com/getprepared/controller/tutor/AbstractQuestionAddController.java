@@ -1,9 +1,11 @@
 package com.getprepared.controller.tutor;
 
+import com.getprepared.annotation.Inject;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,9 @@ public abstract class AbstractQuestionAddController extends AbstractController {
 
     private static final Logger LOG = Logger.getLogger(AbstractQuestionAddController.class);
 
+    @Inject
+    private Messages messages;
+
     protected void fillPage(final HttpServletRequest request, final Validation validation) throws ValidationException {
 
         final Long quizId = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
@@ -35,7 +40,7 @@ public abstract class AbstractQuestionAddController extends AbstractController {
             throw new ValidationException(String.format("Illegal quizId %d", quizId), e);
         }
 
-        request.setAttribute(TITLE, getMessages().getMessage(NAMES.ADD_QUESTION, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
         request.setAttribute(ANSWER_TYPES, AnswerType.values());
         request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
     }

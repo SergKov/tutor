@@ -8,6 +8,7 @@ import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,9 @@ public class QuizRemoveController extends AbstractQuizController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -51,7 +55,7 @@ public class QuizRemoveController extends AbstractQuizController {
             return REDIRECT;
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
         } catch (ValidationException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);

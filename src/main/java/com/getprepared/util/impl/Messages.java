@@ -13,15 +13,9 @@ public class Messages {
 
     private static final String BUNDLE = "/messages/base";
 
-    private static final Messages instance = new Messages();
-
-    public static Messages getInstance() {
-        return instance;
-    }
-
     private ResourceBundle resoureBoundle;
 
-    private Messages() { }
+    public Messages() { }
 
     public String getMessage(final String key, final Locale locale) {
         resoureBoundle = ResourceBundle.getBundle(BUNDLE, locale);

@@ -28,10 +28,6 @@ public class JdbcTemplate {
     @Inject
     private TransactionalConnectionProvider transactionalConnectionProvider;
 
-    public JdbcTemplate(TransactionalConnectionProvider provider) {
-        this.transactionalConnectionProvider = provider;
-    }
-
     public void executeUpdate(final String sql, final Entity entity, final PreparedStatementSetter setter)
             throws EntityExistsException {
 

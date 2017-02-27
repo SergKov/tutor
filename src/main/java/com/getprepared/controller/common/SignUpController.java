@@ -11,6 +11,7 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
 import com.getprepared.util.Validation;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,9 @@ public class SignUpController extends AbstractSignUpPageController {
     @Inject
     private Validation validation;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         final User user = new User();
@@ -58,10 +62,10 @@ public class SignUpController extends AbstractSignUpPageController {
             }
         } catch (final ValidationException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.DATA_INVALIDATED, request.getLocale()));
         } catch (final EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, getMessages().getMessage(ERRORS.USER_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.USER_EXISTS, request.getLocale()));
         }
         request.setAttribute(REQUEST_ATTRIBUTES.USER, user);
 

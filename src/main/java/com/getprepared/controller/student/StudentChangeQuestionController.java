@@ -4,6 +4,7 @@ import com.getprepared.annotation.Bean;
 import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.AbstractController;
 import com.getprepared.controller.dto.TestQuestion;
+import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +23,11 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 @Bean("studentChangeQuestionController")
 public class StudentChangeQuestionController extends AbstractController {
 
+    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);
+
     protected static final int FIRST_QUESTION = 1;
 
-    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);
+    private Messages messages;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
@@ -34,7 +37,7 @@ public class StudentChangeQuestionController extends AbstractController {
             return REDIRECT;
         }
 
-        request.setAttribute(TITLE, getMessages().getMessage(PageConstants.NAMES.TEST, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(PageConstants.NAMES.TEST, request.getLocale()));
 
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST);
@@ -46,7 +49,7 @@ public class StudentChangeQuestionController extends AbstractController {
                 questionNumber = FIRST_QUESTION;
             }
         } catch (final NumberFormatException e) {
-            LOG.warn(e.getMessage());
+            LOG.warn(e.getMessage(), e);
             questionNumber = FIRST_QUESTION;
         }
 
