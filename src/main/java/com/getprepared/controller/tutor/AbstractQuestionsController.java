@@ -2,7 +2,7 @@ package com.getprepared.controller.tutor;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityNotFoundException;
@@ -24,7 +24,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 25.01.2017.
  */
-public abstract class AbstractQuestionsController extends AbstractController {
+public abstract class AbstractQuestionsController implements Controller {
 
     private static final Logger LOG = Logger.getLogger(AbstractQuestionsController.class);
 

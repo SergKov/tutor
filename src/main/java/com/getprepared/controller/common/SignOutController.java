@@ -1,7 +1,7 @@
 package com.getprepared.controller.common;
 
 import com.getprepared.annotation.Bean;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,11 +16,8 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
 /**
  * Created by koval on 22.01.2017.
  */
-@Bean("signOutController")
-public class SignOutController extends AbstractController {
-
-    @Override
-    public void init() { }
+@Bean("signOut")
+public class SignOutController implements Controller {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

@@ -2,7 +2,7 @@ package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.util.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +16,8 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 06.02.2017.
  */
-@Bean("studentResultPageController")
-public class StudentResultPageController extends AbstractController {
+@Bean("studentResultPage")
+public class StudentResultPageController implements Controller {
 
     @Inject
     private Messages messages;

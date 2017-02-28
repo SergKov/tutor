@@ -24,7 +24,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 22.01.2017.
  */
-@Bean("quizAddController")
+@Bean("quizAdd")
 public class QuizAddController extends AbstractQuizAddController {
 
     private static final Logger LOG = Logger.getLogger(QuizAddController.class);

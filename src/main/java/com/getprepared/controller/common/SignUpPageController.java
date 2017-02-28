@@ -11,11 +11,8 @@ import static com.getprepared.constant.PageConstants.PAGES;
 /**
  * Created by koval on 17.01.2017.
  */
-@Bean("signUpPageController")
-public class SignUpPageController extends AbstractSignUpPageController {
-
-    @Override
-    public void init() { }
+@Bean("signUpPage")
+public class SignUpPageController extends AbstractSignUpController {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

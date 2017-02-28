@@ -1,7 +1,7 @@
 package com.getprepared.controller.tutor;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.domain.AnswerType;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.util.Validation;
@@ -21,7 +21,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 26.01.2017.
  */
-public abstract class AbstractQuestionAddController extends AbstractController {
+public abstract class AbstractQuestionAddController implements Controller {
 
     private static final Logger LOG = Logger.getLogger(AbstractQuestionAddController.class);
 

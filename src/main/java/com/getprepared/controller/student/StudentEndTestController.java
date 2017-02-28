@@ -2,7 +2,7 @@ package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.domain.Quiz;
 import com.getprepared.domain.Result;
@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 import static com.getprepared.constant.PageConstants.LINKS;
@@ -27,8 +28,8 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 05.02.2017.
  */
-@Bean("studentEndTestController")
-public class StudentEndTestController extends AbstractController {
+@Bean("studentEndTest")
+public class StudentEndTestController implements Controller {
 
     private static final Logger LOG = Logger.getLogger(StudentEndTestController.class);
 

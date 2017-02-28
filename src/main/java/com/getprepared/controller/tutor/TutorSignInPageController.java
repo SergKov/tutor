@@ -12,7 +12,7 @@ import static com.getprepared.constant.PageConstants.PAGES;
 /**
  * Created by koval on 21.01.2017.
  */
-@Bean("tutorSignInPageController")
+@Bean("tutorSignInPage")
 public class TutorSignInPageController extends AbstractSignInController {
 
     @Override

@@ -33,7 +33,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 26.01.2017.
  */
-@Bean("questionAddController")
+@Bean("questionAdd")
 public class QuestionAddController extends AbstractQuestionAddController {
 
     private static final Logger LOG = Logger.getLogger(QuestionAddController.class);

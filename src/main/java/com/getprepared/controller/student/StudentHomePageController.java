@@ -14,7 +14,7 @@ import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 /**
  * Created by koval on 21.01.2017.
  */
-@Bean("studentHomePageController")
+@Bean("studentHomePage")
 public class StudentHomePageController extends AbstractStudentHomePageController {
 
     @Inject

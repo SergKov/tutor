@@ -22,7 +22,7 @@ import static com.getprepared.constant.WebConstants.INPUTS;
 /**
  * Created by koval on 24.01.2017.
  */
-@Bean("questionRemoveController")
+@Bean("questionRemove")
 public class QuestionRemoveController extends AbstractQuestionsController {
 
     private static final Logger LOG = Logger.getLogger(QuestionRemoveController.class);

@@ -25,7 +25,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 21.01.2017.
  */
-@Bean("tutorSignInController")
+@Bean("tutorSignIn")
 public class TutorSignInController extends AbstractSignInController {
 
     private static final Logger LOG = Logger.getLogger(TutorSignInController.class);

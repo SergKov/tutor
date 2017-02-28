@@ -27,7 +27,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 25.01.2017.
  */
-@Bean("questionsPageController")
+@Bean("questionsPage")
 public class QuestionsPageController extends AbstractQuestionsController {
 
     private static final Logger LOG = Logger.getLogger(QuestionsPageController.class);

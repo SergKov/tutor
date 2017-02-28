@@ -11,7 +11,7 @@ import static com.getprepared.constant.PageConstants.PAGES;
 /**
  * Created by koval on 22.01.2017.
  */
-@Bean("quizPageAddController")
+@Bean("quizPageAdd")
 public class QuizPageAddController extends AbstractQuizAddController {
 
     @Override

@@ -2,7 +2,7 @@ package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.constant.PageConstants;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.util.impl.Messages;
 import org.apache.log4j.Logger;
@@ -20,8 +20,8 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 30.01.2017.
  */
-@Bean("studentChangeQuestionController")
-public class StudentChangeQuestionController extends AbstractController {
+@Bean("studentChangeQuestion")
+public class StudentChangeQuestionController implements Controller {
 
     private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);
 

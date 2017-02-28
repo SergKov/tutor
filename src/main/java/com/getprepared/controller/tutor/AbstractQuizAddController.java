@@ -1,7 +1,7 @@
 package com.getprepared.controller.tutor;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.util.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 22.01.2017.
  */
-public abstract class AbstractQuizAddController extends AbstractController {
+public abstract class AbstractQuizAddController implements Controller {
 
     @Inject
     private Messages messages;

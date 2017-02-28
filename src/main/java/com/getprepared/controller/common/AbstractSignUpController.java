@@ -1,7 +1,7 @@
 package com.getprepared.controller.common;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.domain.Role;
 import com.getprepared.util.impl.Messages;
 
@@ -15,7 +15,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 /**
  * Created by koval on 17.01.2017.
  */
-public abstract class AbstractSignUpPageController extends AbstractController {
+public abstract class AbstractSignUpController implements Controller {
 
     @Inject
     private Messages messages;

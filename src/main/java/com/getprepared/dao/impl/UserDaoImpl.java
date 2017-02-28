@@ -23,7 +23,7 @@ import static com.getprepared.domain.User.*;
 /**
  * Created by koval on 06.01.2017.
  */
-@Bean("resultDao")
+@Bean("userDao")
 public class UserDaoImpl implements UserDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.USER);

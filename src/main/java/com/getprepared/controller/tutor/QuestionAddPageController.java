@@ -13,7 +13,7 @@ import static com.getprepared.constant.UtilsConstant.VALIDATION;
 /**
  * Created by koval on 27.01.2017.
  */
-@Bean("questionAddPageController")
+@Bean("questionAddPage")
 public class QuestionAddPageController extends AbstractQuestionAddController {
 
     @Inject

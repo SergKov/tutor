@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("studentSignInPageController")
+@Bean("studentSignInPage")
 public class StudentSignInPageController extends AbstractSignInController {
 
     @Override

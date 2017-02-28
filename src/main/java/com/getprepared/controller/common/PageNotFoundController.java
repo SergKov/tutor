@@ -2,7 +2,7 @@ package com.getprepared.controller.common;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.AbstractController;
+import com.getprepared.controller.Controller;
 import com.getprepared.util.impl.Messages;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +15,11 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 17.01.2017.
  */
-@Bean("pageNotFoundController")
-public class PageNotFoundController extends AbstractController {
+@Bean("pageNotFound")
+public class PageNotFoundController implements Controller {
 
     @Inject
     private Messages messages;
-
-    @Override
-    public void init() { }
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) {
