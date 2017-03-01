@@ -9,16 +9,12 @@ import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
 import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by koval on 25.02.2017.
  */
 public class ApplicationContext implements BeanFactory {
-
-    private static final Logger LOG = Logger.getLogger(ApplicationContext.class);
 
     private static final String PACKAGE = "com.getprepared";
 
@@ -42,15 +38,22 @@ public class ApplicationContext implements BeanFactory {
     }
 
     private void injectFields() {
-        for (Object bean : map.values()) {
-            final Field[] fields = bean.getClass().getDeclaredFields();
-            for (Field field : fields) {
-                if (field.isAnnotationPresent(Inject.class)) {
-                    field.setAccessible(true);
-                    final Object injectedValue = getBean(field.getName());
-                    ReflectionUtils.setField(field, bean, injectedValue);
-                }
+        map.values().forEach(this::injectFields);
+    }
+
+    private void injectFields(final Object bean) {
+        final Field[] fields = bean.getClass().getDeclaredFields();
+        Arrays.stream(fields).forEach(field -> {
+            if (field.isAnnotationPresent(Inject.class)) {
+                field.setAccessible(true);
+                final Object injectedValue = getBean(field.getName());
+                ReflectionUtils.setField(field, bean, injectedValue);
             }
+        });
+
+        if (bean.getClass().getSuperclass() != Object.class &&
+                !bean.getClass().getSuperclass().isAnnotationPresent(Bean.class)) {
+            injectFields(bean.getClass().getSuperclass());
         }
     }
 
