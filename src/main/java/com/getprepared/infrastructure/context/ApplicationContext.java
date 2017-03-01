@@ -4,7 +4,6 @@ import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
 import com.getprepared.infrastructure.BeanFactory;
 import com.getprepared.util.impl.ReflectionUtils;
-import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
@@ -38,22 +37,22 @@ public class ApplicationContext implements BeanFactory {
     }
 
     private void injectFields() {
-        map.values().forEach(this::injectFields);
+        map.values().forEach(bean -> injectFields(bean.getClass()));
     }
 
-    private void injectFields(final Object bean) {
-        final Field[] fields = bean.getClass().getDeclaredFields();
+    private void injectFields(final Class<?> beanClass) {
+        final Field[] fields = beanClass.getDeclaredFields();
         Arrays.stream(fields).forEach(field -> {
             if (field.isAnnotationPresent(Inject.class)) {
                 field.setAccessible(true);
                 final Object injectedValue = getBean(field.getName());
-                ReflectionUtils.setField(field, bean, injectedValue);
+                ReflectionUtils.setField(field, beanClass, injectedValue);
             }
         });
 
         final Set<Class> checkedClasses = new HashSet<>();
-        final Class superClass = bean.getClass().getSuperclass();
-        if (superClass != Object.class && checkedClasses.contains(superClass)
+        final Class superClass = beanClass.getClass().getSuperclass();
+        if (superClass != Object.class && !checkedClasses.contains(superClass)
                 && !superClass.isAnnotationPresent(Bean.class)) {
             checkedClasses.add(superClass);
             injectFields(superClass);
