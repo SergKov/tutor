@@ -3,6 +3,7 @@ package com.getprepared.infrastructure.context;
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
 import com.getprepared.infrastructure.BeanFactory;
+import com.getprepared.util.impl.ReflectionUtils;
 import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
@@ -28,22 +29,16 @@ public class ApplicationContext implements BeanFactory {
         injectFields();
     }
 
-    private void load(final String packageName)  {
+    private void load(final String packageName) {
         final Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
         final Collection<Class<?>> classes = reflections.getSubTypesOf(Object.class);
 
-        for (Class clazz : classes) {
+        classes.forEach(clazz -> {
             if (clazz.isAnnotationPresent(Bean.class)) {
                 final Bean annotation = (Bean) clazz.getAnnotation(Bean.class);
-                try {
-                    map.put(annotation.value(), clazz.newInstance());
-                } catch (InstantiationException | IllegalAccessException e) {
-                    final String errorMsg = String.format("Failed to instantiate class %s", clazz.getName());
-                    LOG.error(errorMsg, e);
-                    throw new IllegalStateException(errorMsg, e);
-                }
+                map.put(annotation.value(), ReflectionUtils.newInstance(clazz));
             }
-        }
+        });
     }
 
     private void injectFields() {
@@ -53,13 +48,7 @@ public class ApplicationContext implements BeanFactory {
                 if (field.isAnnotationPresent(Inject.class)) {
                     field.setAccessible(true);
                     final Object injectedValue = getBean(field.getName());
-                    try {
-                        field.set(bean, injectedValue);
-                    } catch (IllegalArgumentException | IllegalAccessException e) {
-                        final String errorMsg = String.format("Failed to initialize field %s", field.getName());
-                        LOG.error(errorMsg, e);
-                        throw new IllegalStateException(errorMsg, e);
-                    }
+                    ReflectionUtils.setField(field, bean, injectedValue);
                 }
             }
         }

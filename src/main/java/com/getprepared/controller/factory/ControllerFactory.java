@@ -21,7 +21,7 @@ public class ControllerFactory {
         return instance;
     }
 
-    private static final BeanFactory beanFactory = new ApplicationContext();
+    private final BeanFactory beanFactory = new ApplicationContext();
 
     private Map<String, Controller> mapping;
 
