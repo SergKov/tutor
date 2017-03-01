@@ -1,6 +1,7 @@
 package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Inject;
 import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.Controller;
 import com.getprepared.controller.dto.TestQuestion;
@@ -27,6 +28,7 @@ public class StudentChangeQuestionController implements Controller {
 
     protected static final int FIRST_QUESTION = 1;
 
+    @Inject
     private Messages messages;
 
     @Override

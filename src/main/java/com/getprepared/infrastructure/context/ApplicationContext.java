@@ -51,9 +51,12 @@ public class ApplicationContext implements BeanFactory {
             }
         });
 
-        if (bean.getClass().getSuperclass() != Object.class &&
-                !bean.getClass().getSuperclass().isAnnotationPresent(Bean.class)) {
-            injectFields(bean.getClass().getSuperclass());
+        final Set<Class> checkedClasses = new HashSet<>();
+        final Class superClass = bean.getClass().getSuperclass();
+        if (superClass != Object.class && checkedClasses.contains(superClass)
+                && !superClass.isAnnotationPresent(Bean.class)) {
+            checkedClasses.add(superClass);
+            injectFields(superClass);
         }
     }
 
