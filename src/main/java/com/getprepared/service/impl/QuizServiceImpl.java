@@ -16,10 +16,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.getprepared.constant.ServerConstants.DAOS.QUIZ_DAO;
-import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-
 /**
  * Created by koval on 15.01.2017.
  */
@@ -40,11 +36,11 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             quizDao.save(quiz);
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -52,21 +48,21 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public Quiz findById(final Long id) throws EntityNotFoundException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             final Quiz quiz = quizDao.findById(id);
             final List<Question> questions = questionService.findByQuizId(id);
             quiz.setQuestions(questions);
-            getTransactionManager().commit();
+            transactionManager.commit();
             return quiz;
         } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
 
     @Override
     public List<Quiz> findAll()  {
-        getTransactionManager().begin();
+        transactionManager.begin();
         final List<Quiz> quizzes = quizDao.findAll();
 
         quizzes.forEach(quiz -> {
@@ -79,7 +75,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
             quiz.setQuestions(questions);
         });
-        getTransactionManager().commit();
+        transactionManager.commit();
         return quizzes;
     }
 
@@ -99,11 +95,11 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     public void remove(final Quiz quiz) throws EntityNotFoundException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             quizDao.remove(quiz.getId());
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }

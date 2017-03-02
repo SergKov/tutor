@@ -15,12 +15,6 @@ import java.sql.Connection;
 @Bean("transactionalConnectionProvider")
 public class TransactionalConnectionProvider {
 
-    private static final TransactionalConnectionProvider instance = new TransactionalConnectionProvider();
-
-    public static TransactionalConnectionProvider getInstance() {
-        return instance;
-    }
-
     @Inject
     private DataSource dataSource;
 
@@ -36,7 +30,7 @@ public class TransactionalConnectionProvider {
     }
 
     private void create() {
-        final Connection con = DataSourceUtils.getConnection(getDataSource());
+        final Connection con = DataSourceUtils.getConnection(dataSource);
         ConnectionUtils.setAutoCommit(con, false);
         final TransactionConnectionCounter transactionConnectionCounter = new TransactionConnectionCounter();
         transactionConnectionCounter.setConnection(con);
@@ -77,13 +71,5 @@ public class TransactionalConnectionProvider {
         }
 
         return threadLocal.get().getConnection();
-    }
-
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    private DataSourceFactory getDataSourceFactory() {
-        return DataSourceFactory.getInstance();
     }
 }

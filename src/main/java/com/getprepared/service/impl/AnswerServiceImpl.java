@@ -10,8 +10,6 @@ import com.getprepared.service.AnswerService;
 
 import java.util.List;
 
-import static com.getprepared.constant.ServerConstants.DAOS.ANSWER_DAO;
-
 /**
  * Created by koval on 14.01.2017.
  */
@@ -26,11 +24,11 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             answerDao.save(answer);
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -38,11 +36,11 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public void save(final List<Answer> answers) throws EntityExistsException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             answerDao.saveBatch(answers);
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -50,21 +48,21 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             final Answer answer = answerDao.findById(id);
-            getTransactionManager().commit();
+            transactionManager.commit();
             return answer;
         } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        getTransactionManager().begin();
+        transactionManager.begin();
         final List<Answer> answers = answerDao.findByQuestionId(questionId);
-        getTransactionManager().commit();
+        transactionManager.commit();
         return answers;
     }
 }

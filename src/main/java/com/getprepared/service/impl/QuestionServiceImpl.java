@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.getprepared.constant.ServerConstants.DAOS.QUESTION_DAO;
-import static com.getprepared.constant.ServerConstants.SERVICES.ANSWER_SERVICE;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -37,15 +35,15 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public void save(final Question question) throws EntityExistsException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             questionDao.save(question);
 
             final List<Answer> answers = question.getAnswers();
             answerService.save(answers);
 
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -53,14 +51,14 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public Question findById(final Long id) throws EntityNotFoundException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             final Question question = questionDao.findById(id);
             final List<Answer> answers = answerService.findByQuestionId(question.getId());
             question.setAnswers(answers);
-            getTransactionManager().commit();
+            transactionManager.commit();
             return question;
         } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -68,7 +66,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Override
     public List<Question> findByQuizId(final Long id) {
 
-        getTransactionManager().begin();
+        transactionManager.begin();
         final List<Question> questions = questionDao.findByQuizId(id);
 
         for (Question question : questions) {
@@ -77,18 +75,18 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             question.setAnswers(answers);
         }
 
-        getTransactionManager().commit();
+        transactionManager.commit();
         return questions;
     }
 
     @Override
     public void remove(final Question question) throws EntityNotFoundException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             questionDao.removeById(question.getId());
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }

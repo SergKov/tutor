@@ -10,8 +10,6 @@ import com.getprepared.service.ResultService;
 
 import java.util.List;
 
-import static com.getprepared.constant.ServerConstants.DAOS.RESULT_DAO;
-
 /**
  * Created by koval on 15.01.2017.
  */
@@ -26,11 +24,11 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public void save(final Result result) throws EntityExistsException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             resultDao.save(result);
-            getTransactionManager().commit();
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -38,21 +36,21 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
         try {
-            getTransactionManager().begin();
+            transactionManager.begin();
             final Result result = resultDao.findById(id);
-            getTransactionManager().commit();
+            transactionManager.commit();
             return result;
         } catch (final EntityNotFoundException e) {
-            getTransactionManager().rollback();
+            transactionManager.rollback();
             throw e;
         }
     }
 
     @Override
     public List<Result> findByUserId(final Long userId) {
-        getTransactionManager().begin();
+        transactionManager.begin();
         final List<Result> result = resultDao.findByUserId(userId);
-        getTransactionManager().commit();
+        transactionManager.commit();
         return result;
     }
 }
