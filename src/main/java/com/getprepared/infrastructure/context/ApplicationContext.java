@@ -44,7 +44,6 @@ public class ApplicationContext implements BeanFactory {
         final Field[] fields = beanClass.getDeclaredFields();
         Arrays.stream(fields).forEach(field -> {
             if (field.isAnnotationPresent(Inject.class)) {
-                field.setAccessible(true);
                 final Object injectedValue = getBean(field.getName());
                 ReflectionUtils.setField(field, beanClass, injectedValue);
             }

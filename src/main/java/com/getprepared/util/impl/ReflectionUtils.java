@@ -24,6 +24,7 @@ public class ReflectionUtils {
     }
 
     public static void setField(final Field field, final Object bean, final Object injectedValue) {
+        field.setAccessible(true);
         try {
             field.set(bean, injectedValue);
         } catch (IllegalArgumentException | IllegalAccessException e) {

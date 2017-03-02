@@ -89,7 +89,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         final List<Quiz> createdQuizzes = new ArrayList<>();
 
         allQuizzes.forEach(quiz -> {
-            if (!CollectionUtils.isEmpty(quiz.getQuestions()) && quiz.getQuestions().size() >= 2) {
+            if (CollectionUtils.isNotEmpty(quiz.getQuestions()) && quiz.getQuestions().size() >= 2) {
                 createdQuizzes.add(quiz);
             }
         });
