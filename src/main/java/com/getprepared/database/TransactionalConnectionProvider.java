@@ -3,8 +3,8 @@ package com.getprepared.database;
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
 import com.getprepared.exception.TransactionalException;
-import com.getprepared.util.jdbc.util.ConnectionUtils;
-import com.getprepared.util.jdbc.util.DataSourceUtils;
+import com.getprepared.util.impl.ConnectionUtils;
+import com.getprepared.util.impl.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
