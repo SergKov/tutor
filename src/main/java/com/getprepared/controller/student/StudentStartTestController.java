@@ -15,8 +15,6 @@ import java.util.List;
 
 import static com.getprepared.constant.PageConstants.LINKS;
 import static com.getprepared.constant.PageConstants.REDIRECT;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 

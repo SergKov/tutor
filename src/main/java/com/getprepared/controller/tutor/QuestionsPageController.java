@@ -17,9 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;

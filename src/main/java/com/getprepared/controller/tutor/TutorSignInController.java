@@ -17,8 +17,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.USER_SERVICE;
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 

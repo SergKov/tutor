@@ -52,10 +52,10 @@ public class ControllerFactory {
         mapping.put(FORMS.STUDENT_SAVE_ANSWER, beanFactory.getBean("studentSaveAnswer", Controller.class));
         mapping.put(FORMS.STUDENT_END_TEST, beanFactory.getBean("studentEndTest", Controller.class));
         mapping.put(FORMS.TUTOR_SIGN_IN, beanFactory.getBean("tutorSignIn", Controller.class));
-        mapping.put(FORMS.TUTOR_ADD_QUIZ, beanFactory.getBean("tutorAddQuiz", Controller.class));
-        mapping.put(FORMS.TUTOR_REMOVE_QUIZ, beanFactory.getBean("tutorQuizRemove", Controller.class));
-        mapping.put(FORMS.TUTOR_ADD_QUESTION, beanFactory.getBean("tutorQuestionAdd", Controller.class));
-        mapping.put(FORMS.TUTOR_REMOVE_QUESTION, beanFactory.getBean("tutorQuestionRemove", Controller.class));
+        mapping.put(FORMS.TUTOR_ADD_QUIZ, beanFactory.getBean("quizAdd", Controller.class));
+        mapping.put(FORMS.TUTOR_REMOVE_QUIZ, beanFactory.getBean("quizRemove", Controller.class));
+        mapping.put(FORMS.TUTOR_ADD_QUESTION, beanFactory.getBean("questionAdd", Controller.class));
+        mapping.put(FORMS.TUTOR_REMOVE_QUESTION, beanFactory.getBean("questionRemove", Controller.class));
     }
 
     public Controller getController(final String key) {

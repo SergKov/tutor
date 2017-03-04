@@ -1,4 +1,4 @@
-package com.getprepared.util.jdbc.utils;
+package com.getprepared.util.jdbc.util;
 
 import java.sql.Connection;
 

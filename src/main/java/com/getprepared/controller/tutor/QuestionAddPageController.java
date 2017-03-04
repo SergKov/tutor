@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
-
 /**
  * Created by koval on 27.01.2017.
  */

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.PAGES;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
 
 /**
  * Created by koval on 21.01.2017.

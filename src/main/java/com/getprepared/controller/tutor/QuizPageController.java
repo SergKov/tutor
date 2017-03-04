@@ -2,7 +2,6 @@ package com.getprepared.controller.tutor;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.Controller;
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
@@ -15,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS.QUIZ_ID;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 

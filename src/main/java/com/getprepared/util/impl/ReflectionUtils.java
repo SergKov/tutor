@@ -23,6 +23,16 @@ public class ReflectionUtils {
         }
     }
 
+    public static Class getClassForName(final String name) {
+        try {
+            return Class.forName(name);
+        } catch (final ClassNotFoundException e) {
+            final String errorMsg = String.format("Failed to get class for name %s", name);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
     public static void setField(final Field field, final Object bean, final Object injectedValue) {
         field.setAccessible(true);
         try {

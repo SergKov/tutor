@@ -22,13 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUIZ_SERVICE;
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
  * Created by koval on 26.01.2017.
@@ -52,8 +48,6 @@ public class QuestionAddController extends AbstractQuestionAddController {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-
-        request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
 
         final Long quizId = (Long) request.getSession().getAttribute(INPUTS.QUIZ_ID);
 

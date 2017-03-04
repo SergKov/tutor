@@ -5,7 +5,6 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.exception.ValidationException;
-import com.getprepared.infrastructure.context.ApplicationContext;
 import com.getprepared.service.QuestionService;
 import com.getprepared.util.Validation;
 import org.apache.log4j.Logger;
@@ -15,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.constant.PageConstants.*;
-import static com.getprepared.constant.ServerConstants.SERVICES.QUESTION_SERVICE;
-import static com.getprepared.constant.UtilsConstant.VALIDATION;
 import static com.getprepared.constant.WebConstants.INPUTS;
 
 /**
