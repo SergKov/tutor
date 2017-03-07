@@ -16,7 +16,6 @@ public class ValidationImpl implements Validation {
 
     @Override
     public void validateAnswer(final Answer answer) throws ValidationException {
-
         validateEntity(answer);
 
         if (answer.getQuestion() == null) {
@@ -35,7 +34,6 @@ public class ValidationImpl implements Validation {
 
     @Override
     public void validateQuestion(final Question question) throws ValidationException {
-
         validateEntity(question);
 
         if (question.getAnswers().size() < 2) {
@@ -58,7 +56,6 @@ public class ValidationImpl implements Validation {
     }
 
     private void validateQuizName(final String name) throws ValidationException {
-
         if (name == null) {
             throw new ValidationException("Quiz's name is missing.");
         }
@@ -69,39 +66,7 @@ public class ValidationImpl implements Validation {
     }
 
     @Override
-    public void validateResult(final Result result) throws ValidationException {
-
-        if (result == null) {
-            throw new ValidationException("Result is missing.");
-        }
-
-        if (result.getQuiz() == null) {
-            throw new ValidationException("Result's quiz is missing.");
-        }
-
-        if (result.getUser() == null) {
-            throw new ValidationException("Result's user is missing.");
-        }
-
-        if (result.getCreationDateTime() == null) {
-            throw new ValidationException("Result's creation date is missing.");
-        }
-
-        validateMark(result.getMark());
-    }
-
-    private void validateMark(final Byte mark) throws ValidationException {
-        if (mark == null) {
-            throw new ValidationException("Mark is missing.");
-        }
-        if (mark > 100 || mark < 0) {
-            throw new ValidationException(String.format("Mark %d is beyond 0-100 bounds : ", mark));
-        }
-    }
-
-    @Override
     public void validateUser(final User user) throws ValidationException {
-
         if (user == null) {
             throw new ValidationException("User is missing.");
         }
