@@ -6,35 +6,28 @@ import com.getprepared.annotation.Configuration;
 import com.getprepared.annotation.Inject;
 import com.getprepared.infrastructure.BeanFactory;
 import com.getprepared.util.impl.PackageScanner;
+import com.getprepared.util.impl.PropertyUtils;
 import com.getprepared.util.impl.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by koval on 25.02.2017.
  */
 public class ApplicationContext implements BeanFactory {
 
-    private static final String PREFIX = "com.getprepared.";
-    private static final String CONFIG_PACKAGE = PREFIX + "infrastructure.config";
-    private static final String DAO_PACKAGE = PREFIX + "dao.impl";
-    private static final String SERVICE_PACKAGE = PREFIX + "service";
-    private static final String CONTROLLER_PACKAGE = PREFIX + "controller";
+    private final Properties prop = PropertyUtils.initProp("server/constant.properties");
 
     private final Map<String, Object> container = new HashMap<>();
 
     public ApplicationContext() {
-        loadConfig(CONFIG_PACKAGE);
+        loadConfig(prop.getProperty("configuration"));
 
-        load(DAO_PACKAGE);
-        load(SERVICE_PACKAGE);
-        load(CONTROLLER_PACKAGE);
+        load(prop.getProperty("dao"));
+        load(prop.getProperty("service"));
+        load(prop.getProperty("controller"));
 
         injectFields();
     }
