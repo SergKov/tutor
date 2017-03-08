@@ -1,6 +1,6 @@
 package com.getprepared.service.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.dao.AnswerDao;
 import com.getprepared.domain.Answer;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("answerService")
+@Component("answerService")
 public class AnswerServiceImpl extends AbstractService implements AnswerService {
 
     @Inject

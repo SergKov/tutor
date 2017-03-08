@@ -1,6 +1,6 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.exception.ValidationException;
@@ -21,7 +21,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 19.01.2017.
  */
-@Bean("studentStartTest")
+@Component("studentStartTest")
 public class StudentStartTestController extends AbstractStudentHomePageController {
 
     private static final Logger LOG = Logger.getLogger(StudentStartTestController.class);

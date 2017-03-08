@@ -1,6 +1,6 @@
 package com.getprepared.controller.common;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,7 @@ import static com.getprepared.constant.PageConstants.PAGES;
 /**
  * Created by koval on 17.01.2017.
  */
-@Bean("signUpPage")
+@Component("signUpPage")
 public class SignUpPageController extends AbstractSignUpController {
 
     @Override

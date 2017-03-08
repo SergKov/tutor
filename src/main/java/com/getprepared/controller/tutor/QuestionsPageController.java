@@ -1,6 +1,6 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
@@ -24,7 +24,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 25.01.2017.
  */
-@Bean("questionsPage")
+@Component("questionsPage")
 public class QuestionsPageController extends AbstractQuestionsController {
 
     private static final Logger LOG = Logger.getLogger(QuestionsPageController.class);

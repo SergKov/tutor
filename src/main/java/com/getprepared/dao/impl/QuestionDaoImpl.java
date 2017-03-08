@@ -1,6 +1,6 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import com.getprepared.dao.QuestionDao;
@@ -25,7 +25,7 @@ import static com.getprepared.domain.Question.TEXT_KEY;
 /**
  * Created by koval on 06.01.2017.
  */
-@Bean("questionDao")
+@Component("questionDao")
 public class QuestionDaoImpl implements QuestionDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.QUESTION);

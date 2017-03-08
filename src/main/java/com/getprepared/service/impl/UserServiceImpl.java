@@ -1,6 +1,6 @@
 package com.getprepared.service.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.dao.UserDao;
 import com.getprepared.domain.Result;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("userService")
+@Component("userService")
 public class UserServiceImpl extends AbstractService implements UserService {
 
     @Inject

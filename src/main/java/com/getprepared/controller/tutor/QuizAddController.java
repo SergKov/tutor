@@ -1,6 +1,6 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.constant.WebConstants;
 import com.getprepared.domain.Quiz;
@@ -22,7 +22,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 22.01.2017.
  */
-@Bean("quizAdd")
+@Component("quizAdd")
 public class QuizAddController extends AbstractQuizAddController {
 
     private static final Logger LOG = Logger.getLogger(QuizAddController.class);

@@ -21,7 +21,7 @@ public class ControllerFactory {
         return instance;
     }
 
-    private final BeanFactory beanFactory = new ApplicationContext("java:comp/env/jdbc/tutor");
+    private final BeanFactory beanFactory = new ApplicationContext();
 
     private Map<String, Controller> mapping;
 

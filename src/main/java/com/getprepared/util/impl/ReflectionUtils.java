@@ -3,6 +3,8 @@ package com.getprepared.util.impl;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Created by koval on 01.03.2017.
@@ -28,6 +30,16 @@ public class ReflectionUtils {
             return Class.forName(name);
         } catch (final ClassNotFoundException e) {
             final String errorMsg = String.format("Failed to get class for name %s", name);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
+    public static Object invoke(final Method method, final Object obj, final Object... args) {
+        try {
+            return method.invoke(obj, args);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            final String errorMsg = String.format("Failed to invoke method %s", method.getName());
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
         }

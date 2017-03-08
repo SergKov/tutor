@@ -1,6 +1,6 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.constant.PageConstants.PAGES;
 import com.getprepared.controller.common.AbstractSignInController;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("studentSignInPage")
+@Component("studentSignInPage")
 public class StudentSignInPageController extends AbstractSignInController {
 
     @Override

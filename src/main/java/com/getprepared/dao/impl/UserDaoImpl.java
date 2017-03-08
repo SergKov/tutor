@@ -1,6 +1,6 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.dao.UserDao;
 import com.getprepared.database.template.JdbcTemplate;
@@ -23,7 +23,7 @@ import static com.getprepared.domain.User.*;
 /**
  * Created by koval on 06.01.2017.
  */
-@Bean("userDao")
+@Component("userDao")
 public class UserDaoImpl implements UserDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.USER);

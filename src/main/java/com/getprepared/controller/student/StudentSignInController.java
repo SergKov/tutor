@@ -1,6 +1,6 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractSignInController;
 import com.getprepared.domain.Role;
@@ -24,7 +24,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 15.01.2017.
  */
-@Bean("studentSignIn")
+@Component("studentSignIn")
 public class StudentSignInController extends AbstractSignInController {
 
     private static final Logger LOG = Logger.getLogger(StudentSignInController.class);

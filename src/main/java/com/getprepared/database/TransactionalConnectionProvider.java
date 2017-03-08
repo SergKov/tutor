@@ -1,6 +1,5 @@
 package com.getprepared.database;
 
-import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Inject;
 import com.getprepared.exception.TransactionalException;
 import com.getprepared.util.impl.ConnectionUtils;
@@ -12,7 +11,6 @@ import java.sql.Connection;
 /**
  * Created by koval on 06.01.2017.
  */
-@Bean("transactionalConnectionProvider")
 public class TransactionalConnectionProvider {
 
     @Inject

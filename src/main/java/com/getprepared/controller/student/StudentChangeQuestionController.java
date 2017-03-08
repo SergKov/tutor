@@ -1,6 +1,6 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.constant.PageConstants;
 import com.getprepared.controller.Controller;
@@ -21,7 +21,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 30.01.2017.
  */
-@Bean("studentChangeQuestion")
+@Component("studentChangeQuestion")
 public class StudentChangeQuestionController implements Controller {
 
     private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);

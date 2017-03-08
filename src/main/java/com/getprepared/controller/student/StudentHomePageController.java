@@ -1,6 +1,6 @@
 package com.getprepared.controller.student;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.service.QuizService;
 
@@ -13,7 +13,7 @@ import static com.getprepared.constant.PageConstants.PAGES;
 /**
  * Created by koval on 21.01.2017.
  */
-@Bean("studentHomePage")
+@Component("studentHomePage")
 public class StudentHomePageController extends AbstractStudentHomePageController {
 
     @Inject

@@ -1,6 +1,6 @@
 package com.getprepared.dao.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.dao.AnswerDao;
 import com.getprepared.database.template.BatchPreparedStatementSetter;
@@ -27,7 +27,7 @@ import static com.getprepared.domain.Entity.ID_KEY;
 /**
  * Created by koval on 05.01.2017.
  */
-@Bean("answerDao")
+@Component("answerDao")
 public class AnswerDaoImpl implements AnswerDao {
 
     private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.ANSWER);

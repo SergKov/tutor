@@ -1,6 +1,6 @@
 package com.getprepared.controller.common;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.constant.PageConstants.ERRORS;
 import com.getprepared.constant.PageConstants.LINKS;
@@ -25,7 +25,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 17.01.2017.
  */
-@Bean("signUp")
+@Component("signUp")
 public class SignUpController extends AbstractSignUpController {
 
     private static final Logger LOG = Logger.getLogger(SignUpController.class);

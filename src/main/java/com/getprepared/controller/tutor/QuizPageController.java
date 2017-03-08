@@ -1,6 +1,6 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.exception.ValidationException;
@@ -20,7 +20,7 @@ import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 22.01.2017.
  */
-@Bean("quizPage")
+@Component("quizPage")
 public class QuizPageController extends AbstractQuizController {
 
     private static final Logger LOG = Logger.getLogger(QuizPageController.class);

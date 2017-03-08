@@ -1,6 +1,6 @@
 package com.getprepared.controller.tutor;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractSignInController;
 import com.getprepared.domain.User;
@@ -23,7 +23,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG
 /**
  * Created by koval on 21.01.2017.
  */
-@Bean("tutorSignIn")
+@Component("tutorSignIn")
 public class TutorSignInController extends AbstractSignInController {
 
     private static final Logger LOG = Logger.getLogger(TutorSignInController.class);

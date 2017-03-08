@@ -1,6 +1,6 @@
 package com.getprepared.controller.common;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.Controller;
 import com.getprepared.util.impl.Messages;
@@ -15,7 +15,7 @@ import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 /**
  * Created by koval on 17.01.2017.
  */
-@Bean("pageNotFound")
+@Component("pageNotFound")
 public class PageNotFoundController implements Controller {
 
     @Inject

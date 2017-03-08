@@ -1,6 +1,6 @@
 package com.getprepared.service.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.dto.TestQuestion;
 import com.getprepared.dao.QuestionDao;
@@ -21,7 +21,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("questionService")
+@Component("questionService")
 public class QuestionServiceImpl extends AbstractService implements QuestionService {
 
     @Inject

@@ -1,13 +1,13 @@
 package com.getprepared.util.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.util.PasswordEncoder;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("passwordEncoder")
+@Component("passwordEncoder")
 public class PasswordEncoderImpl implements PasswordEncoder {
 
     @Override

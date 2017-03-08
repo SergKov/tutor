@@ -1,6 +1,6 @@
 package com.getprepared.util.impl;
 
-import com.getprepared.annotation.Bean;
+import com.getprepared.annotation.Component;
 import com.getprepared.domain.*;
 import com.getprepared.exception.ValidationException;
 import com.getprepared.util.Validation;
@@ -11,7 +11,7 @@ import static com.getprepared.constant.UtilsConstant.REGEX;
 /**
  * Created by koval on 14.01.2017.
  */
-@Bean("validation")
+@Component("validation")
 public class ValidationImpl implements Validation {
 
     @Override
