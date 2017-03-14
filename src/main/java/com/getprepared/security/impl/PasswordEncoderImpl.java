@@ -1,7 +1,7 @@
-package com.getprepared.util.impl;
+package com.getprepared.security.impl;
 
 import com.getprepared.annotation.Component;
-import com.getprepared.util.PasswordEncoder;
+import com.getprepared.security.PasswordEncoder;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**

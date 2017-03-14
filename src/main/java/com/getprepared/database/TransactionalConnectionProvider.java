@@ -2,8 +2,8 @@ package com.getprepared.database;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.exception.TransactionalException;
-import com.getprepared.util.impl.ConnectionUtils;
-import com.getprepared.util.impl.DataSourceUtils;
+import com.getprepared.util.ConnectionUtils;
+import com.getprepared.util.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -19,7 +19,6 @@ public class TransactionalConnectionProvider {
     private final ThreadLocal<TransactionConnectionCounter> threadLocal = new ThreadLocal<>();
 
     public void begin() {
-
         if (threadLocal.get() == null) {
             create();
         }
@@ -36,7 +35,6 @@ public class TransactionalConnectionProvider {
     }
 
     public void commit() {
-
         if (threadLocal.get() == null) {
             throw new TransactionalException();
         }
@@ -51,7 +49,6 @@ public class TransactionalConnectionProvider {
     }
 
     public void rollback() {
-
         if (threadLocal.get() == null) {
             throw new TransactionalException();
         }
@@ -63,11 +60,13 @@ public class TransactionalConnectionProvider {
     }
 
     public Connection getConnection() {
-
         if (threadLocal.get() == null) {
-            throw new TransactionalException();
+            return DataSourceUtils.getConnection(dataSource);
         }
-
         return threadLocal.get().getConnection();
+    }
+
+    public boolean isTransactional() {
+        return threadLocal.get() != null;
     }
 }
