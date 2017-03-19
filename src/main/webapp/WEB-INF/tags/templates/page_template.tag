@@ -19,7 +19,7 @@
 
 <c:url value="/sign-out" var="signOutHref"/>
 
-<div id="pageheader">
+<header id="pageheader">
     <h1 class="text-primary text-center">
         <jsp:invoke fragment="header"/>
     </h1>
@@ -51,7 +51,7 @@
             </ul>
         </div>
     </c:if>
-</div>
+</header>
 
 <div id="body">
     <div class="container">
