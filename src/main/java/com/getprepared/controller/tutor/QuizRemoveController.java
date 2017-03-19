@@ -5,10 +5,9 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractQuizController;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuizService;
-import com.getprepared.util.Validation;
-import com.getprepared.util.impl.Messages;
+import com.getprepared.util.Messages;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,7 @@ public class QuizRemoveController extends AbstractQuizController {
     private QuizService quizService;
 
     @Inject
-    private Validation validation;
+    private ValidationService validationService;
 
     @Inject
     private Messages messages;
@@ -43,10 +42,10 @@ public class QuizRemoveController extends AbstractQuizController {
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
-            validation.validateId(parsedQuizId);
+            // TODO add validation
 
             final Quiz quiz = quizService.findById(parsedQuizId);
-            validation.validateQuiz(quiz);
+            // TODO add validation
 
             quizService.remove(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
@@ -54,7 +53,7 @@ public class QuizRemoveController extends AbstractQuizController {
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
-        } catch (ValidationException | NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
             return REDIRECT;

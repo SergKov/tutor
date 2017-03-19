@@ -4,9 +4,8 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
-import com.getprepared.util.Validation;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,21 +27,21 @@ public class QuestionRemoveController extends AbstractQuestionsController {
     private QuestionService questionService;
 
     @Inject
-    private Validation validation;
+    private ValidationService validationService;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
             final Long questionId = Long.parseLong(request.getParameter(INPUTS.QUESTION_ID));
-            validation.validateId(questionId);
+            // TODO add validation
 
             final Question question = questionService.findById(questionId);
-            validation.validateQuestion(question);
+            // TODO add validation
             
             questionService.remove(question);
             response.sendRedirect(LINKS.TUTOR_QUESTIONS);
             return REDIRECT;
-        } catch (ValidationException | NumberFormatException | EntityNotFoundException e) {
+        } catch (NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(PAGES.NOT_FOUND);
             return REDIRECT;

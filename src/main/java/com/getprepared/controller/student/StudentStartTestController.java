@@ -2,10 +2,9 @@ package com.getprepared.controller.student;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.dto.TestQuestion;
-import com.getprepared.exception.ValidationException;
+import com.getprepared.converter.form.TestQuestion;
 import com.getprepared.service.QuestionService;
-import com.getprepared.util.Validation;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +29,7 @@ public class StudentStartTestController extends AbstractStudentHomePageControlle
     private QuestionService questionService;
 
     @Inject
-    private Validation validation;
+    private ValidationService validationService;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
@@ -39,14 +38,14 @@ public class StudentStartTestController extends AbstractStudentHomePageControlle
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
-            validation.validateId(parsedQuizId);
+            //TODO validate
             request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
 
             final List<TestQuestion> test = questionService.startTest(parsedQuizId);
             request.getSession().setAttribute(SESSION_ATTRIBUTES.TEST, test);
             response.sendRedirect(LINKS.STUDENT_TEST);
             return REDIRECT;
-        } catch (ValidationException | NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
             return REDIRECT;

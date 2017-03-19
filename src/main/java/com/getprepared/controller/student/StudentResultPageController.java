@@ -3,7 +3,7 @@ package com.getprepared.controller.student;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.Controller;
-import com.getprepared.util.impl.Messages;
+import com.getprepared.util.Messages;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -4,11 +4,10 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.util.Validation;
-import com.getprepared.util.impl.Messages;
+import com.getprepared.util.Messages;
+import com.getprepared.validation.ValidationService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -36,7 +35,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
     private QuestionService questionService;
 
     @Inject
-    private Validation validation;
+    private ValidationService validationService;
 
     @Inject
     private Messages messages;
@@ -51,24 +50,24 @@ public class QuestionsPageController extends AbstractQuestionsController {
                 request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTION, request.getLocale()));
 
                 final Long questionId = Long.valueOf(questionIdString);
-                validation.validateId(questionId);
+                // TODO add validation
                 
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
-            } catch (NumberFormatException | ValidationException | EntityNotFoundException e) {
+            } catch (NumberFormatException | EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
                 response.sendRedirect(LINKS.NOT_FOUND);
                 return REDIRECT;
             }
             return PAGES.TUTOR_QUESTION;
         } else {
-            try {
-                fillPage(request, quizService, questionService, validation);
-            } catch (final ValidationException e) {
-                LOG.warn(e.getMessage(), e);
-                response.sendRedirect(LINKS.NOT_FOUND);
-                return REDIRECT;
-            }
+//            try {
+                fillPage(request, quizService, questionService, validationService);
+//            } catch (final ValidationException e) {
+//                LOG.warn(e.getMessage(), e);
+//                response.sendRedirect(LINKS.NOT_FOUND);
+//                return REDIRECT;
+//            }
 
             return PAGES.TUTOR_QUESTIONS;
         }

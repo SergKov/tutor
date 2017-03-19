@@ -5,10 +5,9 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.controller.common.AbstractSignInController;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.UserService;
-import com.getprepared.util.Validation;
-import com.getprepared.util.impl.Messages;
+import com.getprepared.util.Messages;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +31,7 @@ public class TutorSignInController extends AbstractSignInController {
     private UserService userService;
 
     @Inject
-    private Validation validation;
+    private ValidationService validationService;
 
     @Inject
     private Messages messages;
@@ -44,8 +43,7 @@ public class TutorSignInController extends AbstractSignInController {
         final String password = request.getParameter(INPUTS.PASSWORD);
 
         try {
-            validation.validateEmail(email);
-            validation.validatePassword(password);
+            // TODO add validation
 
             final User user = userService.signInTutor(email, password);
 
@@ -60,10 +58,6 @@ public class TutorSignInController extends AbstractSignInController {
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
-        } catch (final ValidationException e) {
-            LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.CREDENTIALS_INVALIDATED,
-                    request.getLocale()));
         }
 
         request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);

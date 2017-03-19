@@ -47,7 +47,7 @@ public class ControllerFactory {
         mapping.put(LINKS.SIGN_OUT, beanFactory.getBean("signOut", Controller.class));
 
         mapping.put(FORMS.STUDENT_SIGN_IN, beanFactory.getBean("studentSignIn", Controller.class));
-        mapping.put(FORMS.SIGN_UP, beanFactory.getBean("studentSignUp", Controller.class));
+        mapping.put(FORMS.SIGN_UP, beanFactory.getBean("signUp", Controller.class));
         mapping.put(FORMS.STUDENT_START_TEST, beanFactory.getBean("studentStartTest", Controller.class));
         mapping.put(FORMS.STUDENT_SAVE_ANSWER, beanFactory.getBean("studentSaveAnswer", Controller.class));
         mapping.put(FORMS.STUDENT_END_TEST, beanFactory.getBean("studentEndTest", Controller.class));

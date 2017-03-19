@@ -3,9 +3,8 @@ package com.getprepared.controller.tutor;
 import com.getprepared.annotation.Inject;
 import com.getprepared.controller.Controller;
 import com.getprepared.domain.AnswerType;
-import com.getprepared.exception.ValidationException;
-import com.getprepared.util.Validation;
-import com.getprepared.util.impl.Messages;
+import com.getprepared.util.Messages;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,16 +27,16 @@ public abstract class AbstractQuestionAddController implements Controller {
     @Inject
     private Messages messages;
 
-    protected void fillPage(final HttpServletRequest request, final Validation validation) throws ValidationException {
+    protected void fillPage(final HttpServletRequest request, final ValidationService validationService)  {
 
         final Long quizId = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
 
         try {
-            validation.validateId(quizId);
+            // TODO add validation
             request.setAttribute(INPUTS.QUIZ_ID, quizId);
-        } catch (ValidationException | ClassCastException e) {
+        } catch (final ClassCastException e) {
             LOG.warn(e.getMessage(), e);
-            throw new ValidationException(String.format("Illegal quizId %d", quizId), e);
+//            throw new ValidationException(String.format("Illegal quizId %d", quizId), e);
         }
 
         request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
@@ -46,14 +45,14 @@ public abstract class AbstractQuestionAddController implements Controller {
     }
 
     protected String fillPage(final HttpServletRequest request, final HttpServletResponse response,
-                              final Validation validation) throws IOException {
-        try {
+                              final ValidationService validation) throws IOException {
+//        try {
             fillPage(request, validation);
-        } catch (final ValidationException e) {
-            LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINKS.NOT_FOUND);
-            return REDIRECT;
-        }
+//        } catch (final ValidationException e) {
+//            LOG.warn(e.getMessage(), e);
+//            response.sendRedirect(LINKS.NOT_FOUND);
+//            return REDIRECT;
+//        }
 
         return PAGES.TUTOR_ADD_QUESTION;
     }

@@ -8,11 +8,10 @@ import com.getprepared.domain.Question;
 import com.getprepared.domain.Quiz;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.exception.ValidationException;
 import com.getprepared.service.QuestionService;
 import com.getprepared.service.QuizService;
-import com.getprepared.util.Validation;
-import com.getprepared.util.impl.Messages;
+import com.getprepared.util.Messages;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +40,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
     private QuestionService questionService;
 
     @Inject
-    private Validation validation;
+    private ValidationService validationService;
 
     @Inject
     private Messages messages;
@@ -77,12 +76,12 @@ public class QuestionAddController extends AbstractQuestionAddController {
                     answer.setText(answersText[i]);
                     answer.setType(AnswerType.valueOf(answersType[i]));
                     answer.setQuestion(question);
-                    validation.validateAnswer(answer);
+                    // TODO add validation
                     answers.add(answer);
                 }
 
                 question.setAnswers(answers);
-                validation.validateQuestion(question);
+                // TODO add validation
                 questionService.save(question);
                 
                 response.sendRedirect(LINKS.TUTOR_QUESTIONS);
@@ -92,7 +91,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
             return REDIRECT;
-        } catch (ValidationException | IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) { // TODO ???
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.INVALIDATED_ANSWERS, request.getLocale()));
         } catch (final EntityExistsException e) {
@@ -103,6 +102,6 @@ public class QuestionAddController extends AbstractQuestionAddController {
         request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TYPE, answersType);
         request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TEXT, answersText);
 
-        return fillPage(request, response, validation);
+        return fillPage(request, response, validationService);
     }
 }
