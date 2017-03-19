@@ -9,7 +9,7 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
 import com.getprepared.service.ResultService;
 import com.getprepared.service.UserService;
-import com.getprepared.util.PasswordEncoder;
+import com.getprepared.security.PasswordEncoder;
 
 import java.util.List;
 
@@ -36,11 +36,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transactionManager.begin();
             final User user = userDao.findById(id);
             final List<Result> userResults = resultService.findByUserId(user.getId());
+            transactionManager.rollback();
             user.setResults(userResults);
-            transactionManager.commit();
             return user;
         } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
@@ -53,11 +52,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
             checkPassword(password, user);
 
             final List<Result> userResults = resultService.findByUserId(user.getId());
+            transactionManager.rollback();
             user.setResults(userResults);
-            transactionManager.commit();
             return user;
         } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
@@ -68,10 +66,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transactionManager.begin();
             final User user = userDao.findByTutorEmail(email);
             checkPassword(password, user);
-            transactionManager.commit();
+            transactionManager.rollback();
             return user;
         } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
@@ -86,12 +83,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public void signUp(final User user) throws EntityExistsException {
         try {
-            transactionManager.begin();
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userDao.save(user);
-            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            transactionManager.rollback();
             throw e;
         }
     }

@@ -11,7 +11,7 @@ import com.getprepared.domain.AnswerType;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.util.impl.PropertyUtils;
+import com.getprepared.util.PropertyUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +23,7 @@ import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Answer.*;
 import static com.getprepared.domain.Entity.ID_KEY;
+import static com.getprepared.util.PropertyUtils.*;
 
 /**
  * Created by koval on 05.01.2017.
@@ -30,7 +31,7 @@ import static com.getprepared.domain.Entity.ID_KEY;
 @Component("answerDao")
 public class AnswerDaoImpl implements AnswerDao {
 
-    private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.ANSWER);
+    private static final Properties prop = initProp(FILES_NAMES.ANSWER);
 
     @Inject
     private JdbcTemplate jdbcTemplate;

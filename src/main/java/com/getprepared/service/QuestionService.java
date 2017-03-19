@@ -1,6 +1,6 @@
 package com.getprepared.service;
 
-import com.getprepared.controller.dto.TestQuestion;
+import com.getprepared.converter.form.TestQuestion;
 import com.getprepared.domain.Question;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;

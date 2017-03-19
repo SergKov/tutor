@@ -10,7 +10,7 @@ import com.getprepared.domain.Result;
 import com.getprepared.domain.User;
 import com.getprepared.exception.EntityExistsException;
 import com.getprepared.exception.EntityNotFoundException;
-import com.getprepared.util.impl.PropertyUtils;
+import com.getprepared.util.PropertyUtils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +23,7 @@ import static com.getprepared.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.constant.PropertyConstants.KEYS;
 import static com.getprepared.domain.Entity.ID_KEY;
 import static com.getprepared.domain.Result.*;
+import static com.getprepared.util.PropertyUtils.*;
 
 /**
  * Created by koval on 06.01.2017.
@@ -30,7 +31,7 @@ import static com.getprepared.domain.Result.*;
 @Component("resultDao")
 public class ResultDaoImpl implements ResultDao {
 
-    private static final Properties prop = PropertyUtils.initProp(FILES_NAMES.RESULT);
+    private static final Properties prop = initProp(FILES_NAMES.RESULT);
 
     @Inject
     private JdbcTemplate jdbcTemplate;

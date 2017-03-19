@@ -24,11 +24,8 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
         try {
-            transactionManager.begin();
             answerDao.save(answer);
-            transactionManager.commit();
         } catch (final EntityExistsException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
@@ -48,21 +45,14 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
         try {
-            transactionManager.begin();
-            final Answer answer = answerDao.findById(id);
-            transactionManager.commit();
-            return answer;
+            return answerDao.findById(id);
         } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        transactionManager.begin();
-        final List<Answer> answers = answerDao.findByQuestionId(questionId);
-        transactionManager.commit();
-        return answers;
+        return answerDao.findByQuestionId(questionId);
     }
 }

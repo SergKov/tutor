@@ -2,7 +2,7 @@ package com.getprepared.service.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.controller.dto.TestQuestion;
+import com.getprepared.converter.form.TestQuestion;
 import com.getprepared.dao.QuestionDao;
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.AnswerType;
@@ -55,10 +55,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final Question question = questionDao.findById(id);
             final List<Answer> answers = answerService.findByQuestionId(question.getId());
             question.setAnswers(answers);
-            transactionManager.commit();
+            transactionManager.rollback();
             return question;
         } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
@@ -75,18 +74,15 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             question.setAnswers(answers);
         }
 
-        transactionManager.commit();
+        transactionManager.rollback();
         return questions;
     }
 
     @Override
     public void remove(final Question question) throws EntityNotFoundException {
         try {
-            transactionManager.begin();
             questionDao.removeById(question.getId());
-            transactionManager.commit();
         } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
             throw e;
         }
     }
@@ -107,8 +103,8 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
                     .stream()
                     .filter(answer -> answer.getType().equals(AnswerType.CORRECT))
                     .collect(toList());
-            return testQuestion.getAnswers().containsAll(correctAnswers) &&
-                    testQuestion.getAnswers().size() == correctAnswers.size() ? 1 : 0;
+            return testQuestion.getAnswers().size() == correctAnswers.size() &&
+                    testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;
         }).sum();
         return (double) countCorrectAnswers / test.size() * 100;
     }
