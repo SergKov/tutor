@@ -1,4 +1,4 @@
-package com.getprepared.controller.dto;
+package com.getprepared.converter.form;
 
 import com.getprepared.domain.Answer;
 import com.getprepared.domain.Question;
