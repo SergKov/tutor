@@ -60,7 +60,7 @@ public class StudentEndTestController implements Controller {
             result.setMark((byte) mark);
             result.setCreationDateTime(LocalDateTime.now());
             resultService.save(result);
-        } catch (final EntityNotFoundException | EntityExistsException e) {
+        } catch (EntityNotFoundException | EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
         }

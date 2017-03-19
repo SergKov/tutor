@@ -6,7 +6,6 @@ import com.getprepared.controller.Controller;
 import com.getprepared.converter.form.TestQuestion;
 import com.getprepared.domain.Answer;
 import com.getprepared.util.Messages;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +19,8 @@ import static com.getprepared.constant.PageConstants.PAGES;
 import static com.getprepared.constant.WebConstants.INPUTS;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 import static com.getprepared.constant.WebConstants.SESSION_ATTRIBUTES;
+import static org.apache.commons.lang3.ArrayUtils.contains;
+import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 
 /**
  * Created by koval on 05.02.2017.
@@ -50,15 +51,11 @@ public class StudentSaveAnswerController implements Controller {
 
                 final List<Answer> chosenAnswers = new ArrayList<>();
 
-                if (ArrayUtils.isNotEmpty(chosenAnswersId)) {
-                    testQuestion.getQuestion().getAnswers().forEach(answer -> {
-                        final String stringAnswerId = String.valueOf(answer.getId());
-                        if (ArrayUtils.contains(chosenAnswersId, stringAnswerId)) {
-                            chosenAnswers.add(answer);
-                        }
-                    });
+                if (isNotEmpty(chosenAnswersId)) {
+                    testQuestion.getQuestion().getAnswers().stream()
+                            .filter(answer -> contains(chosenAnswersId, String.valueOf(answer.getId())))
+                            .forEach(chosenAnswers::add);
                 }
-
                 testQuestion.setAnswers(chosenAnswers);
             }
         } catch (final NumberFormatException e) {
