@@ -49,7 +49,7 @@ $(document).ready(function() {
 
         $answer.addClass('answer-padding');
         var $answers = $('.answers');
-        if ($answers.lenth < 10) {
+        if ($answers.length < 10) {
             $answers.append($answer)
         }
     });

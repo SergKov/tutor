@@ -1,15 +1,15 @@
 package com.getprepared.util;
 
 import com.getprepared.annotation.Component;
+import org.apache.commons.collections4.MapUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.Map.Entry;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static java.util.ResourceBundle.getBundle;
-import static org.apache.commons.collections4.CollectionUtils.isEmpty;
+import static org.apache.commons.collections4.MapUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 /**
@@ -29,20 +29,19 @@ public class Messages {
         return resoureBoundle.getString(key);
     }
 
-    public List<String> getMessages(final List<String> keys, final Locale locale) {
+    public Map<String, String> getMessages(final Map<String, String> keys, final Locale locale) {
         if (isEmpty(keys)) {
-            return emptyList();
+            return emptyMap();
         }
-        final List<String> messages = new ArrayList<>();
+        final Map<String, String> messages = new HashMap<>();
 
-        keys.forEach(key -> addMessage(locale, messages, key));
+        keys.forEach((key, value) -> {
+            final String message = getMessage(value, locale);
+            if (isEmpty(message)) {
+                messages.put(key, message);
+            }
+        });
+
         return messages;
-    }
-
-    private void addMessage(final Locale locale, final List<String> messages, final String key) {
-        final String message = getMessage(key, locale);
-        if (isEmpty(message)) {
-            messages.add(message);
-        }
     }
 }

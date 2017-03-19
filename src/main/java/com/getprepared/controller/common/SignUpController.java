@@ -13,19 +13,18 @@ import com.getprepared.exception.EntityExistsException;
 import com.getprepared.service.UserService;
 import com.getprepared.util.Messages;
 import com.getprepared.validation.ValidationService;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import static com.getprepared.constant.PageConstants.REDIRECT;
 import static com.getprepared.constant.WebConstants.*;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSGS;
-import static org.apache.commons.collections4.CollectionUtils.*;
+import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
 /**
  * Created by koval on 17.01.2017.
@@ -51,7 +50,7 @@ public class SignUpController extends AbstractSignUpController {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         final UserSignUpForm userForm = new UserSignUpForm();
         fillForm(request, userForm);
-        final List<String> errors = validationService.validate(userForm);
+        final Map<String, String> errors = validationService.validate(userForm);
         if (isNotEmpty(errors)) {
             request.setAttribute(ERROR_MSGS, messages.getMessages(errors, request.getLocale()));
         } else {
@@ -82,7 +81,7 @@ public class SignUpController extends AbstractSignUpController {
         return PAGES.SIGN_UP;
     }
 
-    private void fillForm(final HttpServletRequest request, final UserSignUpForm userSignUpForm)  {
+    private void fillForm(final HttpServletRequest request, final UserSignUpForm userSignUpForm) {
         userSignUpForm.setName(request.getParameter(INPUTS.NAME));
         userSignUpForm.setSurname(request.getParameter(INPUTS.SURNAME));
         userSignUpForm.setEmail(request.getParameter(INPUTS.EMAIL));

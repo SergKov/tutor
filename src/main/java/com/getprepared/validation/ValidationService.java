@@ -5,13 +5,13 @@ import com.getprepared.annotation.Constraint;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.getprepared.util.ReflectionUtils.getFieldValue;
 import static com.getprepared.util.ReflectionUtils.newInstance;
 import static java.util.Arrays.stream;
-import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
 /**
@@ -20,27 +20,27 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 @Component
 public class ValidationService {
 
-    public List<String> validate(final Object object) {
+    public Map<String, String> validate(final Object object) {
         final Field[] fields = object.getClass().getDeclaredFields();
 
         if (isEmpty(fields)) {
-            return emptyList();
+            return emptyMap();
         }
-        final List<String> errors = new ArrayList<>();
+        final Map<String, String> errors = new HashMap<>();
         stream(fields).forEach(field -> manageAnnotations(errors, field, object));
 
         return errors;
     }
 
     @SuppressWarnings("unchecked")
-    private void manageAnnotations(final List<String> errors, final Field field, final Object object) {
+    private void manageAnnotations(final Map<String, String> errors, final Field field, final Object object) {
         final Annotation[] annotations = field.getAnnotations();
         for (final Annotation annotation : annotations) {
             if (isConstraint(annotation)) {
                 final ConstraintValidator validator = getConstraintValidator(annotation);
                 validator.init(annotation);
                 if (!validator.isValid(getFieldValue(field, object))) {
-                    errors.add(getMessage(annotation));
+                    errors.put(field.getName(), getMessage(annotation));
                     break;
                 }
             }
