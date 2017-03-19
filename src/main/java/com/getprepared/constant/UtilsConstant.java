@@ -11,7 +11,7 @@ public class UtilsConstant {
 
         private REGEX() { }
 
-        public static final String ROLE = "^[STUDENT|TUTOR]$";
+        public static final String ROLE = "^STUDENT|TUTOR$";
 
         public static final String EMAIL = "^[A-z]\\w+@\\w+\\.[a-z]{2,4}$";
 
@@ -23,6 +23,6 @@ public class UtilsConstant {
 
         public static final String QUIZ_NAME = "^[\\S]{2,32}$";
 
-        public static final String ANSWER_TYPE = "^[CORRECT|INCORRECT]$";
+        public static final String ANSWER_TYPE = "^CORRECT|INCORRECT$";
     }
 }

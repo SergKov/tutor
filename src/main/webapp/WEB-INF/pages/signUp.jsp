@@ -22,10 +22,10 @@
         <div class="well">
             <form action="${signUpAction}" method="POST" class="form-horizontal js-sign_up"
                   data-msg-repeat="${repeatPassword}">
-                <div class="row">
-                    <input type="hidden" name="controller" value="signUp"/>
+                <input type="hidden" name="controller" value="signUp"/>
 
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="role"><fmt:message key="signUp.chooseRole"/></label>
 
                         <div class="col-xs-3">
@@ -37,6 +37,12 @@
                                 </c:forEach>
                             </select>
                         </div>
+
+                        <c:if test="${not empty errorMsgs['role']}">
+                            <div class="col-xs-12">
+                                <c:out value="${errorMsgs['role']}"/>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
 
@@ -63,14 +69,23 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
+
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.email"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
                                    value="${user.email}"
                                    placeholder="<fmt:message key="homePage.enterEmail"/>" required>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <c:if test="${not empty errorMsgs['email']}">
+                                <div class="col-xs-12">
+                                    <c:out value="${errorMsgs['email']}"/>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>

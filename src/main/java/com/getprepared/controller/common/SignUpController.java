@@ -74,9 +74,8 @@ public class SignUpController extends AbstractSignUpController {
                 LOG.warn(e.getMessage(), e);
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.USER_EXISTS, request.getLocale()));
             }
-            request.setAttribute(REQUEST_ATTRIBUTES.USER, user);
         }
-
+        request.setAttribute(REQUEST_ATTRIBUTES.USER, userForm);
         fillPage(request);
         return PAGES.SIGN_UP;
     }

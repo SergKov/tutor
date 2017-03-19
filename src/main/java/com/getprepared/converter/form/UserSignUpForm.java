@@ -2,12 +2,14 @@ package com.getprepared.converter.form;
 
 import com.getprepared.annotation.Pattern;
 
+import static com.getprepared.constant.UtilsConstant.REGEX;
+
 /**
  * Created by koval on 08.03.2017.
  */
 public class UserSignUpForm {
 
-    @Pattern(regexp = "^[STUDENT|TUTOR]$")
+    @Pattern(regexp = REGEX.ROLE)
     private String role;
 
     @Pattern(regexp = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$")
@@ -16,7 +18,7 @@ public class UserSignUpForm {
     @Pattern(regexp = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$")
     private String surname;
 
-    @Pattern(regexp = "^[A-z]\\w+@\\w+\\.[a-z]{2,4}$")
+    @Pattern(regexp = REGEX.EMAIL)
     private String email;
 
     @Pattern(regexp = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$")

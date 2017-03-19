@@ -37,7 +37,7 @@ public class Messages {
 
         keys.forEach((key, value) -> {
             final String message = getMessage(value, locale);
-            if (isEmpty(message)) {
+            if (!isEmpty(message)) {
                 messages.put(key, message);
             }
         });
