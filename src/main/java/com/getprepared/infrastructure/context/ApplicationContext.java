@@ -5,61 +5,94 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Configuration;
 import com.getprepared.annotation.Inject;
 import com.getprepared.infrastructure.BeanFactory;
-import com.getprepared.util.impl.PackageScanner;
-import com.getprepared.util.impl.PropertyUtils;
-import com.getprepared.util.impl.ReflectionUtils;
+import com.getprepared.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
+
+import static com.getprepared.util.PackageScanner.*;
+import static com.getprepared.util.PropertyUtils.*;
+import static java.util.Arrays.fill;
+import static java.util.Arrays.stream;
+import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
 /**
  * Created by koval on 25.02.2017.
  */
 public class ApplicationContext implements BeanFactory {
 
-    private final Properties prop = PropertyUtils.initProp("server/constant.properties");
+    private static final String EMPTY_STRING = "";
+
+    private final Properties configurationProp = initProp("/server/configuration.properties");
+    private final Properties componentProp = initProp("/server/component.properties");
 
     private final Map<String, Object> container = new HashMap<>();
 
     public ApplicationContext() {
-        loadConfig(prop.getProperty("configuration"));
-
-        load(prop.getProperty("dao"));
-        load(prop.getProperty("service"));
-        load(prop.getProperty("controller"));
-
+        initConfig();
+        initComponent();
         injectFields();
     }
 
-    private void loadConfig(final String packageName) {
-        final List<Class<?>> classes = PackageScanner.scan(packageName);
+    public void initConfig() {
+        final Set<Object> keys = configurationProp.keySet();
 
-        classes.forEach(clazz -> {
-            if (clazz.isAnnotationPresent(Configuration.class)) {
-                final Method[] methods = clazz.getDeclaredMethods();
-                Arrays.stream(methods).forEach(method -> {
-                    if (method.isAnnotationPresent(Bean.class)) {
-                        final Bean annotation = method.getAnnotation(Bean.class);
-                        final String beanName = annotation.value();
-                        final Object config = ReflectionUtils.newInstance(clazz);
-                        container.put(beanName, ReflectionUtils.invoke(method, config));
-                    }
+        keys.stream()
+                .map(key -> (String) key)
+                .forEach(key -> loadConfig(configurationProp.getProperty(key)));
+    }
+
+    public void initComponent() {
+        final Set<Object> keys = componentProp.keySet();
+
+        keys.stream()
+                .map(key -> (String) key)
+                .forEach(key -> load(componentProp.getProperty(key)));
+    }
+
+    private void loadConfig(final String packageName) {
+        final List<Class<?>> classes = scan(packageName);
+
+        classes.stream()
+                .filter(clazz -> clazz.isAnnotationPresent(Configuration.class))
+                .forEach(clazz -> {
+                    final Method[] methods = clazz.getDeclaredMethods();
+                    initJavaConfigBeans(clazz, methods);
                 });
-            }
-        });
+    }
+
+    private void initJavaConfigBeans(final Class<?> clazz, final Method[] methods) {
+        stream(methods)
+                .filter(method -> method.isAnnotationPresent(Bean.class))
+                .forEach(method -> {
+                    final Bean annotation = method.getAnnotation(Bean.class);
+                    String beanName = annotation.value();
+                    if (beanName.equals(EMPTY_STRING)) {
+                        final String simpleName = method.getReturnType().getSimpleName();
+                        beanName = uncapitalize(simpleName);
+                    }
+                    final Object config = ReflectionUtils.newInstance(clazz);
+                    container.put(beanName, ReflectionUtils.invoke(method, config));
+                });
     }
 
     private void load(final String packageName) {
-        final List<Class<?>> classes = PackageScanner.scan(packageName);
+        final List<Class<?>> classes = scan(packageName);
 
-        classes.forEach(clazz -> {
-            if (clazz.isAnnotationPresent(Component.class)) {
-                final Component annotation = (Component) clazz.getAnnotation(Component.class);
-                final String beanName = annotation.value();
-                container.put(beanName, ReflectionUtils.newInstance(clazz));
-            }
-        });
+        classes.stream()
+                .filter(clazz -> clazz.isAnnotationPresent(Component.class))
+                .forEach(this::initAnnotationBean);
+    }
+
+    private void initAnnotationBean(final Class<?> clazz) {
+        final Component annotation = (Component) clazz.getAnnotation(Component.class);
+        String beanName = annotation.value();
+        if (beanName.equals(EMPTY_STRING)) {
+            final String simpleName = clazz.getSimpleName();
+            beanName = uncapitalize(simpleName);
+        }
+        container.put(beanName, ReflectionUtils.newInstance(clazz));
     }
 
     private void injectFields() {
@@ -69,12 +102,12 @@ public class ApplicationContext implements BeanFactory {
     private void injectFields(final Object bean) {
         for (Class clazz = bean.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
             final Field[] fields = clazz.getDeclaredFields();
-            Arrays.stream(fields).forEach(field -> {
-                if (field.isAnnotationPresent(Inject.class)) {
-                    final Object injectedValue = getBean(field.getName());
-                    ReflectionUtils.setField(field, bean, injectedValue);
-                }
-            });
+            stream(fields)
+                    .filter(field -> field.isAnnotationPresent(Inject.class))
+                    .forEach(field -> {
+                        final Object injectedValue = getBean(field.getName());
+                        ReflectionUtils.setField(field, bean, injectedValue);
+                    });
         }
     }
 

@@ -5,11 +5,8 @@ import com.getprepared.annotation.Configuration;
 import com.getprepared.database.TransactionManager;
 import com.getprepared.database.TransactionalConnectionProvider;
 import com.getprepared.database.template.JdbcTemplate;
-import com.getprepared.util.PasswordEncoder;
-import com.getprepared.util.Validation;
-import com.getprepared.util.impl.Messages;
-import com.getprepared.util.impl.PasswordEncoderImpl;
-import com.getprepared.util.impl.ValidationImpl;
+import com.getprepared.util.Messages;
+import com.getprepared.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.naming.InitialContext;
@@ -24,7 +21,7 @@ public class ApplicationConfig {
 
     private static final Logger LOG = Logger.getLogger(ApplicationConfig.class);
 
-    @Bean("dataSource")
+    @Bean
     public DataSource getDataSource() {
         try {
             return (DataSource) new InitialContext().lookup("java:comp/env/jdbc/tutor");
@@ -32,35 +29,5 @@ public class ApplicationConfig {
             LOG.fatal("Failed to get DataSource", e);
             throw new IllegalStateException(e);
         }
-    }
-
-    @Bean("transactionManager")
-    public TransactionManager getTransactionManager() {
-        return new TransactionManager();
-    }
-
-    @Bean("transactionalConnectionProvider")
-    public TransactionalConnectionProvider getTransactionConnectionProvider() {
-        return new TransactionalConnectionProvider();
-    }
-
-    @Bean("jdbcTemplate")
-    public JdbcTemplate getJdbcTemplate() {
-        return new JdbcTemplate();
-    }
-
-    @Bean("messages")
-    public Messages getMessages() {
-        return new Messages();
-    }
-
-    @Bean("passwordEncoder")
-    public PasswordEncoder getPasswordEncoder() {
-        return new PasswordEncoderImpl();
-    }
-
-    @Bean("validation")
-    public Validation getValidation() {
-        return new ValidationImpl();
     }
 }

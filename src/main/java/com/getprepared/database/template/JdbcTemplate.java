@@ -1,5 +1,6 @@
 package com.getprepared.database.template;
 
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.database.TransactionalConnectionProvider;
 import com.getprepared.domain.Entity;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * Created by koval on 11.01.2017.
  */
+@Component
 public class JdbcTemplate {
 
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
