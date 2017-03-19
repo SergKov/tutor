@@ -7,15 +7,13 @@ public class UtilsConstant {
 
     private UtilsConstant() { }
 
-    public static final String PASSWORD_ENCODER = "encoder";
-
-    public static final String VALIDATION = "validation";
-
     public static class REGEX {
 
         private REGEX() { }
 
-        public static final String EMAIL = "^[a-zA-Z@\\.1-9]{2,32}$";
+        public static final String ROLE = "^[STUDENT|TUTOR]$";
+
+        public static final String EMAIL = "^[A-z]\\w+@\\w+\\.[a-z]{2,4}$";
 
         public static final String PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,20}$";
 

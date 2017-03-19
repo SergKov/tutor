@@ -1,4 +1,4 @@
-package com.getprepared.util.impl;
+package com.getprepared.util;
 
 import org.apache.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class PropertyUtils {
             final InputStream is = PropertyUtils.class.getResourceAsStream(fileName);
             prop.load(is);
             return prop;
-        } catch (final IOException e) {
+        } catch (final Exception e) {
             LOG.warn(String.format("Failed to load file %s", fileName), e);
             throw new IllegalStateException(e);
         }

@@ -1,11 +1,11 @@
-package com.getprepared.util.impl;
+package com.getprepared.util;
 
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static com.getprepared.util.impl.ConnectionUtils.SqlRunner.run;
+import static com.getprepared.util.ConnectionUtils.SqlRunner.run;
 
 /**
  * Created by koval on 05.01.2017.

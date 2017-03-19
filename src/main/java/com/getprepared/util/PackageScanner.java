@@ -1,4 +1,4 @@
-package com.getprepared.util.impl;
+package com.getprepared.util;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static java.util.Arrays.*;
+import static org.apache.commons.lang3.ArrayUtils.*;
 
 /**
  * Created by koval on 04.03.2017.
@@ -35,8 +38,8 @@ public class PackageScanner {
         final List<Class<?>> classes = new ArrayList<>();
         final File[] directoryFiles = scannedDirectory.listFiles();
 
-        if (ArrayUtils.isNotEmpty(directoryFiles)) {
-            Arrays.stream(directoryFiles).forEach(file -> {
+        if (isNotEmpty(directoryFiles)) {
+            stream(directoryFiles).forEach(file -> {
                 classes.addAll(scan(file, scannedPackage));
             });
             return classes;
@@ -50,8 +53,8 @@ public class PackageScanner {
         final String resource = scannedPackage + PACKAGE_SEPARATOR + scannedFile.getName();
         if (scannedFile.isDirectory()) {
             final File[] directoryFiles = scannedFile.listFiles();
-            if (ArrayUtils.isNotEmpty(directoryFiles)) {
-                Arrays.stream(directoryFiles).forEach(child -> classes.addAll(scan(child, resource)));
+            if (isNotEmpty(directoryFiles)) {
+                stream(directoryFiles).forEach(child -> classes.addAll(scan(child, resource)));
             }
         } else if (resource.endsWith(CLASS_FILE_SUFFIX)) {
             final int endIndex = resource.length() - CLASS_FILE_SUFFIX.length();

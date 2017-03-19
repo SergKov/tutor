@@ -58,6 +58,8 @@ public class WebConstants {
 
         public static final String ERROR_MSG = "errorMsg";
 
+        public static final String ERROR_MSGS = "errorMsgs";
+
         public static final String REPEAT_PWD_MSG = "repeatPassword";
 
         public static final String EMAIL_REGEX = "emailRegex";

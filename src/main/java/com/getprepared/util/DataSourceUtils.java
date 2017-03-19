@@ -1,4 +1,4 @@
-package com.getprepared.util.impl;
+package com.getprepared.util;
 
 import org.apache.log4j.Logger;
 
@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static com.getprepared.util.impl.DataSourceUtils.DataSourceCallback.call;
+import static com.getprepared.util.DataSourceUtils.DataSourceCallback.call;
 
 /**
  * Created by koval on 08.01.2017.
