@@ -46,17 +46,23 @@ public class EncodingFilterTest {
     public void requireNoInteractionsWithFilterConfig() throws Exception {
         filter.init(config);
         verify(config, never()).getInitParameter(anyString());
+        verifyNoMoreInteractions(config);
     }
 
     @Test
     public void requireSetEncoding() throws Exception {
         filter.doFilter(request, response, chain);
+        verifyNoMoreInteractions(response);
         verify(request, only()).setCharacterEncoding(ENCODING);
+        verifyNoMoreInteractions(request);
     }
 
     @Test
     public void requireInteractionsDoFilter() throws Exception {
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(request);
+        verifyNoMoreInteractions(response);
+        verifyNoMoreInteractions(chain);
     }
 }

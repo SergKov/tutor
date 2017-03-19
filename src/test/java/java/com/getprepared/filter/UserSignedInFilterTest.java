@@ -45,11 +45,15 @@ public class UserSignedInFilterTest {
     public void requireInteractionsWithFilterConfig() throws Exception {
         filter.init(config);
         verify(config, times(2)).getInitParameter(anyString());
+        verifyNoMoreInteractions(config);
     }
 
     @Test
     public void requireInteractionsDoFilter() throws Exception {
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(chain);
+        verifyNoMoreInteractions(request);
+        verifyNoMoreInteractions(response);
     }
 }

@@ -48,7 +48,10 @@ $(document).ready(function() {
         });
 
         $answer.addClass('answer-padding');
-        $('.answers').append($answer);
+        var $answers = $('.answers');
+        if ($answers.lenth < 10) {
+            $answers.append($answer)
+        }
     });
 
     $("#minusAnswer").click(function () {

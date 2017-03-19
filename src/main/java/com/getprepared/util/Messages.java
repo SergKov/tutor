@@ -1,7 +1,6 @@
 package com.getprepared.util;
 
 import com.getprepared.annotation.Component;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,7 @@ import java.util.ResourceBundle;
 import static java.util.Collections.emptyList;
 import static java.util.ResourceBundle.getBundle;
 import static org.apache.commons.collections4.CollectionUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 /**
  * Created by koval on 15.01.2017.
@@ -34,12 +34,15 @@ public class Messages {
             return emptyList();
         }
         final List<String> messages = new ArrayList<>();
-        keys.forEach(key -> {
-            final String message = getMessage(key, locale);
-            if (StringUtils.isEmpty(message)) {
-                messages.add(message);
-            }
-        });
+
+        keys.forEach(key -> addMessage(locale, messages, key));
         return messages;
+    }
+
+    private void addMessage(final Locale locale, final List<String> messages, final String key) {
+        final String message = getMessage(key, locale);
+        if (isEmpty(message)) {
+            messages.add(message);
+        }
     }
 }

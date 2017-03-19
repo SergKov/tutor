@@ -45,11 +45,14 @@ public class UserGuestFilterTest {
     public void requireInteractionsWithFilterConfig() throws Exception {
         filter.init(config);
         verify(config, times(2)).getInitParameter(anyString());
+        verifyNoMoreInteractions(config);
     }
 
     @Test
     public void requireNoInteractionsDoFilterWhenNoSession() throws Exception {
         filter.doFilter(request, response, chain);
         verify(chain, never()).doFilter(request, response);
+        verifyNoMoreInteractions(request);
+        verifyNoMoreInteractions(response);
     }
 }
