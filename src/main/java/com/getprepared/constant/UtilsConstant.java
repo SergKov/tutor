@@ -11,8 +11,6 @@ public class UtilsConstant {
 
         private REGEX() { }
 
-        public static final String ROLE = "^STUDENT|TUTOR$";
-
         public static final String EMAIL = "^[A-z]\\w+@\\w+\\.[a-z]{2,4}$";
 
         public static final String PASSWORD = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,20}$";

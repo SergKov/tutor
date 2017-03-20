@@ -47,11 +47,6 @@ public class ValidationService {
         }
     }
 
-    private String getMessage(final Annotation annotation) {
-        final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
-        return constraint.message();
-    }
-
     private ConstraintValidator getConstraintValidator(final Annotation annotation) {
         final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
         return newInstance(constraint.validatedBy());
@@ -65,5 +60,10 @@ public class ValidationService {
             }
         }
         return false;
+    }
+
+    private String getMessage(final Annotation annotation) {
+        final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
+        return constraint.message();
     }
 }

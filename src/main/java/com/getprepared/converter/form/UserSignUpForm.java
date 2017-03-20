@@ -1,6 +1,8 @@
 package com.getprepared.converter.form;
 
+import com.getprepared.annotation.UserRole;
 import com.getprepared.annotation.Pattern;
+import com.getprepared.domain.Role;
 
 import static com.getprepared.constant.UtilsConstant.REGEX;
 
@@ -9,19 +11,19 @@ import static com.getprepared.constant.UtilsConstant.REGEX;
  */
 public class UserSignUpForm {
 
-    @Pattern(regexp = REGEX.ROLE)
+    @UserRole({Role.STUDENT, Role.TUTOR})
     private String role;
 
-    @Pattern(regexp = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$")
+    @Pattern(regexp = REGEX.NAME)
     private String name;
 
-    @Pattern(regexp = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$")
+    @Pattern(regexp = REGEX.SURNAME)
     private String surname;
 
     @Pattern(regexp = REGEX.EMAIL)
     private String email;
 
-    @Pattern(regexp = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$")
+    @Pattern(regexp = REGEX.PASSWORD)
     private String password;
 
     public String getRole() {
