@@ -1,6 +1,6 @@
 package java.com.getprepared.filter;
 
-import com.getprepared.filter.EncodingFilter;
+import com.getprepared.web.filter.EncodingFilter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.getprepared.constant.WebConstants.FILTERS_VARIABLES.ENCODING;
+import static com.getprepared.web.constant.WebConstants.FILTERS_VARIABLES.ENCODING;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 

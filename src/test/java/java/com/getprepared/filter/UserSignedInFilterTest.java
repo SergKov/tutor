@@ -1,6 +1,6 @@
 package java.com.getprepared.filter;
 
-import com.getprepared.filter.UserSignedInFilter;
+import com.getprepared.web.filter.UserSignedInFilter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
