@@ -38,7 +38,6 @@ public class StudentStartTestController extends AbstractStudentHomePageControlle
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
-            //TODO validate
             request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
 
             final List<TestQuestion> test = questionService.startTest(parsedQuizId);

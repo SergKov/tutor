@@ -102,6 +102,6 @@ public class QuestionAddController extends AbstractQuestionAddController {
         request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TYPE, answersType);
         request.setAttribute(REQUEST_ATTRIBUTES.ANSWER_TEXT, answersText);
 
-        return fillPage(request, response, validationService);
+        return returnPage(request);
     }
 }

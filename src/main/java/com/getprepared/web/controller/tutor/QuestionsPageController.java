@@ -48,10 +48,7 @@ public class QuestionsPageController extends AbstractQuestionsController {
         if (StringUtils.isNumeric(questionIdString)) {
             try {
                 request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTION, request.getLocale()));
-
                 final Long questionId = Long.valueOf(questionIdString);
-                // TODO add validation
-                
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
             } catch (NumberFormatException | EntityNotFoundException e) {
@@ -61,13 +58,13 @@ public class QuestionsPageController extends AbstractQuestionsController {
             }
             return PAGES.TUTOR_QUESTION;
         } else {
-//            try {
-                fillPage(request, quizService, questionService, validationService);
-//            } catch (final ValidationException e) {
-//                LOG.warn(e.getMessage(), e);
-//                response.sendRedirect(LINKS.NOT_FOUND);
-//                return REDIRECT;
-//            }
+            try {
+                fillPage(request, quizService, questionService);
+            } catch (final EntityNotFoundException e) {
+                LOG.warn(e.getMessage(), e);
+                response.sendRedirect(LINKS.NOT_FOUND);
+                return REDIRECT;
+            }
 
             return PAGES.TUTOR_QUESTIONS;
         }

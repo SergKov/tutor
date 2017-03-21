@@ -27,33 +27,19 @@ public abstract class AbstractQuestionAddController implements Controller {
     @Inject
     private Messages messages;
 
-    protected void fillPage(final HttpServletRequest request, final ValidationService validationService)  {
+    protected void fillPage(final HttpServletRequest request) {
 
         final Long quizId = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
 
-        try {
-            // TODO add validation
-            request.setAttribute(INPUTS.QUIZ_ID, quizId);
-        } catch (final ClassCastException e) {
-            LOG.warn(e.getMessage(), e);
-//            throw new ValidationException(String.format("Illegal quizId %d", quizId), e);
-        }
+        request.setAttribute(INPUTS.QUIZ_ID, quizId);
 
         request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
         request.setAttribute(ANSWER_TYPES, Type.values());
         request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
     }
 
-    protected String fillPage(final HttpServletRequest request, final HttpServletResponse response,
-                              final ValidationService validation) throws IOException {
-//        try {
-            fillPage(request, validation);
-//        } catch (final ValidationException e) {
-//            LOG.warn(e.getMessage(), e);
-//            response.sendRedirect(LINKS.NOT_FOUND);
-//            return REDIRECT;
-//        }
-
+    protected String returnPage(final HttpServletRequest request) throws IOException {
+        fillPage(request);
         return PAGES.TUTOR_ADD_QUESTION;
     }
 }

@@ -43,14 +43,10 @@ public class TutorSignInController extends AbstractSignInController {
         final String password = request.getParameter(INPUTS.PASSWORD);
 
         try {
-            // TODO add validation
-
             final User user = userService.signInTutor(email, password);
 
-            final HttpSession httpSession = request.getSession();
-
             if (user != null) {
-                httpSession.setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
+                request.getSession().setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
                 response.sendRedirect(LINKS.TUTOR_QUIZZES);
                 return REDIRECT;
             }

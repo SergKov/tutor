@@ -42,8 +42,6 @@ public class StudentSignInController extends AbstractSignInController {
         final String email = request.getParameter(INPUTS.EMAIL);
         final String password = request.getParameter(INPUTS.PASSWORD);
 
-        //TODO validation
-
         try {
             final User user = userService.signInStudent(email, password);
             if (user != null && user.getRole() == Role.STUDENT) {

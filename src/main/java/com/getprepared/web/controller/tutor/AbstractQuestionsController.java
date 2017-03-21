@@ -31,27 +31,17 @@ public abstract class AbstractQuestionsController implements Controller {
     private Messages messages;
 
     protected void fillPage(final HttpServletRequest request, final QuizService quizService,
-                            final QuestionService questionService,
-                            final ValidationService validationService)  {
+                            final QuestionService questionService) throws EntityNotFoundException {
 
         request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTIONS, request.getLocale()));
 
-        final Object quizId = request.getSession().getAttribute(INPUTS.QUIZ_ID);
+        final Long quizId = (Long) request.getSession().getAttribute(INPUTS.QUIZ_ID);
+        final Quiz quiz = quizService.findById(quizId);
+        request.setAttribute(REQUEST_ATTRIBUTES.QUIZ, quiz);
 
-        try {
-            final Long parsedQuizId = (Long) quizId;
-            // TODO add validation
-
-            final Quiz quiz = quizService.findById(parsedQuizId);
-            request.setAttribute(REQUEST_ATTRIBUTES.QUIZ, quiz);
-
-            final List<Question> questions = questionService.findByQuizId(parsedQuizId);
-            if (!CollectionUtils.isEmpty(questions)) {
-                request.setAttribute(REQUEST_ATTRIBUTES.QUESTIONS, questions);
-            }
-        } catch (EntityNotFoundException | ClassCastException e) {
-            LOG.warn(e.getMessage(), e);
-//            throw new ValidationException(String.format("Illegal quizId %s", quizId), e);
+        final List<Question> questions = questionService.findByQuizId(quizId);
+        if (!CollectionUtils.isEmpty(questions)) {
+            request.setAttribute(REQUEST_ATTRIBUTES.QUESTIONS, questions);
         }
     }
 }

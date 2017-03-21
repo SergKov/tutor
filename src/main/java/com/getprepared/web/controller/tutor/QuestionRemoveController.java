@@ -33,11 +33,7 @@ public class QuestionRemoveController extends AbstractQuestionsController {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
             final Long questionId = Long.parseLong(request.getParameter(INPUTS.QUESTION_ID));
-            // TODO add validation
-
             final Question question = questionService.findById(questionId);
-            // TODO add validation
-            
             questionService.remove(question);
             response.sendRedirect(LINKS.TUTOR_QUESTIONS);
             return REDIRECT;
