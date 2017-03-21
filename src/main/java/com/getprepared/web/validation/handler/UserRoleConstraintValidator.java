@@ -1,8 +1,8 @@
 package com.getprepared.web.validation.handler;
 
 import com.getprepared.persistence.domain.Role;
-import com.getprepared.web.validation.annotation.UserRole;
 import com.getprepared.web.validation.ConstraintValidator;
+import com.getprepared.web.validation.annotation.UserRole;
 
 /**
  * Created by koval on 20.03.2017.

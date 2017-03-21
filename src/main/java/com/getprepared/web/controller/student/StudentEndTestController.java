@@ -2,16 +2,16 @@ package com.getprepared.web.controller.student;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.controller.Controller;
-import com.getprepared.web.dto.TestQuestion;
-import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.persistence.domain.Result;
-import com.getprepared.persistence.domain.User;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.service.ResultService;
+import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.persistence.domain.Result;
+import com.getprepared.persistence.domain.User;
+import com.getprepared.web.controller.Controller;
+import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;

@@ -2,7 +2,10 @@ package com.getprepared.core.util;
 
 import com.getprepared.annotation.Component;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import static java.util.Collections.emptyMap;
 import static java.util.ResourceBundle.getBundle;

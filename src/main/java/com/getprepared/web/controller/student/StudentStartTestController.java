@@ -2,8 +2,8 @@ package com.getprepared.web.controller.student;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.core.service.QuestionService;
+import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 

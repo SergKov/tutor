@@ -2,8 +2,8 @@ package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.controller.common.AbstractQuizController;
 import com.getprepared.core.service.QuizService;
+import com.getprepared.web.controller.common.AbstractQuizController;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
 import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.WebConstants.INPUTS.QUIZ_ID;
 import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by koval on 22.01.2017.

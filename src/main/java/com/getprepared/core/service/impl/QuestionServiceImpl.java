@@ -2,15 +2,15 @@ package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.dto.TestQuestion;
-import com.getprepared.persistence.dao.QuestionDao;
-import com.getprepared.persistence.domain.Answer;
-import com.getprepared.persistence.domain.Type;
-import com.getprepared.persistence.domain.Question;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
+import com.getprepared.persistence.dao.QuestionDao;
+import com.getprepared.persistence.domain.Answer;
+import com.getprepared.persistence.domain.Question;
+import com.getprepared.persistence.domain.Type;
+import com.getprepared.web.dto.TestQuestion;
 
 import java.util.ArrayList;
 import java.util.Collections;

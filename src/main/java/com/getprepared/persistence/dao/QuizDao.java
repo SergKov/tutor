@@ -1,8 +1,8 @@
 package com.getprepared.persistence.dao;
 
-import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.persistence.domain.Quiz;
 
 import java.util.List;
 

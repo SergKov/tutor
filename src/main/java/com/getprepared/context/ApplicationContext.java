@@ -10,9 +10,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static com.getprepared.core.util.PackageScanner.*;
-import static com.getprepared.core.util.PropertyUtils.*;
-import static java.util.Arrays.fill;
+import static com.getprepared.core.util.PackageScanner.scan;
+import static com.getprepared.core.util.PropertyUtils.initProp;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 

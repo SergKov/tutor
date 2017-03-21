@@ -2,8 +2,8 @@ package com.getprepared.web.controller.common;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.controller.Controller;
 import com.getprepared.core.util.Messages;
+import com.getprepared.web.controller.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Arrays.*;
-import static org.apache.commons.lang3.ArrayUtils.*;
+import static java.util.Arrays.stream;
+import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 
 /**
  * Created by koval on 04.03.2017.

@@ -1,9 +1,9 @@
 package com.getprepared.web.controller.factory;
 
+import com.getprepared.context.ApplicationContext;
+import com.getprepared.context.BeanFactory;
 import com.getprepared.web.constant.PageConstants.LINKS;
 import com.getprepared.web.controller.Controller;
-import com.getprepared.context.BeanFactory;
-import com.getprepared.context.ApplicationContext;
 
 import java.util.HashMap;
 import java.util.Map;

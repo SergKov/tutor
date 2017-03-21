@@ -1,8 +1,8 @@
 package com.getprepared.web.form;
 
+import com.getprepared.persistence.domain.Role;
 import com.getprepared.web.validation.annotation.Pattern;
 import com.getprepared.web.validation.annotation.UserRole;
-import com.getprepared.persistence.domain.Role;
 
 import static com.getprepared.web.constant.ValidationConstant.REGEX;
 

@@ -2,16 +2,16 @@ package com.getprepared.web.controller.common;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.constant.PageConstants.ERRORS;
-import com.getprepared.web.constant.PageConstants.LINKS;
-import com.getprepared.web.constant.PageConstants.PAGES;
 import com.getprepared.core.converter.Converter;
-import com.getprepared.web.form.UserSignUpForm;
-import com.getprepared.persistence.domain.Role;
-import com.getprepared.persistence.domain.User;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
+import com.getprepared.persistence.domain.Role;
+import com.getprepared.persistence.domain.User;
+import com.getprepared.web.constant.PageConstants.ERRORS;
+import com.getprepared.web.constant.PageConstants.LINKS;
+import com.getprepared.web.constant.PageConstants.PAGES;
+import com.getprepared.web.form.UserSignUpForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 

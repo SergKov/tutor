@@ -1,15 +1,14 @@
 package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
-import com.getprepared.web.controller.Controller;
-import com.getprepared.persistence.domain.Question;
-import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.validation.ValidationService;
+import com.getprepared.persistence.domain.Question;
+import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
+import com.getprepared.web.controller.Controller;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 

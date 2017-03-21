@@ -1,17 +1,16 @@
 package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.controller.Controller;
-import com.getprepared.persistence.domain.Type;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.validation.ValidationService;
+import com.getprepared.persistence.domain.Type;
+import com.getprepared.web.controller.Controller;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
+import static com.getprepared.web.constant.PageConstants.NAMES;
+import static com.getprepared.web.constant.PageConstants.PAGES;
 import static com.getprepared.web.constant.ValidationConstant.REGEX;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.*;

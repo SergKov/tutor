@@ -2,15 +2,15 @@ package com.getprepared.persistence.dao.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.exception.EntityExistsException;
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.persistence.dao.AnswerDao;
 import com.getprepared.persistence.database.template.BatchPreparedStatementSetter;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Answer;
-import com.getprepared.persistence.domain.Type;
 import com.getprepared.persistence.domain.Question;
-import com.getprepared.core.exception.EntityExistsException;
-import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.persistence.domain.Type;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,9 +20,9 @@ import java.util.Properties;
 
 import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.core.constant.PropertyConstants.KEYS;
+import static com.getprepared.core.util.PropertyUtils.initProp;
 import static com.getprepared.persistence.domain.Answer.*;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
-import static com.getprepared.core.util.PropertyUtils.*;
 
 /**
  * Created by koval on 05.01.2017.

@@ -2,9 +2,9 @@ package com.getprepared.core.converter.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.core.converter.Converter;
-import com.getprepared.web.form.UserSignUpForm;
 import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
+import com.getprepared.web.form.UserSignUpForm;
 
 /**
  * Created by koval on 09.03.2017.

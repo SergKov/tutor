@@ -2,12 +2,12 @@ package com.getprepared.persistence.dao.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.exception.EntityExistsException;
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.persistence.dao.QuizDao;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.core.exception.EntityExistsException;
-import com.getprepared.core.exception.EntityNotFoundException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,9 +16,9 @@ import java.util.Properties;
 
 import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.core.constant.PropertyConstants.KEYS;
+import static com.getprepared.core.util.PropertyUtils.initProp;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.Quiz.NAME_KEY;
-import static com.getprepared.core.util.PropertyUtils.*;
 
 /**
  * Created by koval on 06.01.2017.

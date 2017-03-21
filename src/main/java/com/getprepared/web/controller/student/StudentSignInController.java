@@ -2,12 +2,12 @@ package com.getprepared.web.controller.student;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.controller.common.AbstractSignInController;
-import com.getprepared.persistence.domain.Role;
-import com.getprepared.persistence.domain.User;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
+import com.getprepared.persistence.domain.Role;
+import com.getprepared.persistence.domain.User;
+import com.getprepared.web.controller.common.AbstractSignInController;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 

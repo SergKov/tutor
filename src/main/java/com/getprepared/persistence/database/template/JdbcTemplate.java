@@ -2,10 +2,10 @@ package com.getprepared.persistence.database.template;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.persistence.database.TransactionalConnectionProvider;
-import com.getprepared.persistence.domain.Entity;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.persistence.database.TransactionalConnectionProvider;
+import com.getprepared.persistence.domain.Entity;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

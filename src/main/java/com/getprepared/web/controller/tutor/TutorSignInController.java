@@ -2,17 +2,16 @@ package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.controller.common.AbstractSignInController;
-import com.getprepared.persistence.domain.User;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
+import com.getprepared.persistence.domain.User;
+import com.getprepared.web.controller.common.AbstractSignInController;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstants.*;

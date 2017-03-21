@@ -2,11 +2,11 @@ package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.constant.WebConstants;
-import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
+import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.web.constant.WebConstants;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -42,7 +42,7 @@ public class QuizAddController extends AbstractQuizAddController {
         try {
             quiz.setName(quizName);
             // TODO add validation
-            
+
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;

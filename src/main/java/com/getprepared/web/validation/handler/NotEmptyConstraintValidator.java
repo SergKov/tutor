@@ -1,7 +1,7 @@
 package com.getprepared.web.validation.handler;
 
-import com.getprepared.web.validation.annotation.NotEmpty;
 import com.getprepared.web.validation.ConstraintValidator;
+import com.getprepared.web.validation.annotation.NotEmpty;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 

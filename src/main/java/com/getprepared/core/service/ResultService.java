@@ -1,8 +1,8 @@
 package com.getprepared.core.service;
 
-import com.getprepared.persistence.domain.Result;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.persistence.domain.Result;
 
 import java.util.List;
 

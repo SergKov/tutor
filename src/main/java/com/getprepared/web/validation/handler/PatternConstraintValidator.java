@@ -1,7 +1,7 @@
 package com.getprepared.web.validation.handler;
 
-import com.getprepared.web.validation.annotation.Pattern;
 import com.getprepared.web.validation.ConstraintValidator;
+import com.getprepared.web.validation.annotation.Pattern;
 
 /**
  * Created by koval on 13.03.2017.
