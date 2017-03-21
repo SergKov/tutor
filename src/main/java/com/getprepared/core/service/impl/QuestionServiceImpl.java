@@ -2,10 +2,10 @@ package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.web.form.TestQuestion;
+import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.domain.Answer;
-import com.getprepared.persistence.domain.AnswerType;
+import com.getprepared.persistence.domain.Type;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
@@ -101,7 +101,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final List<Answer> correctAnswers = testQuestion.getQuestion()
                     .getAnswers()
                     .stream()
-                    .filter(answer -> answer.getType().equals(AnswerType.CORRECT))
+                    .filter(answer -> answer.getType().equals(Type.CORRECT))
                     .collect(toList());
             return testQuestion.getAnswers().size() == correctAnswers.size() &&
                     testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;

@@ -3,7 +3,7 @@ package com.getprepared.web.controller.student;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.web.controller.Controller;
-import com.getprepared.web.form.TestQuestion;
+import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;

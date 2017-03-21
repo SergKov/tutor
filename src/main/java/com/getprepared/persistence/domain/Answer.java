@@ -11,7 +11,7 @@ public class Answer extends Entity {
 
     private Question question;
     private String text;
-    private AnswerType type;
+    private Type type;
 
     public Answer() { }
 
@@ -31,11 +31,11 @@ public class Answer extends Entity {
         this.text = text;
     }
 
-    public AnswerType getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(AnswerType type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

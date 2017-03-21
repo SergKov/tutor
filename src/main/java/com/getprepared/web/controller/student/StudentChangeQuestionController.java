@@ -4,7 +4,7 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.controller.Controller;
-import com.getprepared.web.form.TestQuestion;
+import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.core.util.Messages;
 import org.apache.log4j.Logger;
 

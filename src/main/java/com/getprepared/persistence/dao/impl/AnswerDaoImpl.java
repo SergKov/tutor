@@ -7,7 +7,7 @@ import com.getprepared.persistence.database.template.BatchPreparedStatementSette
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Answer;
-import com.getprepared.persistence.domain.AnswerType;
+import com.getprepared.persistence.domain.Type;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
@@ -83,11 +83,11 @@ public class AnswerDaoImpl implements AnswerDao {
             final Question question = new Question();
             question.setId(rs.getLong(QUESTION_ID_KEY));
             final String text = rs.getString(TEXT_KEY);
-            final AnswerType type = AnswerType.valueOf(rs.getString(TYPE_KEY));
+            final Type type = Type.valueOf(rs.getString(TYPE_KEY));
             return fillAnswer(id, question, text, type);
         }
 
-        public Answer fillAnswer(final Long id, final Question question, final String text, final AnswerType type) {
+        public Answer fillAnswer(final Long id, final Question question, final String text, final Type type) {
             final Answer answer = new Answer();
             answer.setId(id);
             answer.setQuestion(question);

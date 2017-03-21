@@ -2,7 +2,7 @@ package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.web.controller.Controller;
-import com.getprepared.persistence.domain.AnswerType;
+import com.getprepared.persistence.domain.Type;
 import com.getprepared.core.util.Messages;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -40,7 +40,7 @@ public abstract class AbstractQuestionAddController implements Controller {
         }
 
         request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
-        request.setAttribute(ANSWER_TYPES, AnswerType.values());
+        request.setAttribute(ANSWER_TYPES, Type.values());
         request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
     }
 

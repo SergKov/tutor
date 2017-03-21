@@ -44,23 +44,23 @@ public class ReflectionUtils {
         }
     }
 
+    public static Object getField(final Field field, final Object object) {
+        field.setAccessible(true);
+        try {
+            return field.get(object);
+        } catch (final Exception e) {
+            final String errorMsg = String.format("Failed to get field %s", field.getName());
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
     public static void setField(final Field field, final Object bean, final Object injectedValue) {
         field.setAccessible(true);
         try {
             field.set(bean, injectedValue);
         } catch (final Exception e) {
             final String errorMsg = String.format("Failed to initialize field %s", field.getName());
-            LOG.error(errorMsg, e);
-            throw new IllegalStateException(errorMsg, e);
-        }
-    }
-
-    public static Object getFieldValue(final Field field, final Object object) {
-        field.setAccessible(true);
-        try {
-            return field.get(object);
-        } catch (final Exception e) {
-            final String errorMsg = String.format("Failed to get field %s", field.getName());
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
         }

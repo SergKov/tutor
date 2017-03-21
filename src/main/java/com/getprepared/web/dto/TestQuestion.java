@@ -1,4 +1,4 @@
-package com.getprepared.web.form;
+package com.getprepared.web.dto;
 
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;

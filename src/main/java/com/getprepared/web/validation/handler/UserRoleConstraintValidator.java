@@ -1,5 +1,6 @@
 package com.getprepared.web.validation.handler;
 
+import com.getprepared.persistence.domain.Role;
 import com.getprepared.web.validation.annotation.UserRole;
 import com.getprepared.web.validation.ConstraintValidator;
 
@@ -17,9 +18,9 @@ public class UserRoleConstraintValidator implements ConstraintValidator<UserRole
 
     @Override
     public boolean isValid(final String item) {
-        final Enum[] enums = annotation.value();
-        for (final Enum elem : enums) {
-            if (elem.name().equalsIgnoreCase(item)) {
+        final Role[] roles = annotation.value();
+        for (final Role role : roles) {
+            if (role.name().equalsIgnoreCase(item)) {
                 return true;
             }
         }

@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.getprepared.core.util.ReflectionUtils.getFieldValue;
+import static com.getprepared.core.util.ReflectionUtils.getField;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyMap;
@@ -39,7 +39,7 @@ public class ValidationService {
             if (isConstraint(annotation)) {
                 final ConstraintValidator validator = getConstraintValidator(annotation);
                 validator.init(annotation);
-                if (!validator.isValid(getFieldValue(field, object))) {
+                if (!validator.isValid(getField(field, object))) {
                     errors.put(field.getName(), getMessage(annotation));
                     break;
                 }

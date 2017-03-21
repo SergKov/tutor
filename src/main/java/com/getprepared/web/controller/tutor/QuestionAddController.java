@@ -3,7 +3,7 @@ package com.getprepared.web.controller.tutor;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.persistence.domain.Answer;
-import com.getprepared.persistence.domain.AnswerType;
+import com.getprepared.persistence.domain.Type;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.core.exception.EntityExistsException;
@@ -74,7 +74,7 @@ public class QuestionAddController extends AbstractQuestionAddController {
                 for (int i = 0; i < answersText.length; i++) {
                     final Answer answer = new Answer();
                     answer.setText(answersText[i]);
-                    answer.setType(AnswerType.valueOf(answersType[i]));
+                    answer.setType(Type.valueOf(answersType[i]));
                     answer.setQuestion(question);
                     // TODO add validation
                     answers.add(answer);

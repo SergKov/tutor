@@ -3,6 +3,6 @@ package com.getprepared.persistence.domain;
 /**
  * Created by koval on 31.12.2016.
  */
-public enum AnswerType {
+public enum Type {
     INCORRECT, CORRECT
 }
