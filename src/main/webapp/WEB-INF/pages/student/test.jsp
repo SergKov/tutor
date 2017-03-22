@@ -17,7 +17,7 @@
 
     <jsp:body>
         <form action="${testAction}" method="POST">
-            <input type="hidden" name="controller" value="saveAnswer"/>
+            <input type="hidden" name="command" value="saveAnswer"/>
             <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
             <div class="form-control question-border col-xs-8" id="test">
@@ -55,7 +55,7 @@
 
         <form action="${testAction}" method="POST" class="form-horizontal js-finish-btn"
               data-finish-btn="<fmt:message key="test.confirm.finish"/>">
-            <input type="hidden" name="controller" value="endTest">
+            <input type="hidden" name="command" value="endTest">
 
             <div class="col-xs-5">
                 <button type="submit" id="finish_btn" class="btn btn-danger btn-md">

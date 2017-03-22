@@ -1,12 +1,13 @@
-package com.getprepared.web.controller.tutor;
+package com.getprepared.web.controller.student;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
+import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
-import com.getprepared.web.controller.common.AbstractSignInController;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.common.AbstractSignInCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -19,12 +20,12 @@ import static com.getprepared.web.constant.WebConstants.*;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
 /**
- * Created by koval on 21.01.2017.
+ * Created by koval on 15.01.2017.
  */
-@Component("tutorSignIn")
-public class TutorSignInController extends AbstractSignInController {
+@Controller
+public class StudentSignInCommand extends AbstractSignInCommand {
 
-    private static final Logger LOG = Logger.getLogger(TutorSignInController.class);
+    private static final Logger LOG = Logger.getLogger(StudentSignInCommand.class);
 
     @Inject
     private UserService userService;
@@ -42,21 +43,19 @@ public class TutorSignInController extends AbstractSignInController {
         final String password = request.getParameter(INPUTS.PASSWORD);
 
         try {
-            final User user = userService.signInTutor(email, password);
-
-            if (user != null) {
-                request.getSession().setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
-                response.sendRedirect(LINKS.TUTOR_QUIZZES);
+            final User user = userService.signInStudent(email, password);
+            if (user != null && user.getRole() == Role.STUDENT) {
+                request.getSession().setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
+                response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
                 return REDIRECT;
             }
-
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
+            request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.USER_NOT_FOUND, request.getLocale()));
         }
 
-        request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
         fillPage(request);
-        return PAGES.TUTOR_SIGN_IN;
+        return PAGES.STUDENT_SIGN_IN;
     }
 }

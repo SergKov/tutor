@@ -35,12 +35,12 @@ public class FrontController extends HttpServlet {
     private void getPage(final HttpServletRequest req, final HttpServletResponse resp,
                          final String controllerKey) throws IOException, ServletException {
 
-        final Controller controller = ControllerFactory.getInstance().getController(controllerKey);
+        final Command command = ControllerFactory.getInstance().getCommand(controllerKey);
 
-        if (controller == null) {
+        if (command == null) {
             resp.sendRedirect(LINKS.NOT_FOUND);
         } else {
-            final String page = controller.execute(req, resp);
+            final String page = command.execute(req, resp);
             if (!REDIRECT.equals(page)) {
                 req.getRequestDispatcher(page).forward(req, resp);
             }

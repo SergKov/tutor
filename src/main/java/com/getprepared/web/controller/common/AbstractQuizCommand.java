@@ -4,7 +4,7 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
 /**
  * Created by koval on 21.01.2017.
  */
-public abstract class AbstractQuizController implements Controller {
+public abstract class AbstractQuizCommand implements Command {
 
     @Inject
     private Messages messages;

@@ -22,7 +22,7 @@
 
     <jsp:body>
         <form action="${addQuestionAction}" method="POST" class="form-horizontal">
-            <input type="hidden" name="controller" value="questionAdd"/>
+            <input type="hidden" name="command" value="questionAdd"/>
 
             <div class="row">
                 <label for="question"><fmt:message key="addQuestion.question"/></label>

@@ -23,7 +23,7 @@
         <div class="well">
             <form action="${signInAction}" method="POST" class="form-horizontal">
                 <div class="row">
-                    <input type="hidden" name="controller" value="studentSignIn">
+                    <input type="hidden" name="command" value="studentSignIn">
 
                     <div class="form-group">
                         <label class="control-label col-xs-5" for="email"><fmt:message key="homePage.login"/></label>

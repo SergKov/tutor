@@ -12,7 +12,7 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
  * Created by koval on 17.01.2017.
  */
 @Component("signUpPage")
-public class SignUpPageController extends AbstractSignUpController {
+public class SignUpPageController extends AbstractSignUpCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

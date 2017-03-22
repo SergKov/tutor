@@ -1,10 +1,10 @@
 package com.getprepared.web.controller.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.persistence.domain.Question;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -18,10 +18,10 @@ import static com.getprepared.web.constant.WebConstants.INPUTS;
 /**
  * Created by koval on 24.01.2017.
  */
-@Component("questionRemove")
-public class QuestionRemoveController extends AbstractQuestionsController {
+@Controller
+public class QuestionRemoveCommand extends AbstractQuestionsCommand {
 
-    private static final Logger LOG = Logger.getLogger(QuestionRemoveController.class);
+    private static final Logger LOG = Logger.getLogger(QuestionRemoveCommand.class);
 
     @Inject
     private QuestionService questionService;

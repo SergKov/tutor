@@ -50,7 +50,7 @@
 
                                 <input id="question_remove" class="remove_btn" type="image"
                                        src="${deleteQuestionIcon}" width="25px" height="25px"
-                                       name="controller" value="questionRemove">
+                                       name="command" value="questionRemove">
                             </form>
                         </div>
                     </div>

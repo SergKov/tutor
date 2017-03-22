@@ -3,7 +3,7 @@ package com.getprepared.web.controller.tutor;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Type;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +19,9 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 26.01.2017.
  */
-public abstract class AbstractQuestionAddController implements Controller {
+public abstract class AbstractQuestionAddCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(AbstractQuestionAddController.class);
+    private static final Logger LOG = Logger.getLogger(AbstractQuestionAddCommand.class);
 
     @Inject
     private Messages messages;
@@ -37,7 +37,7 @@ public abstract class AbstractQuestionAddController implements Controller {
         request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
     }
 
-    protected String returnPage(final HttpServletRequest request) throws IOException {
+    protected String returnPage(final HttpServletRequest request) throws IOException { //TODO
         fillPage(request);
         return PAGES.TUTOR_ADD_QUESTION;
     }

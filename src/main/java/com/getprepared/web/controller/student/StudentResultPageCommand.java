@@ -1,9 +1,9 @@
 package com.getprepared.web.controller.student;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +16,8 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 06.02.2017.
  */
-@Component("studentResultPage")
-public class StudentResultPageController implements Controller {
+@Controller
+public class StudentResultPageCommand implements Command {
 
     @Inject
     private Messages messages;

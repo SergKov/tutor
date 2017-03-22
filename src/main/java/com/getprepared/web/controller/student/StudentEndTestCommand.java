@@ -1,6 +1,5 @@
 package com.getprepared.web.controller.student;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
@@ -10,7 +9,8 @@ import com.getprepared.core.service.ResultService;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.Command;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -27,10 +27,10 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 05.02.2017.
  */
-@Component("studentEndTest")
-public class StudentEndTestController implements Controller {
+@Controller
+public class StudentEndTestCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(StudentEndTestController.class);
+    private static final Logger LOG = Logger.getLogger(StudentEndTestCommand.class);
 
     @Inject
     private QuizService quizService;

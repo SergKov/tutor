@@ -4,7 +4,8 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Answer;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.Command;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -25,10 +26,10 @@ import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 /**
  * Created by koval on 05.02.2017.
  */
-@Component("studentSaveAnswer")
-public class StudentSaveAnswerController implements Controller {
+@Controller
+public class StudentSaveAnswerCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(StudentSaveAnswerController.class);
+    private static final Logger LOG = Logger.getLogger(StudentSaveAnswerCommand.class);
 
     private static final Integer FIRST_QUESTION = 1;
 

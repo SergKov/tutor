@@ -1,7 +1,9 @@
 package com.getprepared.web.controller.common;
 
-import com.getprepared.annotation.Component;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +18,9 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR
 /**
  * Created by koval on 22.01.2017.
  */
-@Component("signOut")
-public class SignOutController implements Controller {
+@Controller
+@RequestMapping(value = "/sign-out", method = RequestMethod.POST)
+public class SignOutCommand implements Command {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

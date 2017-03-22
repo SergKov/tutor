@@ -3,7 +3,7 @@ package com.getprepared.web.controller.common;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Role;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +15,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 /**
  * Created by koval on 17.01.2017.
  */
-public abstract class AbstractSignUpController implements Controller {
+public abstract class AbstractSignUpCommand implements Command {
 
     @Inject
     private Messages messages;

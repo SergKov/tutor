@@ -22,7 +22,7 @@
         <div class="well">
             <form action="${signUpAction}" method="POST" class="form-horizontal js-sign_up"
                   data-msg-repeat="${repeatPassword}">
-                <input type="hidden" name="controller" value="signUp"/>
+                <input type="hidden" name="command" value="signUp"/>
 
                 <div class="form-group">
                     <div class="row">

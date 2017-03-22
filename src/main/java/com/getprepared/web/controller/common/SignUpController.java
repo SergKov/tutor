@@ -30,7 +30,7 @@ import static org.apache.commons.collections4.MapUtils.isNotEmpty;
  * Created by koval on 17.01.2017.
  */
 @Component("signUp")
-public class SignUpController extends AbstractSignUpController {
+public class SignUpController extends AbstractSignUpCommand {
 
     private static final Logger LOG = Logger.getLogger(SignUpController.class);
 

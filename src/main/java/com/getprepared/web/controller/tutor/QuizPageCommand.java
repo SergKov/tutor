@@ -3,7 +3,8 @@ package com.getprepared.web.controller.tutor;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.service.QuizService;
-import com.getprepared.web.controller.common.AbstractQuizController;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.common.AbstractQuizCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -19,10 +20,10 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
 /**
  * Created by koval on 22.01.2017.
  */
-@Component("quizPage")
-public class QuizPageController extends AbstractQuizController {
+@Controller
+public class QuizPageCommand extends AbstractQuizCommand {
 
-    private static final Logger LOG = Logger.getLogger(QuizPageController.class);
+    private static final Logger LOG = Logger.getLogger(QuizPageCommand.class);
 
     @Inject
     private QuizService quizService;

@@ -2,7 +2,7 @@ package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +14,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
 /**
  * Created by koval on 22.01.2017.
  */
-public abstract class AbstractQuizAddController implements Controller {
+public abstract class AbstractQuizAddCommand implements Command {
 
     @Inject
     private Messages messages;

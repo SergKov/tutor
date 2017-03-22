@@ -22,7 +22,7 @@
     <jsp:body>
         <div class="well">
             <form action="${tutorAction}" method="POST" class="form-horizontal">
-                <input type="hidden" name="controller" value="tutorSignIn">
+                <input type="hidden" name="command" value="tutorSignIn">
 
                 <div class="row">
                     <div class="form-group">

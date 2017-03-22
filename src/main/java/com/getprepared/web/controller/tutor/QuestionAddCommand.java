@@ -1,6 +1,5 @@
 package com.getprepared.web.controller.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
@@ -11,6 +10,7 @@ import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Type;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -28,10 +28,10 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR
 /**
  * Created by koval on 26.01.2017.
  */
-@Component("questionAdd")
-public class QuestionAddController extends AbstractQuestionAddController {
+@Controller
+public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
-    private static final Logger LOG = Logger.getLogger(QuestionAddController.class);
+    private static final Logger LOG = Logger.getLogger(QuestionAddCommand.class);
 
     @Inject
     private QuizService quizService;

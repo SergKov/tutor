@@ -1,9 +1,9 @@
 package com.getprepared.web.controller.common;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +15,8 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
 /**
  * Created by koval on 17.01.2017.
  */
-@Component("pageNotFound")
-public class PageNotFoundController implements Controller {
+@Controller
+public class PageNotFoundCommand implements Command {
 
     @Inject
     private Messages messages;

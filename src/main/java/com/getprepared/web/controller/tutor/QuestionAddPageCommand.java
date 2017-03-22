@@ -1,7 +1,7 @@
 package com.getprepared.web.controller.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.validation.ValidationService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +11,8 @@ import java.io.IOException;
 /**
  * Created by koval on 27.01.2017.
  */
-@Component("questionAddPage")
-public class QuestionAddPageController extends AbstractQuestionAddController {
+@Controller
+public class QuestionAddPageCommand extends AbstractQuestionAddCommand {
 
     @Inject
     private ValidationService validationService;

@@ -1,8 +1,8 @@
 package com.getprepared.web.controller.student;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.service.QuestionService;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -20,10 +20,10 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
 /**
  * Created by koval on 19.01.2017.
  */
-@Component("studentStartTest")
-public class StudentStartTestController extends AbstractStudentHomePageController {
+@Controller
+public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
 
-    private static final Logger LOG = Logger.getLogger(StudentStartTestController.class);
+    private static final Logger LOG = Logger.getLogger(StudentStartTestCommand.class);
 
     @Inject
     private QuestionService questionService;

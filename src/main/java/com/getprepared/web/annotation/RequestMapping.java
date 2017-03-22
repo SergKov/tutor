@@ -6,11 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by koval on 21.03.2017.
+ * Created by koval on 22.03.2017.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Controller {
+public @interface RequestMapping {
 
-    String value() default "";
+    String value();
+
+    RequestMethod method() default RequestMethod.GET;
 }
+

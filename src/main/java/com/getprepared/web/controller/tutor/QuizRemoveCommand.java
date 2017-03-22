@@ -1,12 +1,12 @@
 package com.getprepared.web.controller.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.web.controller.common.AbstractQuizController;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.controller.common.AbstractQuizCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -21,10 +21,10 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR
 /**
  * Created by koval on 24.01.2017.
  */
-@Component("quizRemove")
-public class QuizRemoveController extends AbstractQuizController {
+@Controller
+public class QuizRemoveCommand extends AbstractQuizCommand {
 
-    private static final Logger LOG = Logger.getLogger(QuizRemoveController.class);
+    private static final Logger LOG = Logger.getLogger(QuizRemoveCommand.class);
 
     @Inject
     private QuizService quizService;

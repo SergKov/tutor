@@ -8,7 +8,7 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.log4j.Logger;
 
@@ -22,9 +22,9 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
 /**
  * Created by koval on 25.01.2017.
  */
-public abstract class AbstractQuestionsController implements Controller {
+public abstract class AbstractQuestionsCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(AbstractQuestionsController.class);
+    private static final Logger LOG = Logger.getLogger(AbstractQuestionsCommand.class);
 
     @Inject
     private Messages messages;

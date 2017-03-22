@@ -1,10 +1,10 @@
 package com.getprepared.web.controller.student;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.constant.PageConstants;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -21,10 +21,10 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
 /**
  * Created by koval on 30.01.2017.
  */
-@Component("studentChangeQuestion")
-public class StudentChangeQuestionController implements Controller {
+@Controller
+public class StudentChangeQuestionCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionController.class);
+    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionCommand.class);
 
     protected static final int FIRST_QUESTION = 1;
 

@@ -22,7 +22,7 @@
         <div class="row">
             <div class="well">
                 <form action="${addQuizAction}" method="POST" class="form-horizontal">
-                    <input type="hidden" name="controller" value="quizAdd">
+                    <input type="hidden" name="command" value="quizAdd">
 
                     <div class="form-group">
                         <div class="col-xs-3">

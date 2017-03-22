@@ -2,7 +2,7 @@ package com.getprepared.web.controller.common;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +13,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 /**
  * Created by koval on 15.01.2017.
  */
-public abstract class AbstractSignInController implements Controller {
+public abstract class AbstractSignInCommand implements Command {
 
     @Inject
     private Messages messages;

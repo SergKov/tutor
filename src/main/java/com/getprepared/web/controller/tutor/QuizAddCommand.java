@@ -1,12 +1,13 @@
 package com.getprepared.web.controller.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.converter.Converter;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.web.constant.WebConstants;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.form.QuizAddForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -15,16 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstants.*;
+import static com.getprepared.web.constant.WebConstants.INPUTS;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
 /**
  * Created by koval on 22.01.2017.
  */
-@Component("quizAdd")
-public class QuizAddController extends AbstractQuizAddController {
+@Controller
+public class QuizAddCommand extends AbstractQuizAddCommand {
 
-    private static final Logger LOG = Logger.getLogger(QuizAddController.class);
+    private static final Logger LOG = Logger.getLogger(QuizAddCommand.class);
 
     @Inject
     private QuizService quizService;
@@ -33,16 +35,19 @@ public class QuizAddController extends AbstractQuizAddController {
     private ValidationService validationService;
 
     @Inject
+    private Converter<QuizAddForm, Quiz> converter;
+
+    @Inject
     private Messages messages;
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-        final Quiz quiz = new Quiz();
-        final String quizName = request.getParameter(WebConstants.INPUTS.QUIZ_NAME);
+        final QuizAddForm quizForm = new QuizAddForm();
+        final String quizName = request.getParameter(INPUTS.QUIZ_NAME);
+        quizForm.setName(quizName);
         try {
-            quiz.setName(quizName);
-            // TODO add validation
-
+            validationService.validate(quizForm);
+            final Quiz quiz = converter.convert(quizForm);
             quizService.save(quiz);
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
             return REDIRECT;
@@ -50,7 +55,7 @@ public class QuizAddController extends AbstractQuizAddController {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
         }
-        request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quiz.getName());
+        request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quizForm.getName());
 
         fillPage(request);
         return PAGES.TUTOR_ADD_QUIZ;

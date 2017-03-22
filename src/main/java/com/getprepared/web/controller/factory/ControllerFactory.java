@@ -3,7 +3,7 @@ package com.getprepared.web.controller.factory;
 import com.getprepared.context.ApplicationContext;
 import com.getprepared.context.BeanFactory;
 import com.getprepared.web.constant.PageConstants.LINKS;
-import com.getprepared.web.controller.Controller;
+import com.getprepared.web.controller.Command;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class ControllerFactory {
 
     private final BeanFactory beanFactory = new ApplicationContext();
 
-    private Map<String, Controller> mapping;
+    private Map<String, Command> mapping;
 
     private ControllerFactory() {
         init();
@@ -33,32 +33,32 @@ public class ControllerFactory {
 
         mapping = new HashMap<>();
 
-        mapping.put(LINKS.STUDENT_SIGN_IN, beanFactory.getBean("studentSignInPage", Controller.class));
-        mapping.put(LINKS.NOT_FOUND, beanFactory.getBean("pageNotFound", Controller.class));
-        mapping.put(LINKS.SIGN_UP, beanFactory.getBean("signUpPage", Controller.class));
-        mapping.put(LINKS.STUDENT_HOME_PAGE, beanFactory.getBean("studentHomePage", Controller.class));
-        mapping.put(LINKS.STUDENT_TEST, beanFactory.getBean("studentChangeQuestion", Controller.class));
-        mapping.put(LINKS.STUDENT_GET_RESULT, beanFactory.getBean("studentResultPage", Controller.class));
-        mapping.put(LINKS.TUTOR_SIGN_IN, beanFactory.getBean("tutorSignInPage", Controller.class));
-        mapping.put(LINKS.TUTOR_QUIZZES, beanFactory.getBean("quizPage", Controller.class));
-        mapping.put(LINKS.TUTOR_ADD_QUIZ, beanFactory.getBean("quizPageAdd", Controller.class));
-        mapping.put(LINKS.TUTOR_QUESTIONS, beanFactory.getBean("questionsPage", Controller.class));
-        mapping.put(LINKS.TUTOR_ADD_QUESTION, beanFactory.getBean("questionAddPage", Controller.class));
-        mapping.put(LINKS.SIGN_OUT, beanFactory.getBean("signOut", Controller.class));
+        mapping.put(LINKS.STUDENT_SIGN_IN, beanFactory.getBean("studentSignInPage", Command.class));
+        mapping.put(LINKS.NOT_FOUND, beanFactory.getBean("pageNotFound", Command.class));
+        mapping.put(LINKS.SIGN_UP, beanFactory.getBean("signUpPage", Command.class));
+        mapping.put(LINKS.STUDENT_HOME_PAGE, beanFactory.getBean("studentHomePage", Command.class));
+        mapping.put(LINKS.STUDENT_TEST, beanFactory.getBean("studentChangeQuestion", Command.class));
+        mapping.put(LINKS.STUDENT_GET_RESULT, beanFactory.getBean("studentResultPage", Command.class));
+        mapping.put(LINKS.TUTOR_SIGN_IN, beanFactory.getBean("tutorSignInPage", Command.class));
+        mapping.put(LINKS.TUTOR_QUIZZES, beanFactory.getBean("quizPage", Command.class));
+        mapping.put(LINKS.TUTOR_ADD_QUIZ, beanFactory.getBean("quizPageAdd", Command.class));
+        mapping.put(LINKS.TUTOR_QUESTIONS, beanFactory.getBean("questionsPage", Command.class));
+        mapping.put(LINKS.TUTOR_ADD_QUESTION, beanFactory.getBean("questionAddPage", Command.class));
+        mapping.put(LINKS.SIGN_OUT, beanFactory.getBean("signOut", Command.class));
 
-        mapping.put(FORMS.STUDENT_SIGN_IN, beanFactory.getBean("studentSignIn", Controller.class));
-        mapping.put(FORMS.SIGN_UP, beanFactory.getBean("signUp", Controller.class));
-        mapping.put(FORMS.STUDENT_START_TEST, beanFactory.getBean("studentStartTest", Controller.class));
-        mapping.put(FORMS.STUDENT_SAVE_ANSWER, beanFactory.getBean("studentSaveAnswer", Controller.class));
-        mapping.put(FORMS.STUDENT_END_TEST, beanFactory.getBean("studentEndTest", Controller.class));
-        mapping.put(FORMS.TUTOR_SIGN_IN, beanFactory.getBean("tutorSignIn", Controller.class));
-        mapping.put(FORMS.TUTOR_ADD_QUIZ, beanFactory.getBean("quizAdd", Controller.class));
-        mapping.put(FORMS.TUTOR_REMOVE_QUIZ, beanFactory.getBean("quizRemove", Controller.class));
-        mapping.put(FORMS.TUTOR_ADD_QUESTION, beanFactory.getBean("questionAdd", Controller.class));
-        mapping.put(FORMS.TUTOR_REMOVE_QUESTION, beanFactory.getBean("questionRemove", Controller.class));
+        mapping.put(FORMS.STUDENT_SIGN_IN, beanFactory.getBean("studentSignIn", Command.class));
+        mapping.put(FORMS.SIGN_UP, beanFactory.getBean("signUp", Command.class));
+        mapping.put(FORMS.STUDENT_START_TEST, beanFactory.getBean("studentStartTest", Command.class));
+        mapping.put(FORMS.STUDENT_SAVE_ANSWER, beanFactory.getBean("studentSaveAnswer", Command.class));
+        mapping.put(FORMS.STUDENT_END_TEST, beanFactory.getBean("studentEndTest", Command.class));
+        mapping.put(FORMS.TUTOR_SIGN_IN, beanFactory.getBean("tutorSignIn", Command.class));
+        mapping.put(FORMS.TUTOR_ADD_QUIZ, beanFactory.getBean("quizAdd", Command.class));
+        mapping.put(FORMS.TUTOR_REMOVE_QUIZ, beanFactory.getBean("quizRemove", Command.class));
+        mapping.put(FORMS.TUTOR_ADD_QUESTION, beanFactory.getBean("questionAdd", Command.class));
+        mapping.put(FORMS.TUTOR_REMOVE_QUESTION, beanFactory.getBean("questionRemove", Command.class));
     }
 
-    public Controller getController(final String key) {
+    public Command getCommand(final String key) {
         return mapping.get(key);
     }
 }
