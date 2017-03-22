@@ -9,7 +9,7 @@ import com.getprepared.web.form.UserSignUpForm;
 /**
  * Created by koval on 09.03.2017.
  */
-@Component("userSignUpConverter")
+@Component
 public class UserSignUpConverter implements Converter<UserSignUpForm, User> {
 
     @Override

@@ -1,6 +1,7 @@
 package com.getprepared.web.controller.common;
 
-import com.getprepared.annotation.Component;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,8 +12,9 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
 /**
  * Created by koval on 17.01.2017.
  */
-@Component("signUpPage")
-public class SignUpPageController extends AbstractSignUpCommand {
+@Controller
+@RequestMapping(value = "/sign-up")
+public class SignUpPageCommand extends AbstractSignUpCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

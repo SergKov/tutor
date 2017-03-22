@@ -1,6 +1,5 @@
 package com.getprepared.web.controller.common;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.converter.Converter;
 import com.getprepared.core.exception.EntityExistsException;
@@ -8,6 +7,8 @@ import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.constant.PageConstants.ERRORS;
 import com.getprepared.web.constant.PageConstants.LINKS;
 import com.getprepared.web.constant.PageConstants.PAGES;
@@ -29,10 +30,11 @@ import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 /**
  * Created by koval on 17.01.2017.
  */
-@Component("signUp")
-public class SignUpController extends AbstractSignUpCommand {
+@Controller
+@RequestMapping(value = "/sign-up")
+public class SignUpCommand extends AbstractSignUpCommand {
 
-    private static final Logger LOG = Logger.getLogger(SignUpController.class);
+    private static final Logger LOG = Logger.getLogger(SignUpCommand.class);
 
     @Inject
     private UserService userService;
