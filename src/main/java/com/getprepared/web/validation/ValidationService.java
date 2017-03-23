@@ -47,11 +47,6 @@ public class ValidationService {
         }
     }
 
-    private ConstraintValidator getConstraintValidator(final Annotation annotation) {
-        final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
-        return newInstance(constraint.validatedBy());
-    }
-
     private boolean isConstraint(final Annotation annotation) {
         final Annotation[] metaAnnotations = annotation.annotationType().getAnnotations();
         for (final Annotation metaAnnotation : metaAnnotations) {
@@ -60,6 +55,11 @@ public class ValidationService {
             }
         }
         return false;
+    }
+
+    private ConstraintValidator getConstraintValidator(final Annotation annotation) {
+        final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
+        return newInstance(constraint.validatedBy());
     }
 
     private String getMessage(final Annotation annotation) {

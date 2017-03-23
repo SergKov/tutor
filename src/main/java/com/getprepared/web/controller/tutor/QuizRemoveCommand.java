@@ -42,24 +42,16 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
-            // TODO add validation
 
             final Quiz quiz = quizService.findById(parsedQuizId);
-            // TODO add validation
 
             quizService.remove(quiz);
+
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
-            return REDIRECT;
-        } catch (final EntityNotFoundException e) {
-            LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUESTION_NOT_FOUND, request.getLocale()));
-        } catch (final NumberFormatException e) {
+        } catch (final EntityNotFoundException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
-            return REDIRECT;
         }
-
-        fillPage(request, quizService);
-        return PAGES.TUTOR_QUIZZES;
+        return REDIRECT;
     }
 }

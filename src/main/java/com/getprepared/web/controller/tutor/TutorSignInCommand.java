@@ -49,7 +49,6 @@ public class TutorSignInCommand extends AbstractSignInCommand {
                 response.sendRedirect(LINKS.TUTOR_QUIZZES);
                 return REDIRECT;
             }
-
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));

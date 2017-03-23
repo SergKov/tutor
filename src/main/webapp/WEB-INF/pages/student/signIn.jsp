@@ -36,8 +36,8 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/></label>
 
                         <div class="col-xs-3">

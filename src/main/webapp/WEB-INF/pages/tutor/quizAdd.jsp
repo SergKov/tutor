@@ -19,12 +19,12 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="row">
-            <div class="well">
-                <form action="${addQuizAction}" method="POST" class="form-horizontal">
-                    <input type="hidden" name="command" value="quizAdd">
+        <div class="well">
+            <form action="${addQuizAction}" method="POST" class="form-horizontal">
+                <input type="hidden" name="command" value="quizAdd">
 
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <div class="col-xs-3">
                             <input type="text" class="form-control" id="quiz_id"
                                    value="${quizName}" pattern="${quizRegex}"
@@ -36,10 +36,17 @@
                                 <fmt:message key="addQuiz.add"/>
                             </button>
                         </div>
+
+                        <c:if test="${not empty errorMsgs['name']}">
+                            <div class="col-xs-12">
+                                <c:out value="${errorMsgs['name']}"/>
+                            </div>
+                        </c:if>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+
     </jsp:body>
 
 </templates:page_template>

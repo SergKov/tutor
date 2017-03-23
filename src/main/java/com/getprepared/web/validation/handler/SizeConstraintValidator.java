@@ -6,7 +6,7 @@ import com.getprepared.web.validation.annotation.Size;
 /**
  * Created by koval on 21.03.2017.
  */
-public class SizeConstraintValidator implements ConstraintValidator<Size, int[]> {
+public class SizeConstraintValidator implements ConstraintValidator<Size, String[]> {
 
     private Size annotation;
 
@@ -16,7 +16,7 @@ public class SizeConstraintValidator implements ConstraintValidator<Size, int[]>
     }
 
     @Override
-    public boolean isValid(final int[] item) {
+    public boolean isValid(final String[] item) {
         final int min = annotation.min();
         final int max = annotation.max();
         return item.length >= min && item.length <= max;

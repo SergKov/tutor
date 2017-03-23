@@ -12,6 +12,7 @@ import java.util.*;
 
 import static com.getprepared.core.util.PackageScanner.scan;
 import static com.getprepared.core.util.PropertyUtils.initProp;
+import static com.getprepared.core.util.ReflectionUtils.*;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
@@ -22,8 +23,8 @@ public class ApplicationContext implements BeanFactory {
 
     private static final String EMPTY_STRING = "";
 
-    private final Properties configurationProp = initProp("/server/configuration.properties");
-    private final Properties componentProp = initProp("/server/component.properties");
+    private final Properties configurationProp = initProp("/server/core.configuration.properties");
+    private final Properties componentProp = initProp("/server/core.component.properties");
 
     private final Map<String, Object> container = new HashMap<>();
 
@@ -70,8 +71,8 @@ public class ApplicationContext implements BeanFactory {
                         final String simpleName = method.getReturnType().getSimpleName();
                         beanName = uncapitalize(simpleName);
                     }
-                    final Object config = ReflectionUtils.newInstance(clazz);
-                    container.put(beanName, ReflectionUtils.invoke(method, config));
+                    final Object config = newInstance(clazz);
+                    container.put(beanName, invoke(method, config));
                 });
     }
 
@@ -90,7 +91,7 @@ public class ApplicationContext implements BeanFactory {
             final String simpleName = clazz.getSimpleName();
             beanName = uncapitalize(simpleName);
         }
-        container.put(beanName, ReflectionUtils.newInstance(clazz));
+        container.put(beanName, newInstance(clazz));
     }
 
     private void injectFields() {
@@ -104,7 +105,7 @@ public class ApplicationContext implements BeanFactory {
                     .filter(field -> field.isAnnotationPresent(Inject.class))
                     .forEach(field -> {
                         final Object injectedValue = getBean(field.getName());
-                        ReflectionUtils.setField(field, bean, injectedValue);
+                        setField(field, bean, injectedValue);
                     });
         }
     }

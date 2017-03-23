@@ -49,8 +49,10 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         final QuizAddForm quizForm = new QuizAddForm();
+
         final String quizName = request.getParameter(INPUTS.QUIZ_NAME);
         quizForm.setName(quizName);
+
         final Map<String, String> errors = validationService.validate(quizForm);
         if (isNotEmpty(errors)) {
             request.setAttribute(ERROR_MSGS, messages.getMessages(errors, request.getLocale()));

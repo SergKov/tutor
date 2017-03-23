@@ -1,6 +1,5 @@
 package com.getprepared.web.controller.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.web.annotation.Controller;
@@ -15,6 +14,7 @@ import java.io.IOException;
 import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.WebConstants.INPUTS.QUIZ_ID;
 import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
@@ -36,17 +36,20 @@ public class QuizPageCommand extends AbstractQuizCommand {
 
         final String quizId = request.getParameter(QUIZ_ID);
 
-        if (isNumeric(quizId)) {
-            final Long parsedQuizId = Long.valueOf(quizId);
-            // TODO add validation
-
-            request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
-            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
-            return REDIRECT;
-        } else {
+        if (isEmpty(quizId)) {
             request.getSession().removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
             fillPage(request, quizService);
             return PAGES.TUTOR_QUIZZES;
         }
+
+        if (isNumeric(quizId)) {
+            final Long parsedQuizId = Long.valueOf(quizId);
+            request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
+            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+            return REDIRECT;
+        }
+
+        response.sendRedirect(LINKS.NOT_FOUND);
+        return REDIRECT;
     }
 }

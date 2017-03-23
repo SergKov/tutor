@@ -46,19 +46,25 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="name"><fmt:message key="signUp.name"/></label>
 
                         <div class="col-xs-3">
                             <input type="text" pattern="${nameRegex}" class="form-control" id="name" name="name"
                                    value="${user.name}" placeholder="<fmt:message key="signUp.enterName"/>" required>
                         </div>
+
+                        <c:if test="${not empty errorMsgs['name']}">
+                            <div class="col-xs-12">
+                                <c:out value="${errorMsgs['name']}"/>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="surName"><fmt:message key="signUp.surname"/></label>
 
                         <div class="col-xs-3">
@@ -66,9 +72,14 @@
                                    name="surname" value="${user.surname}"
                                    placeholder="<fmt:message key="signUp.enterSurname"/>" required>
                         </div>
+
+                        <c:if test="${not empty errorMsgs['surname']}">
+                            <div class="col-xs-12">
+                                <c:out value="${errorMsgs['surname']}"/>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <div class="row">
@@ -90,21 +101,29 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
                                    name="password" placeholder="<fmt:message key="homePage.enterPassword"/>" required>
                         </div>
+
+                        <div class="col-xs-12">
+                            <c:if test="${not empty errorMsgs['password']}">
+                                <div class="col-xs-12">
+                                    <c:out value="${errorMsgs['password']}"/>
+                                </div>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-xs-5" for="confirm_psw"><fmt:message
-                                key="signUp.repeatPassword"/></label>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label col-xs-5" for="confirm_psw">
+                            <fmt:message key="signUp.repeatPassword"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
@@ -113,8 +132,8 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <div class="col-xs-offset-5 col-xs-3">
                             <button type="submit" class="btn btn-info btn-block">
                                 <fmt:message key="homePage.register"/>

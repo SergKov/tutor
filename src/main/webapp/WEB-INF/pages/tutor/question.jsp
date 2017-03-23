@@ -22,8 +22,9 @@
             <label for="question"><fmt:message key="addQuestion.question"/></label>
         </div>
 
-        <div class="row">
-            <div class="form-group">
+
+        <div class="form-group">
+            <div class="row">
                 <textarea class="form-control question-border" rows="3" id="question" disabled>
                     <c:out value="${question.text}"/>
                 </textarea>

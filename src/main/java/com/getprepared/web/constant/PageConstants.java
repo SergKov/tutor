@@ -151,6 +151,8 @@ public class PageConstants {
 
         public static final String QUESTION_EXISTS = "QuestionExists";
 
+        public static final String QUIZ_NOT_FOUND = "QuizNotFound";
+
         public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
 
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";

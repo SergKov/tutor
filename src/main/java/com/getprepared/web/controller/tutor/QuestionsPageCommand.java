@@ -1,6 +1,7 @@
 package com.getprepared.web.controller.tutor;
 
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.converter.Converter;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
@@ -19,6 +20,7 @@ import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
+import static org.apache.commons.lang3.StringUtils.*;
 
 /**
  * Created by koval on 25.01.2017.
@@ -45,19 +47,7 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
 
         final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
 
-        if (StringUtils.isNumeric(questionIdString)) {
-            try {
-                request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTION, request.getLocale()));
-                final Long questionId = Long.valueOf(questionIdString);
-                final Question question = questionService.findById(questionId);
-                request.setAttribute(QUESTION, question);
-            } catch (NumberFormatException | EntityNotFoundException e) {
-                LOG.warn(e.getMessage(), e);
-                response.sendRedirect(LINKS.NOT_FOUND);
-                return REDIRECT;
-            }
-            return PAGES.TUTOR_QUESTION;
-        } else {
+        if (isEmpty(questionIdString)) {
             try {
                 fillPage(request, quizService, questionService);
             } catch (final EntityNotFoundException e) {
@@ -65,8 +55,24 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 response.sendRedirect(LINKS.NOT_FOUND);
                 return REDIRECT;
             }
-
             return PAGES.TUTOR_QUESTIONS;
         }
+
+        if (isNumeric(questionIdString)) {
+            try {
+                request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTION, request.getLocale()));
+                final Long questionId = Long.valueOf(questionIdString);
+                final Question question = questionService.findById(questionId);
+                request.setAttribute(QUESTION, question);
+            } catch (final EntityNotFoundException e) {
+                LOG.warn(e.getMessage(), e);
+                response.sendRedirect(LINKS.NOT_FOUND);
+                return REDIRECT;
+            }
+            return PAGES.TUTOR_QUESTION;
+        }
+
+        response.sendRedirect(LINKS.NOT_FOUND);
+        return REDIRECT;
     }
 }

@@ -24,8 +24,8 @@
             <form action="${tutorAction}" method="POST" class="form-horizontal">
                 <input type="hidden" name="command" value="tutorSignIn">
 
-                <div class="row">
-                    <div class="form-group">
+                <div class="form-group">
+                    <div class="row">
                         <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.email"/></label>
 
                         <div class="col-xs-3">
@@ -36,9 +36,10 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="tutorSignIn.password"/></label>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="control-label col-xs-5" for="psw"><fmt:message
+                                key="tutorSignIn.password"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"

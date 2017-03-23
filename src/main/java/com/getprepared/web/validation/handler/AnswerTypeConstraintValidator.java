@@ -7,7 +7,7 @@ import com.getprepared.web.validation.annotation.AnswerType;
 /**
  * Created by koval on 21.03.2017.
  */
-public class AnswerTypeConstraintValidator implements ConstraintValidator<AnswerType, String> {
+public class AnswerTypeConstraintValidator implements ConstraintValidator<AnswerType, String> { // TODO for String[]
 
     private AnswerType annotation;
 
