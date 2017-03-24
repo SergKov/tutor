@@ -9,14 +9,11 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.form.QuizAddForm;
 import com.getprepared.web.validation.ValidationService;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 import static com.getprepared.web.constant.PageConstants.*;
@@ -67,6 +64,7 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUIZ_EXISTS, request.getLocale()));
             }
         }
+
         request.setAttribute(REQUEST_ATTRIBUTES.QUIZ_NAME, quizForm.getName());
         fillPage(request);
         return PAGES.TUTOR_ADD_QUIZ;

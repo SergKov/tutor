@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
+import static com.getprepared.web.constant.PageConstants.LINKS;
+import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 
 /**
  * Created by koval on 24.01.2017.
@@ -44,7 +44,6 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
             final Long parsedQuizId = Long.parseLong(quizId);
 
             final Quiz quiz = quizService.findById(parsedQuizId);
-
             quizService.remove(quiz);
 
             response.sendRedirect(LINKS.TUTOR_QUIZZES);

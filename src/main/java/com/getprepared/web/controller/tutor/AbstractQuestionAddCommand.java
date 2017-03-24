@@ -21,8 +21,6 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
  */
 public abstract class AbstractQuestionAddCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(AbstractQuestionAddCommand.class);
-
     @Inject
     private Messages messages;
 
