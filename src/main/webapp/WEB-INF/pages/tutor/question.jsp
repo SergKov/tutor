@@ -19,14 +19,14 @@
     <jsp:body>
 
         <div class="row">
-            <label for="question"><fmt:message key="addQuestion.question"/></label>
+            <label for="text"><fmt:message key="addQuestion.text"/></label>
         </div>
 
 
         <div class="form-group">
             <div class="row">
-                <textarea class="form-control question-border" rows="3" id="question" disabled>
-                    <c:out value="${question.text}"/>
+                <textarea class="form-control text-border" rows="3" id="text" disabled>
+                    <c:out value="${text.text}"/>
                 </textarea>
             </div>
         </div>
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <c:forEach items="${question.answers}" var="answer">
+        <c:forEach items="${text.answersText}" var="answer">
             <div class="row">
                 <div class="col-xs-8">
                     <input class="form-control" value="${answer.text}" readonly/>
@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-xs-3 col-xs-offset-10">
                 <button class="btn btn-link btn-block" id="back_btn">
-                    <fmt:message key="question.back"/>
+                    <fmt:message key="text.back"/>
                 </button>
             </div>
         </div>

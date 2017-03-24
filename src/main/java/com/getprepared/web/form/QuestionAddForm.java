@@ -11,36 +11,36 @@ import com.getprepared.web.validation.annotation.Size;
 public class QuestionAddForm {
 
     @NotEmpty
-    private String question;
+    private String text;
 
     @Size(min = 2, max = 10)
-    private String[] answers;
+    private String[] answersText;
 
     @Size(min = 2, max = 10)
     @AnswerType({Type.INCORRECT, Type.CORRECT})
-    private String[] answerType;
+    private String[] answersType;
 
-    public String getQuestion() {
-        return question;
+    public String getText() {
+        return text;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String[] getAnswers() {
-        return answers;
+    public String[] getAnswersText() {
+        return answersText;
     }
 
-    public void setAnswers(String[] answers) {
-        this.answers = answers;
+    public void setAnswersText(String[] answersText) {
+        this.answersText = answersText;
     }
 
-    public String[] getAnswerType() {
-        return answerType;
+    public String[] getAnswersType() {
+        return answersType;
     }
 
-    public void setAnswerType(String[] answerType) {
-        this.answerType = answerType;
+    public void setAnswersType(String[] answersType) {
+        this.answersType = answersType;
     }
 }

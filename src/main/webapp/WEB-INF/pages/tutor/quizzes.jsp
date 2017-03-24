@@ -38,7 +38,7 @@
                             <form action="${quizzesAction}" method="GET" class="form-horizontal">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
-                                <input type="image" id="question" class="see_btn"
+                                <input type="image" id="text" class="see_btn"
                                        src="${seeQuestionsIcon}" width="25px" height="25px">
                             </form>
                         </div>

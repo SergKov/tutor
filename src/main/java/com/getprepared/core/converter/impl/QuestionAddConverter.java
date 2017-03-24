@@ -17,10 +17,10 @@ public class QuestionAddConverter implements Converter<QuestionAddForm, Question
     @Override
     public Question convert(QuestionAddForm form) {
         final Question question = new Question();
-        question.setText(form.getQuestion());
+        question.setText(form.getText());
         final List<Answer> answers = new ArrayList<>();
 
-        final String[] formAnswers = form.getAnswers();
+        final String[] formAnswers = form.getAnswersText();
         for (int i = 0; i < formAnswers.length; i++) {
             final Answer answer = new Answer();
             answer.setText(formAnswers[i]);

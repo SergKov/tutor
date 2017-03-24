@@ -25,13 +25,13 @@
             <input type="hidden" name="command" value="questionAdd"/>
 
             <div class="row">
-                <label for="question"><fmt:message key="addQuestion.question"/></label>
+                <label for="text"><fmt:message key="addQuestion.text"/></label>
             </div>
 
             <div class="form-group">
                 <div class="row">
-                    <textarea class="form-control question-border" rows="3" id="question" name="questionText"
-                              required>${questionText}</textarea>
+                    <textarea class="form-control text-border" rows="3" id="text" name="questionText"
+                              required>${text.text}</textarea>
                 </div>
             </div>
 
@@ -44,14 +44,14 @@
                 </div>
             </div>
 
-            <div class="row answers">
+            <div class="row answersText">
                 <div class="answer">
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="answer" name="answerText[]" required/>
                     </div>
 
                     <div class="col-xs-2 col-xs-offset-2">
-                        <select id="answerType" name="answerType[]" class="form-control" required>
+                        <select id="answersType" name="answersType[]" class="form-control" required>
                             <c:forEach items="${answerTypes}" var="type">
                                 <option value="${type}">
                                     <fmt:message key="addQuestion.${type}"/>
@@ -63,7 +63,7 @@
             </div>
 
 
-            <div class="row answers-manipulate">
+            <div class="row answersText-manipulate">
                 <div class="col-xs-1 col-xs-offset-10">
                     <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px">
                 </div>
