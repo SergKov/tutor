@@ -31,7 +31,7 @@ public class FrontController extends HttpServlet {
                          final String controllerKey) throws IOException, ServletException {
           // TODO
 
-//        final Command command = WebApplicationContext.getInstance().getCommand(controllerKey);
+//        final Command command = WebContext.getInstance().getCommand(controllerKey);
 //
 //        if (command == null) {
 //            resp.sendRedirect(LINKS.NOT_FOUND);

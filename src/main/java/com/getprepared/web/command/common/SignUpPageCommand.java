@@ -13,7 +13,7 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
  * Created by koval on 17.01.2017.
  */
 @Controller
-@RequestMapping(value = "/sign-up")
+@RequestMapping(PAGES.SIGN_UP)
 public class SignUpPageCommand extends AbstractSignUpCommand {
 
     @Override

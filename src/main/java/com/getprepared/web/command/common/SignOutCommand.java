@@ -19,7 +19,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR
  * Created by koval on 22.01.2017.
  */
 @Controller
-@RequestMapping(value = "/sign-out", method = RequestMethod.POST)
+@RequestMapping(value = LINKS.SIGN_OUT, method = RequestMethod.POST)
 public class SignOutCommand implements Command {
 
     @Override

@@ -3,6 +3,7 @@ package com.getprepared.web.command.common;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
  * Created by koval on 17.01.2017.
  */
 @Controller
+@RequestMapping(PAGES.NOT_FOUND)
 public class PageNotFoundCommand implements Command {
 
     @Inject

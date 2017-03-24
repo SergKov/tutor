@@ -3,6 +3,7 @@ package com.getprepared.web.command.student;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.dto.TestQuestion;
@@ -22,6 +23,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
  * Created by koval on 30.01.2017.
  */
 @Controller
+@RequestMapping(PAGES.STUDENT_TEST)
 public class StudentChangeQuestionCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentChangeQuestionCommand.class);

@@ -19,7 +19,7 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by koval on 25.02.2017.
  */
-public class ApplicationContext implements BeanFactory {
+public class ApplicationContext {
 
     private static final String EMPTY_STRING = "";
 
@@ -110,12 +110,10 @@ public class ApplicationContext implements BeanFactory {
         }
     }
 
-    @Override
     public Object getBean(final String name) {
         return container.get(name);
     }
 
-    @Override
     public <T> T getBean(final String name, final Class<T> clazz) {
         final Object bean = container.get(name);
         return clazz.cast(bean);
