@@ -11,8 +11,8 @@ import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.PageConstants.LINKS;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
@@ -31,6 +30,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
  * Created by koval on 05.02.2017.
  */
 @Controller
+@RequestMapping(value = LINKS.STUDENT_RESULT, method = RequestMethod.POST)
 public class StudentEndTestCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentEndTestCommand.class);
@@ -68,7 +68,7 @@ public class StudentEndTestCommand implements Command {
             response.sendRedirect(LINKS.NOT_FOUND);
         }
 
-        response.sendRedirect(LINKS.STUDENT_GET_RESULT);
+        response.sendRedirect(LINKS.STUDENT_RESULT);
         return REDIRECT;
     }
 }

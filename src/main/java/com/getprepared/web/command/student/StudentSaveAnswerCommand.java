@@ -4,7 +4,10 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.command.Command;
+import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -14,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.PageConstants.NAMES;
 import static com.getprepared.web.constant.PageConstants.PAGES;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
@@ -26,6 +30,7 @@ import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
  * Created by koval on 05.02.2017.
  */
 @Controller
+@RequestMapping(PAGES.STUDENT_TEST)
 public class StudentSaveAnswerCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentSaveAnswerCommand.class);
