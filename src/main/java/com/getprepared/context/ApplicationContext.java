@@ -4,7 +4,6 @@ import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Configuration;
 import com.getprepared.annotation.Inject;
-import com.getprepared.core.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -19,12 +18,12 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by koval on 25.02.2017.
  */
-public class ApplicationContext {
+public class ApplicationContext implements BeanFactory {
 
     private static final String EMPTY_STRING = "";
 
-    private final Properties configurationProp = initProp("/server/core.configuration.properties");
-    private final Properties componentProp = initProp("/server/core.component.properties");
+    private final Properties configurationProp = initProp("/server/configuration.properties");
+    private final Properties componentProp = initProp("/server/component.properties");
 
     private final Map<String, Object> container = new HashMap<>();
 
@@ -110,10 +109,12 @@ public class ApplicationContext {
         }
     }
 
+    @Override
     public Object getBean(final String name) {
         return container.get(name);
     }
 
+    @Override
     public <T> T getBean(final String name, final Class<T> clazz) {
         final Object bean = container.get(name);
         return clazz.cast(bean);

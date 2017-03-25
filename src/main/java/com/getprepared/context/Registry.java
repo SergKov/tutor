@@ -10,8 +10,7 @@ public class Registry {
     private static final ApplicationContext applicationContext = new ApplicationContext();
     private static final WebContext webApplicationContext = new WebContext();
 
-    private Registry() {
-    }
+    private Registry() { }
 
     public static ApplicationContext getApplicationContext() {
         return applicationContext;

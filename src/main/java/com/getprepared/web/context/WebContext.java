@@ -1,31 +1,27 @@
 package com.getprepared.web.context;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.context.ApplicationContext;
-import com.getprepared.context.Registry;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.command.Command;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.getprepared.context.Registry.*;
+import static com.getprepared.context.Registry.getApplicationContext;
 import static com.getprepared.core.util.PackageScanner.scan;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
-import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
 /**
  * Created by koval on 23.03.2017.
  */
 public class WebContext {
 
-    private static final String EMPTY_STRING = "";
-
-    private final Properties prop = PropertyUtils.initProp("/server/web.controller.properties");
+    private final Properties prop = PropertyUtils.initProp("/server/controller.properties");
 
     private final Map<String, Command> container = new HashMap<>();
 
@@ -48,17 +44,20 @@ public class WebContext {
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Controller.class))
-                .map(clazz -> (Class<Command>)clazz)
+                .map(clazz -> (Class<Command>) clazz)
                 .forEach(this::initAnnotationBean);
     }
 
     private void initAnnotationBean(final Class<Command> clazz) {
-        final RequestMapping annotation = (RequestMapping) clazz.getAnnotation(RequestMapping.class);
-        String beanName = annotation.value();
-        if (beanName.equals(EMPTY_STRING)) {
-            final String simpleName = clazz.getSimpleName();
-            beanName = uncapitalize(simpleName);
+        if (clazz.isAnnotationPresent(RequestMapping.class)) {
+            final Annotation[] annotations = clazz.getAnnotations();
+            stream(annotations).forEach(annotation -> putToContainer(clazz));
         }
+    }
+
+    private void putToContainer(final Class<Command> clazz) {
+        final RequestMapping requestMapping = (RequestMapping) clazz.getAnnotation(RequestMapping.class);
+        final String beanName = requestMapping.value();
         container.put(beanName, newInstance(clazz));
     }
 
