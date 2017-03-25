@@ -3,6 +3,8 @@ package com.getprepared.core.util;
 import org.apache.log4j.Logger;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -14,10 +16,14 @@ public class PropertyUtils {
 
     private PropertyUtils() { }
 
-    public static Properties initProp(final String fileName) {
+    private static Map<String, Properties> cache = new HashMap<>();
 
+    public static Properties getProperty(final String fileName) {
+        return cache.get(fileName) == null ? initProperties(fileName) : cache.get(fileName);
+    }
+
+    private static Properties initProperties(final String fileName) {
         final Properties prop = new Properties();
-
         try {
             final InputStream is = PropertyUtils.class.getResourceAsStream(fileName);
             prop.load(is);
