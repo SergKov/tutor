@@ -108,6 +108,10 @@
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/pages/student/signIn</welcome-file>
+    </welcome-file-list>
 
     <error-page>
         <error-code>404</error-code>

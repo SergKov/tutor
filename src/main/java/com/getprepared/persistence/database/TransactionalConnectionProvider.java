@@ -18,6 +18,12 @@ public class TransactionalConnectionProvider {
     @Inject
     private DataSource dataSource;
 
+    @Inject
+    private DataSourceUtils dataSourceUtils;
+
+    @Inject
+    private ConnectionUtils connectionUtils;
+
     private final ThreadLocal<TransactionConnectionCounter> threadLocal = new ThreadLocal<>();
 
     public void begin() {
@@ -29,8 +35,8 @@ public class TransactionalConnectionProvider {
     }
 
     private void create() {
-        final Connection con = DataSourceUtils.getConnection(dataSource);
-        ConnectionUtils.setAutoCommit(con, false);
+        final Connection con = dataSourceUtils.getConnection(dataSource);
+        connectionUtils.setAutoCommit(con, false);
         final TransactionConnectionCounter transactionConnectionCounter = new TransactionConnectionCounter();
         transactionConnectionCounter.setConnection(con);
         threadLocal.set(transactionConnectionCounter);
@@ -44,8 +50,8 @@ public class TransactionalConnectionProvider {
         threadLocal.get().decrement();
         if (threadLocal.get().isZero()) {
             final Connection con = threadLocal.get().getConnection();
-            ConnectionUtils.commit(con);
-            ConnectionUtils.close(con);
+            connectionUtils.commit(con);
+            connectionUtils.close(con);
             threadLocal.remove();
         }
     }
@@ -56,19 +62,15 @@ public class TransactionalConnectionProvider {
         }
 
         final Connection con = threadLocal.get().getConnection();
-        ConnectionUtils.rollback(con);
-        ConnectionUtils.close(con);
+        connectionUtils.rollback(con);
+        connectionUtils.close(con);
         threadLocal.remove();
     }
 
     public Connection getConnection() {
         if (threadLocal.get() == null) {
-            return DataSourceUtils.getConnection(dataSource);
+            return dataSourceUtils.getConnection(dataSource);
         }
         return threadLocal.get().getConnection();
-    }
-
-    public boolean isTransactional() {
-        return threadLocal.get() != null;
     }
 }
