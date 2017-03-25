@@ -28,8 +28,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Inject
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl() { }
-
     @Override
     public User findById(final Long id) throws EntityNotFoundException {
         try {

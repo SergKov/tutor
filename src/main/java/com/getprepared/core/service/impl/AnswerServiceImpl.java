@@ -19,8 +19,6 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Inject
     private AnswerDao answerDao;
 
-    public AnswerServiceImpl() { }
-
     @Override
     public void save(final Answer answer) throws EntityExistsException {
         try {

@@ -1,5 +1,6 @@
 package com.getprepared.core.util;
 
+import com.getprepared.annotation.Component;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -10,25 +11,24 @@ import static com.getprepared.core.util.ConnectionUtils.SqlRunner.run;
 /**
  * Created by koval on 05.01.2017.
  */
-public class ConnectionUtils {
+@Component
+public final class ConnectionUtils {
 
     private static final Logger LOG = Logger.getLogger(ConnectionUtils.class);
 
-    private ConnectionUtils() { }
-
-    public static void commit(final Connection con) {
+    public void commit(final Connection con) {
         run(con::commit, "Failed to commit connection");
     }
 
-    public static void rollback(final Connection con) {
+    public void rollback(final Connection con) {
         run(con::rollback, "Failed to rollback connection");
     }
 
-    public static void setAutoCommit(final Connection con, final boolean autoCommit) {
+    public void setAutoCommit(final Connection con, final boolean autoCommit) {
         run(() -> con.setAutoCommit(autoCommit), "Failed to set auto commit");
     }
 
-    public static void close(final Connection con) {
+    public void close(final Connection con) {
         run(con::close, "Failed to close connection");
     }
 

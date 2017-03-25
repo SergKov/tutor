@@ -3,7 +3,7 @@ package com.getprepared.core.constant;
 /**
  * Created by koval on 06.01.2017.
  */
-public class PropertyConstants {
+public final class PropertyConstants {
 
     private PropertyConstants() { }
 
@@ -15,7 +15,13 @@ public class PropertyConstants {
 
         private static final String PREFIX_SQL = "/sql/";
 
+        private static final String PREFIX_SERVER = "/server/";
+
         private static final String SUFFIX = ".properties";
+
+        public static final String CONFIGURATION_FILE = PREFIX_SERVER + "configuration" + SUFFIX;
+
+        public static final String COMPONENT_FILE = PREFIX_SERVER + "component" + SUFFIX;
 
         public static final String DS_TEST_SETTING = PREFIX_DS + "testDataSource" + SUFFIX;
 
@@ -30,7 +36,7 @@ public class PropertyConstants {
         public static final String RESULT = PREFIX_SQL + "result" + SUFFIX;
     }
 
-    public static class KEYS {
+    public static final class KEYS {
 
         private KEYS() { }
 

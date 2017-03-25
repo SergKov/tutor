@@ -29,8 +29,6 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Inject
     private QuizService quizService;
 
-    public ResultServiceImpl() { }
-
     @Override
     public void save(final Result result) throws EntityExistsException {
         try {

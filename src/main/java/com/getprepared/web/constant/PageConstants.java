@@ -31,7 +31,7 @@ public class PageConstants {
 
         public static final String STUDENT_TEST = STUDENT_PREFIX + "test" + SUFFIX;
 
-        public static final String STUDENT_GET_RESULT = STUDENT_PREFIX + "result" + SUFFIX;
+        public static final String STUDENT_RESULT = STUDENT_PREFIX + "result" + SUFFIX;
 
         public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
 
@@ -43,7 +43,7 @@ public class PageConstants {
 
         public static final String TUTOR_QUESTION = TUTOR_PREFIX + "question" + SUFFIX;
 
-        public static final String TUTOR_ADD_QUESTION = TUTOR_PREFIX + "questionAdd" + SUFFIX;
+        public static final String TUTOR_QUESTION_ADD = TUTOR_PREFIX + "questionAdd" + SUFFIX;
 
         public static final String NOT_FOUND = ERROR_PREFIX + "notFound" + SUFFIX;
     }
@@ -62,7 +62,7 @@ public class PageConstants {
 
         public static final String STUDENT_TEST = "/student/test";
 
-        public static final String STUDENT_GET_RESULT = "/student/test/result";
+        public static final String STUDENT_RESULT = "/student/test/result";
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
@@ -70,7 +70,7 @@ public class PageConstants {
 
         public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
 
-        public static final String TUTOR_ADD_QUESTION = "/tutor/quizzes/questions/add";
+        public static final String TUTOR_QUESTION_ADD = "/tutor/quizzes/questions/add";
 
         public static final String TUTOR_SIGN_IN = "/tutor";
 
@@ -112,17 +112,17 @@ public class PageConstants {
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
-        public static final String STUDENT_START_TEST = "startTest";
+        public static final String STUDENT_TEST_START = "testStart";
 
-        public static final String STUDENT_SAVE_ANSWER = "saveAnswer";
+        public static final String STUDENT_ANSWER_SAVE = "answerSave";
 
-        public static final String STUDENT_END_TEST = "endTest";
+        public static final String STUDENT_TEST_END = "testEnd";
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
-        public static final String TUTOR_ADD_QUIZ = "quizAdd";
+        public static final String TUTOR_QUIZ_ADD = "quizAdd";
 
-        public static final String TUTOR_REMOVE_QUIZ = "quizRemove";
+        public static final String TUTOR_QUIZ_REMOVE = "quizRemove";
 
         public static final String TUTOR_REMOVE_QUESTION = "questionRemove";
 

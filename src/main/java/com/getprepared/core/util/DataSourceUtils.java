@@ -1,5 +1,6 @@
 package com.getprepared.core.util;
 
+import com.getprepared.annotation.Component;
 import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
@@ -11,13 +12,12 @@ import static com.getprepared.core.util.DataSourceUtils.DataSourceCallback.call;
 /**
  * Created by koval on 08.01.2017.
  */
-public class DataSourceUtils {
+@Component
+public final class DataSourceUtils {
 
     private static final Logger LOG = Logger.getLogger(DataSourceUtils.class);
 
-    private DataSourceUtils() { }
-
-    public static Connection getConnection(final DataSource ds)  {
+    public Connection getConnection(final DataSource ds)  {
         return call(ds::getConnection, "Failed to get connection");
     }
 

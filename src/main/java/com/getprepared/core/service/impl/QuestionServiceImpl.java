@@ -30,8 +30,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Inject
     private AnswerService answerService;
 
-    public QuestionServiceImpl() { }
-
     @Override
     public void save(final Question question) throws EntityExistsException {
         try {

@@ -4,6 +4,7 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.persistence.dao.QuizDao;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
@@ -16,7 +17,6 @@ import java.util.Properties;
 
 import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
 import static com.getprepared.core.constant.PropertyConstants.KEYS;
-import static com.getprepared.core.util.PropertyUtils.initProp;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.Quiz.NAME_KEY;
 
@@ -26,10 +26,13 @@ import static com.getprepared.persistence.domain.Quiz.NAME_KEY;
 @Component("quizDao")
 public class QuizDaoImpl implements QuizDao {
 
-    private static final Properties prop = initProp(FILES_NAMES.QUIZ);
-
     @Inject
     private JdbcTemplate jdbcTemplate;
+
+    @Inject
+    private PropertyUtils propertyUtils;
+
+    private final Properties prop = propertyUtils.getProperty(FILES_NAMES.QUIZ);
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {

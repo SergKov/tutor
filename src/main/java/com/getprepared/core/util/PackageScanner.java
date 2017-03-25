@@ -14,7 +14,7 @@ import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 /**
  * Created by koval on 04.03.2017.
  */
-public class PackageScanner {
+public final class PackageScanner {
 
     private static final Logger LOG = Logger.getLogger(PackageScanner.class);
 
@@ -22,7 +22,7 @@ public class PackageScanner {
     private static final char DIRECTORY_SEPARATOR = '/';
     private static final String CLASS_FILE_SUFFIX = ".class";
 
-    public static List<Class<?>> scan(final String scannedPackage) {
+    public List<Class<?>> scan(final String scannedPackage) {
         final String scannedPath = scannedPackage.replace(PACKAGE_SEPARATOR, DIRECTORY_SEPARATOR);
         final URL scannedUrl = Thread.currentThread().getContextClassLoader().getResource(scannedPath);
 
@@ -46,7 +46,7 @@ public class PackageScanner {
         }
     }
 
-    private static List<Class<?>> scan(final File scannedFile, final String scannedPackage) {
+    private List<Class<?>> scan(final File scannedFile, final String scannedPackage) {
         final List<Class<?>> classes = new ArrayList<>();
         final String resource = scannedPackage + PACKAGE_SEPARATOR + scannedFile.getName();
         if (scannedFile.isDirectory()) {

@@ -1,6 +1,8 @@
 package com.getprepared.web.context;
 
+import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
@@ -11,17 +13,22 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.getprepared.context.Registry.getApplicationContext;
-import static com.getprepared.core.util.PackageScanner.scan;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;
+import static com.getprepared.web.constant.PropertyConstant.CONTROLLER_FILE;
 import static java.util.Arrays.stream;
 
 /**
  * Created by koval on 23.03.2017.
  */
+@Component
 public class WebContext {
 
-    private final Properties prop = PropertyUtils.initProp("/server/controller.properties");
+    @Inject
+    private PropertyUtils propertyUtils;
+
+    @Inject
+    private PackageScanner packageScanner;
 
     private final Map<String, Command> container = new HashMap<>();
 
@@ -31,6 +38,7 @@ public class WebContext {
     }
 
     private void initController() {
+        final Properties prop = propertyUtils.getProperty(CONTROLLER_FILE);
         final Set<Object> keys = prop.keySet();
 
         keys.stream()
@@ -40,7 +48,7 @@ public class WebContext {
 
     @SuppressWarnings("unchecked")
     private void load(final String packageName) {
-        final List<Class<?>> classes = scan(packageName);
+        final List<Class<?>> classes = packageScanner.scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Controller.class))
@@ -77,7 +85,7 @@ public class WebContext {
         }
     }
 
-    private Command getCommand(final String commandName) {
+    public Command getCommand(final String commandName) {
         return container.get(commandName);
     }
 }

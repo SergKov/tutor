@@ -31,8 +31,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Inject
     private AnswerService answerService;
 
-    public QuizServiceImpl() { }
-
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
         try {

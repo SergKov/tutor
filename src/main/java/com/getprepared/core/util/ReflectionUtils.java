@@ -1,5 +1,6 @@
 package com.getprepared.core.util;
 
+import com.getprepared.annotation.Component;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
@@ -8,11 +9,10 @@ import java.lang.reflect.Method;
 /**
  * Created by koval on 01.03.2017.
  */
-public class ReflectionUtils {
+@Component
+public final class ReflectionUtils {
 
     private static final Logger LOG = Logger.getLogger(ReflectionUtils.class);
-
-    private ReflectionUtils() { }
 
     public static <T> T newInstance(final Class<T> clazz) {
         try {

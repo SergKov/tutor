@@ -8,7 +8,7 @@ import com.getprepared.web.context.WebContext;
 public class Registry {
 
     private static final ApplicationContext applicationContext = new ApplicationContext();
-    private static final WebContext webApplicationContext = new WebContext();
+    private static final WebContext webContext = new WebContext();
 
     private Registry() { }
 
@@ -16,7 +16,7 @@ public class Registry {
         return applicationContext;
     }
 
-    public static WebContext getWebApplicationContext() {
-        return webApplicationContext;
+    public static WebContext getWebContext() {
+        return webContext;
     }
 }
