@@ -22,11 +22,6 @@ public abstract class AbstractQuestionAddCommand implements Command {
     private Messages messages;
 
     protected void fillPage(final HttpServletRequest request) {
-
-        final Long quizId = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
-
-        request.setAttribute(INPUTS.QUIZ_ID, quizId);
-
         request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
         request.setAttribute(ANSWER_TYPES, Type.values());
     }

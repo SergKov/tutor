@@ -24,8 +24,6 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
  */
 public abstract class AbstractQuestionsCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(AbstractQuestionsCommand.class);
-
     @Inject
     private Messages messages;
 
