@@ -24,7 +24,7 @@
         <jsp:invoke fragment="header"/>
     </h1>
 
-    <c:if test="${not empty student}">
+    <c:if test="${student ne null}">
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${student.name}
                 <span class="caret"></span></button>
@@ -38,7 +38,7 @@
         </div>
     </c:if>
 
-    <c:if test="${not empty tutor}">
+    <c:if test="${tutor ne null}">
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${tutor.name}
                 <span class="caret"></span></button>
