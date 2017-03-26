@@ -3,13 +3,13 @@ package com.getprepared.web.constant;
 /**
  * Created by koval on 14.01.2017.
  */
-public class PageConstants {
+public final class PageConstants {
 
     private PageConstants() { }
 
     public static final String REDIRECT = "redirect";
 
-    public static class PAGES {
+    public final static class PAGES {
 
         private PAGES() { }
 
@@ -48,7 +48,7 @@ public class PageConstants {
         public static final String NOT_FOUND = ERROR_PREFIX + "notFound" + SUFFIX;
     }
 
-    public static class LINKS {
+    public final static class LINKS {
 
         private LINKS() { }
 
@@ -79,7 +79,7 @@ public class PageConstants {
         public static final String NOT_FOUND = "/page-not-found";
     }
 
-    public static class NAMES {
+    public final static class NAMES {
 
         private NAMES() { }
 
@@ -106,7 +106,7 @@ public class PageConstants {
         public static final String RESULT = "Result";
     }
 
-    public static class FORMS {
+    public final static class FORMS {
 
         private FORMS() { }
 
@@ -131,7 +131,7 @@ public class PageConstants {
         public static final String SIGN_UP = "signUp";
     }
 
-    public static class ERRORS {
+    public final static class ERRORS {
 
         private ERRORS() { }
 

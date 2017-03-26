@@ -29,6 +29,5 @@ public abstract class AbstractQuestionAddCommand implements Command {
 
         request.setAttribute(TITLE, messages.getMessage(NAMES.ADD_QUESTION, request.getLocale()));
         request.setAttribute(ANSWER_TYPES, Type.values());
-        request.setAttribute(ANSWER_TYPE_REGEX, REGEX.ANSWER_TYPE);
     }
 }

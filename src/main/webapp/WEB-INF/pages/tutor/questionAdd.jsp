@@ -62,7 +62,6 @@
                 </div>
             </div>
 
-
             <div class="row answersText-manipulate">
                 <div class="col-xs-1 col-xs-offset-10">
                     <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px">
@@ -72,7 +71,6 @@
                     <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px">
                 </div>
             </div>
-
 
             <p>
             <div class="row">

@@ -3,11 +3,11 @@ package com.getprepared.web.constant;
 /**
  * Created by koval on 14.01.2017.
  */
-public class ValidationConstant {
+public final class ValidationConstant {
 
     private ValidationConstant() { }
 
-    public static class REGEX {
+    public final static class REGEX {
 
         private REGEX() { }
 
@@ -20,7 +20,5 @@ public class ValidationConstant {
         public static final String SURNAME = "^[A-z]{1}[a-z]{1,19}|[А-я]{1}[а-я]{1,19}$";
 
         public static final String QUIZ_NAME = "^[\\S]{2,32}$";
-
-        public static final String ANSWER_TYPE = "^CORRECT|INCORRECT$";
     }
 }

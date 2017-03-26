@@ -3,11 +3,11 @@ package com.getprepared.web.constant;
 /**
  * Created by koval on 16.01.2017.
  */
-public class WebConstants {
+public final class WebConstants {
 
     private WebConstants() { }
 
-    public static class INPUTS {
+    public final static class INPUTS {
 
         private INPUTS() { }
 
@@ -40,7 +40,7 @@ public class WebConstants {
         public static final String CHOSEN_ANSWER_ID = "chosenAnswersId[]";
     }
 
-    public static class REQUEST_ATTRIBUTES {
+    public final static class REQUEST_ATTRIBUTES {
 
         private REQUEST_ATTRIBUTES() { }
 
@@ -94,7 +94,7 @@ public class WebConstants {
 
     }
 
-    public static class SESSION_ATTRIBUTES {
+    public final static class SESSION_ATTRIBUTES {
 
         private SESSION_ATTRIBUTES() { }
 
@@ -109,7 +109,7 @@ public class WebConstants {
         public static final String MARK = "mark";
     }
 
-    public static class FILTERS_VARIABLES {
+    public final static class FILTERS_VARIABLES {
 
         private FILTERS_VARIABLES() { }
 
