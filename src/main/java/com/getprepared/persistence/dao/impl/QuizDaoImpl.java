@@ -29,10 +29,7 @@ public class QuizDaoImpl implements QuizDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    @Inject
-    private PropertyUtils propertyUtils;
-
-    private final Properties prop = propertyUtils.getProperty(FILES_NAMES.QUIZ);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.QUIZ);
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {

@@ -23,6 +23,8 @@ public final class PropertyConstants {
 
         public static final String COMPONENT_FILE = PREFIX_SERVER + "component" + SUFFIX;
 
+        public static final String CONTROLLER_FILE = PREFIX_SERVER + "controller" + SUFFIX;
+
         public static final String DS_TEST_SETTING = PREFIX_DS + "testDataSource" + SUFFIX;
 
         public static final String ANSWER = PREFIX_SQL + "answer" + SUFFIX;

@@ -33,10 +33,7 @@ public class AnswerDaoImpl implements AnswerDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    @Inject
-    private PropertyUtils propertyUtils;
-
-    private final Properties prop = propertyUtils.getProperty(FILES_NAMES.ANSWER);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.ANSWER);
 
     @Override
     public void save(final Answer answer) throws EntityExistsException {

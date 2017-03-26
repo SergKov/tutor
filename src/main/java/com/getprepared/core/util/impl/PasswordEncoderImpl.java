@@ -8,7 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
  * Created by koval on 14.01.2017.
  */
 @Component("passwordEncoder")
-public class PasswordEncoderImpl implements PasswordEncoder {
+public final class PasswordEncoderImpl implements PasswordEncoder {
 
     @Override
     public String encode(final String password) {

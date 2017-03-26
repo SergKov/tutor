@@ -31,10 +31,7 @@ public class QuestionDaoImpl implements QuestionDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    @Inject
-    private PropertyUtils propertyUtils;
-
-    private final Properties prop = propertyUtils.getProperty(FILES_NAMES.QUESTION);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.QUESTION);
 
     @Override
     public void save(final Question question) throws EntityExistsException {

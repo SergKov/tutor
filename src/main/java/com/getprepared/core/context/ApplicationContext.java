@@ -1,4 +1,4 @@
-package com.getprepared.context;
+package com.getprepared.core.context;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Component;
@@ -21,25 +21,23 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by koval on 25.02.2017.
  */
-@Component
 public class ApplicationContext {
 
-    @Inject
-    private PropertyUtils property;
-
-    @Inject
-    private PackageScanner packageScanner;
+    private static final String APPLICATION_CONTEXT = "applicationContext";
 
     private final Map<String, Object> container = new HashMap<>();
 
-    public ApplicationContext() {
+    ApplicationContext() { }
+
+    void init() {
+        container.put(APPLICATION_CONTEXT, this);
         initConfig();
         initComponent();
         injectFields();
     }
 
-    public void initConfig() {
-        final Properties configurationProp = property.getProperty(CONFIGURATION_FILE);
+    private void initConfig() {
+        final Properties configurationProp = PropertyUtils.getProperty(CONFIGURATION_FILE);
         final Set<Object> keys = configurationProp.keySet();
 
         keys.stream()
@@ -47,8 +45,8 @@ public class ApplicationContext {
                 .forEach(key -> loadConfig(configurationProp.getProperty(key)));
     }
 
-    public void initComponent() {
-        final Properties componentProp = property.getProperty(COMPONENT_FILE);
+    private void initComponent() {
+        final Properties componentProp = PropertyUtils.getProperty(COMPONENT_FILE);
         final Set<Object> keys = componentProp.keySet();
 
         keys.stream()
@@ -57,7 +55,7 @@ public class ApplicationContext {
     }
 
     private void loadConfig(final String packageName) {
-        final List<Class<?>> classes = packageScanner.scan(packageName);
+        final List<Class<?>> classes = PackageScanner.scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Configuration.class))
@@ -83,7 +81,7 @@ public class ApplicationContext {
     }
 
     private void load(final String packageName) {
-        final List<Class<?>> classes = packageScanner.scan(packageName);
+        final List<Class<?>> classes = PackageScanner.scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Component.class))
@@ -91,7 +89,7 @@ public class ApplicationContext {
     }
 
     private void initAnnotationBean(final Class<?> clazz) {
-        final Component annotation = (Component) clazz.getAnnotation(Component.class);
+        final Component annotation = clazz.getAnnotation(Component.class);
         String beanName = annotation.value();
         if (beanName.equals(EMPTY_STRING)) {
             final String simpleName = clazz.getSimpleName();
@@ -118,5 +116,9 @@ public class ApplicationContext {
 
     public Object getBean(final String name) {
         return container.get(name);
+    }
+
+    public <T> T getBean(final String name, final Class<T> clazz) {
+        return clazz.cast(container.get(name));
     }
 }

@@ -12,10 +12,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.getprepared.context.Registry.getApplicationContext;
+import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.CONTROLLER_FILE;
+import static com.getprepared.core.context.Registry.getApplicationContext;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;
-import static com.getprepared.web.constant.PropertyConstant.CONTROLLER_FILE;
 import static java.util.Arrays.stream;
 
 /**
@@ -24,21 +24,19 @@ import static java.util.Arrays.stream;
 @Component
 public class WebContext {
 
-    @Inject
-    private PropertyUtils propertyUtils;
-
-    @Inject
-    private PackageScanner packageScanner;
-
     private final Map<String, Command> container = new HashMap<>();
 
     public WebContext() {
+        init();
+    }
+
+    private void init() {
         initController();
         injectFields();
     }
 
     private void initController() {
-        final Properties prop = propertyUtils.getProperty(CONTROLLER_FILE);
+        final Properties prop = PropertyUtils.getProperty(CONTROLLER_FILE);
         final Set<Object> keys = prop.keySet();
 
         keys.stream()
@@ -48,7 +46,7 @@ public class WebContext {
 
     @SuppressWarnings("unchecked")
     private void load(final String packageName) {
-        final List<Class<?>> classes = packageScanner.scan(packageName);
+        final List<Class<?>> classes = PackageScanner.scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Controller.class))
@@ -64,7 +62,7 @@ public class WebContext {
     }
 
     private void putToContainer(final Class<Command> clazz) {
-        final RequestMapping requestMapping = (RequestMapping) clazz.getAnnotation(RequestMapping.class);
+        final RequestMapping requestMapping = clazz.getAnnotation(RequestMapping.class);
         final String beanName = requestMapping.value();
         container.put(beanName, newInstance(clazz));
     }

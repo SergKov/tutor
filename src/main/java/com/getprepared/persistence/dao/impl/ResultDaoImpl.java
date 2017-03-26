@@ -33,10 +33,7 @@ public class ResultDaoImpl implements ResultDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    @Inject
-    private PropertyUtils propertyUtils;
-
-    private final Properties prop = propertyUtils.getProperty(FILES_NAMES.RESULT);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.RESULT);
 
     @Override
     public void save(final Result result) throws EntityExistsException {

@@ -29,10 +29,7 @@ public class UserDaoImpl implements UserDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    @Inject
-    private PropertyUtils propertyUtils;
-
-    private final Properties prop = propertyUtils.getProperty(FILES_NAMES.USER);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.USER);
 
     @Override
     public void save(final User user) throws EntityExistsException {
