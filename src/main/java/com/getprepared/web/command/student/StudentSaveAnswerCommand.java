@@ -7,7 +7,6 @@ import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -18,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.PageConstants.NAMES;
-import static com.getprepared.web.constant.PageConstants.PAGES;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.*;
 import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;

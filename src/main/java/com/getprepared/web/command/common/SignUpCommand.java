@@ -10,7 +10,6 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.annotation.RequestMethod;
-import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.constant.PageConstants.ERRORS;
 import com.getprepared.web.constant.PageConstants.LINKS;
 import com.getprepared.web.constant.PageConstants.PAGES;
@@ -23,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstants.*;
+import static com.getprepared.web.constant.PageConstants.COMMANDS;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.*;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;

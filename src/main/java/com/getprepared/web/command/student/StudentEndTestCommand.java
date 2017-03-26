@@ -13,7 +13,6 @@ import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
 
@@ -24,8 +23,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
 
 /**

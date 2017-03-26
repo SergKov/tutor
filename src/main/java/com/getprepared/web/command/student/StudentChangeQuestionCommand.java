@@ -4,7 +4,6 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
-import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
@@ -15,8 +14,6 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.PageConstants.PAGES;
-import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.*;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
