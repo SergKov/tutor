@@ -7,10 +7,9 @@ import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
 import com.getprepared.web.command.Command;
+import com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

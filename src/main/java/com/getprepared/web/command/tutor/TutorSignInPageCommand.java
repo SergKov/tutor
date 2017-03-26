@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.getprepared.web.constant.PageConstants.LINKS;
 import static com.getprepared.web.constant.PageConstants.PAGES;
 
 /**
  * Created by koval on 21.01.2017.
  */
 @Controller
-@RequestMapping(value = "/tutor/sign-in")
+@RequestMapping(LINKS.TUTOR_SIGN_IN)
 public class TutorSignInPageCommand extends AbstractSignInCommand {
 
     @Override

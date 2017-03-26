@@ -26,7 +26,7 @@ import static com.getprepared.web.constant.WebConstants.INPUTS;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSGS;
-import static org.apache.commons.collections4.MapUtils.*;
+import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
 /**
  * Created by koval on 26.01.2017.

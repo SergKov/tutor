@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.getprepared.web.constant.PageConstants.LINKS;
 import static com.getprepared.web.constant.PageConstants.PAGES;
 
 /**
  * Created by koval on 21.01.2017.
  */
 @Controller
-@RequestMapping(value = PAGES.STUDENT_HOME_PAGE)
+@RequestMapping(LINKS.STUDENT_HOME_PAGE)
 public class StudentHomePageCommand extends AbstractStudentHomePageCommand {
 
     @Inject

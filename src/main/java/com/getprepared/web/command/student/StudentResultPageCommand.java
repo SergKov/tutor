@@ -18,7 +18,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
  * Created by koval on 06.02.2017.
  */
 @Controller
-@RequestMapping(PAGES.STUDENT_RESULT)
+@RequestMapping(LINKS.STUDENT_RESULT)
 public class StudentResultPageCommand implements Command {
 
     @Inject

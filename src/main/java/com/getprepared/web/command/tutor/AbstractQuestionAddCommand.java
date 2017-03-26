@@ -8,10 +8,8 @@ import com.getprepared.web.command.Command;
 import javax.servlet.http.HttpServletRequest;
 
 import static com.getprepared.web.constant.PageConstants.NAMES;
-import static com.getprepared.web.constant.ValidationConstant.REGEX;
-import static com.getprepared.web.constant.WebConstants.INPUTS;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.*;
-import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
+import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ANSWER_TYPES;
+import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
 
 /**
  * Created by koval on 26.01.2017.

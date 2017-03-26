@@ -7,6 +7,7 @@ import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -18,12 +19,14 @@ import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by koval on 25.01.2017.
  */
 @Controller
+@RequestMapping(LINKS.TUTOR_QUESTIONS)
 public class QuestionsPageCommand extends AbstractQuestionsCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionsPageCommand.class);

@@ -2,6 +2,7 @@ package com.getprepared.web.command.common;
 
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.constant.PageConstants.LINKS;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
  * Created by koval on 17.01.2017.
  */
 @Controller
-@RequestMapping(PAGES.SIGN_UP)
+@RequestMapping(LINKS.SIGN_UP)
 public class SignUpPageCommand extends AbstractSignUpCommand {
 
     @Override
