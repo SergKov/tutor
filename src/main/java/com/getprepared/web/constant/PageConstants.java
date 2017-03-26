@@ -9,7 +9,7 @@ public final class PageConstants {
 
     public static final String REDIRECT = "redirect";
 
-    public final static class PAGES {
+    public static final class PAGES {
 
         private PAGES() { }
 
@@ -48,7 +48,7 @@ public final class PageConstants {
         public static final String NOT_FOUND = ERROR_PREFIX + "notFound" + SUFFIX;
     }
 
-    public final static class LINKS {
+    public static final class LINKS {
 
         private LINKS() { }
 
@@ -79,7 +79,7 @@ public final class PageConstants {
         public static final String NOT_FOUND = "/page-not-found";
     }
 
-    public final static class NAMES {
+    public static final class NAMES {
 
         private NAMES() { }
 
@@ -106,7 +106,7 @@ public final class PageConstants {
         public static final String RESULT = "Result";
     }
 
-    public final static class COMMANDS {
+    public static final class COMMANDS {
 
         private COMMANDS() { }
 
@@ -131,7 +131,7 @@ public final class PageConstants {
         public static final String SIGN_UP = "signUp";
     }
 
-    public final static class ERRORS {
+    public static final class ERRORS {
 
         private ERRORS() { }
 

@@ -7,7 +7,7 @@ public final class WebConstants {
 
     private WebConstants() { }
 
-    public final static class INPUTS {
+    public static final class INPUTS {
 
         private INPUTS() { }
 
@@ -40,7 +40,7 @@ public final class WebConstants {
         public static final String CHOSEN_ANSWER_ID = "chosenAnswersId[]";
     }
 
-    public final static class REQUEST_ATTRIBUTES {
+    public static final class REQUEST_ATTRIBUTES {
 
         private REQUEST_ATTRIBUTES() { }
 
@@ -91,10 +91,9 @@ public final class WebConstants {
         public static final String ANSWER_TYPE = "answerType";
 
         public static final String ANSWER_TYPES = "answerTypes";
-
     }
 
-    public final static class SESSION_ATTRIBUTES {
+    public static final class SESSION_ATTRIBUTES {
 
         private SESSION_ATTRIBUTES() { }
 
@@ -109,7 +108,7 @@ public final class WebConstants {
         public static final String MARK = "mark";
     }
 
-    public final static class FILTERS_VARIABLES {
+    public static final class FILTERS_VARIABLES {
 
         private FILTERS_VARIABLES() { }
 

@@ -1,5 +1,6 @@
 package com.getprepared.web.controller;
 
+import com.getprepared.context.ApplicationContext;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ import static com.getprepared.web.constant.PageConstants.REDIRECT;
 @WebServlet("/")
 public class FrontController extends HttpServlet {
 
-    private static final String CONTROLLER_KEY = "controller";
+    private static final String COMMAND_KEY = "command";
 
     @Override
     public void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, ServletException {
@@ -29,7 +30,7 @@ public class FrontController extends HttpServlet {
 
     @Override
     public void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, ServletException {
-        final String controllerKey = req.getParameter(CONTROLLER_KEY);
+        final String controllerKey = req.getParameter(COMMAND_KEY);
         getPage(req, resp, controllerKey);
     }
 

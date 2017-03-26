@@ -7,7 +7,7 @@ public final class PropertyConstants {
 
     private PropertyConstants() { }
 
-    public static class FILES_NAMES {
+    public static final class FILES_NAMES {
 
         private FILES_NAMES() { }
 

@@ -7,7 +7,7 @@ public final class ValidationConstant {
 
     private ValidationConstant() { }
 
-    public final static class REGEX {
+    public static final class REGEX {
 
         private REGEX() { }
 
