@@ -30,7 +30,7 @@ import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
  * Created by koval on 05.02.2017.
  */
 @Controller
-@RequestMapping(PAGES.STUDENT_TEST)
+@RequestMapping(value = COMMANDS.STUDENT_ANSWER_SAVE, method = RequestMethod.POST)
 public class StudentSaveAnswerCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentSaveAnswerCommand.class);

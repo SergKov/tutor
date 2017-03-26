@@ -20,6 +20,6 @@ public class QuizPageAddCommand extends AbstractQuizAddCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGES.TUTOR_ADD_QUIZ;
+        return PAGES.TUTOR_QUIZ_ADD;
     }
 }

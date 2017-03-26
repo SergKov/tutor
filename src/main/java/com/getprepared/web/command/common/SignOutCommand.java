@@ -1,10 +1,8 @@
 package com.getprepared.web.command.common;
 
-import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

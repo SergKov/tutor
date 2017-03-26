@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.PageConstants.PAGES;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.*;
@@ -23,7 +24,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE
  * Created by koval on 30.01.2017.
  */
 @Controller
-@RequestMapping(PAGES.STUDENT_TEST)
+@RequestMapping(LINKS.STUDENT_TEST)
 public class StudentChangeQuestionCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentChangeQuestionCommand.class);
@@ -37,11 +38,11 @@ public class StudentChangeQuestionCommand implements Command {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
         if (request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST) == null) {
-            response.sendRedirect(PageConstants.LINKS.NOT_FOUND);
+            response.sendRedirect(LINKS.NOT_FOUND);
             return REDIRECT;
         }
 
-        request.setAttribute(TITLE, messages.getMessage(PageConstants.NAMES.TEST, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(NAMES.TEST, request.getLocale()));
 
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST);

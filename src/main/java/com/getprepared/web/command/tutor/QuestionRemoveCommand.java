@@ -21,7 +21,7 @@ import static com.getprepared.web.constant.WebConstants.INPUTS;
  * Created by koval on 24.01.2017.
  */
 @Controller
-@RequestMapping(value = COMMANDS.TUTOR_REMOVE_QUESTION, method = RequestMethod.POST)
+@RequestMapping(value = COMMANDS.TUTOR_QUESTION_REMOVE, method = RequestMethod.POST)
 public class QuestionRemoveCommand extends AbstractQuestionsCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionRemoveCommand.class);

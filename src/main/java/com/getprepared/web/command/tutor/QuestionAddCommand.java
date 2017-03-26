@@ -32,7 +32,7 @@ import static org.apache.commons.collections4.MapUtils.isNotEmpty;
  * Created by koval on 26.01.2017.
  */
 @Controller
-@RequestMapping(value = LINKS.TUTOR_QUESTION_ADD, method = RequestMethod.POST)
+@RequestMapping(value = COMMANDS.TUTOR_QUESTION_ADD, method = RequestMethod.POST)
 public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionAddCommand.class);

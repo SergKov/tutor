@@ -37,7 +37,7 @@ public final class PageConstants {
 
         public static final String TUTOR_QUIZZES = TUTOR_PREFIX + "quizzes" + SUFFIX;
 
-        public static final String TUTOR_ADD_QUIZ = TUTOR_PREFIX + "quizAdd" + SUFFIX;
+        public static final String TUTOR_QUIZ_ADD = TUTOR_PREFIX + "quizAdd" + SUFFIX;
 
         public static final String TUTOR_QUESTIONS = TUTOR_PREFIX + "questions" + SUFFIX;
 
@@ -124,9 +124,9 @@ public final class PageConstants {
 
         public static final String TUTOR_QUIZ_REMOVE = "quizRemove";
 
-        public static final String TUTOR_REMOVE_QUESTION = "questionRemove";
+        public static final String TUTOR_QUESTION_REMOVE = "questionRemove";
 
-        public static final String TUTOR_ADD_QUESTION = "questionAdd";
+        public static final String TUTOR_QUESTION_ADD = "questionAdd";
 
         public static final String SIGN_UP = "signUp";
     }

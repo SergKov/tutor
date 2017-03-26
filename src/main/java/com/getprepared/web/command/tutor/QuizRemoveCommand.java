@@ -6,7 +6,10 @@ import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.command.common.AbstractQuizCommand;
+import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.PageConstants.LINKS;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
@@ -22,6 +26,7 @@ import static com.getprepared.web.constant.WebConstants.INPUTS;
  * Created by koval on 24.01.2017.
  */
 @Controller
+@RequestMapping(value = COMMANDS.TUTOR_QUIZ_REMOVE, method = RequestMethod.POST)
 public class QuizRemoveCommand extends AbstractQuizCommand {
 
     private static final Logger LOG = Logger.getLogger(QuizRemoveCommand.class);

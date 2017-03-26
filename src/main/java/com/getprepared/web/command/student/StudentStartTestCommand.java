@@ -5,6 +5,7 @@ import com.getprepared.core.service.QuestionService;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.dto.TestQuestion;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.PageConstants.LINKS;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.INPUTS;
@@ -23,7 +25,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
  * Created by koval on 19.01.2017.
  */
 @Controller
-@RequestMapping(value = LINKS.STUDENT_TEST, method = RequestMethod.POST)
+@RequestMapping(value = COMMANDS.STUDENT_TEST_START, method = RequestMethod.POST)
 public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
 
     private static final Logger LOG = Logger.getLogger(StudentStartTestCommand.class);

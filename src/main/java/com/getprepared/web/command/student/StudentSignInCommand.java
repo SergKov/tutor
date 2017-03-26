@@ -25,7 +25,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR
  * Created by koval on 15.01.2017.
  */
 @Controller
-@RequestMapping(LINKS.TUTOR_SIGN_IN)
+@RequestMapping(value = COMMANDS.STUDENT_SIGN_IN, method = RequestMethod.POST)
 public class StudentSignInCommand extends AbstractSignInCommand {
 
     private static final Logger LOG = Logger.getLogger(StudentSignInCommand.class);

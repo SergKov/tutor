@@ -10,6 +10,7 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.constant.PageConstants;
 import com.getprepared.web.constant.PageConstants.ERRORS;
 import com.getprepared.web.constant.PageConstants.LINKS;
 import com.getprepared.web.constant.PageConstants.PAGES;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.getprepared.web.constant.PageConstants.*;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 import static com.getprepared.web.constant.WebConstants.*;
 import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
@@ -32,7 +34,7 @@ import static org.apache.commons.collections4.MapUtils.isNotEmpty;
  * Created by koval on 17.01.2017.
  */
 @Controller
-@RequestMapping(value = LINKS.SIGN_UP, method = RequestMethod.POST)
+@RequestMapping(value = COMMANDS.SIGN_UP, method = RequestMethod.POST)
 public class SignUpCommand extends AbstractSignUpCommand {
 
     private static final Logger LOG = Logger.getLogger(SignUpCommand.class);
