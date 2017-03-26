@@ -1,4 +1,4 @@
-package com.getprepared.core.context;
+package com.getprepared.context;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Component;
@@ -14,7 +14,9 @@ import java.util.*;
 import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.COMPONENT_FILE;
 import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.CONFIGURATION_FILE;
 import static com.getprepared.core.constant.ServerConstants.EMPTY_STRING;
-import static com.getprepared.core.util.ReflectionUtils.*;
+import static com.getprepared.core.util.ReflectionUtils.invoke;
+import static com.getprepared.core.util.ReflectionUtils.newInstance;
+import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 

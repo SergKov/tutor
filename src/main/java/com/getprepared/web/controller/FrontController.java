@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.core.context.Registry.getWebContext;
+import static com.getprepared.context.Registry.getWebContext;
 import static com.getprepared.web.constant.PageConstants.LINKS;
 import static com.getprepared.web.constant.PageConstants.REDIRECT;
 

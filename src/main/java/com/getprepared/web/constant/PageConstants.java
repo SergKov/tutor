@@ -106,9 +106,9 @@ public final class PageConstants {
         public static final String RESULT = "Result";
     }
 
-    public final static class FORMS {
+    public final static class COMMANDS {
 
-        private FORMS() { }
+        private COMMANDS() { }
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 

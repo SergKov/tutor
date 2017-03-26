@@ -1,6 +1,5 @@
-package com.getprepared.web.context;
+package com.getprepared.context;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
@@ -13,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.CONTROLLER_FILE;
-import static com.getprepared.core.context.Registry.getApplicationContext;
+import static com.getprepared.context.Registry.getApplicationContext;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
@@ -21,16 +20,13 @@ import static java.util.Arrays.stream;
 /**
  * Created by koval on 23.03.2017.
  */
-@Component
 public class WebContext {
 
     private final Map<String, Command> container = new HashMap<>();
 
-    public WebContext() {
-        init();
-    }
+    WebContext() { }
 
-    private void init() {
+    void init() {
         initController();
         injectFields();
     }

@@ -4,6 +4,7 @@ import com.getprepared.web.annotation.RequestMethod;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.RequestMapping;
 import com.getprepared.web.command.Command;
+import com.getprepared.web.constant.PageConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR
  * Created by koval on 22.01.2017.
  */
 @Controller
-@RequestMapping(value = LINKS.SIGN_OUT, method = RequestMethod.POST)
+@RequestMapping(LINKS.SIGN_OUT)
 public class SignOutCommand implements Command {
 
     @Override

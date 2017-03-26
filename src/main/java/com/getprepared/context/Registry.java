@@ -1,18 +1,19 @@
-package com.getprepared.core.context;
-
-import com.getprepared.web.context.WebContext;
+package com.getprepared.context;
 
 /**
  * Created by koval on 24.03.2017.
  */
 public final class Registry {
 
-    private static final String WEB_CONTEXT = "webContext";
     private static final ApplicationContext applicationContext;
+    private static final WebContext webContext;
 
     static {
         applicationContext = new ApplicationContext();
         applicationContext.init();
+
+        webContext = new WebContext();
+        webContext.init();
     }
 
     private Registry() { }
@@ -22,6 +23,6 @@ public final class Registry {
     }
 
     public static WebContext getWebContext() {
-        return applicationContext.getBean(WEB_CONTEXT, WebContext.class);
+        return webContext;
     }
 }
