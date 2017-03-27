@@ -40,7 +40,7 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
     private ValidationService validationService;
 
     @Inject
-    private Converter<QuizAddForm, Quiz> converter;
+    private Converter<QuizAddForm, Quiz> quizAddConverter;
 
     @Inject
     private Messages messages;
@@ -56,7 +56,7 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
         if (isNotEmpty(errors)) {
             request.setAttribute(ERROR_MSGS, messages.getMessages(errors, request.getLocale()));
         } else {
-            final Quiz quiz = converter.convert(quizForm);
+            final Quiz quiz = quizAddConverter.convert(quizForm);
             try {
                 quizService.save(quiz);
                 response.sendRedirect(LINKS.TUTOR_QUIZZES);

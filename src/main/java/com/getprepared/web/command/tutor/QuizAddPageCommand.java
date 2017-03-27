@@ -1,7 +1,7 @@
 package com.getprepared.web.command.tutor;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +13,9 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
 /**
  * Created by koval on 22.01.2017.
  */
-@Component
+@Controller
 @CommandMapping(LINKS.TUTOR_QUIZ_ADD)
-public class QuizPageAddCommand extends AbstractQuizAddCommand {
+public class QuizAddPageCommand extends AbstractQuizAddCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

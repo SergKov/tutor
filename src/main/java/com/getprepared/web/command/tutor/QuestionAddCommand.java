@@ -46,7 +46,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
     private ValidationService validationService;
 
     @Inject
-    private Converter<QuestionAddForm, Question> questionConverter;
+    private Converter<QuestionAddForm, Question> questionAddConverter;
 
     @Inject
     private Messages messages;
@@ -81,7 +81,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
                 if (isNotEmpty(errors)) {
                     request.setAttribute(ERROR_MSGS, errors);
                 } else {
-                    final Question question = questionConverter.convert(questionAddForm);
+                    final Question question = questionAddConverter.convert(questionAddForm);
                     question.setQuiz(quiz);
 
                     questionService.save(question);

@@ -1,5 +1,6 @@
 package com.getprepared.core.converter.impl;
 
+import com.getprepared.annotation.Component;
 import com.getprepared.core.converter.Converter;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by koval on 23.03.2017.
  */
+@Component
 public class QuestionAddConverter implements Converter<QuestionAddForm, Question>{
 
     @Override
