@@ -24,7 +24,7 @@ public class ConnectionProvider {
     @Inject
     private ConnectionUtils connectionUtils;
 
-    private final ThreadLocal<TransactionConnectionCounter> threadLocal = new ThreadLocal<>();
+    private final ThreadLocal<ConnectionCounter> threadLocal = new ThreadLocal<>();
 
     public void begin() {
         if (threadLocal.get() == null) {
@@ -37,9 +37,9 @@ public class ConnectionProvider {
     private void create() {
         final Connection con = dataSourceUtils.getConnection(dataSource);
         connectionUtils.setAutoCommit(con, false);
-        final TransactionConnectionCounter transactionConnectionCounter = new TransactionConnectionCounter();
-        transactionConnectionCounter.setConnection(con);
-        threadLocal.set(transactionConnectionCounter);
+        final ConnectionCounter connectionCounter = new ConnectionCounter();
+        connectionCounter.setConnection(con);
+        threadLocal.set(connectionCounter);
     }
 
     public void commit() {

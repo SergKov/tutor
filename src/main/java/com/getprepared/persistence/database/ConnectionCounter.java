@@ -8,7 +8,7 @@ import java.sql.Connection;
  * Created by koval on 28.01.2017.
  */
 @Component
-public class TransactionConnectionCounter {
+public class ConnectionCounter {
 
     private Connection connection;
     private int count;
