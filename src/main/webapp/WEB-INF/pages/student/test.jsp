@@ -18,13 +18,13 @@
     <jsp:body>
         <form action="${testAction}" method="POST">
             <input type="hidden" name="command" value="answerSave"/>
-            <input type="hidden" name="text-number" value="${currentQuestion}"/>
+            <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
             <div class="form-control text-border col-xs-8" id="test">
-                <c:out value="${testQuestion.text.text}"/>
+                <c:out value="${testQuestion.question.text}"/>
             </div>
 
-            <c:forEach items="${testQuestion.text.answersText}" var="answer">
+            <c:forEach items="${testQuestion.answers}" var="answer">
                 <div class="row">
                     <br/>
                     <div class="col-xs-10">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-xs-2">
                         <input type="checkbox" value="${answer.id}" name="chosenAnswersId[]"
-                               <c:if test="${fn:contains(testQuestion.answersText, answer)}">checked</c:if>
+                               <c:if test="${fn:contains(testQuestion.answers, answer)}">checked</c:if>
                         >
                     </div>
                 </div>
@@ -47,7 +47,7 @@
             <ul class="pagination">
                 <c:forEach var="i" begin="1" end="${fn:length(test)}">
                     <li>
-                        <button name="text-number" value="${i}"><c:out value="${i}"/></button>
+                        <button name="question-number" value="${i}"><c:out value="${i}"/></button>
                     </li>
                 </c:forEach>
             </ul>
