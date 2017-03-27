@@ -10,17 +10,17 @@ import com.getprepared.annotation.Inject;
 public class TransactionManager {
 
     @Inject
-    private TransactionalConnectionProvider transactionalConnectionProvider;
+    private ConnectionProvider connectionProvider;
 
     public void begin() {
-        transactionalConnectionProvider.begin();
+        connectionProvider.begin();
     }
 
     public void commit() {
-        transactionalConnectionProvider.commit();
+        connectionProvider.commit();
     }
 
     public void rollback() {
-        transactionalConnectionProvider.rollback();
+        connectionProvider.rollback();
     }
 }

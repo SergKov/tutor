@@ -4,7 +4,7 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
-import com.getprepared.persistence.database.TransactionalConnectionProvider;
+import com.getprepared.persistence.database.ConnectionProvider;
 import com.getprepared.persistence.domain.Entity;
 import org.apache.log4j.Logger;
 
@@ -26,12 +26,12 @@ public class JdbcTemplate {
     private static final int SQL_DUPLICATE_ERROR_CODE = 1062;
 
     @Inject
-    private TransactionalConnectionProvider transactionalConnectionProvider;
+    private ConnectionProvider connectionProvider;
 
     public void executeUpdate(final String sql, final Entity entity, final PreparedStatementSetter setter)
             throws EntityExistsException {
 
-        final Connection con = transactionalConnectionProvider.getConnection();
+        final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             setter.setValues(ps);
@@ -50,7 +50,7 @@ public class JdbcTemplate {
     public void batchUpdate(final String sql, final List<? extends Entity> entities,
                             final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
 
-        final Connection con = transactionalConnectionProvider.getConnection();
+        final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             final int batchSize = batchSetter.getBatchSize();
@@ -83,7 +83,7 @@ public class JdbcTemplate {
 
     public void executeUpdate(final String sql, final PreparedStatementSetter setter) throws EntityExistsException {
 
-        final Connection con = transactionalConnectionProvider.getConnection();
+        final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             setter.setValues(ps);
@@ -111,7 +111,7 @@ public class JdbcTemplate {
 
     public void remove(final String sql, final PreparedStatementSetter setter) {
 
-        final Connection con = transactionalConnectionProvider.getConnection();
+        final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             setter.setValues(ps);
@@ -127,7 +127,7 @@ public class JdbcTemplate {
     public <T> T singleQuery(final String sql, final PreparedStatementSetter setter,
                                        final RowMapper<T> rowMapper) throws EntityNotFoundException {
 
-        final Connection con = transactionalConnectionProvider.getConnection();
+        final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)){
             setter.setValues(ps);
@@ -155,7 +155,7 @@ public class JdbcTemplate {
     public <T> List<T> executeQuery(final String sql, final PreparedStatementSetter setter,
                                     final RowMapper<T> rowMapper) {
 
-        final Connection con = transactionalConnectionProvider.getConnection();
+        final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql)){
             setter.setValues(ps);

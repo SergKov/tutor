@@ -13,7 +13,7 @@ import java.sql.Connection;
  * Created by koval on 06.01.2017.
  */
 @Component
-public class TransactionalConnectionProvider {
+public class ConnectionProvider {
 
     @Inject
     private DataSource dataSource;
