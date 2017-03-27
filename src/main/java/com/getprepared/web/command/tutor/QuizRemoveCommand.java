@@ -6,8 +6,7 @@ import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
-import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.common.AbstractQuizCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -23,7 +22,7 @@ import static com.getprepared.web.constant.WebConstants.INPUTS;
  * Created by koval on 24.01.2017.
  */
 @Controller
-@RequestMapping(value = COMMANDS.TUTOR_QUIZ_REMOVE, method = RequestMethod.POST)
+@CommandMapping(COMMANDS.TUTOR_QUIZ_REMOVE)
 public class QuizRemoveCommand extends AbstractQuizCommand {
 
     private static final Logger LOG = Logger.getLogger(QuizRemoveCommand.class);
@@ -49,7 +48,7 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
             quizService.remove(quiz);
 
             response.sendRedirect(LINKS.TUTOR_QUIZZES);
-        } catch (final EntityNotFoundException | NumberFormatException e) {
+        } catch (EntityNotFoundException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINKS.NOT_FOUND);
         }

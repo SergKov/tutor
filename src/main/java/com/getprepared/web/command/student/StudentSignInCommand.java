@@ -7,8 +7,7 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
-import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.common.AbstractSignInCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -25,7 +24,7 @@ import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR
  * Created by koval on 15.01.2017.
  */
 @Controller
-@RequestMapping(value = COMMANDS.STUDENT_SIGN_IN, method = RequestMethod.POST)
+@CommandMapping(COMMANDS.STUDENT_SIGN_IN)
 public class StudentSignInCommand extends AbstractSignInCommand {
 
     private static final Logger LOG = Logger.getLogger(StudentSignInCommand.class);

@@ -1,7 +1,7 @@
 package com.getprepared.web.command.tutor;
 
 import com.getprepared.annotation.Component;
-import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.CommandMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +14,7 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
  * Created by koval on 22.01.2017.
  */
 @Component
-@RequestMapping(LINKS.TUTOR_QUIZ_ADD)
+@CommandMapping(LINKS.TUTOR_QUIZ_ADD)
 public class QuizPageAddCommand extends AbstractQuizAddCommand {
 
     @Override

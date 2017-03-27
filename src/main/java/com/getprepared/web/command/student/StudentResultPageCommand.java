@@ -3,7 +3,7 @@ package com.getprepared.web.command.student;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
  * Created by koval on 06.02.2017.
  */
 @Controller
-@RequestMapping(LINKS.STUDENT_RESULT)
+@CommandMapping(LINKS.STUDENT_RESULT)
 public class StudentResultPageCommand implements Command {
 
     @Inject

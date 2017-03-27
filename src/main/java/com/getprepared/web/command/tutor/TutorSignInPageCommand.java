@@ -1,7 +1,7 @@
 package com.getprepared.web.command.tutor;
 
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.common.AbstractSignInCommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,7 @@ import static com.getprepared.web.constant.PageConstants.PAGES;
  * Created by koval on 21.01.2017.
  */
 @Controller
-@RequestMapping(LINKS.TUTOR_SIGN_IN)
+@CommandMapping(LINKS.TUTOR_SIGN_IN)
 public class TutorSignInPageCommand extends AbstractSignInCommand {
 
     @Override

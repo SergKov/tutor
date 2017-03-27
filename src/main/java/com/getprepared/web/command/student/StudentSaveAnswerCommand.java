@@ -4,8 +4,7 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
-import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
@@ -27,7 +26,7 @@ import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
  * Created by koval on 05.02.2017.
  */
 @Controller
-@RequestMapping(value = COMMANDS.STUDENT_ANSWER_SAVE, method = RequestMethod.POST)
+@CommandMapping(COMMANDS.STUDENT_ANSWER_SAVE)
 public class StudentSaveAnswerCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentSaveAnswerCommand.class);

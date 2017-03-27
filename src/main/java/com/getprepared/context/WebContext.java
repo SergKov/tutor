@@ -4,7 +4,7 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.Command;
 
 import java.lang.annotation.Annotation;
@@ -51,15 +51,15 @@ public class WebContext {
     }
 
     private void initAnnotationBean(final Class<Command> clazz) {
-        if (clazz.isAnnotationPresent(RequestMapping.class)) {
+        if (clazz.isAnnotationPresent(CommandMapping.class)) {
             final Annotation[] annotations = clazz.getAnnotations();
             stream(annotations).forEach(annotation -> putToContainer(clazz));
         }
     }
 
     private void putToContainer(final Class<Command> clazz) {
-        final RequestMapping requestMapping = clazz.getAnnotation(RequestMapping.class);
-        final String beanName = requestMapping.value();
+        final CommandMapping commandMapping = clazz.getAnnotation(CommandMapping.class);
+        final String beanName = commandMapping.value();
         container.put(beanName, newInstance(clazz));
     }
 

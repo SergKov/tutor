@@ -10,8 +10,7 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
-import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.form.QuestionAddForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -32,7 +31,7 @@ import static org.apache.commons.collections4.MapUtils.isNotEmpty;
  * Created by koval on 26.01.2017.
  */
 @Controller
-@RequestMapping(value = COMMANDS.TUTOR_QUESTION_ADD, method = RequestMethod.POST)
+@CommandMapping(COMMANDS.TUTOR_QUESTION_ADD)
 public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionAddCommand.class);

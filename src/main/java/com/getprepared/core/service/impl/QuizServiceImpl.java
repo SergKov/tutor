@@ -75,7 +75,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
             quiz.setQuestions(questions);
         });
-        transactionManager.rollback();
+        transactionManager.commit();
         return quizzes;
     }
 

@@ -5,8 +5,7 @@ import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
-import com.getprepared.web.annotation.RequestMethod;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -21,7 +20,7 @@ import static com.getprepared.web.constant.WebConstants.INPUTS;
  * Created by koval on 24.01.2017.
  */
 @Controller
-@RequestMapping(value = COMMANDS.TUTOR_QUESTION_REMOVE, method = RequestMethod.POST)
+@CommandMapping(COMMANDS.TUTOR_QUESTION_REMOVE)
 public class QuestionRemoveCommand extends AbstractQuestionsCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionRemoveCommand.class);

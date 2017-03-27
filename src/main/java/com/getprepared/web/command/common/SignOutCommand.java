@@ -1,7 +1,7 @@
 package com.getprepared.web.command.common;
 
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.annotation.RequestMapping;
+import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR
  * Created by koval on 22.01.2017.
  */
 @Controller
-@RequestMapping(LINKS.SIGN_OUT)
+@CommandMapping(LINKS.SIGN_OUT)
 public class SignOutCommand implements Command {
 
     @Override
