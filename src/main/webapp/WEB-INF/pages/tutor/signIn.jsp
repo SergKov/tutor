@@ -24,29 +24,56 @@
             <form action="${tutorAction}" method="POST" class="form-horizontal">
                 <input type="hidden" name="command" value="tutorSignIn">
 
-                <div class="form-group">
-                    <div class="row">
-                        <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.email"/></label>
+                <div class="row">
+                    <label class="control-label col-xs-5" for="email"><fmt:message key="tutorSignIn.email"/></label>
 
-                        <div class="col-xs-3">
-                            <input type="text" pattern="${emailRegex}" class="form-control" id="email" name="email"
-                                   value="${email}"
-                                   placeholder="<fmt:message key="tutorSignIn.enterEmail"/>" required>
-                        </div>
-                    </div>
+                    <c:choose>
+                        <c:when test="${empty errorMsg}">
+                            <div class="form-group">
+                                <div class="col-xs-3">
+                                    <input type="text" pattern="${emailRegex}" class="form-control" id="email"
+                                           name="email"
+                                           placeholder="<fmt:message key="tutorSignIn.enterEmail"/>" required>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="form-group has-error has-feedback">
+                                <div class="col-xs-3">
+                                    <input type="text" pattern="${emailRegex}" class="form-control" id="email"
+                                           name="email"
+                                           value="${email}" placeholder="<fmt:message key="tutorSignIn.enterEmail"/>"
+                                           required>
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message
-                                key="tutorSignIn.password"/></label>
+                <div class="row">
+                    <label class="control-label col-xs-5" for="psw"><fmt:message
+                            key="tutorSignIn.password"/></label>
 
-                        <div class="col-xs-3">
-                            <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
-                                   name="password" placeholder="<fmt:message key="tutorSignIn.enterPassword"/>"
-                                   required>
-                        </div>
-                    </div>
+                    <c:choose>
+                        <c:when test="${empty errorMsg}">
+                            <div class="form-group">
+                                <div class="col-xs-3">
+                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
+                                           name="password" placeholder="<fmt:message key="tutorSignIn.enterPassword"/>"
+                                           required>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="form-group has-error has-feedback">
+                                <div class="col-xs-3">
+                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
+                                           name="password" placeholder="<fmt:message key="tutorSignIn.enterPassword"/>"
+                                           required>
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <div class="row">
