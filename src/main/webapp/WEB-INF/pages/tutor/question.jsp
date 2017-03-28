@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <c:forEach items="${question.answersText}" var="answer">
+        <c:forEach items="${question.answers}" var="answer">
             <div class="row">
                 <div class="col-xs-8">
                     <input class="form-control" value="${answer.text}" readonly/>

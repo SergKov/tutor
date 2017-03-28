@@ -22,11 +22,12 @@ public class QuestionAddConverter implements Converter<QuestionAddForm, Question
         question.setText(form.getText());
         final List<Answer> answers = new ArrayList<>();
 
-        final String[] formAnswers = form.getAnswersText();
-        for (int i = 0; i < formAnswers.length; i++) {
+        final String[] formAnswersText = form.getAnswersText();
+        final String[] formAnswersType = form.getAnswersType();
+        for (int i = 0; i < formAnswersText.length; i++) {
             final Answer answer = new Answer();
-            answer.setText(formAnswers[i]);
-            answer.setType(Type.valueOf(formAnswers[i]));
+            answer.setText(formAnswersText[i]);
+            answer.setType(Type.valueOf(formAnswersType[i]));
             answer.setQuestion(question);
             answers.add(answer);
         }
