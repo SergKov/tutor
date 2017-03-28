@@ -9,8 +9,8 @@ import com.getprepared.core.service.ResultService;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.dto.TestQuestion;
 import org.apache.log4j.Logger;
@@ -23,6 +23,7 @@ import java.util.List;
 
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 /**
  * Created by koval on 05.02.2017.
@@ -64,7 +65,7 @@ public class StudentEndTestCommand implements Command {
             response.sendRedirect(LINK.STUDENT_RESULT);
         } catch (EntityNotFoundException | EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
         }
         return REDIRECT;
     }

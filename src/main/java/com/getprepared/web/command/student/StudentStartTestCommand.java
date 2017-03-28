@@ -16,6 +16,7 @@ import java.util.List;
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static javax.servlet.http.HttpServletResponse.*;
 
 /**
  * Created by koval on 19.01.2017.
@@ -43,7 +44,7 @@ public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
             response.sendRedirect(LINK.STUDENT_TEST);
         } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
         }
         return REDIRECT;
     }

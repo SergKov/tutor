@@ -22,6 +22,7 @@ import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.QUESTION;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
+import static javax.servlet.http.HttpServletResponse.*;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
@@ -51,7 +52,7 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         if (request.getSession().getAttribute(SESSION_ATTRIBUTE.QUIZ_ID) == null) {
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
             return REDIRECT;
         }
 
@@ -62,7 +63,7 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 fillPage(request, quizService, questionService);
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
-                response.sendRedirect(LINK.NOT_FOUND);
+                response.sendError(SC_NOT_FOUND);
                 return REDIRECT;
             }
             return PAGE.TUTOR_QUESTIONS;
@@ -76,13 +77,13 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 request.setAttribute(QUESTION, question);
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
-                response.sendRedirect(LINK.NOT_FOUND);
+                response.sendError(SC_NOT_FOUND);
                 return REDIRECT;
             }
             return PAGE.TUTOR_QUESTION;
         }
 
-        response.sendRedirect(LINK.NOT_FOUND);
+        response.sendError(SC_NOT_FOUND);
         return REDIRECT;
     }
 }

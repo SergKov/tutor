@@ -15,6 +15,7 @@ import java.io.IOException;
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT.QUIZ_ID;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static javax.servlet.http.HttpServletResponse.*;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -49,7 +50,7 @@ public class QuizPageCommand extends AbstractQuizCommand {
             return REDIRECT;
         }
 
-        response.sendRedirect(LINK.NOT_FOUND);
+        response.sendError(SC_NOT_FOUND);
         return REDIRECT;
     }
 }

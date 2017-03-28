@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
+import static javax.servlet.http.HttpServletResponse.*;
 
 /**
  * Created by koval on 24.01.2017.
@@ -50,7 +51,7 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
             response.sendRedirect(LINK.TUTOR_QUIZZES);
         } catch (EntityNotFoundException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
         }
         return REDIRECT;
     }

@@ -17,6 +17,7 @@ import java.util.List;
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
+import static javax.servlet.http.HttpServletResponse.*;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
@@ -35,7 +36,7 @@ public class StudentChangeQuestionCommand implements Command {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
         if (request.getSession().getAttribute(SESSION_ATTRIBUTE.TEST) == null) {
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
             return REDIRECT;
         }
 

@@ -9,7 +9,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<templates:error_template title="pageNotFound">
+<templates:error_template title="page.error.notFound">
 
     <jsp:attribute name="header">
         <h1 class="text-muted text-center"><fmt:message key="page.error.notFound"/></h1>

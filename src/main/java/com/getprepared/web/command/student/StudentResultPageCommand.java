@@ -2,8 +2,8 @@ package com.getprepared.web.command.student;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
 
@@ -14,6 +14,7 @@ import java.io.IOException;
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 /**
  * Created by koval on 06.02.2017.
@@ -29,7 +30,7 @@ public class StudentResultPageCommand implements Command {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
         if (request.getSession().getAttribute(SESSION_ATTRIBUTE.MARK) == null) {
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
             return REDIRECT;
         }
 

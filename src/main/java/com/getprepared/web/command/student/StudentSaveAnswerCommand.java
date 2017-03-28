@@ -3,13 +3,11 @@ package com.getprepared.web.command.student;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Answer;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.dto.TestQuestion;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +15,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.PageConstant.COMMAND;
+import static com.getprepared.web.constant.PageConstant.PAGE;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by koval on 05.02.2017.
@@ -31,8 +30,6 @@ import static org.apache.commons.lang3.StringUtils.*;
 @Controller
 @CommandMapping(COMMAND.STUDENT_ANSWER_SAVE)
 public class StudentSaveAnswerCommand implements Command {
-
-    private static final Logger LOG = Logger.getLogger(StudentSaveAnswerCommand.class);
 
     private static final Integer FIRST_QUESTION = 1;
 

@@ -9,8 +9,8 @@ import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.form.QuestionAddForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -25,6 +25,7 @@ import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
 /**
@@ -90,7 +91,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
             }
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
             return REDIRECT;
         } catch (final EntityExistsException e) {
             LOG.warn(e.getMessage(), e);

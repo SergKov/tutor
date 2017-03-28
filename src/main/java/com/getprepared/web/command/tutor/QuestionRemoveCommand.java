@@ -4,8 +4,8 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.persistence.domain.Question;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -15,6 +15,7 @@ import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 /**
  * Created by koval on 24.01.2017.
@@ -40,7 +41,7 @@ public class QuestionRemoveCommand extends AbstractQuestionsCommand {
             response.sendRedirect(LINK.TUTOR_QUESTIONS);
         } catch (EntityNotFoundException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINK.NOT_FOUND);
+            response.sendError(SC_NOT_FOUND);
         }
         return REDIRECT;
     }

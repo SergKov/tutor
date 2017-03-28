@@ -19,8 +19,6 @@ public final class PageConstant {
 
         private static final String TUTOR_PREFIX = "/WEB-INF/pages/tutor/";
 
-        private static final String ERROR_PREFIX = "/WEB-INF/pages/error/";
-
         private static final String SUFFIX = ".jsp";
 
         public static final String SIGN_UP = PREFIX + "signUp" + SUFFIX;
@@ -44,8 +42,6 @@ public final class PageConstant {
         public static final String TUTOR_QUESTION = TUTOR_PREFIX + "question" + SUFFIX;
 
         public static final String TUTOR_QUESTION_ADD = TUTOR_PREFIX + "questionAdd" + SUFFIX;
-
-        public static final String NOT_FOUND = ERROR_PREFIX + "notFound" + SUFFIX;
     }
 
     public static final class LINK {
@@ -75,8 +71,6 @@ public final class PageConstant {
         public static final String TUTOR_SIGN_IN = "/tutor";
 
         public static final String SIGN_OUT = "/sign-out";
-
-        public static final String NOT_FOUND = "/page-not-found";
     }
 
     public static final class COMMAND {
