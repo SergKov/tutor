@@ -27,16 +27,16 @@
     <jsp:body>
         <c:choose>
             <c:when test="${not empty questions}">
-                <c:forEach items="${questions}" var="text">
+                <c:forEach items="${questions}" var="question">
                     <div class="row">
                         <div class="col-xs-6 col-xs-offset-2">
-                            <c:set var="shortText" value="${fn:substring(text.text, 0, 50)}"/>
+                            <c:set var="shortText" value="${fn:substring(question.text, 0, 50)}"/>
                             <c:out value="${shortText}"/>
                         </div>
 
                         <div class="col-xs-1">
                             <form action="${questionAction}" method="GET" class="form-horizontal">
-                                <input type="hidden" name="text-id" value="${text.id}">
+                                <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input type="image" id="text" class="see_btn"
                                        src="${seeQuestionIcon}" width="25px" height="25px">
@@ -46,7 +46,7 @@
                         <div class="col-xs-2">
                             <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
                                   data-remove-btn="<fmt:message key="quizzes.confirm"/>">
-                                <input type="hidden" name="text-id" value="${text.id}">
+                                <input type="hidden" name="question-id" value="${question.id}">
 
                                 <input id="question_remove" class="remove_btn" type="image"
                                        src="${deleteQuestionIcon}" width="25px" height="25px"

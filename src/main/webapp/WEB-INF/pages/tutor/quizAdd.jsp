@@ -24,25 +24,23 @@
                 <input type="hidden" name="command" value="quizAdd">
 
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <input type="text" class="form-control" id="quiz_id"
-                                   value="${quiz.name}" pattern="${quizRegex}"
-                                   name="quiz-name" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
-                        </div>
-
-                        <div class="col-xs-3">
-                            <button type="submit" class="btn btn-primary btn-md">
-                                <fmt:message key="addQuiz.add"/>
-                            </button>
-                        </div>
-
-                        <c:if test="${not empty errorMsgs['name']}">
-                            <div class="col-xs-12">
-                                <c:out value="${errorMsgs['name']}"/>
-                            </div>
-                        </c:if>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" id="quiz_id"
+                               value="${quiz.name}" pattern="${quizRegex}"
+                               name="quiz-name" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                     </div>
+
+                    <div class="col-xs-3">
+                        <button type="submit" class="btn btn-primary btn-md">
+                            <fmt:message key="addQuiz.add"/>
+                        </button>
+                    </div>
+
+                    <c:if test="${not empty errorMsgs['name']}">
+                        <div class="col-xs-12">
+                            <c:out value="${errorMsgs['name']}"/>
+                        </div>
+                    </c:if>
                 </div>
             </form>
         </div>

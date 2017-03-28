@@ -22,11 +22,10 @@
             <label for="text"><fmt:message key="addQuestion.text"/></label>
         </div>
 
-
-        <div class="form-group">
-            <div class="row">
+        <div class="row">
+            <div class="form-group">
                 <textarea class="form-control text-border" rows="3" id="text" disabled>
-                    <c:out value="${text.text}"/>
+                    <c:out value="${question.text}"/>
                 </textarea>
             </div>
         </div>
@@ -41,7 +40,7 @@
             </div>
         </div>
 
-        <c:forEach items="${text.answersText}" var="answer">
+        <c:forEach items="${question.answersText}" var="answer">
             <div class="row">
                 <div class="col-xs-8">
                     <input class="form-control" value="${answer.text}" readonly/>
