@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ attribute name="header" fragment="true" %>
+<%@ attribute name="title" type="java.lang.String" required="true" %>
 <fmt:setBundle basename="messages.base"/>
 <html>
 <head>
-    <title>${title}</title>
+    <title><fmt:message key="${title}"/></title>
     <link rel="icon" href="/resource/img/title.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
