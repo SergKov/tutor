@@ -34,11 +34,8 @@ public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-
-        final String quizId = request.getParameter(INPUT.QUIZ_ID);
-
         try {
-            final Long parsedQuizId = Long.parseLong(quizId);
+            final Long parsedQuizId = Long.parseLong(request.getParameter(INPUT.QUIZ_ID));
             request.getSession().setAttribute(SESSION_ATTRIBUTE.QUIZ_ID, parsedQuizId);
 
             final List<TestQuestion> test = questionService.startTest(parsedQuizId);

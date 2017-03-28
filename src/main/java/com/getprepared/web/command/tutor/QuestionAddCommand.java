@@ -88,7 +88,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
                     return REDIRECT;
                 }
             }
-        } catch (final EntityNotFoundException e) { // TODO throw exception - catch aspect
+        } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINK.NOT_FOUND);
             return REDIRECT;
