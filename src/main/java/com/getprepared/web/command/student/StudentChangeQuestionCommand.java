@@ -26,8 +26,6 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
 @CommandMapping(LINK.STUDENT_TEST)
 public class StudentChangeQuestionCommand implements Command {
 
-    private static final Logger LOG = Logger.getLogger(StudentChangeQuestionCommand.class);
-
     protected static final int FIRST_QUESTION = 1;
 
     @Inject
@@ -59,7 +57,7 @@ public class StudentChangeQuestionCommand implements Command {
         }
 
         request.setAttribute(REQUEST_ATTRIBUTE.TEST_QUESTION, test.get(parsedQuestionNumber - 1));
-        request.setAttribute(REQUEST_ATTRIBUTE.CURRENT_QUESTION, questionNumber);
+        request.setAttribute(REQUEST_ATTRIBUTE.CURRENT_QUESTION, parsedQuestionNumber);
 
         return PAGE.STUDENT_TEST;
     }

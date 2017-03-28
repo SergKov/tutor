@@ -24,7 +24,7 @@
                 <c:out value="${testQuestion.question.text}"/>
             </div>
 
-            <c:forEach items="${testQuestion.answers}" var="answer">
+            <c:forEach items="${testQuestion.question.answers}" var="answer">
                 <div class="row">
                     <br/>
                     <div class="col-xs-10">
