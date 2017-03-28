@@ -7,7 +7,7 @@ import com.getprepared.web.validation.annotation.AnswerType;
 /**
  * Created by koval on 21.03.2017.
  */
-public class AnswerTypeConstraintValidator implements ConstraintValidator<AnswerType, String> { // TODO for String[]
+public class AnswerTypeConstraintValidator implements ConstraintValidator<AnswerType, String[]> {
 
     private AnswerType annotation;
 
@@ -17,11 +17,13 @@ public class AnswerTypeConstraintValidator implements ConstraintValidator<Answer
     }
 
     @Override
-    public boolean isValid(final String item) {
+    public boolean isValid(final String[] items) {
         final Type[] types = annotation.value();
-        for (final Type type : types) {
-            if (type.name().equalsIgnoreCase(item)) {
-                return true;
+        for (final String item : items) {
+            for (final Type type : types) {
+                if (type.name().equalsIgnoreCase(item)) {
+                    return true;
+                }
             }
         }
         return false;

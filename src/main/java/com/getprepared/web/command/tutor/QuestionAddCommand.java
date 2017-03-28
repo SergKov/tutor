@@ -66,7 +66,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
             final String questionText = request.getParameter(INPUT.QUESTION_TEXT);
             questionAddForm.setText(questionText);
 
-            request.setAttribute(REQUEST_ATTRIBUTE.QUESTION_TEXT, questionText);
+            request.setAttribute(REQUEST_ATTRIBUTE.QUESTION_TEXT, questionText); // TODO remove
 
             answersText = request.getParameterValues(INPUT.ANSWER_TEXT);
             answersType = request.getParameterValues(INPUT.ANSWER_TYPE);
