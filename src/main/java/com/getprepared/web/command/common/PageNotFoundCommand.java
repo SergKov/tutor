@@ -9,16 +9,16 @@ import com.getprepared.web.command.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.NAMES.PAGE_NOT_FOUND;
-import static com.getprepared.web.constant.PageConstants.PAGES;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
+import static com.getprepared.web.constant.PageConstant.LINK;
+import static com.getprepared.web.constant.PageConstant.TITLE.PAGE_NOT_FOUND;
+import static com.getprepared.web.constant.PageConstant.PATH;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 
 /**
  * Created by koval on 17.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.NOT_FOUND)
+@CommandMapping(LINK.NOT_FOUND)
 public class PageNotFoundCommand implements Command {
 
     @Inject
@@ -27,6 +27,6 @@ public class PageNotFoundCommand implements Command {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) {
         request.setAttribute(TITLE, messages.getMessage(PAGE_NOT_FOUND, request.getLocale()));
-        return PAGES.NOT_FOUND;
+        return PATH.NOT_FOUND;
     }
 }

@@ -1,6 +1,5 @@
 package com.getprepared.web.controller;
 
-import com.getprepared.context.ApplicationContext;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.ServletException;
@@ -11,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.context.Registry.getWebContext;
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.REDIRECT;
+import static com.getprepared.web.constant.PageConstant.LINK;
+import static com.getprepared.web.constant.PageConstant.REDIRECT;
 
 /**
  * Created by koval on 14.01.2017.
@@ -37,14 +36,14 @@ public class FrontController extends HttpServlet {
     private void getPage(final HttpServletRequest req, final HttpServletResponse resp,
                          final String commandKey) throws IOException, ServletException {
 
-        final Command command = getWebContext().getCommand(commandKey);
+        final Command command = getWebContext().getCommand(commandKey); // TODO optional
 
-        if (command == null) {
-            resp.sendRedirect(LINKS.NOT_FOUND);
+        if (command == null) { // TODO != null
+            resp.sendRedirect(LINK.NOT_FOUND); // TODO sendError
         } else {
             final String page = command.execute(req, resp);
             if (!REDIRECT.equals(page)) {
-                req.getRequestDispatcher(page).forward(req, resp);
+                req.getRequestDispatcher(page).forward(req, resp); // TODO without forward
             }
         }
     }

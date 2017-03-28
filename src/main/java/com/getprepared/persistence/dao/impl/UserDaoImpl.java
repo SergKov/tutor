@@ -15,8 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
-import static com.getprepared.core.constant.PropertyConstants.KEYS;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.core.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.User.*;
 
@@ -29,11 +29,11 @@ public class UserDaoImpl implements UserDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.USER);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAME.USER);
 
     @Override
     public void save(final User user) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), user,
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.SAVE), user,
                 ps -> {
                     ps.setString(1, user.getRole().name());
                     ps.setString(2, user.getEmail());
@@ -45,19 +45,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID), rs -> rs.setLong(1, id),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEY.FIND_BY_ID), rs -> rs.setLong(1, id),
                 new UserMapper());
     }
 
     @Override
     public User findByStudentEmail(final String email) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_STUDENT_EMAIL), rs -> rs.setString(1, email),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEY.FIND_BY_STUDENT_EMAIL), rs -> rs.setString(1, email),
                 new UserMapper());
     }
 
     @Override
     public User findByTutorEmail(String email) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_TUTOR_EMAIL), rs -> rs.setString(1, email),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEY.FIND_BY_TUTOR_EMAIL), rs -> rs.setString(1, email),
                 new UserMapper());
     }
 

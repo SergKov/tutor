@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.PAGES;
+import static com.getprepared.web.constant.PageConstant.LINK;
+import static com.getprepared.web.constant.PageConstant.PATH;
 
 /**
  * Created by koval on 21.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.STUDENT_HOME_PAGE)
+@CommandMapping(LINK.STUDENT_HOME_PAGE)
 public class StudentHomePageCommand extends AbstractStudentHomePageCommand {
 
     @Inject
@@ -25,6 +25,6 @@ public class StudentHomePageCommand extends AbstractStudentHomePageCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request, quizService);
-        return PAGES.STUDENT_HOME_PAGE;
+        return PATH.STUDENT_HOME_PAGE;
     }
 }

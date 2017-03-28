@@ -8,6 +8,7 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -15,10 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.INPUTS;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.QUESTION;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.TITLE;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.QUESTION;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -26,7 +27,7 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  * Created by koval on 25.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.TUTOR_QUESTIONS)
+@CommandMapping(LINK.TUTOR_QUESTIONS)
 public class QuestionsPageCommand extends AbstractQuestionsCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionsPageCommand.class);
@@ -46,34 +47,34 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        final String questionIdString = request.getParameter(INPUTS.QUESTION_ID);
+        final String questionIdString = request.getParameter(INPUT.QUESTION_ID);
 
         if (isEmpty(questionIdString)) {
             try {
                 fillPage(request, quizService, questionService);
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
-                response.sendRedirect(LINKS.NOT_FOUND);
+                response.sendRedirect(LINK.NOT_FOUND);
                 return REDIRECT;
             }
-            return PAGES.TUTOR_QUESTIONS;
+            return PATH.TUTOR_QUESTIONS;
         }
 
         if (isNumeric(questionIdString)) {
             try {
-                request.setAttribute(TITLE, messages.getMessage(NAMES.QUESTION, request.getLocale()));
+                request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.QUESTION, request.getLocale()));
                 final Long questionId = Long.valueOf(questionIdString);
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
-                response.sendRedirect(LINKS.NOT_FOUND);
+                response.sendRedirect(LINK.NOT_FOUND);
                 return REDIRECT;
             }
-            return PAGES.TUTOR_QUESTION;
+            return PATH.TUTOR_QUESTION;
         }
 
-        response.sendRedirect(LINKS.NOT_FOUND);
+        response.sendRedirect(LINK.NOT_FOUND);
         return REDIRECT;
     }
 }

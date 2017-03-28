@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.INPUTS.QUIZ_ID;
-import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT.QUIZ_ID;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -22,7 +22,7 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  * Created by koval on 22.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.TUTOR_QUIZZES)
+@CommandMapping(LINK.TUTOR_QUIZZES)
 public class QuizPageCommand extends AbstractQuizCommand {
 
     private static final Logger LOG = Logger.getLogger(QuizPageCommand.class);
@@ -39,19 +39,19 @@ public class QuizPageCommand extends AbstractQuizCommand {
         final String quizId = request.getParameter(QUIZ_ID);
 
         if (isEmpty(quizId)) {
-            request.getSession().removeAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+            request.getSession().removeAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
             fillPage(request, quizService);
-            return PAGES.TUTOR_QUIZZES;
+            return PATH.TUTOR_QUIZZES;
         }
 
         if (isNumeric(quizId)) {
             final Long parsedQuizId = Long.valueOf(quizId);
-            request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
-            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+            request.getSession().setAttribute(SESSION_ATTRIBUTE.QUIZ_ID, parsedQuizId);
+            response.sendRedirect(LINK.TUTOR_QUESTIONS);
             return REDIRECT;
         }
 
-        response.sendRedirect(LINKS.NOT_FOUND);
+        response.sendRedirect(LINK.NOT_FOUND);
         return REDIRECT;
     }
 }

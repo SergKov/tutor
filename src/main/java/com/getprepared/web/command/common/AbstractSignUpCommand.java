@@ -7,10 +7,10 @@ import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.getprepared.web.constant.PageConstants.ERRORS;
-import static com.getprepared.web.constant.PageConstants.NAMES.SIGN_UP;
+import static com.getprepared.web.constant.PageConstant.ERROR;
+import static com.getprepared.web.constant.PageConstant.TITLE.SIGN_UP;
 import static com.getprepared.web.constant.ValidationConstant.REGEX;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.*;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 
 /**
  * Created by koval on 17.01.2017.
@@ -27,6 +27,6 @@ public abstract class AbstractSignUpCommand implements Command {
         request.setAttribute(SURNAME_REGEX, REGEX.SURNAME);
         request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);
         request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
-        request.setAttribute(REPEAT_PWD_MSG, messages.getMessage(ERRORS.PASSWORDS_NOT_MATCH, request.getLocale()));
+        request.setAttribute(REPEAT_PWD_MSG, messages.getMessage(ERROR.PASSWORDS_NOT_MATCH, request.getLocale()));
     }
 }

@@ -19,8 +19,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
-import static com.getprepared.core.constant.PropertyConstants.KEYS;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.core.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Answer.*;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 
@@ -33,11 +33,11 @@ public class AnswerDaoImpl implements AnswerDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.ANSWER);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAME.ANSWER);
 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), answer,
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.SAVE), answer,
                 ps -> {
                     ps.setLong(1, answer.getQuestion().getId());
                     ps.setString(2, answer.getText());
@@ -47,7 +47,7 @@ public class AnswerDaoImpl implements AnswerDao {
 
     @Override
     public void saveBatch(final List<Answer> answers) throws EntityExistsException {
-        jdbcTemplate.batchUpdate(prop.getProperty(KEYS.SAVE), answers, new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchUpdate(prop.getProperty(KEY.SAVE), answers, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(final PreparedStatement ps, final int i) throws SQLException {
                 final Answer answer = answers.get(i);
@@ -65,13 +65,13 @@ public class AnswerDaoImpl implements AnswerDao {
 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
+        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new AnswerMapper());
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), QUESTION_ID_KEY),
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), QUESTION_ID_KEY),
                 ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
 

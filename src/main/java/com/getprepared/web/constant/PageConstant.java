@@ -3,15 +3,15 @@ package com.getprepared.web.constant;
 /**
  * Created by koval on 14.01.2017.
  */
-public final class PageConstants {
+public final class PageConstant {
 
-    private PageConstants() { }
+    private PageConstant() { }
 
     public static final String REDIRECT = "redirect";
 
-    public static final class PAGES {
+    public static final class PATH {
 
-        private PAGES() { }
+        private PATH() { }
 
         private static final String PREFIX = "/WEB-INF/pages/";
 
@@ -48,9 +48,9 @@ public final class PageConstants {
         public static final String NOT_FOUND = ERROR_PREFIX + "notFound" + SUFFIX;
     }
 
-    public static final class LINKS {
+    public static final class LINK {
 
-        private LINKS() { }
+        private LINK() { }
 
         public static final String STUDENT_SIGN_IN = "/";
 
@@ -79,9 +79,34 @@ public final class PageConstants {
         public static final String NOT_FOUND = "/page-not-found";
     }
 
-    public static final class NAMES {
+    public static final class COMMAND {
 
-        private NAMES() { }
+        private COMMAND() { }
+
+        public static final String STUDENT_SIGN_IN = "studentSignIn";
+
+        public static final String STUDENT_TEST_START = "testStart";
+
+        public static final String STUDENT_ANSWER_SAVE = "answerSave";
+
+        public static final String STUDENT_TEST_END = "testEnd";
+
+        public static final String TUTOR_SIGN_IN = "tutorSignIn";
+
+        public static final String TUTOR_QUIZ_ADD = "quizAdd";
+
+        public static final String TUTOR_QUIZ_REMOVE = "quizRemove";
+
+        public static final String TUTOR_QUESTION_REMOVE = "questionRemove";
+
+        public static final String TUTOR_QUESTION_ADD = "questionAdd";
+
+        public static final String SIGN_UP = "signUp";
+    }
+
+    public static final class TITLE {
+
+        private TITLE() { }
 
         public static final String PAGE_NOT_FOUND = "PageNotFound";
 
@@ -106,38 +131,9 @@ public final class PageConstants {
         public static final String RESULT = "Result";
     }
 
-    public static final class COMMANDS {
+    public static final class ERROR {
 
-        private COMMANDS() { }
-
-        public static final String STUDENT_SIGN_IN = "studentSignIn";
-
-        public static final String STUDENT_TEST_START = "testStart";
-
-        public static final String STUDENT_ANSWER_SAVE = "answerSave";
-
-        public static final String STUDENT_TEST_END = "testEnd";
-
-        public static final String TUTOR_SIGN_IN = "tutorSignIn";
-
-        public static final String TUTOR_QUIZ_ADD = "quizAdd";
-
-        public static final String TUTOR_QUIZ_REMOVE = "quizRemove";
-
-        public static final String TUTOR_QUESTION_REMOVE = "questionRemove";
-
-        public static final String TUTOR_QUESTION_ADD = "questionAdd";
-
-        public static final String SIGN_UP = "signUp";
-    }
-
-    public static final class ERRORS {
-
-        private ERRORS() { }
-
-        public static final String CREDENTIALS_INVALIDATED = "YouHaveEnteredInvalidatedCredentials";
-
-        public static final String DATA_INVALIDATED = "YouHaveEnteredInvalidatedData";
+        private ERROR() { }
 
         public static final String PASSWORDS_NOT_MATCH = "PasswordsNotMatch";
 
@@ -147,16 +143,10 @@ public final class PageConstants {
 
         public static final String TUTOR_NOT_FOUND = "TutorNotExists";
 
-        public static final String QUESTION_NOT_FOUND = "QuestionIsNotFound";
-
         public static final String QUESTION_EXISTS = "QuestionExists";
-
-        public static final String QUIZ_NOT_FOUND = "QuizNotFound";
 
         public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
 
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
-
-        public static final String INVALIDATED_ANSWERS = "InvalidatedAnswers";
     }
 }

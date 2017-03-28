@@ -11,7 +11,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.CONTROLLER_FILE;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
 import static com.getprepared.context.Registry.getApplicationContext;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;

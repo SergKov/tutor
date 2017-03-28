@@ -15,8 +15,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
-import static com.getprepared.core.constant.PropertyConstants.KEYS;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.core.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.Quiz.NAME_KEY;
 
@@ -29,27 +29,27 @@ public class QuizDaoImpl implements QuizDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.QUIZ);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAME.QUIZ);
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), quiz, ps -> ps.setString(1, quiz.getName()));
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.SAVE), quiz, ps -> ps.setString(1, quiz.getName()));
     }
 
     @Override
     public Quiz findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEYS.FIND_BY_ID), ps -> ps.setLong(1, id),
+        return jdbcTemplate.singleQuery(prop.getProperty(KEY.FIND_BY_ID), ps -> ps.setLong(1, id),
                 new QuizMapper());
     }
 
     @Override
     public List<Quiz> findAll() {
-        return jdbcTemplate.executeQuery(prop.getProperty(KEYS.FIND_ALL), new QuizMapper());
+        return jdbcTemplate.executeQuery(prop.getProperty(KEY.FIND_ALL), new QuizMapper());
     }
 
     @Override
     public void remove(final Long id) {
-        jdbcTemplate.remove(prop.getProperty(KEYS.REMOVE_BY_ID), ps -> ps.setLong(1, id));
+        jdbcTemplate.remove(prop.getProperty(KEY.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }
 
     private static class QuizMapper implements RowMapper<Quiz> {

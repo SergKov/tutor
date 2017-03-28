@@ -21,14 +21,14 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 
 /**
  * Created by koval on 05.02.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.STUDENT_TEST_END)
+@CommandMapping(COMMAND.STUDENT_TEST_END)
 public class StudentEndTestCommand implements Command {
 
     private static final Logger LOG = Logger.getLogger(StudentEndTestCommand.class);
@@ -45,28 +45,28 @@ public class StudentEndTestCommand implements Command {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         @SuppressWarnings("unchecked")
-        final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTES.TEST);
+        final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTE.TEST);
         final double mark = questionService.endTest(test);
-        request.getSession().removeAttribute(SESSION_ATTRIBUTES.TEST);
-        request.getSession().setAttribute(SESSION_ATTRIBUTES.MARK, mark);
+        request.getSession().removeAttribute(SESSION_ATTRIBUTE.TEST);
+        request.getSession().setAttribute(SESSION_ATTRIBUTE.MARK, mark);
 
-        final Long id = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTES.QUIZ_ID);
+        final Long id = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
 
         try {
             final Quiz quiz = quizService.findById(id);
             final Result result = new Result();
             result.setQuiz(quiz);
-            final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTES.STUDENT);
+            final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.STUDENT);
             result.setUser(user);
             result.setMark((byte) mark);
             result.setCreationDateTime(LocalDateTime.now());
             resultService.save(result);
         } catch (EntityNotFoundException | EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINKS.NOT_FOUND);
+            response.sendRedirect(LINK.NOT_FOUND);
         }
 
-        response.sendRedirect(LINKS.STUDENT_RESULT);
+        response.sendRedirect(LINK.STUDENT_RESULT);
         return REDIRECT;
     }
 }

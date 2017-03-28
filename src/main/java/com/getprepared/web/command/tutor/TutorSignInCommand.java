@@ -15,15 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.*;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 
 /**
  * Created by koval on 21.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.TUTOR_SIGN_IN)
+@CommandMapping(COMMAND.TUTOR_SIGN_IN)
 public class TutorSignInCommand extends AbstractSignInCommand {
 
     private static final Logger LOG = Logger.getLogger(TutorSignInCommand.class);
@@ -40,24 +40,24 @@ public class TutorSignInCommand extends AbstractSignInCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final String email = request.getParameter(INPUTS.EMAIL);
-        final String password = request.getParameter(INPUTS.PASSWORD);
+        final String email = request.getParameter(INPUT.EMAIL);
+        final String password = request.getParameter(INPUT.PASSWORD);
 
         try {
             final User user = userService.signInTutor(email, password);
 
             if (user != null) {
-                request.getSession().setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
-                response.sendRedirect(LINKS.TUTOR_QUIZZES);
+                request.getSession().setAttribute(SESSION_ATTRIBUTE.TUTOR, user);
+                response.sendRedirect(LINK.TUTOR_QUIZZES);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.TUTOR_NOT_FOUND, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.TUTOR_NOT_FOUND, request.getLocale()));
         }
 
-        request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
+        request.setAttribute(REQUEST_ATTRIBUTE.EMAIL, email);
         fillPage(request);
-        return PAGES.TUTOR_SIGN_IN;
+        return PATH.TUTOR_SIGN_IN;
     }
 }

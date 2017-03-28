@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.PAGES;
+import static com.getprepared.web.constant.PageConstant.LINK;
+import static com.getprepared.web.constant.PageConstant.PATH;
 
 /**
  * Created by koval on 21.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.TUTOR_SIGN_IN)
+@CommandMapping(LINK.TUTOR_SIGN_IN)
 public class TutorSignInPageCommand extends AbstractSignInCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGES.TUTOR_SIGN_IN;
+        return PATH.TUTOR_SIGN_IN;
     }
 }

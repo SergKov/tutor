@@ -20,18 +20,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.INPUTS;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSGS;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
 import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
 /**
  * Created by koval on 26.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.TUTOR_QUESTION_ADD)
+@CommandMapping(COMMAND.TUTOR_QUESTION_ADD)
 public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionAddCommand.class);
@@ -54,7 +54,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final Long quizId = (Long) request.getSession().getAttribute(INPUTS.QUIZ_ID);
+        final Long quizId = (Long) request.getSession().getAttribute(INPUT.QUIZ_ID);
 
         final QuestionAddForm questionAddForm = new QuestionAddForm();
 
@@ -63,16 +63,16 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
         try {
             final Quiz quiz = quizService.findById(quizId);
 
-            final String questionText = request.getParameter(INPUTS.QUESTION_TEXT);
+            final String questionText = request.getParameter(INPUT.QUESTION_TEXT);
             questionAddForm.setText(questionText);
 
-            request.setAttribute(REQUEST_ATTRIBUTES.QUESTION_TEXT, questionText);
+            request.setAttribute(REQUEST_ATTRIBUTE.QUESTION_TEXT, questionText);
 
-            answersText = request.getParameterValues(INPUTS.ANSWER_TEXT);
-            answersType = request.getParameterValues(INPUTS.ANSWER_TYPE);
+            answersText = request.getParameterValues(INPUT.ANSWER_TEXT);
+            answersType = request.getParameterValues(INPUT.ANSWER_TYPE);
 
-            if (answersText.length != answersType.length) {
-                request.setAttribute(ERROR_MSG, ERRORS.FILL_NOT_ALL_FIELDS);
+            if (answersText.length != answersType.length) { // TODO remove if else ( observer, AOP )
+                request.setAttribute(ERROR_MSG, ERROR.FILL_NOT_ALL_FIELDS);
             } else {
                 questionAddForm.setAnswersText(answersText);
                 questionAddForm.setAnswersType(answersType);
@@ -86,21 +86,21 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
                     questionService.save(question);
 
-                    response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+                    response.sendRedirect(LINK.TUTOR_QUESTIONS);
                     return REDIRECT;
                 }
             }
-        } catch (final EntityNotFoundException e) {
+        } catch (final EntityNotFoundException e) { // TODO throw exception - catch aspect
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINKS.NOT_FOUND);
+            response.sendRedirect(LINK.NOT_FOUND);
             return REDIRECT;
         } catch (final EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.QUESTION_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUESTION_EXISTS, request.getLocale()));
         }
 
-        request.setAttribute(REQUEST_ATTRIBUTES.QUESTION, questionAddForm);
+        request.setAttribute(REQUEST_ATTRIBUTE.QUESTION, questionAddForm);
         fillPage(request);
-        return PAGES.TUTOR_QUESTION_ADD;
+        return PATH.TUTOR_QUESTION_ADD;
     }
 }

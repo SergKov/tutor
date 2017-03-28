@@ -16,15 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.*;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 
 /**
  * Created by koval on 15.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.STUDENT_SIGN_IN)
+@CommandMapping(COMMAND.STUDENT_SIGN_IN)
 public class StudentSignInCommand extends AbstractSignInCommand {
 
     private static final Logger LOG = Logger.getLogger(StudentSignInCommand.class);
@@ -41,23 +41,23 @@ public class StudentSignInCommand extends AbstractSignInCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final String email = request.getParameter(INPUTS.EMAIL);
-        final String password = request.getParameter(INPUTS.PASSWORD);
+        final String email = request.getParameter(INPUT.EMAIL);
+        final String password = request.getParameter(INPUT.PASSWORD);
 
         try {
             final User user = userService.signInStudent(email, password);
             if (user != null && user.getRole() == Role.STUDENT) {
-                request.getSession().setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
-                response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
+                request.getSession().setAttribute(SESSION_ATTRIBUTE.STUDENT, user);
+                response.sendRedirect(LINK.STUDENT_HOME_PAGE);
                 return REDIRECT;
             }
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(REQUEST_ATTRIBUTES.EMAIL, email);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.USER_NOT_FOUND, request.getLocale()));
+            request.setAttribute(REQUEST_ATTRIBUTE.EMAIL, email);
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.USER_NOT_FOUND, request.getLocale()));
         }
 
         fillPage(request);
-        return PAGES.STUDENT_SIGN_IN;
+        return PATH.STUDENT_SIGN_IN;
     }
 }

@@ -11,9 +11,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.COMPONENT_FILE;
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES.CONFIGURATION_FILE;
-import static com.getprepared.core.constant.ServerConstants.EMPTY_STRING;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.COMPONENT_FILE;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONFIGURATION_FILE;
+import static com.getprepared.core.constant.ServerConstant.EMPTY_STRING;
 import static com.getprepared.core.util.ReflectionUtils.invoke;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;

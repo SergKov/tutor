@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstants.FILES_NAMES;
-import static com.getprepared.core.constant.PropertyConstants.KEYS;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.core.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.Result.*;
 
@@ -33,11 +33,11 @@ public class ResultDaoImpl implements ResultDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = PropertyUtils.getProperty(FILES_NAMES.RESULT);
+    private final Properties prop = PropertyUtils.getProperty(FILES_NAME.RESULT);
 
     @Override
     public void save(final Result result) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEYS.SAVE), result,
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.SAVE), result,
                 ps -> {
                     ps.setLong(1, result.getQuiz().getId());
                     ps.setLong(2, result.getUser().getId());
@@ -48,13 +48,13 @@ public class ResultDaoImpl implements ResultDao {
 
     @Override
     public Result findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), ID_KEY),
+        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
     @Override
     public List<Result> findByUserId(Long id) {
-        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEYS.FIND_BY_ID), USER_ID_KEY),
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), USER_ID_KEY),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 

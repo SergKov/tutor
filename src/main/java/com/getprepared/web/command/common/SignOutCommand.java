@@ -10,15 +10,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.REDIRECT;
-import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES.TUTOR;
+import static com.getprepared.web.constant.PageConstant.LINK;
+import static com.getprepared.web.constant.PageConstant.REDIRECT;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE.TUTOR;
 
 /**
  * Created by koval on 22.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.SIGN_OUT)
+@CommandMapping(LINK.SIGN_OUT)
 public class SignOutCommand implements Command {
 
     @Override
@@ -26,9 +26,9 @@ public class SignOutCommand implements Command {
         final Optional<HttpSession> httpSession = Optional.ofNullable(request.getSession(false));
 
         if (httpSession.isPresent() && httpSession.get().getAttribute(TUTOR) != null) {
-            response.sendRedirect(LINKS.TUTOR_SIGN_IN);
+            response.sendRedirect(LINK.TUTOR_SIGN_IN);
         } else {
-            response.sendRedirect(LINKS.STUDENT_SIGN_IN);
+            response.sendRedirect(LINK.STUDENT_SIGN_IN);
         }
 
         httpSession.ifPresent(HttpSession::invalidate);

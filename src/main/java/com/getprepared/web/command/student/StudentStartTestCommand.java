@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.INPUTS;
-import static com.getprepared.web.constant.WebConstants.SESSION_ATTRIBUTES;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 
 /**
  * Created by koval on 19.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.STUDENT_TEST_START)
+@CommandMapping(COMMAND.STUDENT_TEST_START)
 public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
 
     private static final Logger LOG = Logger.getLogger(StudentStartTestCommand.class);
@@ -35,19 +35,19 @@ public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final String quizId = request.getParameter(INPUTS.QUIZ_ID);
+        final String quizId = request.getParameter(INPUT.QUIZ_ID);
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
-            request.getSession().setAttribute(SESSION_ATTRIBUTES.QUIZ_ID, parsedQuizId);
+            request.getSession().setAttribute(SESSION_ATTRIBUTE.QUIZ_ID, parsedQuizId);
 
             final List<TestQuestion> test = questionService.startTest(parsedQuizId);
-            request.getSession().setAttribute(SESSION_ATTRIBUTES.TEST, test);
-            response.sendRedirect(LINKS.STUDENT_TEST);
+            request.getSession().setAttribute(SESSION_ATTRIBUTE.TEST, test);
+            response.sendRedirect(LINK.STUDENT_TEST);
             return REDIRECT;
         } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINKS.NOT_FOUND);
+            response.sendRedirect(LINK.NOT_FOUND);
             return REDIRECT;
         }
     }

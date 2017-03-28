@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.INPUTS;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT;
 
 /**
  * Created by koval on 24.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.TUTOR_QUESTION_REMOVE)
+@CommandMapping(COMMAND.TUTOR_QUESTION_REMOVE)
 public class QuestionRemoveCommand extends AbstractQuestionsCommand {
 
     private static final Logger LOG = Logger.getLogger(QuestionRemoveCommand.class);
@@ -34,14 +34,14 @@ public class QuestionRemoveCommand extends AbstractQuestionsCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
-            final Long questionId = Long.parseLong(request.getParameter(INPUTS.QUESTION_ID));
+            final Long questionId = Long.parseLong(request.getParameter(INPUT.QUESTION_ID));
             final Question question = questionService.findById(questionId);
             questionService.remove(question);
-            response.sendRedirect(LINKS.TUTOR_QUESTIONS);
+            response.sendRedirect(LINK.TUTOR_QUESTIONS);
             return REDIRECT;
         } catch (NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(PAGES.NOT_FOUND);
+            response.sendRedirect(PATH.NOT_FOUND);
             return REDIRECT;
         }
     }

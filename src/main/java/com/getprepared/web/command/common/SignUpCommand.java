@@ -9,9 +9,9 @@ import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
-import com.getprepared.web.constant.PageConstants.ERRORS;
-import com.getprepared.web.constant.PageConstants.LINKS;
-import com.getprepared.web.constant.PageConstants.PAGES;
+import com.getprepared.web.constant.PageConstant.ERROR;
+import com.getprepared.web.constant.PageConstant.LINK;
+import com.getprepared.web.constant.PageConstant.PATH;
 import com.getprepared.web.form.UserSignUpForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -21,18 +21,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstants.COMMANDS;
-import static com.getprepared.web.constant.PageConstants.REDIRECT;
-import static com.getprepared.web.constant.WebConstants.*;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSG;
-import static com.getprepared.web.constant.WebConstants.REQUEST_ATTRIBUTES.ERROR_MSGS;
+import static com.getprepared.web.constant.PageConstant.COMMAND;
+import static com.getprepared.web.constant.PageConstant.REDIRECT;
+import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
 import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
 /**
  * Created by koval on 17.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.SIGN_UP)
+@CommandMapping(COMMAND.SIGN_UP)
 public class SignUpCommand extends AbstractSignUpCommand {
 
     private static final Logger LOG = Logger.getLogger(SignUpCommand.class);
@@ -63,31 +63,31 @@ public class SignUpCommand extends AbstractSignUpCommand {
                 userService.signUp(user);
 
                 if (user.getId() != null && user.getRole() == Role.STUDENT) {
-                    request.getSession().setAttribute(SESSION_ATTRIBUTES.STUDENT, user);
-                    response.sendRedirect(LINKS.STUDENT_HOME_PAGE);
+                    request.getSession().setAttribute(SESSION_ATTRIBUTE.STUDENT, user);
+                    response.sendRedirect(LINK.STUDENT_HOME_PAGE);
                     return REDIRECT;
                 }
 
                 if (user.getId() != null && user.getRole() == Role.TUTOR) {
-                    request.getSession().setAttribute(SESSION_ATTRIBUTES.TUTOR, user);
-                    response.sendRedirect(LINKS.TUTOR_QUIZZES);
+                    request.getSession().setAttribute(SESSION_ATTRIBUTE.TUTOR, user);
+                    response.sendRedirect(LINK.TUTOR_QUIZZES);
                     return REDIRECT;
                 }
             } catch (final EntityExistsException e) {
                 LOG.warn(e.getMessage(), e);
-                request.setAttribute(ERROR_MSG, messages.getMessage(ERRORS.USER_EXISTS, request.getLocale()));
+                request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.USER_EXISTS, request.getLocale()));
             }
         }
-        request.setAttribute(REQUEST_ATTRIBUTES.USER, userForm);
+        request.setAttribute(REQUEST_ATTRIBUTE.USER, userForm);
         fillPage(request);
-        return PAGES.SIGN_UP;
+        return PATH.SIGN_UP;
     }
 
     private void fillForm(final HttpServletRequest request, final UserSignUpForm userSignUpForm) {
-        userSignUpForm.setName(request.getParameter(INPUTS.NAME));
-        userSignUpForm.setSurname(request.getParameter(INPUTS.SURNAME));
-        userSignUpForm.setEmail(request.getParameter(INPUTS.EMAIL));
-        userSignUpForm.setRole(request.getParameter(INPUTS.ROLE));
-        userSignUpForm.setPassword(request.getParameter(INPUTS.PASSWORD));
+        userSignUpForm.setName(request.getParameter(INPUT.NAME));
+        userSignUpForm.setSurname(request.getParameter(INPUT.SURNAME));
+        userSignUpForm.setEmail(request.getParameter(INPUT.EMAIL));
+        userSignUpForm.setRole(request.getParameter(INPUT.ROLE));
+        userSignUpForm.setPassword(request.getParameter(INPUT.PASSWORD));
     }
 }

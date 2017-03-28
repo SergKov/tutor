@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.LINKS;
-import static com.getprepared.web.constant.PageConstants.PAGES;
+import static com.getprepared.web.constant.PageConstant.LINK;
+import static com.getprepared.web.constant.PageConstant.PATH;
 
 /**
  * Created by koval on 27.01.2017.
  */
 @Controller
-@CommandMapping(LINKS.TUTOR_QUESTION_ADD)
+@CommandMapping(LINK.TUTOR_QUESTION_ADD)
 public class QuestionAddPageCommand extends AbstractQuestionAddCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGES.TUTOR_QUESTION_ADD;
+        return PATH.TUTOR_QUESTION_ADD;
     }
 }

@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstants.*;
-import static com.getprepared.web.constant.WebConstants.INPUTS;
+import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT;
 
 /**
  * Created by koval on 24.01.2017.
  */
 @Controller
-@CommandMapping(COMMANDS.TUTOR_QUIZ_REMOVE)
+@CommandMapping(COMMAND.TUTOR_QUIZ_REMOVE)
 public class QuizRemoveCommand extends AbstractQuizCommand {
 
     private static final Logger LOG = Logger.getLogger(QuizRemoveCommand.class);
@@ -39,7 +39,7 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        final String quizId = request.getParameter(INPUTS.QUIZ_ID);
+        final String quizId = request.getParameter(INPUT.QUIZ_ID);
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
@@ -47,10 +47,10 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
             final Quiz quiz = quizService.findById(parsedQuizId);
             quizService.remove(quiz);
 
-            response.sendRedirect(LINKS.TUTOR_QUIZZES);
+            response.sendRedirect(LINK.TUTOR_QUIZZES);
         } catch (EntityNotFoundException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(LINKS.NOT_FOUND);
+            response.sendRedirect(LINK.NOT_FOUND);
         }
         return REDIRECT;
     }
