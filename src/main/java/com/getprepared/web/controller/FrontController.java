@@ -13,6 +13,7 @@ import java.util.Optional;
 import static com.getprepared.context.Registry.getWebContext;
 import static com.getprepared.web.constant.PageConstant.LINK;
 import static com.getprepared.web.constant.PageConstant.REDIRECT;
+import static javax.servlet.http.HttpServletResponse.*;
 
 /**
  * Created by koval on 14.01.2017.
@@ -37,15 +38,15 @@ public class FrontController extends HttpServlet {
     private void getPage(final HttpServletRequest req, final HttpServletResponse resp,
                          final String commandKey) throws IOException, ServletException {
 
-        final Optional<Command> commandOptional = Optional.ofNullable(getWebContext().getCommand(commandKey));
+        final Optional<Command> command = getWebContext().getCommand(commandKey);
 
-        if (commandOptional.isPresent()) {
-            final String page = commandOptional.get().execute(req, resp);
+        if (command.isPresent()) {
+            final String page = command.get().execute(req, resp);
             if (!REDIRECT.equals(page)) {
                 req.getRequestDispatcher(page).forward(req, resp);
             }
         } else {
-            resp.sendRedirect(LINK.NOT_FOUND);
+            resp.sendError(SC_NOT_FOUND);
         }
     }
 }
