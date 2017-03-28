@@ -9,6 +9,7 @@ import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.constant.PageConstant;
+import com.getprepared.web.constant.WebConstant;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -17,10 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.QUESTION;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
@@ -46,6 +49,11 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        if (request.getSession().getAttribute(SESSION_ATTRIBUTE.QUIZ_ID) == null) {
+            response.sendRedirect(LINK.NOT_FOUND);
+            return REDIRECT;
+        }
 
         final String questionIdString = request.getParameter(INPUT.QUESTION_ID);
 

@@ -5,6 +5,7 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
+import com.getprepared.web.constant.WebConstant;
 
 import javax.servlet.http.HttpServletRequest;
 
