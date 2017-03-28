@@ -8,6 +8,7 @@ import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.dto.TestQuestion;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
+import static org.apache.commons.lang3.StringUtils.*;
 
 /**
  * Created by koval on 05.02.2017.
@@ -45,11 +47,13 @@ public class StudentSaveAnswerCommand implements Command {
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTE.TEST);
 
-        Integer questionNumber = null;
-        try {
-            questionNumber = Integer.valueOf(request.getParameter(INPUT.QUESTION_NUMBER));
-            if (questionNumber <= test.size() && questionNumber > 0) {
-                final TestQuestion testQuestion = test.get(questionNumber - 1);
+        final String questionNumber = request.getParameter(INPUT.QUESTION_NUMBER);
+
+        Integer parsedQuestionNumber;
+        if (isNumeric(questionNumber)) {
+            parsedQuestionNumber = Integer.valueOf(request.getParameter(INPUT.QUESTION_NUMBER));
+            if (parsedQuestionNumber <= test.size() && parsedQuestionNumber > 0) {
+                final TestQuestion testQuestion = test.get(parsedQuestionNumber - 1);
 
                 final List<Answer> chosenAnswers = new ArrayList<>();
 
@@ -60,13 +64,12 @@ public class StudentSaveAnswerCommand implements Command {
                 }
                 testQuestion.setAnswers(chosenAnswers);
             }
-        } catch (final NumberFormatException e) {
-            LOG.warn(e.getMessage());
-            questionNumber = FIRST_QUESTION;
+        } else {
+            parsedQuestionNumber = FIRST_QUESTION;
         }
 
-        request.setAttribute(TEST_QUESTION, test.get(questionNumber - 1));
-        request.setAttribute(CURRENT_QUESTION, questionNumber);
+        request.setAttribute(TEST_QUESTION, test.get(parsedQuestionNumber - 1));
+        request.setAttribute(CURRENT_QUESTION, parsedQuestionNumber);
         request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.TEST, request.getLocale()));
 
         return PAGE.STUDENT_TEST;

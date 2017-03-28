@@ -38,11 +38,10 @@ public class QuestionRemoveCommand extends AbstractQuestionsCommand {
             final Question question = questionService.findById(questionId);
             questionService.remove(question);
             response.sendRedirect(LINK.TUTOR_QUESTIONS);
-            return REDIRECT;
-        } catch (NumberFormatException | EntityNotFoundException e) {
+        } catch (EntityNotFoundException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(PAGE.NOT_FOUND);
-            return REDIRECT;
+            response.sendRedirect(LINK.NOT_FOUND);
         }
+        return REDIRECT;
     }
 }

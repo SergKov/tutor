@@ -17,6 +17,7 @@ import java.util.List;
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by koval on 30.01.2017.
@@ -45,18 +46,19 @@ public class StudentChangeQuestionCommand implements Command {
         @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTE.TEST);
 
-        Integer questionNumber;
-        try {
-            questionNumber = Integer.valueOf(request.getParameter(INPUT.QUESTION_NUMBER));
-            if (questionNumber > test.size() || questionNumber <= 0) {
-                questionNumber = FIRST_QUESTION;
+        final String questionNumber = request.getParameter(INPUT.QUESTION_NUMBER);
+
+        Integer parsedQuestionNumber;
+        if (isNumeric(questionNumber)) {
+            parsedQuestionNumber = Integer.valueOf(request.getParameter(INPUT.QUESTION_NUMBER));
+            if (parsedQuestionNumber > test.size() || parsedQuestionNumber <= 0) {
+                parsedQuestionNumber = FIRST_QUESTION;
             }
-        } catch (final NumberFormatException e) {
-            LOG.warn(e.getMessage(), e);
-            questionNumber = FIRST_QUESTION;
+        } else {
+            parsedQuestionNumber = FIRST_QUESTION;
         }
 
-        request.setAttribute(REQUEST_ATTRIBUTE.TEST_QUESTION, test.get(questionNumber - 1));
+        request.setAttribute(REQUEST_ATTRIBUTE.TEST_QUESTION, test.get(parsedQuestionNumber - 1));
         request.setAttribute(REQUEST_ATTRIBUTE.CURRENT_QUESTION, questionNumber);
 
         return PAGE.STUDENT_TEST;

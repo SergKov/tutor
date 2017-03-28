@@ -44,11 +44,10 @@ public class StudentStartTestCommand extends AbstractStudentHomePageCommand {
             final List<TestQuestion> test = questionService.startTest(parsedQuizId);
             request.getSession().setAttribute(SESSION_ATTRIBUTE.TEST, test);
             response.sendRedirect(LINK.STUDENT_TEST);
-            return REDIRECT;
         } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINK.NOT_FOUND);
-            return REDIRECT;
         }
+        return REDIRECT;
     }
 }

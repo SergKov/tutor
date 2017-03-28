@@ -61,12 +61,11 @@ public class StudentEndTestCommand implements Command {
             result.setMark((byte) mark);
             result.setCreationDateTime(LocalDateTime.now());
             resultService.save(result);
+            response.sendRedirect(LINK.STUDENT_RESULT);
         } catch (EntityNotFoundException | EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
             response.sendRedirect(LINK.NOT_FOUND);
         }
-
-        response.sendRedirect(LINK.STUDENT_RESULT);
         return REDIRECT;
     }
 }
