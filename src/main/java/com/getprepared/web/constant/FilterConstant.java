@@ -3,7 +3,7 @@ package com.getprepared.web.constant;
 /**
  * Created by koval on 28.03.2017.
  */
-public class FilterConstant {
+public final class FilterConstant {
 
     private FilterConstant() { }
 

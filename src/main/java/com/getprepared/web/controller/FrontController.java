@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 import static com.getprepared.context.Registry.getWebContext;
 import static com.getprepared.web.constant.PageConstant.LINK;
@@ -36,15 +37,15 @@ public class FrontController extends HttpServlet {
     private void getPage(final HttpServletRequest req, final HttpServletResponse resp,
                          final String commandKey) throws IOException, ServletException {
 
-        final Command command = getWebContext().getCommand(commandKey); // TODO optional
+        final Optional<Command> commandOptional = Optional.ofNullable(getWebContext().getCommand(commandKey));
 
-        if (command == null) { // TODO != null
-            resp.sendRedirect(LINK.NOT_FOUND); // TODO sendError
-        } else {
-            final String page = command.execute(req, resp);
+        if (commandOptional.isPresent()) {
+            final String page = commandOptional.get().execute(req, resp);
             if (!REDIRECT.equals(page)) {
-                req.getRequestDispatcher(page).forward(req, resp); // TODO without forward
+                req.getRequestDispatcher(page).forward(req, resp);
             }
+        } else {
+            resp.sendRedirect(LINK.NOT_FOUND);
         }
     }
 }

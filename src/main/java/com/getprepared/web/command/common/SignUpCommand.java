@@ -78,6 +78,7 @@ public class SignUpCommand extends AbstractSignUpCommand {
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.USER_EXISTS, request.getLocale()));
             }
         }
+
         request.setAttribute(REQUEST_ATTRIBUTE.USER, userForm);
         fillPage(request);
         return PAGE.SIGN_UP;
