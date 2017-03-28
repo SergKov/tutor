@@ -41,7 +41,7 @@ public class QuestionRemoveCommand extends AbstractQuestionsCommand {
             return REDIRECT;
         } catch (NumberFormatException | EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            response.sendRedirect(PATH.NOT_FOUND);
+            response.sendRedirect(PAGE.NOT_FOUND);
             return REDIRECT;
         }
     }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import static com.getprepared.web.constant.PageConstant.LINK;
 import static com.getprepared.web.constant.PageConstant.TITLE.PAGE_NOT_FOUND;
-import static com.getprepared.web.constant.PageConstant.PATH;
+import static com.getprepared.web.constant.PageConstant.PAGE;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 
 /**
@@ -27,6 +27,6 @@ public class PageNotFoundCommand implements Command {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) {
         request.setAttribute(TITLE, messages.getMessage(PAGE_NOT_FOUND, request.getLocale()));
-        return PATH.NOT_FOUND;
+        return PAGE.NOT_FOUND;
     }
 }

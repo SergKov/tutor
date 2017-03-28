@@ -57,7 +57,7 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 response.sendRedirect(LINK.NOT_FOUND);
                 return REDIRECT;
             }
-            return PATH.TUTOR_QUESTIONS;
+            return PAGE.TUTOR_QUESTIONS;
         }
 
         if (isNumeric(questionIdString)) {
@@ -71,7 +71,7 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 response.sendRedirect(LINK.NOT_FOUND);
                 return REDIRECT;
             }
-            return PATH.TUTOR_QUESTION;
+            return PAGE.TUTOR_QUESTION;
         }
 
         response.sendRedirect(LINK.NOT_FOUND);

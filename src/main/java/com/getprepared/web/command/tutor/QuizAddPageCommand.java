@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.LINK;
-import static com.getprepared.web.constant.PageConstant.PATH;
+import static com.getprepared.web.constant.PageConstant.PAGE;
 
 /**
  * Created by koval on 22.01.2017.
@@ -20,6 +20,6 @@ public class QuizAddPageCommand extends AbstractQuizAddCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PATH.TUTOR_QUIZ_ADD;
+        return PAGE.TUTOR_QUIZ_ADD;
     }
 }

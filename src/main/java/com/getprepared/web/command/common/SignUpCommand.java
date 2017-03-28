@@ -11,7 +11,7 @@ import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.constant.PageConstant.ERROR;
 import com.getprepared.web.constant.PageConstant.LINK;
-import com.getprepared.web.constant.PageConstant.PATH;
+import com.getprepared.web.constant.PageConstant.PAGE;
 import com.getprepared.web.form.UserSignUpForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -80,7 +80,7 @@ public class SignUpCommand extends AbstractSignUpCommand {
         }
         request.setAttribute(REQUEST_ATTRIBUTE.USER, userForm);
         fillPage(request);
-        return PATH.SIGN_UP;
+        return PAGE.SIGN_UP;
     }
 
     private void fillForm(final HttpServletRequest request, final UserSignUpForm userSignUpForm) {

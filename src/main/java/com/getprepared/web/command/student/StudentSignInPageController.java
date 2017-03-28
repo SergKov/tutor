@@ -3,7 +3,7 @@ package com.getprepared.web.command.student;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.command.common.AbstractSignInCommand;
-import com.getprepared.web.constant.PageConstant.PATH;
+import com.getprepared.web.constant.PageConstant.PAGE;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +21,6 @@ public class StudentSignInPageController extends AbstractSignInCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PATH.STUDENT_SIGN_IN;
+        return PAGE.STUDENT_SIGN_IN;
     }
 }

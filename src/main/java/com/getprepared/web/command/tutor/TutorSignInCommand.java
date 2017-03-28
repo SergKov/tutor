@@ -58,6 +58,6 @@ public class TutorSignInCommand extends AbstractSignInCommand {
 
         request.setAttribute(REQUEST_ATTRIBUTE.EMAIL, email);
         fillPage(request);
-        return PATH.TUTOR_SIGN_IN;
+        return PAGE.TUTOR_SIGN_IN;
     }
 }

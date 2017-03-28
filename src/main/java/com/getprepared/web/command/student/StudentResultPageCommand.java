@@ -35,6 +35,6 @@ public class StudentResultPageCommand implements Command {
 
         request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.RESULT, request.getLocale()));
         request.getSession().getAttribute(SESSION_ATTRIBUTE.MARK);
-        return PATH.STUDENT_RESULT;
+        return PAGE.STUDENT_RESULT;
     }
 }

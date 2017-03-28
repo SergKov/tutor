@@ -58,6 +58,6 @@ public class StudentSignInCommand extends AbstractSignInCommand {
         }
 
         fillPage(request);
-        return PATH.STUDENT_SIGN_IN;
+        return PAGE.STUDENT_SIGN_IN;
     }
 }

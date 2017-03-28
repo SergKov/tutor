@@ -69,6 +69,6 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
 
         request.setAttribute(REQUEST_ATTRIBUTE.QUIZ, quizForm);
         fillPage(request);
-        return PATH.TUTOR_QUIZ_ADD;
+        return PAGE.TUTOR_QUIZ_ADD;
     }
 }

@@ -9,9 +9,9 @@ public final class PageConstant {
 
     public static final String REDIRECT = "redirect";
 
-    public static final class PATH {
+    public static final class PAGE {
 
-        private PATH() { }
+        private PAGE() { }
 
         private static final String PREFIX = "/WEB-INF/pages/";
 

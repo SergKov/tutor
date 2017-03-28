@@ -69,6 +69,6 @@ public class StudentSaveAnswerCommand implements Command {
         request.setAttribute(CURRENT_QUESTION, questionNumber);
         request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.TEST, request.getLocale()));
 
-        return PATH.STUDENT_TEST;
+        return PAGE.STUDENT_TEST;
     }
 }

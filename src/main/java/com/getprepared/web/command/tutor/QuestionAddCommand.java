@@ -66,8 +66,6 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
             final String questionText = request.getParameter(INPUT.QUESTION_TEXT);
             questionAddForm.setText(questionText);
 
-            request.setAttribute(REQUEST_ATTRIBUTE.QUESTION_TEXT, questionText); // TODO remove
-
             answersText = request.getParameterValues(INPUT.ANSWER_TEXT);
             answersType = request.getParameterValues(INPUT.ANSWER_TYPE);
 
@@ -101,6 +99,6 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
         request.setAttribute(REQUEST_ATTRIBUTE.QUESTION, questionAddForm);
         fillPage(request);
-        return PATH.TUTOR_QUESTION_ADD;
+        return PAGE.TUTOR_QUESTION_ADD;
     }
 }

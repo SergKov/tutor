@@ -59,6 +59,6 @@ public class StudentChangeQuestionCommand implements Command {
         request.setAttribute(REQUEST_ATTRIBUTE.TEST_QUESTION, test.get(questionNumber - 1));
         request.setAttribute(REQUEST_ATTRIBUTE.CURRENT_QUESTION, questionNumber);
 
-        return PATH.STUDENT_TEST;
+        return PAGE.STUDENT_TEST;
     }
 }

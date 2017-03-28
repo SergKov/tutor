@@ -41,7 +41,7 @@ public class QuizPageCommand extends AbstractQuizCommand {
         if (isEmpty(quizId)) {
             request.getSession().removeAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
             fillPage(request, quizService);
-            return PATH.TUTOR_QUIZZES;
+            return PAGE.TUTOR_QUIZZES;
         }
 
         if (isNumeric(quizId)) {

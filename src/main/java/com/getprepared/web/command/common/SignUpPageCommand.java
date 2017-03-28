@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.PATH;
+import static com.getprepared.web.constant.PageConstant.PAGE;
 
 /**
  * Created by koval on 17.01.2017.
@@ -20,6 +20,6 @@ public class SignUpPageCommand extends AbstractSignUpCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PATH.SIGN_UP;
+        return PAGE.SIGN_UP;
     }
 }
