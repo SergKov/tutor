@@ -12,8 +12,6 @@ import static java.util.Arrays.stream;
  */
 public class InjectBeanPostProcessor implements BeanPostProcessor {
 
-    public static final int FIRST = 1;
-
     @Override
     public void postProcess(final Object bean, final BeanFactory beanFactory) {
         for (Class clazz = bean.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
@@ -29,6 +27,6 @@ public class InjectBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public int getOrder() {
-        return FIRST;
+        return HIGHEST + STEP;
     }
 }

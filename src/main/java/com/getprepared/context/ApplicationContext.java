@@ -1,9 +1,6 @@
 package com.getprepared.context;
 
-import com.getprepared.annotation.Bean;
-import com.getprepared.annotation.Component;
-import com.getprepared.annotation.Configuration;
-import com.getprepared.annotation.Inject;
+import com.getprepared.annotation.*;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 
@@ -37,11 +34,12 @@ public class ApplicationContext implements BeanFactory {
         container.put(APPLICATION_CONTEXT, this);
         initConfig();
         initComponent();
+        addPostProcessor(new InjectBeanPostProcessor());
+
     }
 
     void postProcess() {
-        sortPostProcessors();
-        doPostProcess();
+
     }
 
     private void initConfig() {
@@ -92,17 +90,24 @@ public class ApplicationContext implements BeanFactory {
         final List<Class<?>> classes = PackageScanner.scan(packageName);
 
         classes.stream()
-                .filter(clazz -> clazz.isAnnotationPresent(Component.class))
+                .filter(clazz -> clazz.isAnnotationPresent(Component.class) || clazz.isAnnotationPresent(Service.class))
                 .forEach(this::initAnnotationBean);
     }
 
     private void initAnnotationBean(final Class<?> clazz) {
-        final Component annotation = clazz.getAnnotation(Component.class);
-        String beanName = annotation.value();
+        String beanName = null;
+        if (clazz.getAnnotation(Component.class) != null) {
+            final Component annotation = clazz.getAnnotation(Component.class);
+            beanName = annotation.value();
+        } else {
+            final Service annotation = clazz.getAnnotation(Service.class);
+            beanName = annotation.value();
+        }
         if (beanName.equals(EMPTY_STRING)) {
             final String simpleName = clazz.getSimpleName();
             beanName = uncapitalize(simpleName);
         }
+
         container.put(beanName, newInstance(clazz));
     }
 
