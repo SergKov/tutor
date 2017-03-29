@@ -23,11 +23,13 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by koval on 25.02.2017.
  */
-public class ApplicationContext {
+public class ApplicationContext implements BeanFactory {
 
     private static final String APPLICATION_CONTEXT = "applicationContext";
 
     private final Map<String, Object> container = new HashMap<>();
+
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
     ApplicationContext() { }
 
@@ -35,7 +37,11 @@ public class ApplicationContext {
         container.put(APPLICATION_CONTEXT, this);
         initConfig();
         initComponent();
-        injectFields();
+    }
+
+    void postProcess() {
+        sortPostProcessors();
+        doPostProcess();
     }
 
     private void initConfig() {
@@ -45,15 +51,6 @@ public class ApplicationContext {
         keys.stream()
                 .map(key -> (String) key)
                 .forEach(key -> loadConfig(configurationProp.getProperty(key)));
-    }
-
-    private void initComponent() {
-        final Properties componentProp = PropertyUtils.getProperty(COMPONENT_FILE);
-        final Set<Object> keys = componentProp.keySet();
-
-        keys.stream()
-                .map(key -> (String) key)
-                .forEach(key -> load(componentProp.getProperty(key)));
     }
 
     private void loadConfig(final String packageName) {
@@ -82,6 +79,15 @@ public class ApplicationContext {
                 });
     }
 
+    private void initComponent() {
+        final Properties componentProp = PropertyUtils.getProperty(COMPONENT_FILE);
+        final Set<Object> keys = componentProp.keySet();
+
+        keys.stream()
+                .map(key -> (String) key)
+                .forEach(key -> load(componentProp.getProperty(key)));
+    }
+
     private void load(final String packageName) {
         final List<Class<?>> classes = PackageScanner.scan(packageName);
 
@@ -100,26 +106,30 @@ public class ApplicationContext {
         container.put(beanName, newInstance(clazz));
     }
 
-    private void injectFields() {
-        container.values().forEach(this::injectFields);
+    private void doPostProcess() {
+        beanPostProcessors.forEach(this::doPostProcess);
     }
 
-    private void injectFields(final Object bean) {
-        for (Class clazz = bean.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
-            final Field[] fields = clazz.getDeclaredFields();
-            stream(fields)
-                    .filter(field -> field.isAnnotationPresent(Inject.class))
-                    .forEach(field -> {
-                        final Object injectedValue = getBean(field.getName());
-                        setField(field, bean, injectedValue);
-                    });
+    private void doPostProcess(final BeanPostProcessor beanPostProcessor) {
+        for (final Object bean : container.values()) {
+            beanPostProcessor.postProcess(bean, this);
         }
     }
 
+    public void addPostProcessor(final BeanPostProcessor beanPostProcessor) {
+        beanPostProcessors.add(beanPostProcessor);
+    }
+
+    private void sortPostProcessors() {
+        beanPostProcessors.sort(Comparator.comparingInt(Ordered::getOrder));
+    }
+
+    @Override
     public Object getBean(final String name) {
         return container.get(name);
     }
 
+    @Override
     public <T> T getBean(final String name, final Class<T> clazz) {
         return clazz.cast(container.get(name));
     }

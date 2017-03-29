@@ -11,6 +11,7 @@ public final class Registry {
     static {
         applicationContext = new ApplicationContext();
         applicationContext.init();
+        applicationContext.addPostProcessor(new InjectBeanPostProcessor());
 
         webContext = new WebContext();
         webContext.init();

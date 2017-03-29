@@ -20,7 +20,7 @@ import static java.util.Arrays.stream;
 /**
  * Created by koval on 23.03.2017.
  */
-public class WebContext {
+public class WebContext implements BeanFactory {
 
     private final Map<String, Command> container = new HashMap<>();
 
@@ -81,5 +81,15 @@ public class WebContext {
 
     public Optional<Command> getCommand(final String commandName) {
         return Optional.ofNullable(container.get(commandName));
+    }
+
+    @Override
+    public Object getBean(String name) {
+        return null;
+    }
+
+    @Override
+    public <T> T getBean(String name, Class<T> clazz) {
+        return null;
     }
 }
