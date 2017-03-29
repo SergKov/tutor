@@ -5,5 +5,5 @@ package com.getprepared.context;
  */
 public interface BeanPostProcessor extends Ordered {
 
-    void postProcess(Object bean, BeanFactory beanFactory);
+    void process(Object bean, BeanFactory beanFactory);
 }

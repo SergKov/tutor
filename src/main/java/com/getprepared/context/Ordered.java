@@ -5,10 +5,6 @@ package com.getprepared.context;
  */
 public interface Ordered {
 
-    int HIGHEST = Integer.MIN_VALUE;
-
-    int LOWEST = Integer.MAX_VALUE;
-
     int STEP = 100;
 
     int getOrder();

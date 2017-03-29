@@ -1,6 +1,9 @@
-package com.getprepared.context;
+package com.getprepared.context.postprocess;
 
 import com.getprepared.annotation.Inject;
+import com.getprepared.annotation.PostProcessor;
+import com.getprepared.context.BeanFactory;
+import com.getprepared.context.BeanPostProcessor;
 
 import java.lang.reflect.Field;
 
@@ -10,10 +13,11 @@ import static java.util.Arrays.stream;
 /**
  * Created by koval on 29.03.2017.
  */
+@PostProcessor
 public class InjectBeanPostProcessor implements BeanPostProcessor {
 
     @Override
-    public void postProcess(final Object bean, final BeanFactory beanFactory) {
+    public void process(final Object bean, final BeanFactory beanFactory) {
         for (Class clazz = bean.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
             final Field[] fields = clazz.getDeclaredFields();
             stream(fields)
@@ -27,6 +31,6 @@ public class InjectBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public int getOrder() {
-        return HIGHEST + STEP;
+        return 0;
     }
 }

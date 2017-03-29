@@ -4,16 +4,15 @@ import com.getprepared.annotation.*;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.COMPONENT_FILE;
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONFIGURATION_FILE;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.POST_PROCESS_FILE;
 import static com.getprepared.core.constant.ServerConstant.EMPTY_STRING;
 import static com.getprepared.core.util.ReflectionUtils.invoke;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
-import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
@@ -25,28 +24,23 @@ public class ApplicationContext implements BeanFactory {
     private static final String APPLICATION_CONTEXT = "applicationContext";
 
     private final Map<String, Object> container = new HashMap<>();
-
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
-    ApplicationContext() { }
+    ApplicationContext() {
+    }
 
     void init() {
         container.put(APPLICATION_CONTEXT, this);
         initConfig();
         initComponent();
-        addPostProcessor(new InjectBeanPostProcessor());
-
-    }
-
-    void postProcess() {
-
+        initPostProcessors();
+        doPostProcess();
     }
 
     private void initConfig() {
         final Properties configurationProp = PropertyUtils.getProperty(CONFIGURATION_FILE);
-        final Set<Object> keys = configurationProp.keySet();
 
-        keys.stream()
+        configurationProp.keySet().stream()
                 .map(key -> (String) key)
                 .forEach(key -> loadConfig(configurationProp.getProperty(key)));
     }
@@ -68,10 +62,7 @@ public class ApplicationContext implements BeanFactory {
                 .forEach(method -> {
                     final Bean annotation = method.getAnnotation(Bean.class);
                     String beanName = annotation.value();
-                    if (beanName.equals(EMPTY_STRING)) {
-                        final String simpleName = method.getReturnType().getSimpleName();
-                        beanName = uncapitalize(simpleName);
-                    }
+                    beanName = manageBeanName(method.getReturnType(), beanName);
                     final Object config = newInstance(clazz);
                     container.put(beanName, invoke(method, config));
                 });
@@ -79,9 +70,8 @@ public class ApplicationContext implements BeanFactory {
 
     private void initComponent() {
         final Properties componentProp = PropertyUtils.getProperty(COMPONENT_FILE);
-        final Set<Object> keys = componentProp.keySet();
 
-        keys.stream()
+        componentProp.keySet().stream()
                 .map(key -> (String) key)
                 .forEach(key -> load(componentProp.getProperty(key)));
     }
@@ -103,12 +93,35 @@ public class ApplicationContext implements BeanFactory {
             final Service annotation = clazz.getAnnotation(Service.class);
             beanName = annotation.value();
         }
+
+        container.put(manageBeanName(clazz, beanName),
+                        newInstance(clazz));
+    }
+
+    private String manageBeanName(final Class<?> clazz, String beanName) {
         if (beanName.equals(EMPTY_STRING)) {
             final String simpleName = clazz.getSimpleName();
             beanName = uncapitalize(simpleName);
         }
+        return beanName;
+    }
 
-        container.put(beanName, newInstance(clazz));
+    private void initPostProcessors() {
+        final Properties postProcessorProperties = PropertyUtils.getProperty(POST_PROCESS_FILE);
+
+        postProcessorProperties.keySet().stream()
+                .map(key -> (String) key)
+                .forEach(key -> loadPostProcessor(postProcessorProperties.getProperty(key)));
+    }
+
+    private void loadPostProcessor(final String packageName) {
+        final List<Class<?>> classes = PackageScanner.scan(packageName);
+
+        classes.stream()
+                .filter(clazz -> clazz.isAnnotationPresent(PostProcessor.class))
+                .forEach(clazz -> beanPostProcessors.add((BeanPostProcessor) newInstance(clazz)));
+
+        beanPostProcessors.sort(Comparator.comparingInt(Ordered::getOrder));
     }
 
     private void doPostProcess() {
@@ -116,17 +129,7 @@ public class ApplicationContext implements BeanFactory {
     }
 
     private void doPostProcess(final BeanPostProcessor beanPostProcessor) {
-        for (final Object bean : container.values()) {
-            beanPostProcessor.postProcess(bean, this);
-        }
-    }
-
-    public void addPostProcessor(final BeanPostProcessor beanPostProcessor) {
-        beanPostProcessors.add(beanPostProcessor);
-    }
-
-    private void sortPostProcessors() {
-        beanPostProcessors.sort(Comparator.comparingInt(Ordered::getOrder));
+        container.values().forEach(bean -> beanPostProcessor.process(bean, this));
     }
 
     @Override
