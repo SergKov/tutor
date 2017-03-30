@@ -3,16 +3,16 @@ package com.getprepared.context;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
 import static com.getprepared.context.Registry.getApplicationContext;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;

@@ -7,9 +7,7 @@ import com.getprepared.core.util.PropertyUtils;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.COMPONENT_FILE;
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONFIGURATION_FILE;
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.POST_PROCESS_FILE;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.*;
 import static com.getprepared.core.constant.ServerConstant.EMPTY_STRING;
 import static com.getprepared.core.util.ReflectionUtils.invoke;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
