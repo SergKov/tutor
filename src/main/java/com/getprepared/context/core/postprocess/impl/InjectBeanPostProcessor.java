@@ -1,9 +1,9 @@
-package com.getprepared.context.postprocess;
+package com.getprepared.context.core.postprocess.impl;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.PostProcessor;
 import com.getprepared.context.BeanFactory;
-import com.getprepared.context.BeanPostProcessor;
+import com.getprepared.context.core.postprocess.BeanPostProcessor;
 
 import java.lang.reflect.Field;
 

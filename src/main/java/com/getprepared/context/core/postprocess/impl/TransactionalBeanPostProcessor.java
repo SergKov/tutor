@@ -1,7 +1,7 @@
-package com.getprepared.context.postprocess;
+package com.getprepared.context.core.postprocess.impl;
 
 import com.getprepared.context.BeanFactory;
-import com.getprepared.context.BeanPostProcessor;
+import com.getprepared.context.core.postprocess.BeanPostProcessor;
 
 import java.lang.reflect.Method;
 

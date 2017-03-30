@@ -79,7 +79,7 @@ public class WebContext implements BeanFactory {
         }
     }
 
-    public Optional<Command> getCommand(final String commandName) {
+    public Optional<Command> getCommand(final String commandName) { // TODO
         return Optional.ofNullable(container.get(commandName));
     }
 

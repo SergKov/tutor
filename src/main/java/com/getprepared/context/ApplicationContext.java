@@ -1,6 +1,8 @@
 package com.getprepared.context;
 
 import com.getprepared.annotation.*;
+import com.getprepared.context.core.postprocess.BeanPostProcessor;
+import com.getprepared.context.core.postprocess.Ordered;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 
@@ -24,8 +26,7 @@ public class ApplicationContext implements BeanFactory {
     private final Map<String, Object> container = new HashMap<>();
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
-    ApplicationContext() {
-    }
+    ApplicationContext() { }
 
     void init() {
         container.put(APPLICATION_CONTEXT, this);

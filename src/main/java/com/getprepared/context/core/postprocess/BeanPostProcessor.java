@@ -1,4 +1,6 @@
-package com.getprepared.context;
+package com.getprepared.context.core.postprocess;
+
+import com.getprepared.context.BeanFactory;
 
 /**
  * Created by koval on 29.03.2017.
