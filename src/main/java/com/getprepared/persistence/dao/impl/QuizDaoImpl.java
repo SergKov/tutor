@@ -6,6 +6,7 @@ import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.persistence.dao.QuizDao;
+import com.getprepared.persistence.database.pagination.Pageable;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
@@ -43,8 +44,18 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findAll() {
+    public List<Quiz> findAll(final Pageable<Quiz> page) { // TODO
         return jdbcTemplate.executeQuery(prop.getProperty(KEY.FIND_ALL), new QuizMapper());
+    }
+
+    @Override
+    public void update(final Quiz quiz) throws EntityExistsException {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> ps.setString(1, quiz.getName()));
+    }
+
+    @Override
+    public void activeQuiz(final Quiz quiz) {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.ACTIVE_QUIZ));
     }
 
     @Override

@@ -8,10 +8,7 @@ import com.getprepared.persistence.database.ConnectionProvider;
 import com.getprepared.persistence.domain.Entity;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +64,7 @@ public class JdbcTemplate {
         }
     }
 
-    public void batchUpdate(final String sql, final List<? extends Entity> entities,
+    public void batchUpdate(final String sql,
                             final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
 
         final Connection con = connectionProvider.getConnection();
@@ -126,6 +123,19 @@ public class JdbcTemplate {
     private void checkException(final SQLException e, final String sql) throws EntityExistsException {
         if (e.getErrorCode() == SQL_DUPLICATE_ERROR_CODE) {
             throw new EntityExistsException(String.format("Entity by this query %s is already exists", sql), e);
+        }
+    }
+
+    public void executeUpdate(final String sql) {
+
+        final Connection con = connectionProvider.getConnection();
+
+        try (Statement ps = con.createStatement()) {
+            ps.executeUpdate(sql);
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute update %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
         }
     }
 

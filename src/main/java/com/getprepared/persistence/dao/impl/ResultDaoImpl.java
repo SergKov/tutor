@@ -58,6 +58,12 @@ public class ResultDaoImpl implements ResultDao {
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
+    @Override
+    public List<Result> findByQuizId(final Long quizId) {
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), QUIZ_ID_KEY),
+                ps -> ps.setLong(1, quizId), new ResultMapper());
+    }
+
     private static class ResultMapper implements RowMapper<Result> {
 
         @Override

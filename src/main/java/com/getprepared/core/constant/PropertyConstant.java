@@ -15,7 +15,7 @@ public final class PropertyConstant {
 
         private static final String PREFIX_SQL = "/sql/";
 
-        private static final String PREFIX_SERVER = "/server/";
+        private static final String PREFIX_SERVER = "/packages/";
 
         private static final String SUFFIX = ".properties";
 
@@ -53,6 +53,8 @@ public final class PropertyConstant {
         public static final String SAVE = "save";
 
         public static final String UPDATE = "update";
+
+        public static final String ACTIVE_QUIZ = "activeQuiz";
 
         public static final String FIND_BY_ID = "findById";
 

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by koval on 21.01.2017.
  */
-public class Page<E> { //TODO
+public class Page<E> implements Pageable<E>{
 
     private final List<E> content;
     private final Long totalCount;
