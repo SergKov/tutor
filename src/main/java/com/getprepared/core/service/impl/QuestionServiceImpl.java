@@ -1,6 +1,5 @@
 package com.getprepared.core.service.impl;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;

@@ -17,7 +17,7 @@ public interface QuizService {
 
     List<Quiz> findAll();
 
-    List<Quiz> findAllCreated();
+    List<Quiz> findAllActive();
 
     void remove(Quiz quiz) throws EntityNotFoundException;
 }

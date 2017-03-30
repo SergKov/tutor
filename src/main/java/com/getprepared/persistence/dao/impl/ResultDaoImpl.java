@@ -6,7 +6,7 @@ import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.persistence.dao.ResultDao;
-import com.getprepared.persistence.database.pagination.Pageable;
+import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
@@ -54,16 +54,16 @@ public class ResultDaoImpl implements ResultDao {
     }
 
     @Override
-    public List<Result> findAllByUserId(Long id, Pageable page, Long currentPage) {
+    public List<Result> findAllByUserId(final Long id, final PageableData page) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), USER_ID_KEY,
-                page.getPageCount(), page.getPageCount() * currentPage),
+                page.getLimit(), page.getOffset()),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
     @Override
-    public List<Result> findAllByQuizId(final Long quizId, Pageable page, Long currentPage) {
+    public List<Result> findAllByQuizId(final Long quizId, final PageableData page) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), QUIZ_ID_KEY,
-                page.getPageCount(), page.getPageCount() * currentPage),
+                page.getLimit(), page.getOffset()),
                 ps -> ps.setLong(1, quizId), new ResultMapper());
     }
 

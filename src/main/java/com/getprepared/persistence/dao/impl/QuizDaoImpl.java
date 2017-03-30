@@ -6,7 +6,7 @@ import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.persistence.dao.QuizDao;
-import com.getprepared.persistence.database.pagination.Pageable;
+import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
@@ -44,15 +44,15 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findAll(final Pageable page, final Long currentPage) {
-        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL), page.getPageCount(),
-                page.getPageCount() * currentPage), new QuizMapper());
+    public List<Quiz> findAll(final PageableData page) {
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL), page.getLimit(),
+                page.getOffset()), new QuizMapper());
     }
 
     @Override
-    public List<Quiz> findAllByTutorId(final Pageable page, final Long currentPage) {
-        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL_BY_TUTOR_ID), page.getPageCount(),
-                page.getPageCount() * currentPage), new QuizMapper());
+    public List<Quiz> findAllByTutorId(final PageableData page) {
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL_BY_TUTOR_ID), page.getLimit(),
+                page.getOffset()), new QuizMapper());
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.getprepared.persistence.dao;
 
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
-import com.getprepared.persistence.database.pagination.Pageable;
+import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Quiz;
 
 import java.util.List;
@@ -16,9 +16,9 @@ public interface QuizDao {
 
     Quiz findById(Long id) throws EntityNotFoundException;
 
-    List<Quiz> findAll(Pageable page, Long currentPage);
+    List<Quiz> findAll(PageableData page);
 
-    List<Quiz> findAllByTutorId(Pageable page, Long currentPage);
+    List<Quiz> findAllByTutorId(PageableData page);
 
     void update(Quiz quiz) throws EntityExistsException;
 
