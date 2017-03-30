@@ -79,6 +79,33 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
+    public List<Question> findByQuizIdRandom(final Long id) {
+        transactionManager.begin();
+        final List<Question> questions = questionDao.findByQuizIdRandom(id);
+
+        for (Question question : questions) {
+            final Long questionId = question.getId();
+            final List<Answer> answers = answerService.findByQuestionIdRandom(questionId);
+            question.setAnswers(answers);
+        }
+
+        transactionManager.commit();
+        return questions;
+    }
+
+    @Override
+    public void update(final Question question) throws EntityExistsException {
+        try {
+            transactionManager.begin();
+            questionDao.update(question);
+            transactionManager.commit();
+        } catch (final EntityExistsException e) {
+            transactionManager.rollback();
+            throw e;
+        }
+    }
+
+    @Override
     public void remove(final Question question) throws EntityNotFoundException {
         try {
             transactionManager.begin();

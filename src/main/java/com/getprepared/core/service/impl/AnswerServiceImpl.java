@@ -44,10 +44,15 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     }
 
     @Override
-    public void update(final List<Answer> answers) {
-        transactionManager.begin();
-        answerDao.updateBatch(answers);
-        transactionManager.commit();
+    public void update(final List<Answer> answers) throws EntityExistsException {
+        try {
+            transactionManager.begin();
+            answerDao.updateBatch(answers);
+            transactionManager.commit();
+        } catch (final EntityExistsException e) {
+            transactionManager.rollback();
+            throw e;
+        }
     }
 
     @Override

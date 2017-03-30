@@ -66,7 +66,7 @@ public class JdbcTemplate {
     }
 
     public void batchUpdate(final String sql,
-                            final BatchPreparedStatementSetter batchSetter) {
+                            final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
 
         final Connection con = connectionProvider.getConnection();
 
@@ -74,6 +74,7 @@ public class JdbcTemplate {
             addBatch(batchSetter, ps);
             ps.executeBatch();
         } catch (final SQLException e) {
+            checkException(e, sql);
             final String errorMsg = String.format("Failed to execute batch update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);

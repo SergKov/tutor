@@ -18,6 +18,10 @@ public interface QuestionService {
 
     List<Question> findByQuizId(Long id);
 
+    List<Question> findByQuizIdRandom(Long id);
+
+    void update(Question question) throws EntityExistsException;
+
     void remove(Question question) throws EntityNotFoundException;
 
     List<TestQuestion> startTest(Long quizId);
