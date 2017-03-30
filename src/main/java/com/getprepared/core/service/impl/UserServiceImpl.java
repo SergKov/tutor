@@ -93,4 +93,17 @@ public class UserServiceImpl extends AbstractService implements UserService {
             throw e;
         }
     }
+
+    @Override
+    public void update(final User user) throws EntityExistsException {
+        try {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            transactionManager.begin();
+            userDao.update(user);
+            transactionManager.commit();
+        } catch (final EntityExistsException e) {
+            transactionManager.rollback();
+            throw e;
+        }
+    }
 }
