@@ -41,7 +41,7 @@ public class ResultDaoImpl implements ResultDao {
                 ps -> {
                     ps.setLong(1, result.getQuiz().getId());
                     ps.setLong(2, result.getUser().getId());
-                    ps.setByte(3, result.getMark());
+                    ps.setDouble(3, result.getMark());
                     ps.setTimestamp(4, Timestamp.valueOf(result.getCreationDateTime()));
                 });
     }
@@ -67,12 +67,12 @@ public class ResultDaoImpl implements ResultDao {
             user.setId(rs.getLong(USER_ID_KEY));
             final Quiz quiz = new Quiz();
             quiz.setId(rs.getLong(QUIZ_ID_KEY));
-            final Byte mark = rs.getByte(MARK_KEY);
+            final Double mark = rs.getDouble(MARK_KEY);
             final LocalDateTime dateTime = rs.getTimestamp(CREATION_DATETIME_KEY).toLocalDateTime();
             return fillResult(id, quiz, user, mark, dateTime);
         }
 
-        private Result fillResult(final Long id, final Quiz quiz, final User user, final Byte mark,
+        private Result fillResult(final Long id, final Quiz quiz, final User user, final Double mark,
                                   final LocalDateTime dateTime) {
             final Result result = new Result();
             result.setId(id);

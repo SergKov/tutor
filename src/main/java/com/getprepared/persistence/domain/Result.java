@@ -14,7 +14,7 @@ public class Result extends Entity {
 
     private Quiz quiz;
     private User user;
-    private Byte mark;
+    private Double mark;
     private LocalDateTime creationDateTime;
 
     public Result() { }
@@ -35,11 +35,11 @@ public class Result extends Entity {
         this.user = user;
     }
 
-    public Byte getMark() {
+    public Double getMark() {
         return mark;
     }
 
-    public void setMark(Byte mark) {
+    public void setMark(Double mark) {
         this.mark = mark;
     }
 

@@ -8,11 +8,13 @@ import java.util.List;
 public class Quiz extends Entity {
 
     public static final String NAME_KEY = "name";
+    public static final String OWNER_ID_KEY = "owner_id";
+    public static final String IS_ACTIVE_KEY = "active";
 
     private String name;
+    private User user;
+    private Boolean active;
     private List<Question> questions;
-
-    public Quiz() { }
 
     public String getName() {
         return name;
@@ -20,6 +22,22 @@ public class Quiz extends Entity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public List<Question> getQuestions() {
@@ -38,12 +56,16 @@ public class Quiz extends Entity {
         Quiz quiz = (Quiz) o;
 
         if (name != null ? !name.equals(quiz.name) : quiz.name != null) return false;
+        if (user != null ? !user.equals(quiz.user) : quiz.user != null) return false;
+        if (active != null ? !active.equals(quiz.active) : quiz.active != null) return false;
         return questions != null ? questions.equals(quiz.questions) : quiz.questions == null;
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (active != null ? active.hashCode() : 0);
         result = 31 * result + (questions != null ? questions.hashCode() : 0);
         return result;
     }

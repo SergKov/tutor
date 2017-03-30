@@ -59,7 +59,7 @@ public class StudentEndTestCommand implements Command {
             result.setQuiz(quiz);
             final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.STUDENT);
             result.setUser(user);
-            result.setMark((byte) mark);
+            result.setMark(mark);
             result.setCreationDateTime(LocalDateTime.now());
             resultService.save(result);
             response.sendRedirect(LINK.STUDENT_RESULT);
