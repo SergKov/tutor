@@ -44,6 +44,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void update(final User user) throws EntityExistsException {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> {
+            ps.setString(1, user.getEmail());
+            ps.setString(2, user.getPassword());
+        });
+    }
+
+    @Override
     public User findById(final Long id) throws EntityNotFoundException {
         return jdbcTemplate.singleQuery(prop.getProperty(KEY.FIND_BY_ID), rs -> rs.setLong(1, id),
                 new UserMapper());

@@ -47,13 +47,10 @@ public class AnswerDaoImpl implements AnswerDao {
 
     @Override
     public void saveBatch(final List<Answer> answers) throws EntityExistsException {
-        jdbcTemplate.batchUpdate(prop.getProperty(KEY.SAVE), answers, new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchSave(prop.getProperty(KEY.SAVE), answers, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(final PreparedStatement ps, final int i) throws SQLException {
-                final Answer answer = answers.get(i);
-                ps.setLong(1, answer.getQuestion().getId());
-                ps.setString(2, answer.getText());
-                ps.setString(3, answer.getType().name());
+                AnswerDaoImpl.this.setValues(ps, i, answers);
             }
 
             @Override
@@ -64,6 +61,29 @@ public class AnswerDaoImpl implements AnswerDao {
     }
 
     @Override
+    public void updateBatch(final List<Answer> answers) throws EntityExistsException {
+        jdbcTemplate.batchUpdate(prop.getProperty(KEY.UPDATE), answers, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(final PreparedStatement ps, final int i) throws SQLException {
+                AnswerDaoImpl.this.setValues(ps, i, answers);
+            }
+
+            @Override
+            public int getBatchSize() {
+                return answers.size();
+            }
+        });
+    }
+
+    private void setValues(final PreparedStatement ps, final int i, final List<Answer> answers) throws SQLException {
+        final Answer answer = answers.get(i);
+        ps.setLong(1, answer.getQuestion().getId());
+        ps.setString(2, answer.getText());
+        ps.setString(3, answer.getType().name());
+    }
+
+
+    @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
         return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new AnswerMapper());
@@ -72,6 +92,12 @@ public class AnswerDaoImpl implements AnswerDao {
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), QUESTION_ID_KEY),
+                ps -> ps.setLong(1, questionId), new AnswerMapper());
+    }
+
+    @Override
+    public List<Answer> findByQuestionIdRandom(Long questionId) {
+        return jdbcTemplate.executeQuery(prop.getProperty(KEY.FIND_BY_QUESTION_ID_RANDOM),
                 ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
 

@@ -52,7 +52,11 @@ public final class PropertyConstant {
 
         public static final String SAVE = "save";
 
+        public static final String UPDATE = "update";
+
         public static final String FIND_BY_ID = "findById";
+
+        public static final String FIND_BY_QUESTION_ID_RANDOM = "findByQuestionIdRandom";
 
         public static final String FIND_BY_STUDENT_EMAIL = "findByStudentEmail";
 

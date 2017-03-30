@@ -47,17 +47,13 @@ public class JdbcTemplate {
         }
     }
 
-    public void batchUpdate(final String sql, final List<? extends Entity> entities,
-                            final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
+    public void batchSave(final String sql, final List<? extends Entity> entities,
+                          final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
 
         final Connection con = connectionProvider.getConnection();
 
         try (PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            final int batchSize = batchSetter.getBatchSize();
-            for (int i = 0; i < batchSize; i++) {
-                batchSetter.setValues(ps, i);
-                ps.addBatch();
-            }
+            addBatch(batchSetter, ps);
             ps.executeBatch();
 
             final ResultSet rs = ps.getGeneratedKeys();
@@ -68,6 +64,30 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute batch update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
+    public void batchUpdate(final String sql, final List<? extends Entity> entities,
+                            final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
+
+        final Connection con = connectionProvider.getConnection();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            addBatch(batchSetter, ps);
+            ps.executeBatch();
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute batch update %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
+    private void addBatch(final BatchPreparedStatementSetter batchSetter,
+                          final PreparedStatement ps) throws SQLException {
+        final int batchSize = batchSetter.getBatchSize();
+        for (int i = 0; i < batchSize; i++) {
+            batchSetter.setValues(ps, i);
+            ps.addBatch();
         }
     }
 
