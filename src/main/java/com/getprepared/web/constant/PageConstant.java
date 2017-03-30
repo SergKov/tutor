@@ -102,8 +102,6 @@ public final class PageConstant {
 
         private TITLE() { }
 
-        public static final String PAGE_NOT_FOUND = "PageNotFound";
-
         public static final String SIGN_IN = "SignIn";
 
         public static final String SIGN_UP = "SignUp";

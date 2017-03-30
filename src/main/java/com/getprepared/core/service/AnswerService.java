@@ -15,7 +15,11 @@ public interface AnswerService {
 
     void save(List<Answer> answers) throws EntityExistsException;
 
+    void update(List<Answer> answers);
+
     Answer findById(Long id) throws EntityNotFoundException;
 
     List<Answer> findByQuestionId(Long questionId);
+
+    List<Answer> findByQuestionIdRandom(Long questionId);
 }

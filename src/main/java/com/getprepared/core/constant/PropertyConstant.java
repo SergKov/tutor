@@ -60,17 +60,15 @@ public final class PropertyConstant {
 
         public static final String FIND_BY_QUESTION_ID_RANDOM = "findByQuestionIdRandom";
 
+        public static final String FIND_ALL_BY_TUTOR_ID = "findAllByTutorId";
+
         public static final String FIND_BY_QUIZ_ID_RANDOM = "findByQuizIdRandom";
 
         public static final String FIND_BY_STUDENT_EMAIL = "findByStudentEmail";
 
         public static final String FIND_BY_TUTOR_EMAIL = "findByTutorEmail";
 
-        public static final String FIND_BY_USER_ID = "findByUserId";
-
         public static final String FIND_ALL = "findAll";
-
-        public static final String REMOVE = "remove";
 
         public static final String REMOVE_BY_ID = "removeById";
 
