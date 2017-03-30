@@ -8,6 +8,7 @@ import com.getprepared.core.service.QuizService;
 import com.getprepared.core.service.ResultService;
 import com.getprepared.core.service.UserService;
 import com.getprepared.persistence.dao.ResultDao;
+import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
@@ -41,28 +42,13 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
         }
     }
 
-    @Override //TODO
-    public Result findById(final Long id) throws EntityNotFoundException {
-        try {
-            transactionManager.begin();
-            final Result result = resultDao.findById(id);
-            final User user = userService.findById(result.getId());
-            final Quiz quiz = quizService.findById(result.getId());
-            transactionManager.commit();
-            result.setQuiz(quiz);
-            result.setUser(user);
-            return result;
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+    @Override
+    public List<Result> findByUserId(final Long id) { // TODO
+        return null;
     }
 
-    @Override // TODO
-    public List<Result> findByUserId(final Long userId) {
-        transactionManager.begin();
-        final List<Result> result = resultDao.findByUserId(userId);
-        transactionManager.commit();
-        return result;
+    @Override
+    public List<Result> findByQuizId(final Long id, final PageableData page) { // TODO
+        return null;
     }
 }

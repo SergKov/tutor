@@ -2,6 +2,7 @@ package com.getprepared.core.service;
 
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Result;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface ResultService {
 
     void save(Result result) throws EntityExistsException;
 
-    Result findById(Long id) throws EntityNotFoundException;
+    List<Result> findByUserId(Long id);
 
-    List<Result> findByUserId(Long userId);
+    List<Result> findByQuizId(Long id, PageableData page);
 }

@@ -64,7 +64,7 @@ public class AnswerDaoImpl implements AnswerDao {
     }
 
     @Override
-    public void updateBatch(final List<Answer> answers)  {
+    public void updateBatch(final List<Answer> answers) throws EntityExistsException {
         jdbcTemplate.batchUpdate(prop.getProperty(KEY.UPDATE), new BatchPreparedStatementSetter() {
             @Override
             public void setValues(final PreparedStatement ps, final int i) throws SQLException {

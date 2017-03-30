@@ -16,9 +16,9 @@ public interface QuizDao {
 
     Quiz findById(Long id) throws EntityNotFoundException;
 
-    List<Quiz> findAll(PageableData page);
+    List<Quiz> findAllByTutorId(Long id, PageableData page);
 
-    List<Quiz> findAllByTutorId(PageableData page);
+    List<Quiz> findAllCreated(PageableData page);
 
     void update(Quiz quiz) throws EntityExistsException;
 

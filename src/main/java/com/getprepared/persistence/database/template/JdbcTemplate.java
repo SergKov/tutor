@@ -200,7 +200,7 @@ public class JdbcTemplate {
 
             return result;
         } catch (final SQLException e) {
-            final String errorMsg = String.format("Failed to execute singleQuery %s", sql);
+            final String errorMsg = String.format("Failed to execute query %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
         }
