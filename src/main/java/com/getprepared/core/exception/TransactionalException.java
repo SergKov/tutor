@@ -7,15 +7,15 @@ public class TransactionalException extends RuntimeException {
 
     public TransactionalException() { }
 
-    public TransactionalException(String message) {
+    public TransactionalException(final String message) {
         super(message);
     }
 
-    public TransactionalException(String message, Throwable cause) {
+    public TransactionalException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public TransactionalException(Throwable cause) {
+    public TransactionalException(final Throwable cause) {
         super(cause);
     }
 }
