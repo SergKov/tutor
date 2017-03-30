@@ -50,7 +50,10 @@ public class AnswerDaoImpl implements AnswerDao {
         jdbcTemplate.batchSave(prop.getProperty(KEY.SAVE), answers, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(final PreparedStatement ps, final int i) throws SQLException {
-                AnswerDaoImpl.this.setValues(ps, i, answers);
+                final Answer answer = answers.get(i);
+                ps.setLong(1, answer.getQuestion().getId());
+                ps.setString(2, answer.getText());
+                ps.setString(3, answer.getType().name());
             }
 
             @Override
@@ -65,7 +68,9 @@ public class AnswerDaoImpl implements AnswerDao {
         jdbcTemplate.batchUpdate(prop.getProperty(KEY.UPDATE), answers, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(final PreparedStatement ps, final int i) throws SQLException {
-                AnswerDaoImpl.this.setValues(ps, i, answers);
+                final Answer answer = answers.get(i);
+                ps.setString(1, answer.getText());
+                ps.setString(2, answer.getType().name());
             }
 
             @Override
@@ -73,13 +78,6 @@ public class AnswerDaoImpl implements AnswerDao {
                 return answers.size();
             }
         });
-    }
-
-    private void setValues(final PreparedStatement ps, final int i, final List<Answer> answers) throws SQLException {
-        final Answer answer = answers.get(i);
-        ps.setLong(1, answer.getQuestion().getId());
-        ps.setString(2, answer.getText());
-        ps.setString(3, answer.getType().name());
     }
 
 

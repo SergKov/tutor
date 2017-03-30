@@ -56,6 +56,17 @@ public class QuestionDaoImpl implements QuestionDao {
     }
 
     @Override
+    public List<Question> findByQuizIdRandom(final Long quizId) {
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_QUESTION_ID_RANDOM), QUIZ_ID_KEY),
+                ps -> ps.setLong(1, quizId), new QuestionMapper());
+    }
+
+    @Override
+    public void update(final Question question) throws EntityExistsException {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> ps.setString(1, question.getText()));
+    }
+
+    @Override
     public void removeById(final Long id)  {
         jdbcTemplate.remove(prop.getProperty(KEY.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }

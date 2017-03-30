@@ -58,6 +58,8 @@ public final class PropertyConstant {
 
         public static final String FIND_BY_QUESTION_ID_RANDOM = "findByQuestionIdRandom";
 
+        public static final String FIND_BY_QUIZ_ID_RANDOM = "findByQuizIdRandom";
+
         public static final String FIND_BY_STUDENT_EMAIL = "findByStudentEmail";
 
         public static final String FIND_BY_TUTOR_EMAIL = "findByTutorEmail";

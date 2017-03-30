@@ -21,5 +21,5 @@ public interface AnswerDao {
 
     List<Answer> findByQuestionId(Long questionId);
 
-    List<Answer> findByQuestionIdRandom(Long questionId); // TODO rename
+    List<Answer> findByQuestionIdRandom(Long questionId);
 }
