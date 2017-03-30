@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstants.*;
+import static com.getprepared.core.constant.PropertyConstant.*;
 
 /**
  * Created by koval on 06.01.2017.
@@ -20,15 +20,16 @@ public final class PropertyUtils {
 
     private static Map<String, Properties> cache = new HashMap<>();
 
-    static {
-        initProperty(FILES_NAMES.USER);
-        initProperty(FILES_NAMES.RESULT);
-        initProperty(FILES_NAMES.QUESTION);
-        initProperty(FILES_NAMES.ANSWER);
-        initProperty(FILES_NAMES.QUIZ);
-        initProperty(FILES_NAMES.COMPONENT_FILE);
-        initProperty(FILES_NAMES.CONFIGURATION_FILE);
-        initProperty(FILES_NAMES.CONTROLLER_FILE);
+    static { // TODO
+        initProperty(FILES_NAME.USER);
+        initProperty(FILES_NAME.RESULT);
+        initProperty(FILES_NAME.QUESTION);
+        initProperty(FILES_NAME.ANSWER);
+        initProperty(FILES_NAME.QUIZ);
+        initProperty(FILES_NAME.COMPONENT_FILE);
+        initProperty(FILES_NAME.CONFIGURATION_FILE);
+        initProperty(FILES_NAME.CONTROLLER_FILE);
+        initProperty(FILES_NAME.POST_PROCESS_FILE);
     }
 
     public static Properties getProperty(final String fileName) {

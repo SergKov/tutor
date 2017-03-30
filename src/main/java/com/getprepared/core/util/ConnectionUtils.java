@@ -33,11 +33,11 @@ public final class ConnectionUtils {
     }
 
     @FunctionalInterface
-    public interface SqlRunner<E> {
+    public interface SqlRunner { // TODO instead of Runner
 
         void run() throws SQLException;
 
-        static <E> void run(final SqlRunner<E> runnable, final String errorMsg) {
+        static void run(final SqlRunner runnable, final String errorMsg) {
             try {
                 runnable.run();
             } catch (final SQLException e) {

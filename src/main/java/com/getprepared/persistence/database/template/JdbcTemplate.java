@@ -19,7 +19,7 @@ import java.util.List;
  * Created by koval on 11.01.2017.
  */
 @Component
-public class JdbcTemplate {
+public class JdbcTemplate { // TODO add aspect
 
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 

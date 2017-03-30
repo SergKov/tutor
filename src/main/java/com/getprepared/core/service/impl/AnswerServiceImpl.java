@@ -1,7 +1,7 @@
 package com.getprepared.core.service.impl;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.AnswerService;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by koval on 14.01.2017.
  */
-@Component("answerService")
+@Service("answerService")
 public class AnswerServiceImpl extends AbstractService implements AnswerService {
 
     @Inject
@@ -22,8 +22,11 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
         try {
+            transactionManager.begin();
             answerDao.save(answer);
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -43,14 +46,21 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
         try {
-            return answerDao.findById(id);
+            transactionManager.begin();
+            final Answer answer = answerDao.findById(id);
+            transactionManager.commit();
+            return answer;
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        return answerDao.findByQuestionId(questionId);
+        transactionManager.begin();
+        final List<Answer> answers = answerDao.findByQuestionId(questionId);
+        transactionManager.commit();
+        return answers;
     }
 }

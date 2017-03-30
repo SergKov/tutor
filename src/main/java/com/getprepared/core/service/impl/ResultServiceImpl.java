@@ -1,7 +1,7 @@
 package com.getprepared.core.service.impl;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by koval on 15.01.2017.
  */
-@Component("resultService")
+@Service("resultService")
 public class ResultServiceImpl extends AbstractService implements ResultService {
 
     @Inject
@@ -32,8 +32,11 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     public void save(final Result result) throws EntityExistsException {
         try {
+            transactionManager.begin();
             resultDao.save(result);
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -45,11 +48,12 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
             final Result result = resultDao.findById(id);
             final User user = userService.findById(result.getId());
             final Quiz quiz = quizService.findById(result.getId());
-            transactionManager.rollback();
+            transactionManager.commit();
             result.setQuiz(quiz);
             result.setUser(user);
             return result;
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }

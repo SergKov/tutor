@@ -2,6 +2,7 @@ package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.AnswerService;
@@ -21,7 +22,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * Created by koval on 14.01.2017.
  */
-@Component("questionService")
+@Service("questionService")
 public class QuestionServiceImpl extends AbstractService implements QuestionService {
 
     @Inject
@@ -53,9 +54,10 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             final Question question = questionDao.findById(id);
             final List<Answer> answers = answerService.findByQuestionId(question.getId());
             question.setAnswers(answers);
-            transactionManager.rollback();
+            transactionManager.commit();
             return question;
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -72,24 +74,29 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             question.setAnswers(answers);
         }
 
-        transactionManager.rollback();
+        transactionManager.commit();
         return questions;
     }
 
     @Override
     public void remove(final Question question) throws EntityNotFoundException {
         try {
+            transactionManager.begin();
             questionDao.removeById(question.getId());
+            transactionManager.commit();
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
 
     @Override
     public List<TestQuestion> startTest(final Long quizId) {
+        transactionManager.begin();
         final List<Question> questions = findByQuizId(quizId);
         final List<TestQuestion> testQuestions = new ArrayList<>();
         questions.forEach(question -> testQuestions.add(new TestQuestion(question, Collections.emptyList())));
+        transactionManager.commit();
         return testQuestions;
     }
 

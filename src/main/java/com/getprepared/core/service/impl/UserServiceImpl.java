@@ -1,7 +1,7 @@
 package com.getprepared.core.service.impl;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.ResultService;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by koval on 14.01.2017.
  */
-@Component("userService")
+@Service("userService")
 public class UserServiceImpl extends AbstractService implements UserService {
 
     @Inject
@@ -34,10 +34,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transactionManager.begin();
             final User user = userDao.findById(id);
             final List<Result> userResults = resultService.findByUserId(user.getId());
-            transactionManager.rollback();
+            transactionManager.commit();
             user.setResults(userResults);
             return user;
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -50,10 +51,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
             checkPassword(password, user);
 
             final List<Result> userResults = resultService.findByUserId(user.getId());
-            transactionManager.rollback();
+            transactionManager.commit();
             user.setResults(userResults);
             return user;
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -64,9 +66,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transactionManager.begin();
             final User user = userDao.findByTutorEmail(email);
             checkPassword(password, user);
-            transactionManager.rollback();
+            transactionManager.commit();
             return user;
         } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
             throw e;
         }
     }
@@ -82,8 +85,11 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public void signUp(final User user) throws EntityExistsException {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            transactionManager.begin();
             userDao.save(user);
+            transactionManager.commit();
         } catch (final EntityExistsException e) {
+            transactionManager.rollback();
             throw e;
         }
     }

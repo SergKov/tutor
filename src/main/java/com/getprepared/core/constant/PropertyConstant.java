@@ -3,13 +3,13 @@ package com.getprepared.core.constant;
 /**
  * Created by koval on 06.01.2017.
  */
-public final class PropertyConstants {
+public final class PropertyConstant {
 
-    private PropertyConstants() { }
+    private PropertyConstant() { }
 
-    public static final class FILES_NAMES {
+    public static final class FILES_NAME {
 
-        private FILES_NAMES() { }
+        private FILES_NAME() { }
 
         private static final String PREFIX_DS = "/ds/";
 
@@ -25,6 +25,8 @@ public final class PropertyConstants {
 
         public static final String CONTROLLER_FILE = PREFIX_SERVER + "controller" + SUFFIX;
 
+        public static final String POST_PROCESS_FILE = PREFIX_SERVER + "postprocess" + SUFFIX;
+
         public static final String DS_TEST_SETTING = PREFIX_DS + "testDataSource" + SUFFIX;
 
         public static final String ANSWER = PREFIX_SQL + "answer" + SUFFIX;
@@ -38,9 +40,9 @@ public final class PropertyConstants {
         public static final String RESULT = PREFIX_SQL + "result" + SUFFIX;
     }
 
-    public static final class KEYS {
+    public static final class KEY {
 
-        private KEYS() { }
+        private KEY() { }
 
         public static final String URL = "url";
 

@@ -85,11 +85,11 @@ public class WebContext implements BeanFactory {
 
     @Override
     public Object getBean(String name) {
-        return null;
+        return container.get(name);
     }
 
     @Override
     public <T> T getBean(String name, Class<T> clazz) {
-        return null;
+        return clazz.cast(container.get(name));
     }
 }
