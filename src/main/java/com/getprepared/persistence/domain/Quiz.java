@@ -8,7 +8,7 @@ import java.util.List;
 public class Quiz extends Entity {
 
     public static final String NAME_KEY = "name";
-    public static final String OWNER_ID_KEY = "owner_id";
+    public static final String USER_ID_KEY = "user_id";
     public static final String IS_ACTIVE_KEY = "active";
 
     private String name;
