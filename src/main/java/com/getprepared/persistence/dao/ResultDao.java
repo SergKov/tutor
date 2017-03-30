@@ -2,6 +2,8 @@ package com.getprepared.persistence.dao;
 
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.persistence.database.pagination.Page;
+import com.getprepared.persistence.database.pagination.Pageable;
 import com.getprepared.persistence.domain.Result;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public interface ResultDao {
 
     Result findById(Long id) throws EntityNotFoundException;
 
-    List<Result> findByUserId(Long id);
+    List<Result> findAllByUserId(Long id, Pageable page, Long currentPage);
 
-    List<Result> findByQuizId(Long quizId);
+    List<Result> findAllByQuizId(Long quizId, Pageable page, Long currentPage);
 }

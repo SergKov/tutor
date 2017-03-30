@@ -44,8 +44,15 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public List<Quiz> findAll(final Pageable<Quiz> page) { // TODO
-        return jdbcTemplate.executeQuery(prop.getProperty(KEY.FIND_ALL), new QuizMapper());
+    public List<Quiz> findAll(final Pageable page, final Long currentPage) {
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL), page.getPageCount(),
+                page.getPageCount() * currentPage), new QuizMapper());
+    }
+
+    @Override
+    public List<Quiz> findAllByTutorId(final Pageable page, final Long currentPage) {
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL_BY_TUTOR_ID), page.getPageCount(),
+                page.getPageCount() * currentPage), new QuizMapper());
     }
 
     @Override

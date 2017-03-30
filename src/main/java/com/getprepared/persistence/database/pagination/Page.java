@@ -13,10 +13,12 @@ public class Page implements Pageable {
         this.pageSize = pageSize;
     }
 
+    @Override
     public Long getPageCount() {
         return totalCount / pageSize;
     }
 
+    @Override
     public Long getTotalCount() {
         return totalCount;
     }

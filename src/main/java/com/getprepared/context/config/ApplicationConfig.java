@@ -1,4 +1,4 @@
-package com.getprepared.context;
+package com.getprepared.context.config;
 
 import com.getprepared.annotation.Bean;
 import com.getprepared.annotation.Configuration;
