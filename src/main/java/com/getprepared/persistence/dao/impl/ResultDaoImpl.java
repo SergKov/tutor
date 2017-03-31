@@ -54,14 +54,14 @@ public class ResultDaoImpl implements ResultDao {
     }
 
     @Override
-    public List<Result> findAllByUserId(final Long id, final PageableData page) {
+    public List<Result> findByUserId(final Long id, final PageableData page) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), USER_ID_KEY,
                 page.getLimit(), page.getOffset()),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
 
     @Override
-    public List<Result> findAllByQuizId(final Long quizId, final PageableData page) {
+    public List<Result> findByQuizId(final Long quizId, final PageableData page) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), QUIZ_ID_KEY,
                 page.getLimit(), page.getOffset()),
                 ps -> ps.setLong(1, quizId), new ResultMapper());

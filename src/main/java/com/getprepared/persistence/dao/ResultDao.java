@@ -16,7 +16,7 @@ public interface ResultDao {
 
     Result findById(Long id) throws EntityNotFoundException;
 
-    List<Result> findAllByUserId(Long id, PageableData page);
+    List<Result> findByUserId(Long id, PageableData page);
 
-    List<Result> findAllByQuizId(Long quizId, PageableData page);
+    List<Result> findByQuizId(Long quizId, PageableData page);
 }

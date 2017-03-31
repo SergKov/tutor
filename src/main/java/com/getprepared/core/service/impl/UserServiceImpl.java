@@ -8,10 +8,7 @@ import com.getprepared.core.service.ResultService;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.PasswordEncoder;
 import com.getprepared.persistence.dao.UserDao;
-import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
-
-import java.util.List;
 
 /**
  * Created by koval on 14.01.2017.
@@ -33,9 +30,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
             transactionManager.begin();
             final User user = userDao.findById(id);
-            final List<Result> userResults = resultService.findByUserId(user.getId());
             transactionManager.commit();
-            user.setResults(userResults);
             return user;
         } catch (final EntityNotFoundException e) {
             transactionManager.rollback();
@@ -49,10 +44,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transactionManager.begin();
             final User user = userDao.findByStudentEmail(email);
             checkPassword(password, user);
-
-            final List<Result> userResults = resultService.findByUserId(user.getId());
             transactionManager.commit();
-            user.setResults(userResults);
             return user;
         } catch (final EntityNotFoundException e) {
             transactionManager.rollback();
@@ -95,15 +87,16 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public void update(final User user) throws EntityExistsException {
-        try {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            transactionManager.begin();
-            userDao.update(user);
-            transactionManager.commit();
-        } catch (final EntityExistsException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+    public void updateStudentPassword(final String password) {
+        transactionManager.begin();
+        userDao.updateStudentPassword(passwordEncoder.encode(password));
+        transactionManager.commit();
+    }
+
+    @Override
+    public void updateTutorPassword(final String password) {
+        transactionManager.begin();
+        userDao.updateTutorPassword(passwordEncoder.encode(password));
+        transactionManager.commit();
     }
 }

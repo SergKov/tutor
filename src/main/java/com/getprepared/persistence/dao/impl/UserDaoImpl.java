@@ -44,10 +44,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(final User user) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> {
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+    public void updateStudentPassword(final String password) {
+        jdbcTemplate.update(prop.getProperty(KEY.UPDATE_STUDENT_PASSWORD), ps -> {
+            ps.setString(1, password);
+        });
+    }
+
+    @Override
+    public void updateTutorPassword(final String password) {
+        jdbcTemplate.update(prop.getProperty(KEY.UPDATE_TUTOR_PASSWORD), ps -> {
+            ps.setString(1, password);
         });
     }
 

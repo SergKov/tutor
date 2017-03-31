@@ -11,7 +11,9 @@ public interface UserDao {
 
     void save(User user) throws EntityExistsException;
 
-    void update(User user) throws EntityExistsException;
+    void updateStudentPassword(String password);
+
+    void updateTutorPassword(String password);
 
     User findById(Long id) throws EntityNotFoundException;
 

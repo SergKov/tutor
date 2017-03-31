@@ -54,6 +54,10 @@ public final class PropertyConstant {
 
         public static final String UPDATE = "update";
 
+        public static final String UPDATE_STUDENT_PASSWORD = "updateStudentPassword";
+
+        public static final String UPDATE_TUTOR_PASSWORD = "updateTutorPassword";
+
         public static final String ACTIVE_QUIZ = "activeQuiz";
 
         public static final String FIND_BY_ID = "findById";
@@ -69,8 +73,6 @@ public final class PropertyConstant {
         public static final String FIND_BY_TUTOR_EMAIL = "findByTutorEmail";
 
         public static final String FIND_ALL_CREATED = "findAllCreated";
-
-        public static final String FIND_ALL = "findAll";
 
         public static final String REMOVE_BY_ID = "removeById";
 

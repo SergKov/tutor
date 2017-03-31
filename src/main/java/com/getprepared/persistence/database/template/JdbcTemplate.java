@@ -100,6 +100,19 @@ public class JdbcTemplate {
         }
     }
 
+    public void update(final String sql, final PreparedStatementSetter setter) {
+        final Connection con = connectionProvider.getConnection();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            setter.setValues(ps);
+            ps.executeUpdate();
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute update %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
     public void executeUpdate(final String sql, final PreparedStatementSetter setter) throws EntityExistsException {
 
         final Connection con = connectionProvider.getConnection();

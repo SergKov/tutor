@@ -60,7 +60,7 @@ public final class PageConstant {
 
         public static final String STUDENT_HOME_PAGE = "/student";
 
-        public static final String STUDENT_SETTINGS = "/student/settings";
+        public static final String STUDENT_UPDATE_PASSWORD = "/student/update-password";
 
         public static final String STUDENT_TEST = "/student/test";
 
@@ -68,7 +68,7 @@ public final class PageConstant {
 
         public static final String TUTOR_SIGN_IN = "/tutor";
 
-        public static final String TUTOR_SETTINGS = "/tutor/settings";
+        public static final String TUTOR_UPDATE_PASSWORD = "/tutor/update-password";
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
