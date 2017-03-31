@@ -31,7 +31,7 @@ public abstract class AbstractQuizCommand implements Command {
 
         final Long id = ((User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.TUTOR)).getId();
 
-        final List<Quiz> quizzes = quizService.findAllByTutorId(id,new PageableData()); // TODO
+        final List<Quiz> quizzes = quizService.findAllByTutorId(id, new PageableData()); // TODO
         if (!CollectionUtils.isEmpty(quizzes)) {
             request.setAttribute(REQUEST_ATTRIBUTE.QUIZZES, quizzes);
         }
