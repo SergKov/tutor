@@ -3,6 +3,7 @@ package com.getprepared.web.command.student;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
+import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
@@ -29,7 +30,7 @@ public abstract class AbstractStudentHomePageCommand implements Command {
         request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.HOME_PAGE, request.getLocale()));
         request.setAttribute(QUIZ, REGEX.QUIZ_NAME);
 
-        final List<Quiz> quizList = quizService.findAllCreated();
+        final List<Quiz> quizList = quizService.findAllActive(new PageableData()); // TODO
 
         if (!CollectionUtils.isEmpty(quizList)) {
             request.setAttribute(QUIZZES, quizList);
