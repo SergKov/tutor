@@ -1,8 +1,8 @@
 package com.getprepared.context;
 
 import com.getprepared.annotation.*;
-import com.getprepared.context.core.postprocess.BeanPostProcessor;
-import com.getprepared.context.core.postprocess.Ordered;
+import com.getprepared.context.postprocess.BeanPostProcessor;
+import com.getprepared.context.postprocess.Ordered;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 
@@ -19,7 +19,7 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
 /**
  * Created by koval on 25.02.2017.
  */
-public class ApplicationContext implements BeanFactory {
+public class ApplicationContext {
 
     private static final String APPLICATION_CONTEXT = "applicationContext";
 
@@ -131,12 +131,10 @@ public class ApplicationContext implements BeanFactory {
         container.values().forEach(bean -> beanPostProcessor.process(bean, this));
     }
 
-    @Override
     public Object getBean(final String name) {
         return container.get(name);
     }
 
-    @Override
     public <T> T getBean(final String name, final Class<T> clazz) {
         return clazz.cast(container.get(name));
     }

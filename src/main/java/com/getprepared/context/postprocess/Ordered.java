@@ -1,4 +1,4 @@
-package com.getprepared.context.core.postprocess;
+package com.getprepared.context.postprocess;
 
 /**
  * Created by koval on 29.03.2017.
