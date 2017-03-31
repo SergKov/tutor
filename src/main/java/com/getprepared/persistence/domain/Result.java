@@ -52,11 +52,11 @@ public class Result extends Entity {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Result result = (Result) o;
+        final Result result = (Result) o;
 
         if (quiz != null ? !quiz.equals(result.quiz) : result.quiz != null) return false;
         if (user != null ? !user.equals(result.user) : result.user != null) return false;

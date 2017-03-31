@@ -49,11 +49,11 @@ public class Quiz extends Entity {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Quiz quiz = (Quiz) o;
+        final Quiz quiz = (Quiz) o;
 
         if (name != null ? !name.equals(quiz.name) : quiz.name != null) return false;
         if (user != null ? !user.equals(quiz.user) : quiz.user != null) return false;
