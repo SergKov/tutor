@@ -39,7 +39,7 @@
                         </div>
 
                         <c:if test="${not empty errorMsgs['role']}">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 center">
                                 <c:out value="${errorMsgs['role']}"/>
                             </div>
                         </c:if>
@@ -56,7 +56,7 @@
                         </div>
 
                         <c:if test="${not empty errorMsgs['name']}">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 center">
                                 <c:out value="${errorMsgs['name']}"/>
                             </div>
                         </c:if>
@@ -74,7 +74,7 @@
                         </div>
 
                         <c:if test="${not empty errorMsgs['surname']}">
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 center">
                                 <c:out value="${errorMsgs['surname']}"/>
                             </div>
                         </c:if>
@@ -93,7 +93,7 @@
 
                         <div class="col-xs-12">
                             <c:if test="${not empty errorMsgs['email']}">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 center">
                                     <c:out value="${errorMsgs['email']}"/>
                                 </div>
                             </c:if>
@@ -112,7 +112,7 @@
 
                         <div class="col-xs-12">
                             <c:if test="${not empty errorMsgs['password']}">
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 center">
                                     <c:out value="${errorMsgs['password']}"/>
                                 </div>
                             </c:if>

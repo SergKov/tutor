@@ -25,6 +25,8 @@ public final class PageConstant {
 
         public static final String STUDENT_SIGN_IN = STUDENT_PREFIX + "signIn" + SUFFIX;
 
+        public static final String STUDENT_SETTINGS = STUDENT_PREFIX + "settings" + SUFFIX;
+
         public static final String STUDENT_HOME_PAGE = STUDENT_PREFIX + "homePage" + SUFFIX;
 
         public static final String STUDENT_TEST = STUDENT_PREFIX + "test" + SUFFIX;
@@ -32,6 +34,8 @@ public final class PageConstant {
         public static final String STUDENT_RESULT = STUDENT_PREFIX + "result" + SUFFIX;
 
         public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
+
+        public static final String TUTOR_SETTINGS = STUDENT_PREFIX + "settings" + SUFFIX;
 
         public static final String TUTOR_QUIZZES = TUTOR_PREFIX + "quizzes" + SUFFIX;
 
@@ -56,9 +60,15 @@ public final class PageConstant {
 
         public static final String STUDENT_HOME_PAGE = "/student";
 
+        public static final String STUDENT_SETTINGS = "/student/settings";
+
         public static final String STUDENT_TEST = "/student/test";
 
         public static final String STUDENT_RESULT = "/student/test/result";
+
+        public static final String TUTOR_SIGN_IN = "/tutor";
+
+        public static final String TUTOR_SETTINGS = "/tutor/settings";
 
         public static final String TUTOR_QUIZZES = "/tutor/quizzes";
 
@@ -67,8 +77,6 @@ public final class PageConstant {
         public static final String TUTOR_QUESTIONS = "/tutor/quizzes/questions";
 
         public static final String TUTOR_QUESTION_ADD = "/tutor/quizzes/questions/add";
-
-        public static final String TUTOR_SIGN_IN = "/tutor";
 
         public static final String SIGN_OUT = "/sign-out";
     }
@@ -79,6 +87,8 @@ public final class PageConstant {
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
+        public static final String STUDENT_SETTINGS = "studentSettings";
+
         public static final String STUDENT_TEST_START = "testStart";
 
         public static final String STUDENT_ANSWER_SAVE = "answerSave";
@@ -86,6 +96,8 @@ public final class PageConstant {
         public static final String STUDENT_TEST_END = "testEnd";
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
+
+        public static final String TUTOR_SETTINGS = "tutorSettings";
 
         public static final String TUTOR_QUIZ_ADD = "quizAdd";
 
@@ -107,6 +119,8 @@ public final class PageConstant {
         public static final String SIGN_UP = "SignUp";
 
         public static final String HOME_PAGE = "HomePage";
+
+        public static final String SETTINGS = "Settings";
 
         public static final String QUIZZES = "Quizzes";
 

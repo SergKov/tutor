@@ -16,7 +16,7 @@ import static com.getprepared.web.constant.PageConstant.LINK;
  */
 @Controller
 @CommandMapping(LINK.STUDENT_SIGN_IN)
-public class StudentSignInPageController extends AbstractSignInCommand {
+public class StudentSignInPageCommand extends AbstractSignInCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
