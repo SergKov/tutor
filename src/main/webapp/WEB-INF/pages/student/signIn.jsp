@@ -13,6 +13,9 @@
 <c:url value="/" var="signInAction"/>
 <c:url value="/sign-up" var="signUpHref"/>
 
+<c:set value="email" var="email"/>
+<c:set value="psw" var="psw"/>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
@@ -25,14 +28,14 @@
                 <div class="row">
                     <input type="hidden" name="command" value="studentSignIn">
 
-                    <label class="control-label col-xs-5" for="email"><fmt:message
+                    <label class="control-label col-xs-5" for="${email}"><fmt:message
                             key="homePage.login"/></label>
 
                     <c:choose>
                         <c:when test="${empty errorMsg}">
                             <div class="form-group">
                                 <div class="col-xs-3">
-                                    <input type="text" pattern="${emailRegex}" class="form-control" id="email"
+                                    <input type="text" pattern="${emailRegex}" class="form-control" id="${email}"
                                            name="email"
                                            placeholder="<fmt:message key="homePage.enterEmail"/>" required>
                                 </div>
@@ -41,7 +44,7 @@
                         <c:otherwise>
                             <div class="form-group has-error has-feedback">
                                 <div class="col-xs-3">
-                                    <input type="text" pattern="${emailRegex}" class="form-control" id="email"
+                                    <input type="text" pattern="${emailRegex}" class="form-control" id="${email}"
                                            name="email"
                                            value="${email}"
                                            placeholder="<fmt:message key="homePage.enterEmail"/>" required>
@@ -53,14 +56,14 @@
 
 
                 <div class="row">
-                    <label class="control-label col-xs-5" for="psw"><fmt:message
+                    <label class="control-label col-xs-5" for="${psw}"><fmt:message
                             key="homePage.password"/></label>
 
                     <c:choose>
                         <c:when test="${empty errorMsg}">
                             <div class="form-group">
                                 <div class="col-xs-3">
-                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
+                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="${psw}"
                                            name="password" placeholder="<fmt:message key="homePage.enterPassword"/>"
                                            required>
                                 </div>
@@ -69,7 +72,7 @@
                         <c:otherwise>
                             <div class="form-group has-error has-feedback">
                                 <div class="col-xs-3">
-                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
+                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="${psw}"
                                            name="password" placeholder="<fmt:message key="homePage.enterPassword"/>"
                                            required>
                                 </div>

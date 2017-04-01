@@ -12,6 +12,8 @@
 
 <c:url value="/tutor/quizzes/add" var="addQuizAction"/>
 
+<c:set value="quiz_id" var="quizId"/>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
@@ -27,7 +29,7 @@
                     <c:when test="${empty errorMsgs['name'] and empty errorMsg}">
                         <div class="form-group">
                             <div class="col-xs-3">
-                                <input type="text" class="form-control" id="quiz_id"
+                                <input type="text" class="form-control" id="${quizId}"
                                        pattern="${quizRegex}"
                                        name="quiz-name" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>
@@ -41,7 +43,7 @@
                     <c:otherwise>
                         <div class="form-group has-error has-feedback">
                             <div class="col-xs-3">
-                                <input type="text" class="form-control" id="quiz_id"
+                                <input type="text" class="form-control" id="${quizId}"
                                        value="${quiz.name}" pattern="${quizRegex}"
                                        name="quiz-name" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>

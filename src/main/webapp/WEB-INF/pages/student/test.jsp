@@ -47,7 +47,7 @@
             <ul class="pagination">
                 <c:forEach var="i" begin="1" end="${fn:length(test)}">
                     <li>
-                        <button name="question-number" value="${i}"><c:out value="${i}"/></button>
+                        <button name="question-number" value="${i}">${i}</button>
                     </li>
                 </c:forEach>
             </ul>

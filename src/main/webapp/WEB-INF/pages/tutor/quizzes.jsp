@@ -8,6 +8,7 @@
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shared" tagdir="/WEB-INF/tags/shared" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url value="/tutor/quizzes" var="quizzesAction"/>
@@ -17,6 +18,8 @@
 <c:url value="/resource/img/active.ico" var="activeQuizIcon"/>
 <c:url value="/resource/mg/edit.ico" var="editQuizIcon"/>
 <c:url value="/resource/img/plus.ico" var="plusQuestionIcon"/>
+
+<c:set value="quiz_name" var="quizNameId" />
 
 <templates:page_template>
 
@@ -35,13 +38,13 @@
                                     <c:choose>
                                         <c:when test="${empty errorMsgs['name']}">
                                             <div class="form-group">
-                                                <input id="quiz_name" type="text" class="form-control"
+                                                <input id="${quizNameId}" type="text" class="form-control"
                                                        name="quiz-name" value="${quiz.name}">
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group has-error has-feedback">
-                                                <input id="quiz_name" type="text" class="form-control"
+                                                <input id="${quizNameId}" type="text" class="form-control"
                                                        name="quiz-name" value="${quizForm.name}">
                                             </div>
                                             <div>
@@ -51,7 +54,7 @@
                                     </c:choose>
                                     <c:otherwise>
                                         <div class="form-group">
-                                            <input id="quiz_name" type="text" class="form-control"
+                                            <input id="${quizNameId}" type="text" class="form-control"
                                                    name="quiz-name" value="${quiz.name}" readonly="readonly">
                                         </div>
                                     </c:otherwise>
@@ -101,15 +104,10 @@
                     </div>
                 </c:forEach>
 
-                <%--<form action="${quizzesAction}" method="POST">--%>
-                <%--<ul class="pagination">--%>
-                <%--<c:forEach var="i" begin="1" end="${fn:length(test)}">--%>
-                <%--<li>--%>
-                <%--<button name="quiz-number" value="${i}"><c:out value="${i}"/></button>--%>
-                <%--</li>--%>
-                <%--</c:forEach>--%>
-                <%--</ul>--%>
-                <%--</form>--%>
+                <shared:pagination action="${quizzesAction}"
+                                   currentPage="${pagination.currentPage}"
+                                   numberOfPages="${pagination.numberOfPages}"
+                                   numberOfElements="${pagination.numberOfElements}"/>
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="quizPage.text"/></h1>
