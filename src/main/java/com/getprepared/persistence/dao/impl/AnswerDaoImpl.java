@@ -95,7 +95,7 @@ public class AnswerDaoImpl implements AnswerDao {
     }
 
     @Override
-    public List<Answer> findByQuestionIdRandom(Long questionId) {
+    public List<Answer> findByQuestionIdRandom(final Long questionId) {
         return jdbcTemplate.executeQuery(prop.getProperty(KEY.FIND_BY_QUESTION_ID_RANDOM),
                 ps -> ps.setLong(1, questionId), new AnswerMapper());
     }
@@ -112,7 +112,7 @@ public class AnswerDaoImpl implements AnswerDao {
             return fillAnswer(id, question, text, type);
         }
 
-        public Answer fillAnswer(final Long id, final Question question, final String text, final Type type) {
+        private Answer fillAnswer(final Long id, final Question question, final String text, final Type type) {
             final Answer answer = new Answer();
             answer.setId(id);
             answer.setQuestion(question);

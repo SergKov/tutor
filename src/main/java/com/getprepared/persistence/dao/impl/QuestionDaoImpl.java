@@ -85,7 +85,7 @@ public class QuestionDaoImpl implements QuestionDao {
             return fillQuestion(id, quiz, text);
         }
 
-        public Question fillQuestion(final Long id, final Quiz quiz, final String text) {
+        private Question fillQuestion(final Long id, final Quiz quiz, final String text) {
             final Question question = new Question();
             question.setId(id);
             question.setQuiz(quiz);
