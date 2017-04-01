@@ -15,8 +15,6 @@ public interface AnswerDao {
 
     void saveBatch(List<Answer> answers) throws EntityExistsException;
 
-    void updateBatch(List<Answer> answers) throws EntityExistsException;
-
     Answer findById(Long id) throws EntityNotFoundException;
 
     List<Answer> findByQuestionId(Long questionId);

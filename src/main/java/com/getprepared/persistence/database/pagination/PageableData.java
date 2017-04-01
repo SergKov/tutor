@@ -6,29 +6,38 @@ package com.getprepared.persistence.database.pagination;
 public class PageableData {
 
     private Long currentPage;
-    private Long pageSize;
+    private Long numberOfPages;
+    private Long numberOfElements;
 
     public Long getLimit() {
-        return pageSize;
+        return numberOfElements;
     }
 
     public Long getOffset() {
-        return pageSize * (currentPage - 1) + 1;
+        return numberOfElements * (currentPage - 1) + 1;
     }
 
     public Long getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(Long currentPage) {
+    public void setCurrentPage(final Long currentPage) {
         this.currentPage = currentPage;
     }
 
-    public Long getPageSize() {
-        return pageSize;
+    public Long getNumberOfPages() {
+        return numberOfPages;
     }
 
-    public void setPageSize(Long pageSize) {
-        this.pageSize = pageSize;
+    public void setNumberOfPages(final Long numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
+    public Long getNumberOfElements() {
+        return numberOfElements;
+    }
+
+    public void setNumberOfElements(final Long numberOfElements) {
+        this.numberOfElements = numberOfElements;
     }
 }

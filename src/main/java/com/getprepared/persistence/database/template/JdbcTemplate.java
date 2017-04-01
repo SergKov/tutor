@@ -58,23 +58,6 @@ public class JdbcTemplate {
                 initEntityId(entity, rs);
             }
         } catch (final SQLException e) {
-            checkException(e, sql);
-            final String errorMsg = String.format("Failed to execute batch update %s", sql);
-            LOG.error(errorMsg, e);
-            throw new IllegalStateException(errorMsg, e);
-        }
-    }
-
-    public void batchUpdate(final String sql,
-                            final BatchPreparedStatementSetter batchSetter) throws EntityExistsException {
-
-        final Connection con = connectionProvider.getConnection();
-
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            addBatch(batchSetter, ps);
-            ps.executeBatch();
-        } catch (final SQLException e) {
-            checkException(e, sql);
             final String errorMsg = String.format("Failed to execute batch update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);

@@ -94,22 +94,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public void update(final Question question) throws EntityExistsException, QuizTerminatedException {
-        checkActive(question.getQuiz());
-
-        try {
-            transactionManager.begin();
-            questionDao.update(question.getText(), question.getId());
-            final List<Answer> answers = question.getAnswers();
-            answerService.update(answers);
-            transactionManager.commit();
-        } catch (final EntityExistsException e) {
-            transactionManager.rollback();
-            throw e;
-        }
-    }
-
-    @Override
     public void remove(final Question question) throws EntityNotFoundException, QuizTerminatedException {
         checkActive(question.getQuiz());
 
