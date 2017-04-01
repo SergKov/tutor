@@ -68,7 +68,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     private void checkPassword(final String password, final User user) throws EntityNotFoundException {
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            final String errorMsg = String.format("%s with this password %s does not exist", user.getRole(), password);
+            final String errorMsg = String.format("%s with this password %s does not exist.", user.getRole(), password);
             throw new EntityNotFoundException(errorMsg);
         }
     }
@@ -87,16 +87,38 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public void updateStudentPassword(final String password) {
-        transactionManager.begin();
-        userDao.updateStudentPassword(passwordEncoder.encode(password));
-        transactionManager.commit();
+    public void updateStudentPassword(final String email, final String enteredPassword, final String newPassword)
+                                                                                        throws EntityNotFoundException {
+        try {
+            transactionManager.begin();
+            final User user = userDao.findByStudentEmail(email);
+            checkPassword(enteredPassword, user.getPassword());
+            userDao.updateTutorPassword(newPassword);
+            transactionManager.commit();
+        } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
+            throw e;
+        }
     }
 
     @Override
-    public void updateTutorPassword(final String password) {
-        transactionManager.begin();
-        userDao.updateTutorPassword(passwordEncoder.encode(password));
-        transactionManager.commit();
+    public void updateTutorPassword(final String email, final String enteredPassword, final String newPassword)
+                                                                                        throws EntityNotFoundException {
+        try {
+            transactionManager.begin();
+            final User user = userDao.findByStudentEmail(email);
+            checkPassword(enteredPassword, user.getPassword());
+            userDao.updateStudentPassword(newPassword);
+            transactionManager.commit();
+        } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
+            throw e;
+        }
+    }
+
+    private void checkPassword(final String enteredPassword, final String oldPassword) throws EntityNotFoundException {
+        if (!passwordEncoder.matches(enteredPassword, oldPassword)) {
+            throw new EntityNotFoundException("Old password is incorrect.");
+        }
     }
 }

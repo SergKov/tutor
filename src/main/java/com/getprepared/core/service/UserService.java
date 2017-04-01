@@ -17,7 +17,7 @@ public interface UserService {
 
     void signUp(User user) throws EntityExistsException;
 
-    void updateStudentPassword(String password) throws EntityExistsException;
+    void updateStudentPassword(String email, String enteredPassword, String newPassword) throws EntityNotFoundException;
 
-    void updateTutorPassword(String password);
+    void updateTutorPassword(String email, String enteredPassword, String newPassword) throws EntityNotFoundException;
 }
