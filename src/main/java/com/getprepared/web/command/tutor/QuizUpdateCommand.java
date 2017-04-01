@@ -11,8 +11,6 @@ import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
-import com.getprepared.web.constant.ValidationConstant;
-import com.getprepared.web.constant.WebConstant;
 import com.getprepared.web.form.QuizUpdateForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -23,14 +21,10 @@ import java.io.IOException;
 import java.util.Map;
 
 import static com.getprepared.web.constant.PageConstant.*;
-import static com.getprepared.web.constant.PageConstant.COMMAND;
-import static com.getprepared.web.constant.PageConstant.REDIRECT;
-import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
-import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
-import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
-import static javax.servlet.http.HttpServletResponse.*;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
 /**

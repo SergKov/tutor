@@ -25,5 +25,5 @@ public interface QuizService {
 
     void update(Quiz quiz) throws QuizTerminatedException, EntityExistsException;
 
-    void remove(Quiz quiz) throws EntityNotFoundException;
+    void remove(Long id) throws EntityNotFoundException;
 }

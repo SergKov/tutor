@@ -103,6 +103,8 @@ public final class PageConstant {
 
         public static final String TUTOR_QUIZ_UPDATE = "quizUpdate";
 
+        public static final String TUTOR_QUIZ_ACTIVE = "quizActive";
+
         public static final String TUTOR_QUIZ_REMOVE = "quizRemove";
 
         public static final String TUTOR_QUESTION_REMOVE = "questionRemove";

@@ -50,7 +50,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <c:otherwise>
-                                        <div class="form-group has-error has-feedback">
+                                        <div class="form-group">
                                             <input id="quiz_name" type="text" class="form-control"
                                                    name="quiz-name" value="${quiz.name}" readonly="readonly">
                                         </div>
@@ -94,7 +94,7 @@
                                 <form action="${quizzesAction}" method="POST" class="form-horizontal">
                                     <input id="quiz_active" type="image" src="${activeQuizIcon}" width="25px"
                                            height="25px"
-                                           name="command" value="quizUpdate">
+                                           name="command" value="quizActive">
                                 </form>
                             </div>
                         </c:if>
