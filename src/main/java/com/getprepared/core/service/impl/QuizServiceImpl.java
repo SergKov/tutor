@@ -126,14 +126,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public void remove(final Long id) throws EntityNotFoundException {
-        try {
-            transactionManager.begin();
-            quizDao.remove(id);
-            transactionManager.commit();
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+    public void remove(final Long id) {
+        transactionManager.begin();
+        quizDao.remove(id);
+        transactionManager.commit();
     }
 }

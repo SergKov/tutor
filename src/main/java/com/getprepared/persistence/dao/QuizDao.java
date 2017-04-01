@@ -24,5 +24,5 @@ public interface QuizDao {
 
     void activeQuiz(Long id);
 
-    void remove(Long id) throws EntityNotFoundException;
+    void remove(Long id);
 }

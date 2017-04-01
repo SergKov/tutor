@@ -10,6 +10,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
@@ -31,6 +34,9 @@ public class UserGuestFilterTest {
     @Mock
     private FilterChain chain;
 
+    @Mock
+    private HttpSession session;
+
     private Filter filter;
 
     @Before
@@ -49,6 +55,15 @@ public class UserGuestFilterTest {
     public void requireNoInteractionsDoFilterWhenNoSession() throws Exception {
         filter.doFilter(request, response, chain);
         verify(chain, never()).doFilter(request, response);
+        verifyNoMoreInteractions(request);
+        verifyNoMoreInteractions(response);
+    }
+
+    @Test
+    public void requireInteractionDoFilterWhenSessionCreated() throws IOException, ServletException {
+        when(request.getSession()).thenReturn(notNull(HttpSession.class));
+        filter.doFilter(request, response, chain);
+        verify(chain, only()).doFilter(request, response);
         verifyNoMoreInteractions(request);
         verifyNoMoreInteractions(response);
     }
