@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
-<c:url value="/student/update-password" var="updateAction"/>
+<c:url value="/student/update-password" var="updatePasswordAction"/>
 
 <templates:page_template>
 
@@ -20,8 +20,8 @@
 
     <jsp:body>
         <div class="well">
-            <form action="${updateAction}" method="POST" class="form-horizontal">
-                <input type="hidden" name="command" value="studentUpdate">
+            <form action="${updatePasswordAction}" method="POST" class="form-horizontal">
+                <input type="hidden" name="command" value="studentUpdatePassword">
 
                 <div class="form-group">
                     <div class="row">
@@ -30,7 +30,8 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="oldPsw"
-                                   name="password" placeholder="<fmt:message key="updatePassword.enterOldPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="updatePassword.enterOldPassword"/>"
+                                   required>
                         </div>
                     </div>
                 </div>
@@ -42,7 +43,8 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="newPsw"
-                                   name="password" placeholder="<fmt:message key="updatePassword.enterNewPassword"/>" required>
+                                   name="password" placeholder="<fmt:message key="updatePassword.enterNewPassword"/>"
+                                   required>
                         </div>
                     </div>
                 </div>

@@ -124,7 +124,7 @@ public final class PageConstant {
 
         public static final String HOME_PAGE = "HomePage";
 
-        public static final String SETTINGS = "Settings";
+        public static final String UPDATE_PASSWORD = "UpdatePassword";
 
         public static final String QUIZZES = "Quizzes";
 
@@ -158,5 +158,7 @@ public final class PageConstant {
         public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
 
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
+
+        public static final String OLD_PASSWORD_INCORRECT = "OldPasswordIncorrect";
     }
 }

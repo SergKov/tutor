@@ -6,7 +6,7 @@ import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.getprepared.web.constant.PageConstant.TITLE.SETTINGS;
+import static com.getprepared.web.constant.PageConstant.TITLE.UPDATE_PASSWORD;
 import static com.getprepared.web.constant.ValidationConstant.REGEX;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 
@@ -19,7 +19,7 @@ public abstract class AbstractUpdatePasswordCommand implements Command {
     private Messages messages;
 
     public void fillPage(final HttpServletRequest request) {
-        request.setAttribute(TITLE, messages.getMessage(SETTINGS, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(UPDATE_PASSWORD, request.getLocale()));
         request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);
         request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
     }
