@@ -18,6 +18,8 @@
 <body>
 
 <c:url value="/sign-out" var="signOutHref"/>
+<c:url value="/student/update-password" var="studentUpdatePasswordHref"/>
+<c:url value="/tutor/update-password" var="tutorUpdatePasswordHref"/>
 
 <header id="pageheader">
     <h1 class="text-primary text-center">
@@ -29,6 +31,11 @@
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${student.name}
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
+                <li>
+                    <a href="${studentUpdatePasswordHref}">
+                        <fmt:message key="updatePassword.title"/>
+                    </a>
+                </li>
                 <li>
                     <a href="${signOutHref}">
                         <fmt:message key="signOut.signOut"/>
@@ -43,6 +50,11 @@
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${tutor.name}
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
+                <li>
+                    <a href="${tutorUpdatePasswordHref}">
+                        <fmt:message key="updatePassword.title"/>
+                    </a>
+                </li>
                 <li>
                     <a href="${signOutHref}">
                         <fmt:message key="signOut.signOut"/>
