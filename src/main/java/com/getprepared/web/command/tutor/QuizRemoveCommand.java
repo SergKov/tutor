@@ -5,8 +5,8 @@ import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.common.AbstractQuizCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
-import static javax.servlet.http.HttpServletResponse.*;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 /**
  * Created by koval on 24.01.2017.

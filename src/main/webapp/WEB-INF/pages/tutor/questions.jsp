@@ -44,14 +44,16 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
-                                  data-remove-btn="<fmt:message key="quizzes.confirm"/>">
-                                <input type="hidden" name="question-id" value="${question.id}">
+                            <c:if test="${!question.quiz.active}">
+                                <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
+                                      data-remove-btn="<fmt:message key="quizzes.confirm"/>">
+                                    <input type="hidden" name="question-id" value="${question.id}">
 
-                                <input id="question_remove" class="remove_btn" type="image"
-                                       src="${deleteQuestionIcon}" width="25px" height="25px"
-                                       name="command" value="questionRemove">
-                            </form>
+                                    <input id="question_remove" class="remove_btn" type="image"
+                                           src="${deleteQuestionIcon}" width="25px" height="25px"
+                                           name="command" value="questionRemove">
+                                </form>
+                            </c:if>
                         </div>
                     </div>
                 </c:forEach>

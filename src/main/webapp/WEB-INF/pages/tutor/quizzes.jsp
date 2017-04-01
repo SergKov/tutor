@@ -14,6 +14,8 @@
 <c:url value="/tutor/quizzes/add" var="addQuizHref"/>
 <c:url value="/resource/img/see.ico" var="seeQuestionsIcon"/>
 <c:url value="/resource/img/delete.ico" var="deleteQuizIcon"/>
+<c:url value="/resource/img/active.ico" var="activeQuizIcon"/>
+<c:url value="/resource/mg/edit.ico" var="editQuizIcon"/>
 <c:url value="/resource/img/plus.ico" var="plusQuestionIcon"/>
 
 <templates:page_template>
@@ -27,11 +29,34 @@
             <c:when test="${not empty quizzes}">
                 <c:forEach items="${quizzes}" var="quiz">
                     <div class="row">
-                        <div class="col-xs-6 col-xs-offset-2">
-                            <div class="form-group">
-                                <input id="quiz_name" type="text" class="form-control"
-                                       name="quiz-name" value="${quiz.name}" readonly="readonly">
-                            </div>
+                        <div class="col-xs-5 col-xs-offset-2">
+                            <c:choose>
+                                <c:when test="${!quiz.active}">
+                                    <c:choose>
+                                        <c:when test="${empty errorMsgs['name']}">
+                                            <div class="form-group">
+                                                <input id="quiz_name" type="text" class="form-control"
+                                                       name="quiz-name" value="${quiz.name}">
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="form-group has-error has-feedback">
+                                                <input id="quiz_name" type="text" class="form-control"
+                                                       name="quiz-name" value="${quizForm.name}">
+                                            </div>
+                                            <div>
+                                                <c:out value="${errorMsgs['name']}"/>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:otherwise>
+                                        <div class="form-group has-error has-feedback">
+                                            <input id="quiz_name" type="text" class="form-control"
+                                                   name="quiz-name" value="${quiz.name}" readonly="readonly">
+                                        </div>
+                                    </c:otherwise>
+                                </c:when>
+                            </c:choose>
                         </div>
 
                         <div class="col-xs-1">
@@ -43,7 +68,17 @@
                             </form>
                         </div>
 
-                        <div class="col-xs-2">
+                        <c:if test="${!quiz.active}">
+                            <div class="col-xs-1">
+                                <form action="${quizzesAction}" method="POST" class="form-horizontal">
+                                    <input id="quiz_update" type="image" src="${editQuizIcon}" width="25px"
+                                           height="25px"
+                                           name="command" value="quizUpdate">
+                                </form>
+                            </div>
+                        </c:if>
+
+                        <div class="col-xs-1">
                             <form action="${quizzesAction}" method="POST" class="form-horizontal js-remove-btn"
                                   data-remove-btn="<fmt:message key="quizzes.confirm"/>">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
@@ -53,8 +88,28 @@
                                        name="command" value="quizRemove">
                             </form>
                         </div>
+
+                        <c:if test="${!quiz.active}">
+                            <div class="col-xs-1">
+                                <form action="${quizzesAction}" method="POST" class="form-horizontal">
+                                    <input id="quiz_active" type="image" src="${activeQuizIcon}" width="25px"
+                                           height="25px"
+                                           name="command" value="quizUpdate">
+                                </form>
+                            </div>
+                        </c:if>
                     </div>
                 </c:forEach>
+
+                <%--<form action="${quizzesAction}" method="POST">--%>
+                <%--<ul class="pagination">--%>
+                <%--<c:forEach var="i" begin="1" end="${fn:length(test)}">--%>
+                <%--<li>--%>
+                <%--<button name="quiz-number" value="${i}"><c:out value="${i}"/></button>--%>
+                <%--</li>--%>
+                <%--</c:forEach>--%>
+                <%--</ul>--%>
+                <%--</form>--%>
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="quizPage.text"/></h1>
@@ -66,7 +121,5 @@
                 <img src="${plusQuestionIcon}" width="25px" height="25px">
             </a>
         </div>
-
     </jsp:body>
-
 </templates:page_template>
