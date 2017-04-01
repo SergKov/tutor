@@ -2,6 +2,7 @@ package com.getprepared.core.service;
 
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.dto.TestQuestion;
 
@@ -20,9 +21,9 @@ public interface QuestionService {
 
     List<Question> findByQuizIdRandom(Long id);
 
-    void update(Question question) throws EntityExistsException;
+    void update(Question question) throws EntityExistsException, QuizTerminatedException;
 
-    void remove(Question question) throws EntityNotFoundException;
+    void remove(Question question) throws EntityNotFoundException, QuizTerminatedException;
 
     List<TestQuestion> startTest(Long quizId);
 

@@ -13,7 +13,7 @@ import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 /**
  * Created by koval on 31.03.2017.
  */
-public abstract class AbstractSettingsCommand implements Command {
+public abstract class AbstractUpdatePasswordCommand implements Command {
 
     @Inject
     private Messages messages;

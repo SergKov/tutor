@@ -19,7 +19,7 @@ public interface QuestionDao {
 
     List<Question> findByQuizIdRandom(Long quizId);
 
-    void update(Question question) throws EntityExistsException;
+    void update(String text, Long id) throws EntityExistsException;
 
     void removeById(Long id) throws EntityNotFoundException;
 }

@@ -62,12 +62,15 @@ public class QuestionDaoImpl implements QuestionDao {
     }
 
     @Override
-    public void update(final Question question) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> ps.setString(1, question.getText()));
+    public void update(final String text, final Long id) throws EntityExistsException {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> {
+            ps.setString(1, text);
+            ps.setLong(2, id);
+        });
     }
 
     @Override
-    public void removeById(final Long id)  {
+    public void removeById(final Long id) {
         jdbcTemplate.remove(prop.getProperty(KEY.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }
 

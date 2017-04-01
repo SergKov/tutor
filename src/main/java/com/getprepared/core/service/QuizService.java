@@ -21,7 +21,7 @@ public interface QuizService {
 
     List<Quiz> findAllActive(PageableData pageableData);
 
-    void active(Quiz quiz);
+    void active(Quiz quiz) throws QuizTerminatedException;
 
     void update(Quiz quiz) throws QuizTerminatedException, EntityExistsException;
 

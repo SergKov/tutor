@@ -67,7 +67,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findAllByTutorId(final Long id, final PageableData page)  {
+    public List<Quiz> findAllByTutorId(final Long id, final PageableData page) {
         transactionManager.begin();
         final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
 
@@ -89,26 +89,27 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public void active(final Quiz quiz) {
+    public void active(final Quiz quiz) throws QuizTerminatedException {
+        checkActive(quiz);
+
         transactionManager.begin();
-        quizDao.activeQuiz(quiz);
+        quizDao.activeQuiz(quiz.getId());
         transactionManager.commit();
     }
 
     @Override
     public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException {
+        checkActive(quiz);
+
         try {
-            if (!quiz.isActive()) {
-                transactionManager.begin();
-                quizDao.update(quiz);
-                transactionManager.commit();
-            } else {
-                throw new QuizTerminatedException(String.format("Quiz %s is active.", quiz.getName()));
-            }
-        } catch (EntityExistsException | QuizTerminatedException e) {
+            transactionManager.begin();
+            quizDao.update(quiz.getName(), quiz.getId());
+            transactionManager.commit();
+        } catch (final EntityExistsException e) {
             transactionManager.rollback();
             throw e;
         }
+
     }
 
     private void initQuiz(final List<Quiz> quizzes) {

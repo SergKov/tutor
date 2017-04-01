@@ -4,11 +4,13 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
+import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.dto.TestQuestion;
 
@@ -63,7 +65,6 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     @Override
     public List<Question> findByQuizId(final Long id) {
-
         transactionManager.begin();
         final List<Question> questions = questionDao.findByQuizId(id);
 
@@ -93,10 +94,14 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public void update(final Question question) throws EntityExistsException {
+    public void update(final Question question) throws EntityExistsException, QuizTerminatedException {
+        checkActive(question.getQuiz());
+
         try {
             transactionManager.begin();
-            questionDao.update(question);
+            questionDao.update(question.getText(), question.getId());
+            final List<Answer> answers = question.getAnswers();
+            answerService.update(answers);
             transactionManager.commit();
         } catch (final EntityExistsException e) {
             transactionManager.rollback();
@@ -105,7 +110,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public void remove(final Question question) throws EntityNotFoundException {
+    public void remove(final Question question) throws EntityNotFoundException, QuizTerminatedException {
+        checkActive(question.getQuiz());
+
         try {
             transactionManager.begin();
             questionDao.removeById(question.getId());
@@ -114,6 +121,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             transactionManager.rollback();
             throw e;
         }
+
     }
 
     @Override

@@ -20,9 +20,9 @@ public interface QuizDao {
 
     List<Quiz> findAllCreated(PageableData page);
 
-    void update(Quiz quiz) throws EntityExistsException;
+    void update(String name, Long id) throws EntityExistsException;
 
-    void activeQuiz(Quiz quiz);
+    void activeQuiz(Long id);
 
     void remove(Long id) throws EntityNotFoundException;
 }

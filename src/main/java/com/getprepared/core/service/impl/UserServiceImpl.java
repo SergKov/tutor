@@ -118,7 +118,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     private void checkPassword(final String enteredPassword, final String oldPassword) throws EntityNotFoundException {
         if (!passwordEncoder.matches(enteredPassword, oldPassword)) {
-            throw new EntityNotFoundException("Old password is incorrect.");
+            throw new EntityNotFoundException("You have entered incorrect old password");
         }
     }
 }

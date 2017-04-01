@@ -2,6 +2,7 @@ package com.getprepared.web.command.tutor;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.annotation.CommandMapping;
@@ -39,7 +40,7 @@ public class QuestionRemoveCommand extends AbstractQuestionsCommand {
             final Question question = questionService.findById(questionId);
             questionService.remove(question);
             response.sendRedirect(LINK.TUTOR_QUESTIONS);
-        } catch (EntityNotFoundException | NumberFormatException e) {
+        } catch (EntityNotFoundException | NumberFormatException | QuizTerminatedException e) {
             LOG.warn(e.getMessage(), e);
             response.sendError(SC_NOT_FOUND);
         }

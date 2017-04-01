@@ -34,7 +34,10 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEY.SAVE), quiz, ps -> ps.setString(1, quiz.getName()));
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.SAVE), quiz, ps -> {
+            ps.setString(1, quiz.getName());
+            ps.setLong(2, quiz.getUser().getId());
+        });
     }
 
     @Override
@@ -56,13 +59,16 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public void update(final Quiz quiz) throws EntityExistsException {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> ps.setString(1, quiz.getName()));
+    public void update(final String name, final Long id) throws EntityExistsException {
+        jdbcTemplate.update(prop.getProperty(KEY.UPDATE), ps -> {
+            ps.setString(1, name);
+            ps.setLong(2, id);
+        });
     }
 
     @Override
-    public void activeQuiz(final Quiz quiz) {
-        jdbcTemplate.executeUpdate(prop.getProperty(KEY.ACTIVE_QUIZ));
+    public void activeQuiz(final Long id) {
+        jdbcTemplate.update(prop.getProperty(KEY.ACTIVE_QUIZ), ps -> ps.setLong(1, id));
     }
 
     @Override

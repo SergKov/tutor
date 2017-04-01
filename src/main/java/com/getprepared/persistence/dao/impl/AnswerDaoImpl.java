@@ -69,8 +69,9 @@ public class AnswerDaoImpl implements AnswerDao {
             @Override
             public void setValues(final PreparedStatement ps, final int i) throws SQLException {
                 final Answer answer = answers.get(i);
-                ps.setString(1, answer.getText());
-                ps.setString(2, answer.getType().name());
+                ps.setLong(1, answer.getQuestion().getId());
+                ps.setString(2, answer.getText());
+                ps.setString(3, answer.getType().name());
             }
 
             @Override

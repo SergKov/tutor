@@ -2,7 +2,7 @@ package com.getprepared.web.command.tutor;
 
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.command.common.AbstractSettingsCommand;
+import com.getprepared.web.command.common.AbstractUpdatePasswordCommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +16,7 @@ import static com.getprepared.web.constant.PageConstant.PAGE;
  */
 @Controller
 @CommandMapping(LINK.TUTOR_UPDATE_PASSWORD)
-public class TutorSettingsPageCommand extends AbstractSettingsCommand {
+public class TutorUpdatePasswordPageCommand extends AbstractUpdatePasswordCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {

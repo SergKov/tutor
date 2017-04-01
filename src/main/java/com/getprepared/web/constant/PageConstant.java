@@ -87,7 +87,7 @@ public final class PageConstant {
 
         public static final String STUDENT_SIGN_IN = "studentSignIn";
 
-        public static final String STUDENT_SETTINGS = "studentSettings";
+        public static final String STUDENT_UPDATE_PASSWORD = "studentUpdatePassword";
 
         public static final String STUDENT_TEST_START = "testStart";
 
@@ -97,7 +97,7 @@ public final class PageConstant {
 
         public static final String TUTOR_SIGN_IN = "tutorSignIn";
 
-        public static final String TUTOR_SETTINGS = "tutorSettings";
+        public static final String TUTOR_UPDATE_PASSWORD = "tutorUpdatePassword";
 
         public static final String TUTOR_QUIZ_ADD = "quizAdd";
 
