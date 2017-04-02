@@ -13,7 +13,7 @@
 <c:url value="/" var="signInAction"/>
 <c:url value="/sign-up" var="signUpHref"/>
 
-<c:set value="email" var="email"/>
+<c:set value="email" var="idEmail"/>
 <c:set value="psw" var="psw"/>
 
 <templates:page_template>
@@ -35,7 +35,7 @@
                         <c:when test="${empty errorMsg}">
                             <div class="form-group">
                                 <div class="col-xs-3">
-                                    <input type="text" pattern="${emailRegex}" class="form-control" id="${email}"
+                                    <input type="text" pattern="${emailRegex}" class="form-control" id="${idEmail}"
                                            name="email"
                                            placeholder="<fmt:message key="homePage.enterEmail"/>" required>
                                 </div>
@@ -44,7 +44,7 @@
                         <c:otherwise>
                             <div class="form-group has-error has-feedback">
                                 <div class="col-xs-3">
-                                    <input type="text" pattern="${emailRegex}" class="form-control" id="${email}"
+                                    <input type="text" pattern="${emailRegex}" class="form-control" id="${idEmail}"
                                            name="email"
                                            value="${email}"
                                            placeholder="<fmt:message key="homePage.enterEmail"/>" required>
