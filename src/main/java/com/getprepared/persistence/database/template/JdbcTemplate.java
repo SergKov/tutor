@@ -21,6 +21,7 @@ public class JdbcTemplate {
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
     private static final int SQL_DUPLICATE_ERROR_CODE = 1062;
+    private static final String COUNT_FOUND_ROWS = "SELECT FOUND_ROWS()";
 
     @Inject
     private ConnectionProvider connectionProvider;
@@ -143,8 +144,8 @@ public class JdbcTemplate {
 
         final Connection con = connectionProvider.getConnection();
 
-        try (Statement ps = con.createStatement()) {
-            ps.executeUpdate(sql);
+        try (Statement statement = con.createStatement()) {
+            statement.executeUpdate(sql);
         } catch (final SQLException e) {
             final String errorMsg = String.format("Failed to execute update %s", sql);
             LOG.error(errorMsg, e);
@@ -219,5 +220,18 @@ public class JdbcTemplate {
 
     public <T> List<T> executeQuery(final String sql, final RowMapper<T> rowMapper) {
         return executeQuery(sql, new DefaultPreparedStatementSetter(), rowMapper);
+    }
+
+    public Long countFoundRows() {
+        final Connection con = connectionProvider.getConnection();
+
+        try (Statement statement = con.createStatement()) {
+            final ResultSet rs = statement.executeQuery(COUNT_FOUND_ROWS);
+            return rs.getLong(1);
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute query %s", COUNT_FOUND_ROWS);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
     }
 }

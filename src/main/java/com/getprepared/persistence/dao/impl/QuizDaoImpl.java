@@ -59,6 +59,11 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
+    public Long countFoundRows() {
+        return jdbcTemplate.countFoundRows();
+    }
+
+    @Override
     public void update(final String name, final Long id) throws EntityExistsException {
         jdbcTemplate.update(prop.getProperty(KEY.UPDATE), ps -> {
             ps.setString(1, name);

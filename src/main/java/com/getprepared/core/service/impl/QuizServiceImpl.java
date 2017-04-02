@@ -56,6 +56,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
                 final List<Answer> answers = answerService.findByQuestionId(question.getId());
                 question.setAnswers(answers);
             });
+
             quiz.setQuestions(questions);
 
             transactionManager.commit();
@@ -88,30 +89,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         return createdQuizzes;
     }
 
-    @Override
-    public void active(final Quiz quiz) throws QuizTerminatedException {
-        checkActive(quiz);
-
-        transactionManager.begin();
-        quizDao.activeQuiz(quiz.getId());
-        transactionManager.commit();
-    }
-
-    @Override
-    public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException {
-        checkActive(quiz);
-
-        try {
-            transactionManager.begin();
-            quizDao.update(quiz.getName(), quiz.getId());
-            transactionManager.commit();
-        } catch (final EntityExistsException e) {
-            transactionManager.rollback();
-            throw e;
-        }
-
-    }
-
     private void initQuiz(final List<Quiz> quizzes) {
         quizzes.forEach(quiz -> {
             final List<Question> questions = questionService.findByQuizId(quiz.getId());
@@ -123,6 +100,32 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
             quiz.setQuestions(questions);
         });
+    }
+
+    @Override
+    public void active(final Quiz quiz) throws QuizTerminatedException {
+        try {
+            transactionManager.begin();
+            checkActive(quiz);
+            quizDao.activeQuiz(quiz.getId());
+            transactionManager.commit();
+        } catch (final QuizTerminatedException e) {
+            transactionManager.rollback();
+            throw e;
+        }
+    }
+
+    @Override
+    public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException {
+        try {
+            transactionManager.begin();
+            checkActive(quiz);
+            quizDao.update(quiz.getName(), quiz.getId());
+            transactionManager.commit();
+        } catch (EntityExistsException | QuizTerminatedException e) {
+            transactionManager.rollback();
+            throw e;
+        }
     }
 
     @Override

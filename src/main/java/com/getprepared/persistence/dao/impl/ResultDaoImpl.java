@@ -67,6 +67,11 @@ public class ResultDaoImpl implements ResultDao {
                 ps -> ps.setLong(1, quizId), new ResultMapper());
     }
 
+    @Override
+    public Long countFoundRows() {
+        return jdbcTemplate.countFoundRows();
+    }
+
     private static class ResultMapper implements RowMapper<Result> {
 
         @Override

@@ -95,13 +95,12 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     @Override
     public void remove(final Question question) throws EntityNotFoundException, QuizTerminatedException {
-        checkActive(question.getQuiz());
-
         try {
             transactionManager.begin();
+            checkActive(question.getQuiz());
             questionDao.removeById(question.getId());
             transactionManager.commit();
-        } catch (final EntityNotFoundException e) {
+        } catch (EntityNotFoundException | QuizTerminatedException e) {
             transactionManager.rollback();
             throw e;
         }
