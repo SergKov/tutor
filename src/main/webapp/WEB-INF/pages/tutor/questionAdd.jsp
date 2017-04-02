@@ -17,7 +17,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="addQuestion.title"/>
+        <fmt:message key="addQuestion.title" bundle="${lang}"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -25,7 +25,7 @@
             <input type="hidden" name="command" value="questionAdd"/>
 
             <div class="row">
-                <label for="text"><fmt:message key="addQuestion.text"/></label>
+                <label for="text"><fmt:message key="addQuestion.text" bundle="${lang}"/></label>
             </div>
 
             <div class="row">
@@ -37,10 +37,10 @@
 
             <div class="row">
                 <div class="col-xs-8">
-                    <span><fmt:message key="addQuestion.answer"/></span>
+                    <span><fmt:message key="addQuestion.answer" bundle="${lang}"/></span>
                 </div>
                 <div class="col-xs-1 col-xs-offset-2">
-                    <span><fmt:message key="addQuestion.type"/> </span>
+                    <span><fmt:message key="addQuestion.type" bundle="${lang}"/> </span>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                         <select id="answerType" name="answerType[]" class="form-control" required>
                             <c:forEach items="${answerTypes}" var="type">
                                 <option value="${type}">
-                                    <fmt:message key="addQuestion.${type}"/>
+                                    <fmt:message key="addQuestion.${type}" bundle="${lang}"/>
                                 </option>
                             </c:forEach>
                         </select>
@@ -76,7 +76,7 @@
             <div class="row">
                 <div class="col-xs-4 col-xs-offset-10">
                     <button type="submit" class="btn btn-primary btn-md">
-                        <fmt:message key="addQuestion.add"/>
+                        <fmt:message key="addQuestion.add" bundle="${lang}"/>
                     </button>
                 </div>
             </div>

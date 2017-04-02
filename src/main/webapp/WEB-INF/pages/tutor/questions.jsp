@@ -21,7 +21,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="questionPage.welcome"/><c:out value=" ${tutor.name} !"/>
+        <fmt:message key="questionPage.welcome" bundle="${lang}"/> ${tutor.name} !
     </jsp:attribute>
 
     <jsp:body>
@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-xs-offset-2">
                             <c:set var="shortText" value="${fn:substring(question.text, 0, 50)}"/>
-                            <c:out value="${shortText}"/>
+                                ${shortText}
                         </div>
 
                         <div class="col-xs-1">
@@ -46,7 +46,7 @@
                         <div class="col-xs-2">
                             <c:if test="${!question.quiz.active}">
                                 <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
-                                      data-remove-btn="<fmt:message key="quizzes.confirm"/>">
+                                      data-remove-btn="<fmt:message key="quizzes.confirm" bundle="${lang}"/>">
                                     <input type="hidden" name="question-id" value="${question.id}">
 
                                     <input id="question_remove" class="remove_btn" type="image"
@@ -59,7 +59,7 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center"><fmt:message key="questionPage.text"/></h1>
+                <h1 class="text-muted text-center"><fmt:message key="questionPage.text" bundle="${lang}"/></h1>
             </c:otherwise>
         </c:choose>
 
@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col-xs-offset-5 col-xs-2">
                 <a href="${quizzesHref}">
-                    <fmt:message key="questions.changeQuiz"/>
+                    <fmt:message key="questions.changeQuiz" bundle="${lang}"/>
                 </a>
             </div>
         </div>

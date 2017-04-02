@@ -11,15 +11,15 @@ import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.form.PageableForm;
 import com.getprepared.web.validation.ValidationService;
-import org.apache.commons.collections4.MapUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
-import static com.getprepared.web.constant.WebConstant.*;
-import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
-import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
+import static com.getprepared.web.constant.WebConstant.INPUT;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static org.apache.commons.collections4.MapUtils.isEmpty;
 
 /**
  * Created by koval on 21.01.2017.
@@ -46,11 +46,13 @@ public abstract class AbstractQuizCommand implements Command {
         form.setNumberOfElements(request.getParameter(INPUT.NUMBER_OF_ELEMENTS));
 
         final Map<String, String> errors = validationService.validate(form);
-        if (!MapUtils.isEmpty(errors)) {
+        if (!isEmpty(errors)) {
             request.setAttribute(ERROR_MSGS, errors);
         } else {
-            final List<Quiz> quizzes = quizService.findAllByTutorId(id, new PageableData());
-            request.setAttribute(REQUEST_ATTRIBUTE.QUIZZES, quizzes);
+            final PageableData pagination = pageableFormConverter.convert(form);
+            final List<Quiz> quizzes = quizService.findAllByTutorId(id, pagination);
+            request.setAttribute(PAGINATION, pagination);
+            request.setAttribute(QUIZZES, quizzes);
         }
     }
 }

@@ -21,14 +21,14 @@
             <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
             <div class="form-control text-border col-xs-8" id="test">
-                <c:out value="${testQuestion.question.text}"/>
+                    ${testQuestion.question.text}
             </div>
 
             <c:forEach items="${testQuestion.question.answers}" var="answer">
                 <div class="row">
                     <br/>
                     <div class="col-xs-10">
-                        <c:out value="${answer.text}"/>
+                            ${answer.text}
                     </div>
                     <div class="col-xs-2">
                         <input type="checkbox" value="${answer.id}" name="chosenAnswersId[]"
@@ -39,7 +39,7 @@
             </c:forEach>
 
             <button type="submit" id="save_btn" class="col-xs-2 btn btn-info btn-md">
-                <fmt:message key="test.answer.save"/>
+                <fmt:message key="test.answer.save" bundle="${lang}"/>
             </button>
         </form>
 
@@ -54,12 +54,12 @@
         </form>
 
         <form action="${testAction}" method="POST" class="form-horizontal js-finish-btn"
-              data-finish-btn="<fmt:message key="test.confirm.finish"/>">
+              data-finish-btn="<fmt:message key="test.confirm.finish" bundle="${lang}"/>">
             <input type="hidden" name="command" value="testEnd">
 
             <div class="col-xs-5">
                 <button type="submit" id="finish_btn" class="btn btn-danger btn-md">
-                    <fmt:message key="test.submit"/>
+                    <fmt:message key="test.submit" bundle="${lang}"/>
                 </button>
             </div>
         </form>

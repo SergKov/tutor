@@ -15,7 +15,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="updatePassword.title"/>
+        <fmt:message key="updatePassword.title" bundle="${lang}"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -26,11 +26,12 @@
                 <div class="form-group">
                     <div class="row">
                         <label class="control-label col-xs-5" for="oldPsw"><fmt:message
-                                key="updatePassword.oldPassword"/></label>
+                                key="updatePassword.oldPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="oldPsw"
-                                   name="password" placeholder="<fmt:message key="updatePassword.enterOldPassword"/>"
+                                   name="password"
+                                   placeholder="<fmt:message key="updatePassword.enterOldPassword" bundle="${lang}"/>"
                                    required>
                         </div>
                     </div>
@@ -39,11 +40,12 @@
                 <div class="form-group">
                     <div class="row">
                         <label class="control-label col-xs-5" for="newPsw"><fmt:message
-                                key="updatePassword.newPassword"/></label>
+                                key="updatePassword.newPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="newPsw"
-                                   name="password" placeholder="<fmt:message key="updatePassword.enterNewPassword"/>"
+                                   name="password"
+                                   placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
                                    required>
                         </div>
                     </div>
@@ -52,12 +54,13 @@
                 <div class="form-group">
                     <div class="row">
                         <label class="control-label col-xs-5" for="confirm_psw"><fmt:message
-                                key="updatePassword.repeatNewPassword"/></label>
+                                key="updatePassword.repeatNewPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
                                    name="password"
-                                   placeholder="<fmt:message key="updatePassword.enterNewPassword"/>" required>
+                                   placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
+                                   required>
                         </div>
                     </div>
                 </div>
@@ -65,11 +68,11 @@
                 <div class="form-group">
                     <div class="col-xs-offset-5 col-xs-3">
                         <button type="submit" class="btn btn-info btn-block">
-                            <fmt:message key="updatePassword.edit"/>
+                            <fmt:message key="updatePassword.edit" bundle="${lang}"/>
                         </button>
 
                         <button class="btn btn-link btn-block" id="back_btn">
-                            <fmt:message key="updatePassword.back"/>
+                            <fmt:message key="updatePassword.back" bundle="${lang}"/>
                         </button>
                     </div>
                 </div>

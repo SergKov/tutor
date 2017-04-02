@@ -5,6 +5,7 @@
 <%@ attribute name="header" fragment="true" %>
 <%@ attribute name="title" type="java.lang.String" required="true" %>
 <fmt:setBundle basename="messages.base"/>
+
 <html>
 <head>
     <title><fmt:message key="${title}"/></title>

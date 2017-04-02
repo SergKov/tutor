@@ -19,12 +19,12 @@
 <c:url value="/resource/mg/edit.ico" var="editQuizIcon"/>
 <c:url value="/resource/img/plus.ico" var="plusQuestionIcon"/>
 
-<c:set value="quiz_name" var="quizNameId" />
+<c:set value="quiz_name" var="quizNameId"/>
 
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="quizPage.hello"/><c:out value=" ${tutor.name} !"/>
+    <fmt:message key="quizPage.hello" bundle="${lang}"/>" ${tutor.name} !"
 </jsp:attribute>
 
     <jsp:body>
@@ -47,9 +47,7 @@
                                                 <input id="${quizNameId}" type="text" class="form-control"
                                                        name="quiz-name" value="${quizForm.name}">
                                             </div>
-                                            <div>
-                                                <c:out value="${errorMsgs['name']}"/>
-                                            </div>
+                                            <div>${errorMsgs['name']}</div>
                                         </c:otherwise>
                                     </c:choose>
                                     <c:otherwise>
@@ -83,7 +81,7 @@
 
                         <div class="col-xs-1">
                             <form action="${quizzesAction}" method="POST" class="form-horizontal js-remove-btn"
-                                  data-remove-btn="<fmt:message key="quizzes.confirm"/>">
+                                  data-remove-btn="<fmt:message key="quizzes.confirm" bundle="${lang}"/>">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
                                 <input id="quiz_remove" class="remove_btn" type="image"
@@ -110,7 +108,7 @@
                                    numberOfElements="${pagination.numberOfElements}"/>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center"><fmt:message key="quizPage.text"/></h1>
+                <h1 class="text-muted text-center"><fmt:message key="quizPage.text" bundle="${lang}"/></h1>
             </c:otherwise>
         </c:choose>
 

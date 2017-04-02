@@ -17,7 +17,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="addQuiz.title"/>
+        <fmt:message key="addQuiz.title" bundle="${lang}"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -31,7 +31,8 @@
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
                                        pattern="${quizRegex}"
-                                       name="quiz-name" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
+                                       name="quiz-name"
+                                       placeholder="<fmt:message key="addQuiz.placeholder" bundle="${lang}"/>" required>
                             </div>
                             <div class="col-xs-3">
                                 <button type="submit" class="btn btn-primary btn-md">
@@ -45,11 +46,12 @@
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
                                        value="${quiz.name}" pattern="${quizRegex}"
-                                       name="quiz-name" placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
+                                       name="quiz-name"
+                                       placeholder="<fmt:message key="addQuiz.placeholder" bundle="${lang}"/>" required>
                             </div>
                             <div class="col-xs-3">
                                 <button type="submit" class="btn btn-primary btn-md">
-                                    <fmt:message key="addQuiz.add"/>
+                                    <fmt:message key="addQuiz.add" bundle="${lang}"/>
                                 </button>
                             </div>
                         </div>
@@ -58,7 +60,7 @@
 
                 <c:if test="${not empty errorMsgs['name']}">
                     <div class="col-xs-12">
-                        <c:out value="${errorMsgs['name']}"/>
+                            ${errorMsgs['name']}
                     </div>
                 </c:if>
             </form>

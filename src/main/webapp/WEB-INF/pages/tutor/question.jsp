@@ -13,30 +13,30 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="Question"/>
+        <fmt:message key="Question" bundle="${lang}"/>
     </jsp:attribute>
 
     <jsp:body>
 
         <div class="row">
-            <label for="text"><fmt:message key="addQuestion.text"/></label>
+            <label for="text"><fmt:message key="addQuestion.text" bundle="${lang}"/></label>
         </div>
 
         <div class="row">
             <div class="form-group">
                 <textarea class="form-control text-border" rows="3" id="text" disabled>
-                    <c:out value="${question.text}"/>
+                        ${question.text}
                 </textarea>
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-8">
-                <span><fmt:message key="addQuestion.answer"/></span>
+                <span><fmt:message key="addQuestion.answer" bundle="${lang}"/></span>
             </div>
 
             <div class="col-xs-1 col-xs-offset-2">
-                <span><fmt:message key="addQuestion.type"/></span>
+                <span><fmt:message key="addQuestion.type" bundle="${lang}"/></span>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-xs-3 col-xs-offset-10">
                 <button class="btn btn-link btn-block" id="back_btn">
-                    <fmt:message key="text.back"/>
+                    <fmt:message key="text.back" bundle="${lang}"/>
                 </button>
             </div>
         </div>

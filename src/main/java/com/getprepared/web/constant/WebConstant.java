@@ -86,6 +86,8 @@ public final class WebConstant {
 
         public static final String QUESTIONS = "questions";
 
+        public static final String PAGINATION = "pagination";
+
         public static final String QUESTION_TEXT = "questionText";
 
         public static final String CURRENT_QUESTION = "currentQuestion";
