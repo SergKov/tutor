@@ -88,7 +88,7 @@ public class ApplicationContext {
         if (clazz.getAnnotation(Component.class) != null) {
             final Component annotation = clazz.getAnnotation(Component.class);
             beanName = annotation.value();
-        } else {
+        } else if (clazz.getAnnotation(Service.class) != null) {
             final Service annotation = clazz.getAnnotation(Service.class);
             beanName = annotation.value();
         }

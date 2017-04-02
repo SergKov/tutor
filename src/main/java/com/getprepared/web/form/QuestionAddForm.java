@@ -4,7 +4,6 @@ import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.validation.annotation.AnswerType;
 import com.getprepared.web.validation.annotation.NotEmpty;
 import com.getprepared.web.validation.annotation.Size;
-import com.getprepared.web.validation.annotation.SizeEquals;
 
 /**
  * Created by koval on 08.03.2017.
@@ -14,11 +13,9 @@ public class QuestionAddForm {
     @NotEmpty
     private String text;
 
-    @SizeEquals
     @Size(min = 2, max = 10)
     private String[] answersText;
 
-    @SizeEquals
     @Size(min = 2, max = 10)
     @AnswerType({Type.INCORRECT, Type.CORRECT})
     private String[] answersType;
