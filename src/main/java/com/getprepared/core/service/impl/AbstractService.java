@@ -14,7 +14,7 @@ public abstract class AbstractService {
     protected TransactionManager transactionManager;
 
     protected void checkActive(final Quiz quiz) throws QuizTerminatedException {
-        if (quiz.isActive()) {
+        if (quiz.getActive()) {
             throw new QuizTerminatedException(String.format("Quiz %s is active.", quiz));
         }
     }

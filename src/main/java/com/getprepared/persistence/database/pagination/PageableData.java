@@ -14,7 +14,7 @@ public class PageableData {
     }
 
     public Long getOffset() {
-        return numberOfElements * (currentPage - 1) + 1;
+        return numberOfElements * (currentPage - 1);
     }
 
     public Long getCurrentPage() {

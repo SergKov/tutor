@@ -8,11 +8,13 @@ import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
+import com.getprepared.core.service.UserService;
 import com.getprepared.persistence.dao.QuizDao;
 import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.persistence.domain.User;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
@@ -26,6 +28,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     @Inject
     private QuizDao quizDao;
+
+    @Inject
+    private UserService userService;
 
     @Inject
     private QuestionService questionService;
@@ -68,41 +73,51 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     }
 
     @Override
-    public List<Quiz> findAllByTutorId(final Long id, final PageableData page) {
-        transactionManager.begin();
-        final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
-        page.setNumberOfElements(quizDao.countFoundRows());
+    public List<Quiz> findAllByTutorId(final Long id, final PageableData page) throws EntityNotFoundException {
+        try {
+            transactionManager.begin();
+            final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
+            page.setNumberOfElements(quizDao.countFoundRows());
 
-        initQuiz(quizzes);
+            initQuiz(quizzes);
 
-        transactionManager.commit();
-        return quizzes;
+            transactionManager.commit();
+            return quizzes;
+        } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
+            throw e;
+        }
     }
 
     @Override
-    public List<Quiz> findAllActive(final PageableData page) {
-        transactionManager.begin();
-        final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
-        page.setNumberOfElements(quizDao.countFoundRows());
+    public List<Quiz> findAllActive(final PageableData page) throws EntityNotFoundException {
+        try {
+            transactionManager.begin();
+            final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
+            page.setNumberOfElements(quizDao.countFoundRows());
 
-        initQuiz(createdQuizzes);
+            initQuiz(createdQuizzes);
 
-        transactionManager.commit();
-        return createdQuizzes;
+            transactionManager.commit();
+            return createdQuizzes;
+        } catch (final EntityNotFoundException e) {
+            transactionManager.rollback();
+            throw e;
+        }
     }
 
-    private void initQuiz(final List<Quiz> quizzes) {
-        quizzes.forEach(quiz -> {
+    private void initQuiz(final List<Quiz> quizzes) throws EntityNotFoundException {
+        for (final Quiz quiz : quizzes) {
             final List<Question> questions = questionService.findByQuizId(quiz.getId());
 
-            questions.forEach(question -> {
+            for (final Question question : questions) {
                 final List<Answer> answers = answerService.findByQuestionId(question.getId());
                 question.setAnswers(answers);
-            });
+            }
 
-            quiz.setQuestions(questions);
-        });
+        }
     }
+
 
     @Override
     public void active(final Quiz quiz) throws QuizTerminatedException {

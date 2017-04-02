@@ -31,10 +31,12 @@
         <c:choose>
             <c:when test="${not empty quizzes}">
                 <c:forEach items="${quizzes}" var="quiz">
+                    <c:set var="isNotActive" value="${quiz.active eq null or not quiz.active}"/>
+
                     <div class="row">
                         <div class="col-xs-5 col-xs-offset-2">
                             <c:choose>
-                                <c:when test="${!quiz.active}">
+                                <c:when test="${isNotActive}">
                                     <c:choose>
                                         <c:when test="${empty errorMsgs['name']}">
                                             <div class="form-group">
@@ -50,13 +52,13 @@
                                             <div>${errorMsgs['name']}</div>
                                         </c:otherwise>
                                     </c:choose>
-                                    <c:otherwise>
-                                        <div class="form-group">
-                                            <input id="${quizNameId}" type="text" class="form-control"
-                                                   name="quiz-name" value="${quiz.name}" readonly="readonly">
-                                        </div>
-                                    </c:otherwise>
                                 </c:when>
+                                <c:otherwise>
+                                    <div class="form-group">
+                                        <input id="${quizNameId}" type="text" class="form-control"
+                                               name="quiz-name" value="${quiz.name}" readonly="readonly">
+                                    </div>
+                                </c:otherwise>
                             </c:choose>
                         </div>
 
@@ -69,7 +71,7 @@
                             </form>
                         </div>
 
-                        <c:if test="${!quiz.active}">
+                        <c:if test="${isNotActive}">
                             <div class="col-xs-1">
                                 <form action="${quizzesAction}" method="POST" class="form-horizontal">
                                     <input id="quiz_update" type="image" src="${editQuizIcon}" width="25px"
@@ -90,7 +92,7 @@
                             </form>
                         </div>
 
-                        <c:if test="${!quiz.active}">
+                        <c:if test="${isNotActive}">
                             <div class="col-xs-1">
                                 <form action="${quizzesAction}" method="POST" class="form-horizontal">
                                     <input id="quiz_active" type="image" src="${activeQuizIcon}" width="25px"

@@ -6,8 +6,10 @@ import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.constant.WebConstant;
 import com.getprepared.web.form.QuizAddForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -57,6 +59,8 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
             request.setAttribute(ERROR_MSGS, messages.getMessages(errors, request.getLocale()));
         } else {
             final Quiz quiz = quizAddConverter.convert(quizForm);
+            final User user = (User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.TUTOR);
+            quiz.setUser(user);
             try {
                 quizService.save(quiz);
                 response.sendRedirect(LINK.TUTOR_QUIZZES);

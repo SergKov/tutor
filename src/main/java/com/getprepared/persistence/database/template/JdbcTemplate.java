@@ -227,6 +227,7 @@ public class JdbcTemplate {
 
         try (Statement statement = con.createStatement()) {
             final ResultSet rs = statement.executeQuery(COUNT_FOUND_ROWS);
+            rs.next();
             return rs.getLong(1);
         } catch (final SQLException e) {
             final String errorMsg = String.format("Failed to execute query %s", COUNT_FOUND_ROWS);

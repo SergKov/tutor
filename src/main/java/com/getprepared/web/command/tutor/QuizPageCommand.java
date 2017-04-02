@@ -1,6 +1,7 @@
 package com.getprepared.web.command.tutor;
 
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
@@ -39,18 +40,22 @@ public class QuizPageCommand extends AbstractQuizCommand {
 
         if (isEmpty(quizId)) {
             request.getSession().removeAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
-            fillPage(request, quizService);
-            return PAGE.TUTOR_QUIZZES;
+            try {
+                fillPage(request, quizService);
+                return PAGE.TUTOR_QUIZZES;
+            } catch (final EntityNotFoundException e) {
+                response.sendRedirect(LINK.TUTOR_SIGN_IN);
+            }
         }
 
         if (isNumeric(quizId)) {
             final Long parsedQuizId = Long.valueOf(quizId);
             request.getSession().setAttribute(SESSION_ATTRIBUTE.QUIZ_ID, parsedQuizId);
             response.sendRedirect(LINK.TUTOR_QUESTIONS);
-            return REDIRECT;
+        } else {
+            response.sendError(SC_NOT_FOUND);
         }
 
-        response.sendError(SC_NOT_FOUND);
         return REDIRECT;
     }
 }

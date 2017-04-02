@@ -33,7 +33,7 @@ public class Quiz extends Entity {
         this.user = user;
     }
 
-    public Boolean isActive() {
+    public Boolean getActive() {
         return active;
     }
 
