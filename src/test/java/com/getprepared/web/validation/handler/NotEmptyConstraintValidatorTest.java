@@ -1,41 +1,39 @@
 package com.getprepared.web.validation.handler;
 
-import org.junit.Before;
+import com.getprepared.web.validation.annotation.NotEmpty;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Created by koval on 02.04.2017.
  */
-@RunWith(Parameterized.class)
+@RunWith(MockitoJUnitRunner.class)
 public class NotEmptyConstraintValidatorTest {
 
+    @InjectMocks
     private NotEmptyConstraintValidator validator;
 
-    @Before
-    public void initialize() {
-        validator = new NotEmptyConstraintValidator();
-    }
-
-    @Parameterized.Parameters
-    public static Collection data() {
-        return Arrays.asList(new Object[][] {
-                {"2", false},
-                {"", true},
-                {".", false},
-                {"  ", true},
-                {"           ", true},
-                {"      2     ", false},
-                {"null", false}
-        });
+    @Test
+    public void requireIsValidWithEmptyString() {
+        Assert.assertFalse(validator.isValid(""));
     }
 
     @Test
-    public void test() {
+    public void requireIsValidWithManySpacesString() {
+        Assert.assertFalse(validator.isValid("           "));
+    }
 
+    @Test
+    public void requireIsValidWithManySpacesAndSomeText() {
+        Assert.assertTrue(validator.isValid(" 12 sdds 123     3 "));
+    }
+
+    @Test
+    public void requireIsValidWithText() {
+        Assert.assertTrue(validator.isValid("123"));
     }
 }

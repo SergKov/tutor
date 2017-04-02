@@ -12,6 +12,6 @@ public class NotEmptyConstraintValidator implements ConstraintValidator<NotEmpty
 
     @Override
     public boolean isValid(final String item) {
-        return isNotEmpty(item);
+        return isNotEmpty(item.trim());
     }
 }
