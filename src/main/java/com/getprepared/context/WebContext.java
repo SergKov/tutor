@@ -79,7 +79,7 @@ public class WebContext {
         }
     }
 
-    public Optional<Command> getCommand(final String commandName) {
-        return Optional.ofNullable(container.get(commandName));
+    public Command getCommand(final String commandName) {
+        return container.get(commandName);
     }
 }

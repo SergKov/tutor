@@ -7,5 +7,5 @@ import com.getprepared.context.ApplicationContext;
  */
 public interface BeanPostProcessor extends Ordered {
 
-    void process(Object bean, ApplicationContext applicationContext);
+    Object process(Object bean, ApplicationContext applicationContext);
 }

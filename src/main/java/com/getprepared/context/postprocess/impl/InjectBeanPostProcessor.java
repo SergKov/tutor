@@ -17,7 +17,7 @@ import static java.util.Arrays.stream;
 public class InjectBeanPostProcessor implements BeanPostProcessor {
 
     @Override
-    public void process(final Object bean, final ApplicationContext applicationContext) {
+    public Object process(final Object bean, final ApplicationContext applicationContext) {
         for (Class clazz = bean.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
             final Field[] fields = clazz.getDeclaredFields();
             stream(fields)
@@ -27,6 +27,7 @@ public class InjectBeanPostProcessor implements BeanPostProcessor {
                         setField(field, bean, injectedValue);
                     });
         }
+        return bean;
     }
 
     @Override
