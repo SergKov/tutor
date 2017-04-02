@@ -38,10 +38,10 @@ public class FrontController extends HttpServlet {
     private void getPage(final HttpServletRequest req, final HttpServletResponse resp,
                          final String commandKey) throws IOException, ServletException {
 
-        final Optional<Command> command = getWebContext().getCommand(commandKey);
+        final Command command = getWebContext().getCommand(commandKey);
 
-        if (command.isPresent()) {
-            final String page = command.get().execute(req, resp);
+        if (command != null) {
+            final String page = command.execute(req, resp);
             if (!REDIRECT.equals(page)) {
                 req.getRequestDispatcher(page).forward(req, resp);
             }

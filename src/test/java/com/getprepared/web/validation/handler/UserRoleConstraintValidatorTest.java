@@ -28,42 +28,42 @@ public class UserRoleConstraintValidatorTest {
     @Test
     public void requireIsValidWithIncorrectRole() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertFalse(userRoleConstraintValidator.isValid("stdent"));
+        assertFalse(userRoleConstraintValidator.isValid("stdent"));
     }
 
     @Test
     public void requireIsValidWithEmptyString() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertFalse(userRoleConstraintValidator.isValid(""));
+        assertFalse(userRoleConstraintValidator.isValid(""));
     }
 
     @Test
     public void requireIsValidWithStudentInOtherRegister() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertTrue(userRoleConstraintValidator.isValid("StuDENt"));
+        assertTrue(userRoleConstraintValidator.isValid("StuDENt"));
     }
 
     @Test
     public void requireIsValidWithTutorInOtherRegister() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertTrue(userRoleConstraintValidator.isValid("TuTOr"));
+        assertTrue(userRoleConstraintValidator.isValid("TuTOr"));
     }
 
     @Test
     public void requireIsValidWithRoleStudent() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertTrue(userRoleConstraintValidator.isValid("Student"));
+        assertTrue(userRoleConstraintValidator.isValid("Student"));
     }
 
     @Test
     public void requireIsValidWithRoleTutor() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertTrue(userRoleConstraintValidator.isValid("Tutor"));
+        assertTrue(userRoleConstraintValidator.isValid("Tutor"));
     }
 
     @Test
     public void requireIsValidWithNotExistsRole() throws Exception {
         when(userRole.value()).thenReturn(Role.values());
-        Assert.assertFalse(userRoleConstraintValidator.isValid("Manager"));
+        assertFalse(userRoleConstraintValidator.isValid("Manager"));
     }
 }

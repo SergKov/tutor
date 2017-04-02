@@ -21,7 +21,7 @@ public class PageableData {
         return currentPage;
     }
 
-    public void setCurrentPage(final Long currentPage) {
+    public void setCurrentPage(Long currentPage) {
         this.currentPage = currentPage;
     }
 
@@ -29,7 +29,7 @@ public class PageableData {
         return numberOfPages;
     }
 
-    public void setNumberOfPages(final Long numberOfPages) {
+    public void setNumberOfPages(Long numberOfPages) {
         this.numberOfPages = numberOfPages;
     }
 
@@ -37,7 +37,7 @@ public class PageableData {
         return numberOfElements;
     }
 
-    public void setNumberOfElements(final Long numberOfElements) {
+    public void setNumberOfElements(Long numberOfElements) {
         this.numberOfElements = numberOfElements;
     }
 }

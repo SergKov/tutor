@@ -44,12 +44,9 @@ public class QuizRemoveCommand extends AbstractQuizCommand {
 
         try {
             final Long parsedQuizId = Long.parseLong(quizId);
-
-            final Quiz quiz = quizService.findById(parsedQuizId);
-            quizService.remove(quiz);
-
+            quizService.remove(parsedQuizId);
             response.sendRedirect(LINK.TUTOR_QUIZZES);
-        } catch (EntityNotFoundException | NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendError(SC_NOT_FOUND);
         }
