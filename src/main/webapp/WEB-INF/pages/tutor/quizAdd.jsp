@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-xs-3">
                                 <button type="submit" class="btn btn-primary btn-md">
-                                    <fmt:message key="addQuiz.add"/>
+                                    <fmt:message key="addQuiz.add" bundle="${lang}"/>
                                 </button>
                             </div>
                         </div>

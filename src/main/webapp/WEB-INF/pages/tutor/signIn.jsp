@@ -58,7 +58,7 @@
 
                 <div class="row">
                     <label class="control-label col-xs-5" for="${psw}"><fmt:message
-                            key="tutorSignIn.password"/></label>
+                            key="tutorSignIn.password" bundle="${lang}"/></label>
 
                     <c:choose>
                         <c:when test="${empty errorMsg}">

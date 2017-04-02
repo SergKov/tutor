@@ -15,7 +15,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="signUp.title"/>
+        <fmt:message key="signUp.title" bundle="${lang}"/>
     </jsp:attribute>
 
     <jsp:body>
