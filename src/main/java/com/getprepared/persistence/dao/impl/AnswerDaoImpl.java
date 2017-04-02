@@ -64,6 +64,24 @@ public class AnswerDaoImpl implements AnswerDao {
     }
 
     @Override
+    public void updateBatch(final List<Answer> answers) {
+        jdbcTemplate.batchUpdate(prop.getProperty(KEY.UPDATE), new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(final PreparedStatement ps, final int i) throws SQLException {
+                final Answer answer = answers.get(i);
+                ps.setLong(1, answer.getQuestion().getId());
+                ps.setString(2, answer.getText());
+                ps.setString(3, answer.getType().name());
+            }
+
+            @Override
+            public int getBatchSize() {
+                return answers.size();
+            }
+        });
+    }
+
+    @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
         return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), ID_KEY),
                 ps -> ps.setLong(1, id), new AnswerMapper());

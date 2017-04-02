@@ -64,6 +64,21 @@ public class JdbcTemplate {
         }
     }
 
+    public void batchUpdate(final String sql,
+                            final BatchPreparedStatementSetter batchSetter)  {
+
+        final Connection con = connectionProvider.getConnection();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            addBatch(batchSetter, ps);
+            ps.executeBatch();
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute batch update %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        }
+    }
+
     private void addBatch(final BatchPreparedStatementSetter batchSetter,
                           final PreparedStatement ps) throws SQLException {
         final int batchSize = batchSetter.getBatchSize();
