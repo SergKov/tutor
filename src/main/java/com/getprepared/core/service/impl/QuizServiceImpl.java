@@ -71,6 +71,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     public List<Quiz> findAllByTutorId(final Long id, final PageableData page) {
         transactionManager.begin();
         final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
+        page.setNumberOfElements(quizDao.countFoundRows());
 
         initQuiz(quizzes);
 
@@ -82,6 +83,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     public List<Quiz> findAllActive(final PageableData page) {
         transactionManager.begin();
         final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
+        page.setNumberOfElements(quizDao.countFoundRows());
 
         initQuiz(createdQuizzes);
 
@@ -106,7 +108,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     public void active(final Quiz quiz) throws QuizTerminatedException {
         try {
             transactionManager.begin();
-            checkActive(quiz);
+            checkActive(quiz); // TODO ???
             quizDao.activeQuiz(quiz.getId());
             transactionManager.commit();
         } catch (final QuizTerminatedException e) {
@@ -119,7 +121,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException {
         try {
             transactionManager.begin();
-            checkActive(quiz);
+            checkActive(quiz); // TODO ???
             quizDao.update(quiz.getName(), quiz.getId());
             transactionManager.commit();
         } catch (EntityExistsException | QuizTerminatedException e) {

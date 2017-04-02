@@ -10,6 +10,7 @@ import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.persistence.domain.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,9 @@ import java.util.Properties;
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
 import static com.getprepared.core.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
+import static com.getprepared.persistence.domain.Quiz.IS_ACTIVE_KEY;
 import static com.getprepared.persistence.domain.Quiz.NAME_KEY;
+import static com.getprepared.persistence.domain.Quiz.USER_ID_KEY;
 
 /**
  * Created by koval on 06.01.2017.
@@ -87,13 +90,18 @@ public class QuizDaoImpl implements QuizDao {
         public Quiz mapRow(final ResultSet rs) throws SQLException {
             final Long id = rs.getLong(ID_KEY);
             final String name = rs.getString(NAME_KEY);
-            return fillQuiz(id, name);
+            final User user = new User();
+            user.setId(rs.getLong(USER_ID_KEY));
+            final Boolean isActive = rs.getBoolean(IS_ACTIVE_KEY);
+            return fillQuiz(id, name, user, isActive);
         }
 
-        private Quiz fillQuiz(final Long id, final String name) {
+        private Quiz fillQuiz(final Long id, final String name, final User user, final Boolean isActive) {
             final Quiz quiz = new Quiz();
             quiz.setId(id);
             quiz.setName(name);
+            quiz.setUser(user);
+            quiz.setActive(isActive);
             return quiz;
         }
     }

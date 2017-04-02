@@ -14,6 +14,7 @@ public class Quiz extends Entity {
     private String name;
     private User user;
     private Boolean active;
+
     private List<Question> questions;
 
     public String getName() {

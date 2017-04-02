@@ -68,7 +68,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
         transactionManager.begin();
         final List<Question> questions = questionDao.findByQuizId(id);
 
-        for (Question question : questions) {
+        for (final Question question : questions) {
             final Long questionId = question.getId();
             final List<Answer> answers = answerService.findByQuestionId(questionId);
             question.setAnswers(answers);
@@ -83,7 +83,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
         transactionManager.begin();
         final List<Question> questions = questionDao.findByQuizIdRandom(id);
 
-        for (Question question : questions) {
+        for (final Question question : questions) {
             final Long questionId = question.getId();
             final List<Answer> answers = answerService.findByQuestionIdRandom(questionId);
             question.setAnswers(answers);
