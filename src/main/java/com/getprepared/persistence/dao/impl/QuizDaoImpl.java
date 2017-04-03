@@ -45,8 +45,8 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public Quiz findById(final Long id) throws EntityNotFoundException {
-        return jdbcTemplate.singleQuery(prop.getProperty(KEY.FIND_BY_ID), ps -> ps.setLong(1, id),
-                new QuizMapper());
+        return jdbcTemplate.singleQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), id),
+                ps -> ps.setLong(1, id), new QuizMapper());
     }
 
     @Override
