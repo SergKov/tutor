@@ -1,7 +1,6 @@
-package com.getprepared.web.command.common;
+package com.getprepared.web.command.tutor;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.core.converter.Converter;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
@@ -10,19 +9,14 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PageConstant;
-import com.getprepared.web.validation.ValidationService;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Map;
 
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
-import static org.apache.commons.collections4.MapUtils.isEmpty;
-import static org.apache.commons.lang3.StringUtils.*;
+import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
  * Created by koval on 21.01.2017.

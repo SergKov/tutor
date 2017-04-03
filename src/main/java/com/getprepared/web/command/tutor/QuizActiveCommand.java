@@ -8,6 +8,7 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
+import com.getprepared.web.constant.WebConstant;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.COMMAND;
 import static com.getprepared.web.constant.PageConstant.REDIRECT;
+import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
@@ -33,12 +35,11 @@ public class QuizActiveCommand implements Command {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-        final Long quizId = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
-
         try {
+            final Long quizId = Long.valueOf(request.getParameter(INPUT.QUIZ_ID));
             final Quiz quiz = quizService.findById(quizId);
             quizService.active(quiz);
-        } catch (EntityNotFoundException | QuizTerminatedException e) {
+        } catch (EntityNotFoundException | QuizTerminatedException | NumberFormatException e) {
             LOG.warn(e.getMessage(), e);
             response.sendError(SC_NOT_FOUND);
         }

@@ -5,9 +5,7 @@ import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.command.common.AbstractQuizCommand;
 import com.getprepared.web.validation.ValidationService;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
