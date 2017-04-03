@@ -9,11 +9,9 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.common.AbstractUpdatePasswordCommand;
-import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.constant.WebConstant;
 import com.getprepared.web.form.UserUpdatePasswordForm;
 import com.getprepared.web.validation.ValidationService;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +22,7 @@ import java.util.Map;
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.PageConstant.COMMAND;
 import static com.getprepared.web.constant.PageConstant.PAGE;
+import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
 import static org.apache.commons.collections4.MapUtils.*;
@@ -52,10 +51,10 @@ public class StudentUpdatePasswordCommand extends AbstractUpdatePasswordCommand 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        final User user = (User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.STUDENT);
+        final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.STUDENT);
 
-        final String oldPassword = request.getParameter(WebConstant.INPUT.OLD_PASSWORD);
-        final String newPassword = request.getParameter(WebConstant.INPUT.NEW_PASSWORD);
+        final String oldPassword = request.getParameter(INPUT.OLD_PASSWORD);
+        final String newPassword = request.getParameter(INPUT.NEW_PASSWORD);
 
         final UserUpdatePasswordForm form = new UserUpdatePasswordForm();
         form.setNewPassword(newPassword);
@@ -73,6 +72,6 @@ public class StudentUpdatePasswordCommand extends AbstractUpdatePasswordCommand 
         }
 
         fillPage(request);
-        return PAGE.STUDENT_SETTINGS;
+        return PAGE.STUDENT_UPDATE_PASSWORD;
     }
 }

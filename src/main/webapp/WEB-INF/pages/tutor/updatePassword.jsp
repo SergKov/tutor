@@ -15,7 +15,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="updatePassword.title"/>
+        <fmt:message key="updatePassword.title" bundle="${lang}"/>
     </jsp:attribute>
 
     <jsp:body>

@@ -16,7 +16,7 @@
 <c:url value="/resource/img/see.ico" var="seeQuestionsIcon"/>
 <c:url value="/resource/img/delete.ico" var="deleteQuizIcon"/>
 <c:url value="/resource/img/active.ico" var="activeQuizIcon"/>
-<c:url value="/resource/mg/edit.ico" var="editQuizIcon"/>
+<c:url value="/resource/img/edit.ico" var="editQuizIcon"/>
 <c:url value="/resource/img/plus.ico" var="plusQuestionIcon"/>
 
 <c:set value="quiz_name" var="quizNameId"/>
@@ -24,7 +24,7 @@
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="quizPage.hello" bundle="${lang}"/>" ${tutor.name} !"
+    <fmt:message key="quizPage.hello" bundle="${lang}"/> ${tutor.name} !
 </jsp:attribute>
 
     <jsp:body>

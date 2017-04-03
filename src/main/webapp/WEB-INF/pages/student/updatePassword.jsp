@@ -30,7 +30,7 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="oldPsw"
-                                   name="password"
+                                   name="oldPassword"
                                    placeholder="<fmt:message key="updatePassword.enterOldPassword" bundle="${lang}"/>"
                                    required>
                         </div>
@@ -44,7 +44,7 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="newPsw"
-                                   name="password"
+                                   name="newPassword"
                                    placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
                                    required>
                         </div>
@@ -58,7 +58,6 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
-                                   name="password"
                                    placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
                                    required>
                         </div>

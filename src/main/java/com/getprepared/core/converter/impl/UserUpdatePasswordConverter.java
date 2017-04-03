@@ -1,5 +1,6 @@
 package com.getprepared.core.converter.impl;
 
+import com.getprepared.annotation.Component;
 import com.getprepared.core.converter.Converter;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.form.UserUpdatePasswordForm;
@@ -7,6 +8,7 @@ import com.getprepared.web.form.UserUpdatePasswordForm;
 /**
  * Created by koval on 01.04.2017.
  */
+@Component
 public class UserUpdatePasswordConverter implements Converter<UserUpdatePasswordForm, User> {
 
     @Override

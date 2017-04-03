@@ -9,7 +9,6 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.common.AbstractUpdatePasswordCommand;
-import com.getprepared.web.command.student.StudentUpdatePasswordCommand;
 import com.getprepared.web.constant.WebConstant;
 import com.getprepared.web.form.UserUpdatePasswordForm;
 import com.getprepared.web.validation.ValidationService;
@@ -69,6 +68,6 @@ public class TutorUpdatePasswordCommand extends AbstractUpdatePasswordCommand {
         }
 
         fillPage(request);
-        return PAGE.TUTOR_SETTINGS;
+        return PAGE.TUTOR_UPDATE_PASSWORD;
     }
 }

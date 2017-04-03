@@ -13,6 +13,7 @@ import java.util.*;
 
 import static com.getprepared.context.Registry.getApplicationContext;
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
+import static com.getprepared.core.util.PackageScanner.*;
 import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
@@ -42,7 +43,7 @@ public class WebContext {
 
     @SuppressWarnings("unchecked")
     private void load(final String packageName) {
-        final List<Class<?>> classes = PackageScanner.scan(packageName);
+        final List<Class<?>> classes = scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Controller.class))

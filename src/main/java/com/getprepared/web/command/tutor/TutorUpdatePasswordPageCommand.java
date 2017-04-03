@@ -21,6 +21,6 @@ public class TutorUpdatePasswordPageCommand extends AbstractUpdatePasswordComman
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGE.TUTOR_SETTINGS;
+        return PAGE.TUTOR_UPDATE_PASSWORD;
     }
 }

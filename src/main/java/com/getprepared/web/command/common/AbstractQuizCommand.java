@@ -30,7 +30,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 public abstract class AbstractQuizCommand implements Command {
 
     public static final long DEFAULT_PAGE_NUMBER = 1L;
-    public static final long DEFAULT_NUMBER_OF_ELEMENTS = 25L;
+    public static final long DEFAULT_NUMBER_OF_ELEMENTS = 5L;
 
     @Inject
     private Messages messages;
@@ -60,6 +60,5 @@ public abstract class AbstractQuizCommand implements Command {
         final List<Quiz> quizzes = quizService.findAllByTutorId(user.getId(), pagination);
         request.setAttribute(PAGINATION, pagination);
         request.setAttribute(QUIZZES, quizzes);
-
     }
 }

@@ -28,7 +28,6 @@
                     <div class="row">
                         <label class="control-label col-xs-5" for="role"><fmt:message key="signUp.chooseRole"
                                                                                       bundle="${lang}"/></label>
-
                         <div class="col-xs-3">
                             <select class="form-control" id="role" name="role">
                                 <c:forEach items="${roles}" var="role">
@@ -68,11 +67,11 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="control-label col-xs-5" for="surName"><fmt:message key="signUp.surname"
+                        <label class="control-label col-xs-5" for="surname"><fmt:message key="signUp.surname"
                                                                                          bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
-                            <input type="text" pattern="${surnameRegex}" class="form-control" id="surName"
+                            <input type="text" pattern="${surnameRegex}" class="form-control" id="surname"
                                    name="surname" value="${user.surname}"
                                    placeholder="<fmt:message key="signUp.enterSurname" bundle="${lang}"/>" required>
                         </div>
@@ -134,7 +133,6 @@
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
-                                   name="password"
                                    placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>" required>
                         </div>
                     </div>

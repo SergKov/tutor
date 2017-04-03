@@ -25,7 +25,7 @@ public final class PageConstant {
 
         public static final String STUDENT_SIGN_IN = STUDENT_PREFIX + "signIn" + SUFFIX;
 
-        public static final String STUDENT_SETTINGS = STUDENT_PREFIX + "settings" + SUFFIX;
+        public static final String STUDENT_UPDATE_PASSWORD = STUDENT_PREFIX + "updatePassword" + SUFFIX;
 
         public static final String STUDENT_HOME_PAGE = STUDENT_PREFIX + "homePage" + SUFFIX;
 
@@ -35,7 +35,7 @@ public final class PageConstant {
 
         public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
 
-        public static final String TUTOR_SETTINGS = STUDENT_PREFIX + "settings" + SUFFIX;
+        public static final String TUTOR_UPDATE_PASSWORD = STUDENT_PREFIX + "updatePassword" + SUFFIX;
 
         public static final String TUTOR_QUIZZES = TUTOR_PREFIX + "quizzes" + SUFFIX;
 
