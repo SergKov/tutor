@@ -35,7 +35,7 @@ public final class PageConstant {
 
         public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
 
-        public static final String TUTOR_UPDATE_PASSWORD = STUDENT_PREFIX + "updatePassword" + SUFFIX;
+        public static final String TUTOR_UPDATE_PASSWORD = TUTOR_PREFIX + "updatePassword" + SUFFIX;
 
         public static final String TUTOR_QUIZZES = TUTOR_PREFIX + "quizzes" + SUFFIX;
 

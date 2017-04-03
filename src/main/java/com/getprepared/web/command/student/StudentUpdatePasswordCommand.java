@@ -9,7 +9,6 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.common.AbstractUpdatePasswordCommand;
-import com.getprepared.web.constant.WebConstant;
 import com.getprepared.web.form.UserUpdatePasswordForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -20,12 +19,11 @@ import java.io.IOException;
 import java.util.Map;
 
 import static com.getprepared.web.constant.PageConstant.*;
-import static com.getprepared.web.constant.PageConstant.COMMAND;
-import static com.getprepared.web.constant.PageConstant.PAGE;
-import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
-import static org.apache.commons.collections4.MapUtils.*;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static org.apache.commons.collections4.MapUtils.isEmpty;
 
 /**
  * Created by koval on 31.03.2017.
@@ -63,6 +61,8 @@ public class StudentUpdatePasswordCommand extends AbstractUpdatePasswordCommand 
         if (isEmpty(errorMsgs)) {
             try {
                 userService.updateStudentPassword(user.getEmail(), oldPassword, newPassword);
+                response.sendRedirect(LINK.STUDENT_HOME_PAGE);
+                return REDIRECT;
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.OLD_PASSWORD_INCORRECT, request.getLocale()));

@@ -47,7 +47,7 @@ public class TutorUpdatePasswordCommand extends AbstractUpdatePasswordCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-        final User user = (User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.STUDENT);
+        final User user = (User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.TUTOR);
 
         final String oldPassword = request.getParameter(WebConstant.INPUT.OLD_PASSWORD);
         final String newPassword = request.getParameter(WebConstant.INPUT.NEW_PASSWORD);
@@ -59,6 +59,8 @@ public class TutorUpdatePasswordCommand extends AbstractUpdatePasswordCommand {
         if (isEmpty(errorMsgs)) {
             try {
                 userService.updateTutorPassword(user.getEmail(), oldPassword, newPassword);
+                response.sendRedirect(LINK.TUTOR_QUIZZES);
+                return REDIRECT;
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.OLD_PASSWORD_INCORRECT, request.getLocale()));

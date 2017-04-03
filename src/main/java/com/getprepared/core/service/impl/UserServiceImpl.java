@@ -93,7 +93,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transactionManager.begin();
             final User user = userDao.findByStudentEmail(email);
             checkPassword(enteredPassword, user.getPassword());
-            userDao.updateTutorPassword(newPassword);
+            userDao.updateStudentPassword(passwordEncoder.encode(newPassword));
             transactionManager.commit();
         } catch (final EntityNotFoundException e) {
             transactionManager.rollback();
@@ -106,9 +106,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
                                                                                         throws EntityNotFoundException {
         try {
             transactionManager.begin();
-            final User user = userDao.findByStudentEmail(email);
+            final User user = userDao.findByTutorEmail(email);
             checkPassword(enteredPassword, user.getPassword());
-            userDao.updateStudentPassword(newPassword);
+            userDao.updateTutorPassword(passwordEncoder.encode(newPassword));
             transactionManager.commit();
         } catch (final EntityNotFoundException e) {
             transactionManager.rollback();
