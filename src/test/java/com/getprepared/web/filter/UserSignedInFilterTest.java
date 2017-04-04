@@ -1,6 +1,5 @@
-package java.com.getprepared.filter;
+package com.getprepared.web.filter;
 
-import com.getprepared.web.filter.UserSignedInFilter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,8 +56,6 @@ public class UserSignedInFilterTest {
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
         verifyNoMoreInteractions(chain);
-        verifyNoMoreInteractions(request);
-        verifyNoMoreInteractions(response);
     }
 
     @Test
@@ -66,15 +63,5 @@ public class UserSignedInFilterTest {
         when(request.getSession()).thenReturn(notNull(HttpSession.class));
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
-        verifyNoMoreInteractions(request);
-        verifyNoMoreInteractions(response);
-    }
-
-    @Test
-    public void requireNoInteractionDoFilterWhenNoSession() throws IOException, ServletException {
-        filter.doFilter(request, response, chain);
-        verify(chain, never()).doFilter(request, response);
-        verifyNoMoreInteractions(request);
-        verifyNoMoreInteractions(response);
     }
 }
