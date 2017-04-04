@@ -49,7 +49,10 @@
                                                 <input id="${quizNameId}" type="text" class="form-control"
                                                        name="quiz-name" value="${quizForm.name}">
                                             </div>
-                                            <div>${errorMsgs['name']}</div>
+
+                                            <div class="col-xs-12 center">
+                                                <p class="text-danger">${errorMsgs['name']}</p>
+                                            </div>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>

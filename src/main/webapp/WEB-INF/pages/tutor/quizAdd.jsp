@@ -59,8 +59,8 @@
                 </c:choose>
 
                 <c:if test="${not empty errorMsgs['name']}">
-                    <div class="col-xs-12">
-                            ${errorMsgs['name']}
+                    <div class="col-xs-12 center">
+                        <p class="text-danger">${errorMsgs['name']}</p>
                     </div>
                 </c:if>
             </form>

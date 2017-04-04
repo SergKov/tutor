@@ -48,6 +48,14 @@
                                    placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
                                    required>
                         </div>
+
+                        <div class="col-xs-12">
+                            <c:if test="${not empty errorMsgs['newPassword']}">
+                                <div class="col-xs-12 center">
+                                    <p class="text-danger">${errorMsgs['newPassword']}</p>
+                                </div>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
 

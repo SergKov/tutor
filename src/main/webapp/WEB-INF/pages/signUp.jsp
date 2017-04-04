@@ -40,7 +40,7 @@
 
                         <c:if test="${not empty errorMsgs['role']}">
                             <div class="col-xs-12 center">
-                                    ${errorMsgs['role']}
+                                <p class="text-danger">${errorMsgs['role']}</p>
                             </div>
                         </c:if>
                     </div>
@@ -59,7 +59,7 @@
 
                         <c:if test="${not empty errorMsgs['name']}">
                             <div class="col-xs-12 center">
-                                    ${errorMsgs['name']}
+                                <p class="text-danger">${errorMsgs['name']}</p>
                             </div>
                         </c:if>
                     </div>
@@ -78,7 +78,7 @@
 
                         <c:if test="${not empty errorMsgs['surname']}">
                             <div class="col-xs-12 center">
-                                    ${errorMsgs['surname']}
+                                <p class="text-danger">${errorMsgs['surname']}</p>
                             </div>
                         </c:if>
                     </div>
@@ -98,7 +98,7 @@
                         <div class="col-xs-12">
                             <c:if test="${not empty errorMsgs['email']}">
                                 <div class="col-xs-12 center">
-                                        ${errorMsgs['email']}
+                                    <p class="text-danger">${errorMsgs['email']}</p>
                                 </div>
                             </c:if>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="col-xs-12">
                             <c:if test="${not empty errorMsgs['password']}">
                                 <div class="col-xs-12 center">
-                                        ${errorMsgs['password']}
+                                    <p class="text-danger"> ${errorMsgs['password']}</p>
                                 </div>
                             </c:if>
                         </div>
