@@ -42,8 +42,33 @@ public class PasswordConstraintValidator {
     }
 
     @Test
-    public void requireIsValidWithPasswordWithIncorrectPassword() {
+    public void requireIsValidWithPasswordWithoutBigLettersAndNumber() {
         assertFalse(validator.isValid("testtesttest234"));
+    }
+
+    @Test
+    public void requireIsValidWithPasswordWithoutBigLetters() {
+        assertFalse(validator.isValid("testtesttest"));
+    }
+
+    @Test
+    public void requireIsValidWithPasswordWithoutSmallLettersAndNumber() {
+        assertFalse(validator.isValid("GYGDSHFGSJGDSSDHJK"));
+    }
+
+    @Test
+    public void requireIsValidWithPasswordWithoutSmallLetters() {
+        assertFalse(validator.isValid("GYGDSHFGSJGDS12SDHJK"));
+    }
+
+    @Test
+    public void requireIsValidWithPasswordWithOneBigLetter() {
+        assertTrue(validator.isValid("Testing234"));
+    }
+
+    @Test
+    public void requireIsValidWithPasswordWithoutNumbers() {
+        assertFalse(validator.isValid("Testing"));
     }
 
     @Test
@@ -54,5 +79,15 @@ public class PasswordConstraintValidator {
     @Test
     public void requireIsValidWithBigWord() {
         assertFalse(validator.isValid("TestingTestingTestingTEsbhjgjhjhkdfsj67sdadsd"));
+    }
+
+    @Test
+    public void requireIsValidWithOneLetter() {
+        assertFalse(validator.isValid("w"));
+    }
+
+    @Test
+    public void requireIsValidWithOneNumber() {
+        assertFalse(validator.isValid("1"));
     }
 }
