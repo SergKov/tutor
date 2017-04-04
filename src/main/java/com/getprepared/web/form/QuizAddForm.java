@@ -1,5 +1,6 @@
 package com.getprepared.web.form;
 
+import com.getprepared.web.validation.annotation.NotEmpty;
 import com.getprepared.web.validation.annotation.Pattern;
 
 import static com.getprepared.web.constant.ValidationConstant.REGEX;
@@ -9,7 +10,7 @@ import static com.getprepared.web.constant.ValidationConstant.REGEX;
  */
 public class QuizAddForm {
 
-    @Pattern(regexp = REGEX.QUIZ_NAME)
+    @NotEmpty
     private String name;
 
     public String getName() {
