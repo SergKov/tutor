@@ -63,13 +63,14 @@ public class QuizUpdateCommand implements Command {
         } else {
             final Quiz quiz = quizUpdateConverter.convert(quizForm);
             try {
+                quiz.setId(Long.valueOf(request.getParameter(INPUT.QUIZ_ID))); // TODO ???
                 quizService.update(quiz);
                 response.sendRedirect(LINK.TUTOR_QUIZZES);
                 return REDIRECT;
             } catch (final EntityExistsException e) {
                 LOG.warn(e.getMessage(), e);
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUIZ_EXISTS, request.getLocale()));
-            } catch (QuizTerminatedException | EntityNotFoundException e) {
+            } catch (QuizTerminatedException | EntityNotFoundException | NumberFormatException e) {
                 LOG.error(e.getMessage(), e);
                 response.sendError(SC_NOT_FOUND);
             }
