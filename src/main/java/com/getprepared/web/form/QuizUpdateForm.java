@@ -1,15 +1,13 @@
 package com.getprepared.web.form;
 
-import com.getprepared.web.validation.annotation.Pattern;
-
-import static com.getprepared.web.constant.ValidationConstant.REGEX;
+import com.getprepared.web.validation.annotation.NotEmpty;
 
 /**
  * Created by koval on 01.04.2017.
  */
 public class QuizUpdateForm {
 
-    @Pattern(regexp = REGEX.QUIZ_NAME)
+    @NotEmpty
     private String name;
 
     public String getName() {

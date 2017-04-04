@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
@@ -59,7 +60,7 @@ public class QuizAddCommand extends AbstractQuizAddCommand {
             request.setAttribute(ERROR_MSGS, messages.getMessages(errors, request.getLocale()));
         } else {
             final Quiz quiz = quizAddConverter.convert(quizForm);
-            final User user = (User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.TUTOR);
+            final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.TUTOR);
             quiz.setUser(user);
             try {
                 quizService.save(quiz);

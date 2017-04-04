@@ -28,7 +28,6 @@ public abstract class AbstractStudentHomePageCommand implements Command {
     protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
         request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.HOME_PAGE, request.getLocale()));
-        request.setAttribute(QUIZ, REGEX.QUIZ_NAME);
 
 //        final List<Quiz> quizList = quizService.findAllActive(new PageableData()); // TODO
 //

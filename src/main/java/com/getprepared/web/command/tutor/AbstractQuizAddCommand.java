@@ -21,6 +21,5 @@ public abstract class AbstractQuizAddCommand implements Command {
 
     protected void fillPage(final HttpServletRequest request) {
         request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.ADD_QUIZ, request.getLocale()));
-        request.setAttribute(QUIZ_NAME_REGEX, REGEX.QUIZ_NAME);
     }
 }
