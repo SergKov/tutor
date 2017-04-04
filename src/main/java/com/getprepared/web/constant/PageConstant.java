@@ -160,5 +160,7 @@ public final class PageConstant {
         public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
 
         public static final String OLD_PASSWORD_INCORRECT = "OldPasswordIncorrect";
+
+        public static final String QUIZ_EMPTY = "QuizEmpty";
     }
 }

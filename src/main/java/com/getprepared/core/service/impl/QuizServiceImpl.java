@@ -4,6 +4,7 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.Service;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.exception.QuizNotTerminatedException;
 import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
@@ -14,11 +15,10 @@ import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.persistence.domain.User;
-import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 
 /**
  * Created by koval on 15.01.2017.
@@ -55,14 +55,8 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             transactionManager.begin();
             final Quiz quiz = quizDao.findById(id);
-            final List<Question> questions = questionService.findByQuizId(id);
 
-            questions.forEach(question -> {
-                final List<Answer> answers = answerService.findByQuestionId(question.getId());
-                question.setAnswers(answers);
-            });
-
-            quiz.setQuestions(questions);
+            initQuiz(quiz);
 
             transactionManager.commit();
             return quiz;
@@ -114,32 +108,54 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
                 final List<Answer> answers = answerService.findByQuestionId(question.getId());
                 question.setAnswers(answers);
             }
-
         }
     }
 
-
     @Override
-    public void active(final Quiz quiz) throws QuizTerminatedException {
+    public void active(final Long id) throws QuizTerminatedException, EntityNotFoundException,
+            QuizNotTerminatedException {
         try {
             transactionManager.begin();
-            checkActive(quiz); // TODO ???
+            final Quiz quiz = quizDao.findById(id);
+            initQuiz(quiz);
+            checkActive(quiz);
+            checkQuizQuestions(quiz);
             quizDao.activeQuiz(quiz.getId());
             transactionManager.commit();
-        } catch (final QuizTerminatedException e) {
+        } catch (EntityNotFoundException | QuizTerminatedException | QuizNotTerminatedException e) {
             transactionManager.rollback();
             throw e;
         }
     }
 
+    private void initQuiz(final Quiz quiz) throws EntityNotFoundException {
+
+        final List<Question> questions = questionService.findByQuizId(quiz.getId());
+
+        for (final Question question : questions) {
+            final List<Answer> answers = answerService.findByQuestionId(question.getId());
+            question.setAnswers(answers);
+        }
+        quiz.setQuestions(questions);
+    }
+
+
+    private void checkQuizQuestions(final Quiz quiz) throws QuizNotTerminatedException { // TODO rename
+        final List<Question> questions = quiz.getQuestions();
+        if (isEmpty(questions)) {
+            throw new QuizNotTerminatedException(String.format("Quiz %s is empty.", quiz.getName()));
+        }
+    }
+
     @Override
-    public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException {
-        try {
+    public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException, EntityNotFoundException {
+        try { // TODO ??
             transactionManager.begin();
-            checkActive(quiz); // TODO ???
+            final Quiz oldQuiz = quizDao.findById(quiz.getId());
+            checkActive(oldQuiz);
             quizDao.update(quiz.getName(), quiz.getId());
             transactionManager.commit();
-        } catch (EntityExistsException | QuizTerminatedException e) {
+        } catch (EntityExistsException | QuizTerminatedException | EntityNotFoundException e) {
             transactionManager.rollback();
             throw e;
         }

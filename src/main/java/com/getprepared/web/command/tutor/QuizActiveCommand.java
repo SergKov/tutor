@@ -2,12 +2,13 @@ package com.getprepared.web.command.tutor;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.exception.QuizNotTerminatedException;
 import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.QuizService;
+import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.command.Command;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 import static com.getprepared.web.constant.PageConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 /**
@@ -23,24 +25,41 @@ import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
  */
 @Controller
 @CommandMapping(COMMAND.TUTOR_QUIZ_ACTIVE)
-public class QuizActiveCommand implements Command {
+public class QuizActiveCommand extends AbstractQuizCommand { // TODO refacore
 
     private static final Logger LOG = Logger.getLogger(QuizActiveCommand.class);
 
     @Inject
     private QuizService quizService;
 
+    @Inject
+    private Messages messages;
+
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         try {
             final Long quizId = Long.valueOf(request.getParameter(INPUT.QUIZ_ID));
             final Quiz quiz = quizService.findById(quizId);
-            quizService.active(quiz);
+            quizService.active(quiz.getId());
             response.sendRedirect(LINK.TUTOR_QUIZZES);
-        } catch (EntityNotFoundException | QuizTerminatedException | NumberFormatException e) {
+            return REDIRECT;
+        } catch (EntityNotFoundException | NumberFormatException | QuizTerminatedException e) {
             LOG.warn(e.getMessage(), e);
             response.sendError(SC_NOT_FOUND);
+            return REDIRECT;
+        } catch (final QuizNotTerminatedException e) {
+            LOG.warn(e.getMessage(), e);
+            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUIZ_EMPTY, request.getLocale()));
         }
-        return REDIRECT;
+
+        try {
+            fillPage(request, quizService);
+        } catch (final EntityNotFoundException e) {
+            LOG.warn(e.getMessage(), e);
+            response.sendError(SC_NOT_FOUND);
+            return REDIRECT;
+        }
+
+        return PAGE.TUTOR_QUIZZES;
     }
 }

@@ -32,22 +32,24 @@
             <c:when test="${not empty quizzes}">
                 <c:forEach items="${quizzes}" var="quiz">
                     <c:set var="isNotActive" value="${quiz.active eq null or not quiz.active}"/>
+                    <c:set var="emtyErrorMsgs" value="${empty errorMsgs['name']}"/>
+                    <c:set var="quizName" value="${quizForm ne null ? quizForm.name : quiz.name}"/>
 
                     <div class="row">
                         <div class="col-xs-5 col-xs-offset-2">
                             <c:choose>
                                 <c:when test="${isNotActive}">
                                     <c:choose>
-                                        <c:when test="${empty errorMsgs['name']}">
+                                        <c:when test="${emtyErrorMsgs}">
                                             <div class="form-group">
                                                 <input id="${quizNameId}" type="text" class="form-control"
                                                        name="quiz-name" value="${quiz.name}">
                                             </div>
                                         </c:when>
                                         <c:otherwise>
-                                            <div class="form-group has-error has-feedback">
+                                            <div class="form-group">
                                                 <input id="${quizNameId}" type="text" class="form-control"
-                                                       name="quiz-name" value="${quizForm.name}">
+                                                       name="quiz-name" value="${quizName}">
                                             </div>
 
                                             <div class="col-xs-12 center">

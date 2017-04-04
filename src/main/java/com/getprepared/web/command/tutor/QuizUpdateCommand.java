@@ -3,6 +3,8 @@ package com.getprepared.web.command.tutor;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.converter.Converter;
 import com.getprepared.core.exception.EntityExistsException;
+import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.exception.QuizNotTerminatedException;
 import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
@@ -67,7 +69,7 @@ public class QuizUpdateCommand implements Command {
             } catch (final EntityExistsException e) {
                 LOG.warn(e.getMessage(), e);
                 request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUIZ_EXISTS, request.getLocale()));
-            } catch (final QuizTerminatedException e) {
+            } catch (QuizTerminatedException | EntityNotFoundException e) {
                 LOG.error(e.getMessage(), e);
                 response.sendError(SC_NOT_FOUND);
             }

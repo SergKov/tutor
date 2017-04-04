@@ -25,6 +25,8 @@
     </jsp:attribute>
 
     <jsp:body>
+        <c:set var="isNotActive" value="${not quiz.active}"/>
+
         <c:choose>
             <c:when test="${not empty questions}">
                 <c:forEach items="${questions}" var="question">
@@ -43,8 +45,8 @@
                             </form>
                         </div>
 
-                        <div class="col-xs-2">
-                            <c:if test="${!question.quiz.active}">
+                        <c:if test="${isNotActive}">
+                            <div class="col-xs-2">
                                 <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
                                       data-remove-btn="<fmt:message key="quizzes.confirm" bundle="${lang}"/>">
                                     <input type="hidden" name="question-id" value="${question.id}">
@@ -53,8 +55,8 @@
                                            src="${deleteQuestionIcon}" width="25px" height="25px"
                                            name="command" value="questionRemove">
                                 </form>
-                            </c:if>
-                        </div>
+                            </div>
+                        </c:if>
                     </div>
                 </c:forEach>
             </c:when>
@@ -63,19 +65,22 @@
             </c:otherwise>
         </c:choose>
 
+        <c:if test="${isNotActive}">
+            <br/><br/>
+            <div class="row">
+                <div class="col-xs-1 col-xs-offset-9">
+                    <a href="${addQuestionHref}" id="add_question">
+                        <img src="${addQuestionIcon}" width="25px" height="25px">
+                    </a>
+                </div>
+            </div>
+        </c:if>
+
         <br/><br/>
         <div class="row">
             <div class="col-xs-offset-5 col-xs-2">
                 <a href="${quizzesHref}">
                     <fmt:message key="questions.changeQuiz" bundle="${lang}"/>
-                </a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-1 col-xs-offset-11">
-                <a href="${addQuestionHref}" id="add_question">
-                    <img src="${addQuestionIcon}" width="25px" height="25px">
                 </a>
             </div>
         </div>
