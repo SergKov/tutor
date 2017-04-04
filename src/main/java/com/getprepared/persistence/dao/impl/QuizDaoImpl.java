@@ -20,9 +20,7 @@ import java.util.Properties;
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
 import static com.getprepared.core.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
-import static com.getprepared.persistence.domain.Quiz.IS_ACTIVE_KEY;
-import static com.getprepared.persistence.domain.Quiz.NAME_KEY;
-import static com.getprepared.persistence.domain.Quiz.USER_ID_KEY;
+import static com.getprepared.persistence.domain.Quiz.*;
 
 /**
  * Created by koval on 06.01.2017.

@@ -30,7 +30,6 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
-                                       pattern="${quizRegex}"
                                        name="quiz-name"
                                        placeholder="<fmt:message key="addQuiz.placeholder" bundle="${lang}"/>" required>
                             </div>
@@ -45,7 +44,7 @@
                         <div class="form-group has-error has-feedback">
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
-                                       value="${quiz.name}" pattern="${quizRegex}"
+                                       value="${quiz.name}"
                                        name="quiz-name"
                                        placeholder="<fmt:message key="addQuiz.placeholder" bundle="${lang}"/>" required>
                             </div>

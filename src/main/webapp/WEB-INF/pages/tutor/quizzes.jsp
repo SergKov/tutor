@@ -77,6 +77,8 @@
                         <c:if test="${isNotActive}">
                             <div class="col-xs-1">
                                 <form action="${quizzesAction}" method="POST" class="form-horizontal">
+                                    <input type="hidden" name="quiz-id" value="${quiz.id}"/>
+
                                     <input id="quiz_update" type="image" src="${editQuizIcon}" width="25px"
                                            height="25px"
                                            name="command" value="quizUpdate">
