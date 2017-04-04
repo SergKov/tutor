@@ -3,6 +3,7 @@ package com.getprepared.web.validation.handler;
 import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.validation.annotation.AnswerType;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,45 +26,43 @@ public class AnswerTypeConstraintValidatorTest {
     @InjectMocks
     private AnswerTypeConstraintValidator answerTypeConstraintValidator;
 
+    @Before
+    public void setUp() {
+        when(answerType.value()).thenReturn(Type.values());
+    }
+
     @Test
     public void requireIsValidWithEmptyArray() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertFalse(answerTypeConstraintValidator.isValid(new String[]{"", ""}));
     }
 
     @Test
     public void requireIsValidWithFirstEmptyArgumentAndAnotherInvalid() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertFalse(answerTypeConstraintValidator.isValid(new String[]{"", "1"}));
     }
 
     @Test
     public void requireIsValidWithSecondEmptyArgumentAndAnotherInvalid() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertFalse(answerTypeConstraintValidator.isValid(new String[]{" 545", ""}));
     }
 
     @Test
     public void requireIsValidWithCorrectArgument() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertTrue(answerTypeConstraintValidator.isValid(new String[]{"CORRECT", "INCORRECT", "CORRECT", "CORRECT"}));
     }
 
     @Test
     public void requireIsValidWithCorrectArgumentsInRandomRegistr() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertTrue(answerTypeConstraintValidator.isValid(new String[]{"CoRrect", "INCORrECt", "cOrreCT", "correct"}));
     }
 
     @Test
     public void requireIsValidWithOneEmptyString() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertFalse(answerTypeConstraintValidator.isValid(new String[]{""}));
     }
 
     @Test
     public void requireIsValidWithOneCorrectArgument() throws Exception {
-        when(answerType.value()).thenReturn(Type.values());
         assertFalse(answerTypeConstraintValidator.isValid(new String[]{"", "INCORRECT"}));
     }
 
