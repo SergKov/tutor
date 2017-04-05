@@ -5,14 +5,13 @@ import com.getprepared.context.postprocess.BeanPostProcessor;
 import com.getprepared.context.postprocess.Ordered;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
+import com.getprepared.core.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
 import java.util.*;
 
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.*;
 import static com.getprepared.core.constant.ServerConstant.EMPTY_STRING;
-import static com.getprepared.core.util.ReflectionUtils.invoke;
-import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
@@ -21,7 +20,10 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
  */
 public class ApplicationContext {
 
-    private static final String APPLICATION_CONTEXT = "applicationContext";
+    static final String APPLICATION_CONTEXT = "applicationContext";
+    static final String REFLECTION_UTILS = "reflectionUtils";
+    static final String PACKAGE_SCANNER = "packageScanner";
+    static final String PROPERTY_UTILS = "propertyUtils";
 
     private final Map<String, Object> container = new HashMap<>();
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
@@ -29,15 +31,23 @@ public class ApplicationContext {
     ApplicationContext() { }
 
     void init() {
-        container.put(APPLICATION_CONTEXT, this);
+        initDefaults();
         initConfig();
         initComponent();
         initPostProcessors();
         doPostProcess();
     }
 
+    private void initDefaults() {
+        container.put(APPLICATION_CONTEXT, this);
+        container.put(REFLECTION_UTILS, new ReflectionUtils());
+        container.put(PACKAGE_SCANNER, new PackageScanner());
+        container.put(PROPERTY_UTILS, new PropertyUtils());
+    }
+
     private void initConfig() {
-        final Properties configurationProp = PropertyUtils.getProperty(CONFIGURATION_FILE);
+        final Properties configurationProp = getBean(PROPERTY_UTILS, PropertyUtils.class)
+                .getProperty(CONFIGURATION_FILE);
 
         configurationProp.keySet().stream()
                 .map(key -> (String) key)
@@ -45,7 +55,7 @@ public class ApplicationContext {
     }
 
     private void loadConfig(final String packageName) {
-        final List<Class<?>> classes = PackageScanner.scan(packageName);
+        final List<Class<?>> classes = getBean(PACKAGE_SCANNER, PackageScanner.class).scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Configuration.class))
@@ -62,13 +72,13 @@ public class ApplicationContext {
                     final Bean annotation = method.getAnnotation(Bean.class);
                     String beanName = annotation.value();
                     beanName = manageBeanName(method.getReturnType(), beanName);
-                    final Object config = newInstance(clazz);
-                    container.put(beanName, invoke(method, config));
+                    final Object config = getBean(REFLECTION_UTILS, ReflectionUtils.class).newInstance(clazz);
+                    container.put(beanName, getBean(REFLECTION_UTILS, ReflectionUtils.class).invoke(method, config));
                 });
     }
 
     private void initComponent() {
-        final Properties componentProp = PropertyUtils.getProperty(COMPONENT_FILE);
+        final Properties componentProp = getBean(PROPERTY_UTILS, PropertyUtils.class).getProperty(COMPONENT_FILE);
 
         componentProp.keySet().stream()
                 .map(key -> (String) key)
@@ -76,7 +86,7 @@ public class ApplicationContext {
     }
 
     private void load(final String packageName) {
-        final List<Class<?>> classes = PackageScanner.scan(packageName);
+        final List<Class<?>> classes = getBean(PACKAGE_SCANNER, PackageScanner.class).scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Component.class) || clazz.isAnnotationPresent(Service.class))
@@ -94,7 +104,7 @@ public class ApplicationContext {
         }
 
         container.put(manageBeanName(clazz, beanName),
-                        newInstance(clazz));
+                getBean(REFLECTION_UTILS, ReflectionUtils.class).newInstance(clazz));
     }
 
     private String manageBeanName(final Class<?> clazz, String beanName) {
@@ -106,7 +116,7 @@ public class ApplicationContext {
     }
 
     private void initPostProcessors() {
-        final Properties postProcessorProperties = PropertyUtils.getProperty(POST_PROCESS_FILE);
+        final Properties postProcessorProperties = getBean(PROPERTY_UTILS, PropertyUtils.class).getProperty(POST_PROCESS_FILE);
 
         postProcessorProperties.keySet().stream()
                 .map(key -> (String) key)
@@ -114,11 +124,12 @@ public class ApplicationContext {
     }
 
     private void loadPostProcessor(final String packageName) {
-        final List<Class<?>> classes = PackageScanner.scan(packageName);
+        final List<Class<?>> classes = getBean(PACKAGE_SCANNER, PackageScanner.class).scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(PostProcessor.class))
-                .forEach(clazz -> beanPostProcessors.add((BeanPostProcessor) newInstance(clazz)));
+                .forEach(clazz -> beanPostProcessors.add((BeanPostProcessor) getBean(REFLECTION_UTILS,
+                        ReflectionUtils.class).newInstance(clazz)));
 
         beanPostProcessors.sort(Comparator.comparingInt(Ordered::getOrder));
     }
@@ -128,7 +139,15 @@ public class ApplicationContext {
     }
 
     private void doPostProcess(final BeanPostProcessor beanPostProcessor) {
-        container.values().forEach(bean -> beanPostProcessor.process(bean, this));
+
+        container.forEach((beanName, bean) -> {
+            beanPostProcessor.postProcessBeforeInitialization(beanName, bean, this);
+        });
+
+        container.forEach((beanName, bean) -> {
+            final Optional<Object> proxy = beanPostProcessor.postProcessAfterInitialization(beanName, bean);
+            proxy.ifPresent(proxyBean -> container.put(beanName, proxyBean));
+        });
     }
 
     public Object getBean(final String name) {

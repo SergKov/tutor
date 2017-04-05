@@ -3,6 +3,7 @@ package com.getprepared.context;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
+import com.getprepared.core.util.ReflectionUtils;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
@@ -11,11 +12,11 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import static com.getprepared.context.ApplicationContext.PACKAGE_SCANNER;
+import static com.getprepared.context.ApplicationContext.PROPERTY_UTILS;
+import static com.getprepared.context.ApplicationContext.REFLECTION_UTILS;
 import static com.getprepared.context.Registry.getApplicationContext;
 import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
-import static com.getprepared.core.util.PackageScanner.*;
-import static com.getprepared.core.util.ReflectionUtils.newInstance;
-import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
 
 /**
@@ -25,7 +26,8 @@ public class WebContext {
 
     private final Map<String, Command> container = new HashMap<>();
 
-    WebContext() { }
+    WebContext() {
+    }
 
     void init() {
         initController();
@@ -33,7 +35,8 @@ public class WebContext {
     }
 
     private void initController() {
-        final Properties prop = PropertyUtils.getProperty(CONTROLLER_FILE);
+        final Properties prop = getApplicationContext().getBean(PROPERTY_UTILS, PropertyUtils.class)
+                .getProperty(CONTROLLER_FILE);
         final Set<Object> keys = prop.keySet();
 
         keys.stream()
@@ -43,7 +46,8 @@ public class WebContext {
 
     @SuppressWarnings("unchecked")
     private void load(final String packageName) {
-        final List<Class<?>> classes = scan(packageName);
+        final List<Class<?>> classes = getApplicationContext().getBean(PACKAGE_SCANNER, PackageScanner.class)
+                .scan(packageName);
 
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Controller.class))
@@ -61,7 +65,8 @@ public class WebContext {
     private void putToContainer(final Class<Command> clazz) {
         final CommandMapping commandMapping = clazz.getAnnotation(CommandMapping.class);
         final String beanName = commandMapping.value();
-        container.put(beanName, newInstance(clazz));
+        container.put(beanName, getApplicationContext().getBean(REFLECTION_UTILS, ReflectionUtils.class)
+                .newInstance(clazz));
     }
 
     private void injectFields() {
@@ -75,7 +80,8 @@ public class WebContext {
                     .filter(field -> field.isAnnotationPresent(Inject.class))
                     .forEach(field -> {
                         final Object injectedValue = getApplicationContext().getBean(field.getName());
-                        setField(field, bean, injectedValue);
+                        getApplicationContext().getBean(REFLECTION_UTILS, ReflectionUtils.class)
+                                .setField(field, bean, injectedValue);
                     });
         }
     }

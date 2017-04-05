@@ -69,7 +69,7 @@ public class ConnectionProvider {
 
     public Connection getConnection() {
         if (threadLocal.get() == null) {
-            throw new TransactionalException();
+            return dataSourceUtils.getConnection(dataSource);
         }
         return threadLocal.get().getConnection();
     }

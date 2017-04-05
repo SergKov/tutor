@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.getprepared.context.Registry.getApplicationContext;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.ArrayUtils.isNotEmpty;
 
@@ -22,9 +23,10 @@ public final class PackageScanner {
     private static final char DIRECTORY_SEPARATOR = '/';
     private static final String CLASS_FILE_SUFFIX = ".class";
 
-    private PackageScanner() { }
+    public PackageScanner() {
+    }
 
-    public static List<Class<?>> scan(final String scannedPackage) {
+    public List<Class<?>> scan(final String scannedPackage) {
         final String scannedPath = scannedPackage.replace(PACKAGE_SEPARATOR, DIRECTORY_SEPARATOR);
         final URL scannedUrl = Thread.currentThread().getContextClassLoader().getResource(scannedPath);
 
@@ -48,7 +50,7 @@ public final class PackageScanner {
         }
     }
 
-    private static List<Class<?>> scan(final File scannedFile, final String scannedPackage) {
+    private List<Class<?>> scan(final File scannedFile, final String scannedPackage) {
         final List<Class<?>> classes = new ArrayList<>();
         final String resource = scannedPackage + PACKAGE_SEPARATOR + scannedFile.getName();
         if (scannedFile.isDirectory()) {
@@ -59,7 +61,8 @@ public final class PackageScanner {
         } else if (resource.endsWith(CLASS_FILE_SUFFIX)) {
             final int endIndex = resource.length() - CLASS_FILE_SUFFIX.length();
             final String className = resource.substring(0, endIndex);
-            classes.add(ReflectionUtils.getClassForName(className));
+            classes.add(getApplicationContext().getBean("reflectionUtils", ReflectionUtils.class)
+                    .getClassForName(className));
         }
         return classes;
     }

@@ -12,9 +12,9 @@ public final class ReflectionUtils {
 
     private static final Logger LOG = Logger.getLogger(ReflectionUtils.class);
 
-    private ReflectionUtils() { }
+    public ReflectionUtils() { }
 
-    public static <T> T newInstance(final Class<T> clazz) {
+    public <T> T newInstance(final Class<T> clazz) {
         try {
             return clazz.newInstance();
         } catch (final Exception e) {
@@ -24,7 +24,7 @@ public final class ReflectionUtils {
         }
     }
 
-    public static Class getClassForName(final String name) {
+    public Class<?> getClassForName(final String name) {
         try {
             return Class.forName(name);
         } catch (final ClassNotFoundException e) {
@@ -34,7 +34,7 @@ public final class ReflectionUtils {
         }
     }
 
-    public static Object invoke(final Method method, final Object obj, final Object... args) {
+    public Object invoke(final Method method, final Object obj, final Object... args) {
         try {
             return method.invoke(obj, args);
         } catch (final Exception e) {
@@ -44,7 +44,7 @@ public final class ReflectionUtils {
         }
     }
 
-    public static Object getField(final Field field, final Object object) {
+    public Object getField(final Field field, final Object object) {
         field.setAccessible(true);
         try {
             return field.get(object);
@@ -55,7 +55,7 @@ public final class ReflectionUtils {
         }
     }
 
-    public static void setField(final Field field, final Object bean, final Object injectedValue) {
+    public void setField(final Field field, final Object bean, final Object injectedValue) {
         field.setAccessible(true);
         try {
             field.set(bean, injectedValue);

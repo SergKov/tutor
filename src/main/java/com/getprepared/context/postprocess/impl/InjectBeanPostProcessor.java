@@ -4,10 +4,11 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.PostProcessor;
 import com.getprepared.context.ApplicationContext;
 import com.getprepared.context.postprocess.BeanPostProcessor;
+import com.getprepared.core.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.Optional;
 
-import static com.getprepared.core.util.ReflectionUtils.setField;
 import static java.util.Arrays.stream;
 
 /**
@@ -17,17 +18,24 @@ import static java.util.Arrays.stream;
 public class InjectBeanPostProcessor implements BeanPostProcessor {
 
     @Override
-    public Object process(final Object bean, final ApplicationContext applicationContext) {
+    public void postProcessBeforeInitialization(final String beanName, final Object bean
+            , final ApplicationContext applicationContext) {
+
         for (Class clazz = bean.getClass(); clazz != Object.class; clazz = clazz.getSuperclass()) {
             final Field[] fields = clazz.getDeclaredFields();
             stream(fields)
                     .filter(field -> field.isAnnotationPresent(Inject.class))
                     .forEach(field -> {
                         final Object injectedValue = applicationContext.getBean(field.getName());
-                        setField(field, bean, injectedValue);
+                        applicationContext.getBean("reflectionUtils", ReflectionUtils.class)
+                                .setField(field, bean, injectedValue);
                     });
         }
-        return bean;
+    }
+
+    @Override
+    public Optional<Object> postProcessAfterInitialization(final String beanName, final Object bean) {
+        return Optional.empty();
     }
 
     @Override

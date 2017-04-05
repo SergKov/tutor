@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstant.*;
+import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
 
 /**
  * Created by koval on 06.01.2017.
@@ -16,11 +16,11 @@ public final class PropertyUtils {
 
     private static final Logger LOG = Logger.getLogger(PropertyUtils.class);
 
-    private PropertyUtils() { }
+    public PropertyUtils() { init(); }
 
-    private static Map<String, Properties> cache = new HashMap<>();
+    private Map<String, Properties> cache = new HashMap<>();
 
-    static { // TODO
+    private void init() {
         initProperty(FILES_NAME.USER);
         initProperty(FILES_NAME.RESULT);
         initProperty(FILES_NAME.QUESTION);
@@ -32,11 +32,11 @@ public final class PropertyUtils {
         initProperty(FILES_NAME.POST_PROCESS_FILE);
     }
 
-    public static Properties getProperty(final String fileName) {
+    public Properties getProperty(final String fileName) {
         return cache.get(fileName);
     }
 
-    private static void initProperty(final String fileName) {
+    private void initProperty(final String fileName) {
         final Properties prop = new Properties();
         try {
             final InputStream is = PropertyUtils.class.getResourceAsStream(fileName);
