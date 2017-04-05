@@ -20,7 +20,8 @@
 
     <jsp:body>
         <div class="well">
-            <form action="${updatePasswordAction}" method="POST" class="form-horizontal">
+            <form action="${updatePasswordAction}" method="POST" class="form-horizontal"
+                  data-msg-repeat="${repeatPassword}">
                 <input type="hidden" name="command" value="studentUpdatePassword">
 
                 <div class="form-group">
