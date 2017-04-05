@@ -59,7 +59,7 @@ public class QuestionDaoImpl implements QuestionDao {
     }
 
     @Override
-    public List<Question> findByQuizIdRandom(final Long quizId) {
+    public List<Question> findByQuizIdInRandomOrder(final Long quizId) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_QUIZ_ID_RANDOM), QUIZ_ID_KEY),
                 ps -> ps.setLong(1, quizId), new QuestionMapper());
     }

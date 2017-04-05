@@ -54,6 +54,20 @@ public class AnswerServiceImplTest {
     }
 
     @Test
+    public void requireInvokeSaveBatch() throws Exception {
+        answerService.save(answers);
+        verify(answerDao).saveBatch(answers);
+        verifyNoMoreInteractions(answer);
+        verifyNoMoreInteractions(answerDao);
+    }
+
+    @Test(expected = EntityExistsException.class)
+    public void requireSaveBatchWithException() throws Exception {
+        doThrow(new EntityExistsException()).when(answerDao).saveBatch(answers);
+        answerService.save(answers);
+    }
+
+    @Test
     public void requireInvokeFindById() throws Exception {
         when(answer.getId()).thenReturn(ID);
         answerService.findById(answer.getId());

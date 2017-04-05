@@ -71,8 +71,8 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     @Override
     @Transactional
-    public List<Question> findByQuizIdRandom(final Long id) {
-        final List<Question> questions = questionDao.findByQuizIdRandom(id);
+    public List<Question> findByQuizIdInRandomOrder(final Long id) {
+        final List<Question> questions = questionDao.findByQuizIdInRandomOrder(id);
 
         for (final Question question : questions) {
             final Long questionId = question.getId();

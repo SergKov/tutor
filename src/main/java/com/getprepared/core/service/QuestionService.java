@@ -19,7 +19,7 @@ public interface QuestionService {
 
     List<Question> findByQuizId(Long id);
 
-    List<Question> findByQuizIdRandom(Long id);
+    List<Question> findByQuizIdInRandomOrder(Long id);
 
     void remove(Long id) throws EntityNotFoundException, QuizTerminatedException;
 
