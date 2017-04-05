@@ -2,11 +2,13 @@ package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.Service;
+import com.getprepared.annotation.Transactional;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
+import com.getprepared.core.service.QuizService;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
@@ -32,40 +34,30 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     @Inject
     private AnswerService answerService;
 
+    @Inject
+    private QuizService quizService;
+
     @Override
+    @Transactional
     public void save(final Question question) throws EntityExistsException {
-        try {
-            transactionManager.begin();
-            questionDao.save(question);
+        questionDao.save(question);
 
-            final List<Answer> answers = question.getAnswers();
-            answerService.save(answers);
-
-            transactionManager.commit();
-        } catch (final EntityExistsException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        final List<Answer> answers = question.getAnswers();
+        answerService.save(answers);
     }
 
     @Override
+    @Transactional
     public Question findById(final Long id) throws EntityNotFoundException {
-        try {
-            transactionManager.begin();
-            final Question question = questionDao.findById(id);
-            final List<Answer> answers = answerService.findByQuestionId(question.getId());
-            question.setAnswers(answers);
-            transactionManager.commit();
-            return question;
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        final Question question = questionDao.findById(id);
+        final List<Answer> answers = answerService.findByQuestionId(question.getId());
+        question.setAnswers(answers);
+        return question;
     }
 
     @Override
+    @Transactional
     public List<Question> findByQuizId(final Long id) {
-        transactionManager.begin();
         final List<Question> questions = questionDao.findByQuizId(id);
 
         for (final Question question : questions) {
@@ -74,13 +66,12 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             question.setAnswers(answers);
         }
 
-        transactionManager.commit();
         return questions;
     }
 
     @Override
+    @Transactional
     public List<Question> findByQuizIdRandom(final Long id) {
-        transactionManager.begin();
         final List<Question> questions = questionDao.findByQuizIdRandom(id);
 
         for (final Question question : questions) {
@@ -89,31 +80,24 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             question.setAnswers(answers);
         }
 
-        transactionManager.commit();
         return questions;
     }
 
     @Override
-    public void remove(final Question question) throws EntityNotFoundException, QuizTerminatedException {
-        try {
-            transactionManager.begin();
-            checkActive(question.getQuiz());
-            questionDao.removeById(question.getId());
-            transactionManager.commit();
-        } catch (EntityNotFoundException | QuizTerminatedException e) {
-            transactionManager.rollback();
-            throw e;
-        }
-
+    @Transactional
+    public void remove(final Long id) throws EntityNotFoundException, QuizTerminatedException {
+        final Question question = findById(id);
+        final Long quizId = question.getQuiz().getId();
+        final Quiz quiz = quizService.findById(quizId);
+        checkActive(quiz);
+        questionDao.removeById(question.getId());
     }
 
     @Override
     public List<TestQuestion> startTest(final Long quizId) {
-        transactionManager.begin();
         final List<Question> questions = findByQuizId(quizId);
         final List<TestQuestion> testQuestions = new ArrayList<>();
         questions.forEach(question -> testQuestions.add(new TestQuestion(question, Collections.emptyList())));
-        transactionManager.commit();
         return testQuestions;
     }
 

@@ -21,7 +21,7 @@ public interface QuestionService {
 
     List<Question> findByQuizIdRandom(Long id);
 
-    void remove(Question question) throws EntityNotFoundException, QuizTerminatedException;
+    void remove(Long id) throws EntityNotFoundException, QuizTerminatedException;
 
     List<TestQuestion> startTest(Long quizId);
 

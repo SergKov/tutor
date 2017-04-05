@@ -38,7 +38,7 @@ public class QuestionRemoveCommand extends AbstractQuestionsCommand {
         try {
             final Long questionId = Long.parseLong(request.getParameter(INPUT.QUESTION_ID));
             final Question question = questionService.findById(questionId);
-            questionService.remove(question);
+            questionService.remove(question.getId());
             response.sendRedirect(LINK.TUTOR_QUESTIONS);
         } catch (EntityNotFoundException | NumberFormatException | QuizTerminatedException e) {
             LOG.warn(e.getMessage(), e);

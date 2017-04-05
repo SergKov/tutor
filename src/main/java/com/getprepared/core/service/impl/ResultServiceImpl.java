@@ -2,6 +2,7 @@ package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.Service;
+import com.getprepared.annotation.Transactional;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
@@ -32,37 +33,23 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
 
     @Override
     public void save(final Result result) throws EntityExistsException {
-        try {
-            transactionManager.begin();
-            resultDao.save(result);
-            transactionManager.commit();
-        } catch (final EntityExistsException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        resultDao.save(result);
     }
 
     @Override
+    @Transactional
     public List<Result> findByUserId(final Long id, final PageableData page) throws EntityNotFoundException {
-        final List<Result> results;
-        try {
-            transactionManager.begin();
-            results = resultDao.findByUserId(id, page);
-            page.setNumberOfElements(resultDao.countFoundRows());
+        final List<Result> results = resultDao.findByUserId(id, page);
 
-            for (final Result result : results) {
-                final User user = userService.findById(result.getId());
-                result.setUser(user);
+        page.setNumberOfElements(resultDao.countFoundRows());
 
-                final Quiz quiz = quizService.findById(user.getId());
-                result.setQuiz(quiz);
-            }
-            transactionManager.commit();
-            return results;
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
+        for (final Result result : results) {
+            final User user = userService.findById(result.getId());
+            result.setUser(user);
+
+            final Quiz quiz = quizService.findById(user.getId());
+            result.setQuiz(quiz);
         }
-
+        return results;
     }
 }

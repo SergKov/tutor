@@ -2,6 +2,7 @@ package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Inject;
 import com.getprepared.annotation.Service;
+import com.getprepared.annotation.Transactional;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.exception.QuizNotTerminatedException;
@@ -40,96 +41,66 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     @Override
     public void save(final Quiz quiz) throws EntityExistsException {
-        try {
-            transactionManager.begin();
-            quizDao.save(quiz);
-            transactionManager.commit();
-        } catch (final EntityExistsException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        quizDao.save(quiz);
     }
 
     @Override
+    @Transactional
     public Quiz findById(final Long id) throws EntityNotFoundException {
-        try {
-            transactionManager.begin();
-            final Quiz quiz = quizDao.findById(id);
-
-            initQuiz(quiz);
-
-            transactionManager.commit();
-            return quiz;
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        final Quiz quiz = quizDao.findById(id);
+        initQuiz(quiz);
+        return quiz;
     }
 
     @Override
+    @Transactional
     public List<Quiz> findAllByTutorId(final Long id, final PageableData page) throws EntityNotFoundException {
-        try {
-            transactionManager.begin();
-            final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
-            page.setNumberOfElements(quizDao.countFoundRows());
+        final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
 
-            initQuiz(quizzes);
+        page.setNumberOfElements(quizDao.countFoundRows());
+        initQuizzes(quizzes);
 
-            transactionManager.commit();
-            return quizzes;
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        return quizzes;
     }
 
     @Override
+    @Transactional
     public List<Quiz> findAllActive(final PageableData page) throws EntityNotFoundException {
-        try {
-            transactionManager.begin();
-            final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
-            page.setNumberOfElements(quizDao.countFoundRows());
+        final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
+        page.setNumberOfElements(quizDao.countFoundRows());
 
-            initQuiz(createdQuizzes);
+        initQuizzes(createdQuizzes);
 
-            transactionManager.commit();
-            return createdQuizzes;
-        } catch (final EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
-    }
-
-    private void initQuiz(final List<Quiz> quizzes) throws EntityNotFoundException {
-        for (final Quiz quiz : quizzes) {
-            final List<Question> questions = questionService.findByQuizId(quiz.getId());
-
-            for (final Question question : questions) {
-                final List<Answer> answers = answerService.findByQuestionId(question.getId());
-                question.setAnswers(answers);
-            }
-        }
+        return createdQuizzes;
     }
 
     @Override
+    @Transactional
     public void active(final Long id) throws QuizTerminatedException, EntityNotFoundException,
             QuizNotTerminatedException {
-        try {
-            transactionManager.begin();
-            final Quiz quiz = quizDao.findById(id);
-            initQuiz(quiz);
-            checkActive(quiz);
-            checkQuizQuestions(quiz);
-            quizDao.activeQuiz(quiz.getId());
-            transactionManager.commit();
-        } catch (EntityNotFoundException | QuizTerminatedException | QuizNotTerminatedException e) {
-            transactionManager.rollback();
-            throw e;
-        }
+        final Quiz quiz = quizDao.findById(id);
+
+        initQuiz(quiz);
+        checkActive(quiz);
+        checkQuizQuestions(quiz);
+
+        quizDao.activeQuiz(quiz.getId());
+    }
+
+    @Override
+    @Transactional
+    public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException, EntityNotFoundException {
+        final Quiz oldQuiz = quizDao.findById(quiz.getId());
+        checkActive(oldQuiz);
+        quizDao.update(quiz.getName(), quiz.getId());
+    }
+
+    @Override
+    public void remove(final Long id) {
+        quizDao.remove(id);
     }
 
     private void initQuiz(final Quiz quiz) throws EntityNotFoundException {
-
         final List<Question> questions = questionService.findByQuizId(quiz.getId());
 
         for (final Question question : questions) {
@@ -139,7 +110,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         quiz.setQuestions(questions);
     }
 
-
     private void checkQuizQuestions(final Quiz quiz) throws QuizNotTerminatedException { // TODO rename
         final List<Question> questions = quiz.getQuestions();
         if (isEmpty(questions)) {
@@ -147,24 +117,14 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         }
     }
 
-    @Override
-    public void update(final Quiz quiz) throws QuizTerminatedException, EntityExistsException, EntityNotFoundException {
-        try { // TODO ??
-            transactionManager.begin();
-            final Quiz oldQuiz = quizDao.findById(quiz.getId());
-            checkActive(oldQuiz);
-            quizDao.update(quiz.getName(), quiz.getId());
-            transactionManager.commit();
-        } catch (EntityExistsException | QuizTerminatedException | EntityNotFoundException e) {
-            transactionManager.rollback();
-            throw e;
-        }
-    }
+    private void initQuizzes(final List<Quiz> quizzes) throws EntityNotFoundException {
+        for (final Quiz quiz : quizzes) {
+            final List<Question> questions = questionService.findByQuizId(quiz.getId());
 
-    @Override
-    public void remove(final Long id) {
-        transactionManager.begin();
-        quizDao.remove(id);
-        transactionManager.commit();
+            for (final Question question : questions) {
+                final List<Answer> answers = answerService.findByQuestionId(question.getId());
+                question.setAnswers(answers);
+            }
+        }
     }
 }
