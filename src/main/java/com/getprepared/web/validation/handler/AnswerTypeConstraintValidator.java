@@ -3,13 +3,11 @@ package com.getprepared.web.validation.handler;
 import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.validation.ConstraintValidator;
 import com.getprepared.web.validation.annotation.AnswerType;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Arrays.stream;
 
 /**
  * Created by koval on 21.03.2017.
@@ -28,7 +26,7 @@ public class AnswerTypeConstraintValidator implements ConstraintValidator<Answer
         final Type[] types = annotation.value();
         final List<String> stringType = convertToStringArray(types);
 
-        for (final String item : items) { // TODO
+        for (final String item : items) {
             if (!stringType.contains(item.toUpperCase())) {
                 return false;
             }
@@ -38,7 +36,7 @@ public class AnswerTypeConstraintValidator implements ConstraintValidator<Answer
 
     private List<String> convertToStringArray(final Type[] types) {
         final ArrayList<String> stringType = new ArrayList<>();
-        Arrays.stream(types).forEach(type -> stringType.add(type.name()));
+        stream(types).forEach(type -> stringType.add(type.name()));
         return stringType;
     }
 }

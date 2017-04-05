@@ -29,8 +29,7 @@ public abstract class AbstractQuizCommand implements Command {
     @Inject
     private Messages messages;
 
-    protected void fillPage(final HttpServletRequest request, final QuizService quizService)
-            throws EntityNotFoundException {
+    protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
         request.setAttribute(TITLE, messages.getMessage(KEY.QUIZZES, request.getLocale()));
 

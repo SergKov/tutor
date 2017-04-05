@@ -76,7 +76,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
         for (final Question question : questions) {
             final Long questionId = question.getId();
-            final List<Answer> answers = answerService.findByQuestionIdRandom(questionId);
+            final List<Answer> answers = answerService.findByQuestionIdInRandomOrder(questionId);
             question.setAnswers(answers);
         }
 

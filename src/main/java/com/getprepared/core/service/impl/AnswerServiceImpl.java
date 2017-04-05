@@ -40,7 +40,7 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
     }
 
     @Override
-    public List<Answer> findByQuestionIdRandom(final Long questionId) {
-        return answerDao.findByQuestionIdRandom(questionId);
+    public List<Answer> findByQuestionIdInRandomOrder(final Long questionId) {
+        return answerDao.findByQuestionIdInRandomOrder(questionId); // TODO rename
     }
 }

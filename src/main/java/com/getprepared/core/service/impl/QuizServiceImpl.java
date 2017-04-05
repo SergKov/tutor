@@ -54,7 +54,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     @Override
     @Transactional
-    public List<Quiz> findAllByTutorId(final Long id, final PageableData page) throws EntityNotFoundException {
+    public List<Quiz> findAllByTutorId(final Long id, final PageableData page) {
         final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
 
         page.setNumberOfElements(quizDao.countFoundRows());
@@ -65,7 +65,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     @Override
     @Transactional
-    public List<Quiz> findAllActive(final PageableData page) throws EntityNotFoundException {
+    public List<Quiz> findAllActive(final PageableData page) {
         final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
         page.setNumberOfElements(quizDao.countFoundRows());
 
@@ -82,7 +82,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
         initQuiz(quiz);
         checkActive(quiz);
-        checkQuizQuestions(quiz);
+        checkNotEmpty(quiz);
 
         quizDao.activeQuiz(quiz.getId());
     }
@@ -110,14 +110,14 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         quiz.setQuestions(questions);
     }
 
-    private void checkQuizQuestions(final Quiz quiz) throws QuizNotTerminatedException { // TODO rename
+    private void checkNotEmpty(final Quiz quiz) throws QuizNotTerminatedException {
         final List<Question> questions = quiz.getQuestions();
         if (isEmpty(questions)) {
             throw new QuizNotTerminatedException(String.format("Quiz %s is empty.", quiz.getName()));
         }
     }
 
-    private void initQuizzes(final List<Quiz> quizzes) throws EntityNotFoundException {
+    private void initQuizzes(final List<Quiz> quizzes) {
         for (final Quiz quiz : quizzes) {
             final List<Question> questions = questionService.findByQuizId(quiz.getId());
 

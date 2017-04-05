@@ -38,12 +38,8 @@ public class QuizPageCommand extends AbstractQuizCommand {
 
         if (isEmpty(quizId)) {
             request.getSession().removeAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
-            try {
-                fillPage(request, quizService);
-                return PATH.TUTOR_QUIZZES;
-            } catch (final EntityNotFoundException e) {
-                response.sendRedirect(LINK.TUTOR_SIGN_IN);
-            }
+            fillPage(request, quizService);
+            return PATH.TUTOR_QUIZZES;
         }
 
         if (isNumeric(quizId)) {

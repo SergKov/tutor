@@ -70,4 +70,8 @@ public class ConnectionProvider {
     public Connection getConnection() {
         return threadLocal.get() != null ? threadLocal.get().getConnection() : dataSourceUtils.getConnection(dataSource);
     }
+
+//    public boolean isTransactional() {
+//        return
+//    }
 }

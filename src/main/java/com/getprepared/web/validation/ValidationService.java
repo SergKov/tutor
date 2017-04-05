@@ -1,7 +1,7 @@
 package com.getprepared.web.validation;
 
 import com.getprepared.annotation.Component;
-import com.getprepared.context.Registry;
+import com.getprepared.annotation.Inject;
 import com.getprepared.core.util.ReflectionUtils;
 import com.getprepared.web.validation.annotation.Constraint;
 
@@ -19,6 +19,9 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
  */
 @Component
 public class ValidationService {
+
+    @Inject
+    private ReflectionUtils reflectionUtils;
 
     public Map<String, String> validate(final Object object) {
         final Field[] fields = object.getClass().getDeclaredFields();
@@ -39,8 +42,7 @@ public class ValidationService {
             if (isConstraint(annotation)) {
                 final ConstraintValidator validator = getConstraintValidator(annotation);
                 validator.init(annotation);
-                if (!validator.isValid(Registry.getApplicationContext().getBean("reflectionUtils",
-                        ReflectionUtils.class).getField(field, object))) {
+                if (!validator.isValid(reflectionUtils.getField(field, object))) {
                     errors.put(field.getName(), getMessage(annotation));
                     break;
                 }
@@ -60,8 +62,7 @@ public class ValidationService {
 
     private ConstraintValidator getConstraintValidator(final Annotation annotation) {
         final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
-        return Registry.getApplicationContext().getBean("reflectionUtils", ReflectionUtils.class)
-                .newInstance(constraint.validatedBy());
+        return reflectionUtils.newInstance(constraint.validatedBy());
     }
 
     private String getMessage(final Annotation annotation) {

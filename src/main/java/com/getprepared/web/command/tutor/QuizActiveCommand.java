@@ -26,7 +26,7 @@ import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
  */
 @Controller
 @CommandMapping(COMMAND.TUTOR_QUIZ_ACTIVE)
-public class QuizActiveCommand extends AbstractQuizCommand { // TODO refacore
+public class QuizActiveCommand extends AbstractQuizCommand {
 
     private static final Logger LOG = Logger.getLogger(QuizActiveCommand.class);
 
@@ -53,14 +53,7 @@ public class QuizActiveCommand extends AbstractQuizCommand { // TODO refacore
             request.setAttribute(ERROR_MSG, messages.getMessage(QUIZ_EMPTY, request.getLocale()));
         }
 
-        try {
-            fillPage(request, quizService);
-        } catch (final EntityNotFoundException e) {
-            LOG.warn(e.getMessage(), e);
-            response.sendError(SC_NOT_FOUND);
-            return REDIRECT;
-        }
-
+        fillPage(request, quizService);
         return PATH.TUTOR_QUIZZES;
     }
 }
