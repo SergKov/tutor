@@ -16,8 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
-import static com.getprepared.core.constant.PropertyConstant.KEY;
+import static com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.persistence.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.User.*;
 

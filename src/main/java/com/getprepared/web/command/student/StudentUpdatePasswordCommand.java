@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY.OLD_PASSWORD_INCORRECT;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
@@ -65,13 +66,13 @@ public class StudentUpdatePasswordCommand extends AbstractUpdatePasswordCommand 
                 return REDIRECT;
             } catch (final EntityNotFoundException e) {
                 LOG.warn(e.getMessage(), e);
-                request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.OLD_PASSWORD_INCORRECT, request.getLocale()));
+                request.setAttribute(ERROR_MSG, messages.getMessage(OLD_PASSWORD_INCORRECT, request.getLocale()));
             }
         } else {
             request.setAttribute(ERROR_MSGS, errorMsgs);
         }
 
         fillPage(request);
-        return PAGE.STUDENT_UPDATE_PASSWORD;
+        return PATH.STUDENT_UPDATE_PASSWORD;
     }
 }

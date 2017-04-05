@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY.FILL_NOT_ALL_FIELDS;
+import static com.getprepared.web.constant.PropertyConstant.KEY.QUESTION_EXISTS;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
@@ -71,7 +73,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
             answersType = request.getParameterValues(INPUT.ANSWER_TYPE);
 
             if (answersText.length != answersType.length) {
-                request.setAttribute(ERROR_MSG, ERROR.FILL_NOT_ALL_FIELDS);
+                request.setAttribute(ERROR_MSG, FILL_NOT_ALL_FIELDS);
             } else {
                 questionAddForm.setAnswersText(answersText);
                 questionAddForm.setAnswersType(answersType);
@@ -95,11 +97,11 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
             return REDIRECT;
         } catch (final EntityExistsException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUESTION_EXISTS, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(QUESTION_EXISTS, request.getLocale()));
         }
 
         request.setAttribute(REQUEST_ATTRIBUTE.QUESTION, questionAddForm);
         fillPage(request);
-        return PAGE.TUTOR_QUESTION_ADD;
+        return PATH.TUTOR_QUESTION_ADD;
     }
 }

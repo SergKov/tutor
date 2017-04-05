@@ -12,11 +12,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import static com.getprepared.context.ApplicationContext.PACKAGE_SCANNER;
-import static com.getprepared.context.ApplicationContext.PROPERTY_UTILS;
-import static com.getprepared.context.ApplicationContext.REFLECTION_UTILS;
 import static com.getprepared.context.Registry.getApplicationContext;
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
+import static com.getprepared.context.constant.ServerConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
 import static java.util.Arrays.stream;
 
 /**

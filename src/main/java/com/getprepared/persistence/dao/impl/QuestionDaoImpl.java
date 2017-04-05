@@ -3,7 +3,7 @@ package com.getprepared.persistence.dao.impl;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.context.Registry;
-import com.getprepared.core.constant.PropertyConstant.FILES_NAME;
+import com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstant.KEY;
+import static com.getprepared.persistence.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.Question.QUIZ_ID_KEY;
 import static com.getprepared.persistence.domain.Question.TEXT_KEY;

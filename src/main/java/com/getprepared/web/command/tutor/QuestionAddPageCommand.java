@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
@@ -27,6 +27,6 @@ public class QuestionAddPageCommand extends AbstractQuestionAddCommand {
         }
 
         fillPage(request);
-        return PAGE.TUTOR_QUESTION_ADD;
+        return PATH.TUTOR_QUESTION_ADD;
     }
 }

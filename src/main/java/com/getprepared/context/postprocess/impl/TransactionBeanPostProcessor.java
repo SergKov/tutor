@@ -1,5 +1,6 @@
 package com.getprepared.context.postprocess.impl;
 
+
 import com.getprepared.annotation.Service;
 import com.getprepared.annotation.Transactional;
 import com.getprepared.context.ApplicationContext;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.getprepared.context.Registry.getApplicationContext;
+import static com.getprepared.context.constant.ServerConstant.TRANSACTION_MANAGER;
 
 /**
  * Created by koval on 02.04.2017.
@@ -38,7 +40,7 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
         final Class beanClass = map.get(beanName);
 
         final TransactionManager transactionManager
-                = getApplicationContext().getBean("transactionManager", TransactionManager.class);
+                = getApplicationContext().getBean(TRANSACTION_MANAGER, TransactionManager.class);
 
         if (beanClass != null) {
             return Optional.of(Proxy.newProxyInstance(bean.getClass().getClassLoader(), bean.getClass().getInterfaces(),

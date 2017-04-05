@@ -8,7 +8,7 @@ import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstant;
+import com.getprepared.web.constant.PropertyConstant.KEY;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -32,7 +32,7 @@ public abstract class AbstractQuizCommand implements Command {
     protected void fillPage(final HttpServletRequest request, final QuizService quizService)
             throws EntityNotFoundException {
 
-        request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.QUIZZES, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(KEY.QUIZZES, request.getLocale()));
 
         final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.TUTOR);
 

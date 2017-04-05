@@ -5,13 +5,13 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY.RESULT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
@@ -34,8 +34,8 @@ public class StudentResultPageCommand implements Command {
             return REDIRECT;
         }
 
-        request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.RESULT, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(RESULT, request.getLocale()));
         request.getSession().getAttribute(SESSION_ATTRIBUTE.MARK);
-        return PAGE.STUDENT_RESULT;
+        return PATH.STUDENT_RESULT;
     }
 }

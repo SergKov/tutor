@@ -7,11 +7,10 @@ import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
-import com.getprepared.web.constant.PageConstant.ERROR;
-import com.getprepared.web.constant.PageConstant.LINK;
-import com.getprepared.web.constant.PageConstant.PAGE;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.constant.ApplicationConstant.LINK;
+import com.getprepared.web.constant.ApplicationConstant.PATH;
 import com.getprepared.web.form.UserSignUpForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -21,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstant.COMMAND;
-import static com.getprepared.web.constant.PageConstant.REDIRECT;
+import static com.getprepared.web.constant.ApplicationConstant.COMMAND;
+import static com.getprepared.web.constant.ApplicationConstant.REDIRECT;
+import static com.getprepared.web.constant.PropertyConstant.KEY.USER_EXISTS;
 import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSGS;
@@ -75,13 +75,13 @@ public class SignUpCommand extends AbstractSignUpCommand {
                 }
             } catch (final EntityExistsException e) {
                 LOG.warn(e.getMessage(), e);
-                request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.USER_EXISTS, request.getLocale()));
+                request.setAttribute(ERROR_MSG, messages.getMessage(USER_EXISTS, request.getLocale()));
             }
         }
 
         request.setAttribute(REQUEST_ATTRIBUTE.USER, userForm);
         fillPage(request);
-        return PAGE.SIGN_UP;
+        return PATH.SIGN_UP;
     }
 
     private void fillForm(final HttpServletRequest request, final UserSignUpForm userSignUpForm) {

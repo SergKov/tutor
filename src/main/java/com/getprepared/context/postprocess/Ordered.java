@@ -5,7 +5,5 @@ package com.getprepared.context.postprocess;
  */
 public interface Ordered {
 
-    int STEP = 100;
-
     int getOrder();
 }

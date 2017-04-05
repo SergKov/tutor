@@ -6,8 +6,8 @@ import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Role;
 import com.getprepared.persistence.domain.User;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.common.AbstractSignInCommand;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY.USER_NOT_FOUND;
 import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 
@@ -54,10 +55,10 @@ public class StudentSignInCommand extends AbstractSignInCommand {
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             request.setAttribute(REQUEST_ATTRIBUTE.EMAIL, email);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.USER_NOT_FOUND, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(USER_NOT_FOUND, request.getLocale()));
         }
 
         fillPage(request);
-        return PAGE.STUDENT_SIGN_IN;
+        return PATH.STUDENT_SIGN_IN;
     }
 }

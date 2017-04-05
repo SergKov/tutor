@@ -1,7 +1,7 @@
 package com.getprepared.web.command.common;
 
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
+import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-import static com.getprepared.web.constant.PageConstant.LINK;
-import static com.getprepared.web.constant.PageConstant.REDIRECT;
+import static com.getprepared.web.constant.ApplicationConstant.LINK;
+import static com.getprepared.web.constant.ApplicationConstant.REDIRECT;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE.TUTOR;
 
 /**

@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY.QUIZ_EMPTY;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.ERROR_MSG;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
@@ -49,7 +50,7 @@ public class QuizActiveCommand extends AbstractQuizCommand { // TODO refacore
             return REDIRECT;
         } catch (final QuizNotTerminatedException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUIZ_EMPTY, request.getLocale()));
+            request.setAttribute(ERROR_MSG, messages.getMessage(QUIZ_EMPTY, request.getLocale()));
         }
 
         try {
@@ -60,6 +61,6 @@ public class QuizActiveCommand extends AbstractQuizCommand { // TODO refacore
             return REDIRECT;
         }
 
-        return PAGE.TUTOR_QUIZZES;
+        return PATH.TUTOR_QUIZZES;
     }
 }

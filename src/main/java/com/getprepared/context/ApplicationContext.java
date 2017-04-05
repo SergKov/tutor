@@ -10,8 +10,8 @@ import com.getprepared.core.util.ReflectionUtils;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME.*;
-import static com.getprepared.core.constant.ServerConstant.EMPTY_STRING;
+import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.*;
+import static com.getprepared.context.constant.ServerConstant.*;
 import static java.util.Arrays.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
@@ -19,11 +19,6 @@ import static org.apache.commons.lang3.StringUtils.uncapitalize;
  * Created by koval on 25.02.2017.
  */
 public class ApplicationContext {
-
-    static final String APPLICATION_CONTEXT = "applicationContext";
-    static final String REFLECTION_UTILS = "reflectionUtils";
-    static final String PACKAGE_SCANNER = "packageScanner";
-    static final String PROPERTY_UTILS = "propertyUtils";
 
     private final Map<String, Object> container = new HashMap<>();
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
@@ -116,7 +111,8 @@ public class ApplicationContext {
     }
 
     private void initPostProcessors() {
-        final Properties postProcessorProperties = getBean(PROPERTY_UTILS, PropertyUtils.class).getProperty(POST_PROCESS_FILE);
+        final Properties postProcessorProperties = getBean(PROPERTY_UTILS, PropertyUtils.class)
+                .getProperty(POST_PROCESS_FILE);
 
         postProcessorProperties.keySet().stream()
                 .map(key -> (String) key)

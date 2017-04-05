@@ -8,13 +8,13 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.getprepared.web.constant.PropertyConstant.KEY.QUESTIONS;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 
@@ -29,7 +29,7 @@ public abstract class AbstractQuestionsCommand implements Command {
     protected void fillPage(final HttpServletRequest request, final QuizService quizService,
                             final QuestionService questionService) throws EntityNotFoundException {
 
-        request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.QUESTIONS, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(QUESTIONS, request.getLocale()));
 
         final Long quizId = (Long) request.getSession().getAttribute(INPUT.QUIZ_ID);
         final Quiz quiz = quizService.findById(quizId);

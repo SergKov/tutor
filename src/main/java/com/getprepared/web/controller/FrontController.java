@@ -3,18 +3,15 @@ package com.getprepared.web.controller;
 import com.getprepared.web.command.Command;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 import static com.getprepared.context.Registry.getWebContext;
-import static com.getprepared.web.constant.PageConstant.LINK;
-import static com.getprepared.web.constant.PageConstant.REDIRECT;
-import static javax.servlet.http.HttpServletResponse.*;
+import static com.getprepared.web.constant.ApplicationConstant.REDIRECT;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 /**
  * Created by koval on 14.01.2017.

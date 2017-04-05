@@ -4,7 +4,6 @@ import com.getprepared.annotation.Inject;
 import com.getprepared.core.converter.Converter;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
-import com.getprepared.core.exception.QuizNotTerminatedException;
 import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
@@ -12,7 +11,6 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.form.QuizUpdateForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -22,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY.QUIZ_EXISTS;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
-import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static org.apache.commons.collections4.MapUtils.isNotEmpty;
 
@@ -69,7 +67,7 @@ public class QuizUpdateCommand implements Command {
                 return REDIRECT;
             } catch (final EntityExistsException e) {
                 LOG.warn(e.getMessage(), e);
-                request.setAttribute(ERROR_MSG, messages.getMessage(ERROR.QUIZ_EXISTS, request.getLocale()));
+                request.setAttribute(ERROR_MSG, messages.getMessage(QUIZ_EXISTS, request.getLocale()));
             } catch (QuizTerminatedException | EntityNotFoundException | NumberFormatException e) {
                 LOG.error(e.getMessage(), e);
                 response.sendError(SC_NOT_FOUND);
@@ -78,7 +76,7 @@ public class QuizUpdateCommand implements Command {
 
         request.setAttribute(QUIZ, quizForm);
         request.setAttribute(QUIZ_NAME_REGEX, QUIZ_NAME_REGEX);
-        request.setAttribute(TITLE, PageConstant.TITLE.QUIZZES);
-        return PAGE.TUTOR_QUIZZES;
+        request.setAttribute(TITLE, QUIZZES);
+        return PATH.TUTOR_QUIZZES;
     }
 }

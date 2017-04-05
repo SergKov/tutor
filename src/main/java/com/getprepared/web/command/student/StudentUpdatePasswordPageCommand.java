@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.LINK;
-import static com.getprepared.web.constant.PageConstant.PAGE;
+import static com.getprepared.web.constant.ApplicationConstant.LINK;
+import static com.getprepared.web.constant.ApplicationConstant.PATH;
 
 /**
  * Created by koval on 31.03.2017.
@@ -21,6 +21,6 @@ public class StudentUpdatePasswordPageCommand extends AbstractUpdatePasswordComm
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGE.STUDENT_UPDATE_PASSWORD;
+        return PATH.STUDENT_UPDATE_PASSWORD;
     }
 }

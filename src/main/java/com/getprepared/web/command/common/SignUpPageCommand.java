@@ -1,14 +1,14 @@
 package com.getprepared.web.command.common;
 
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
-import com.getprepared.web.constant.PageConstant.LINK;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.constant.ApplicationConstant.LINK;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.PAGE;
+import static com.getprepared.web.constant.ApplicationConstant.PATH;
 
 /**
  * Created by koval on 17.01.2017.
@@ -20,6 +20,6 @@ public class SignUpPageCommand extends AbstractSignUpCommand {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         fillPage(request);
-        return PAGE.SIGN_UP;
+        return PATH.SIGN_UP;
     }
 }

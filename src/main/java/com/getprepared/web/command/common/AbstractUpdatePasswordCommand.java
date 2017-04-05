@@ -6,7 +6,7 @@ import com.getprepared.web.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.getprepared.web.constant.PageConstant.TITLE.UPDATE_PASSWORD;
+import static com.getprepared.web.constant.PropertyConstant.KEY.UPDATE_PASSWORD;
 import static com.getprepared.web.constant.ValidationConstant.REGEX;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 

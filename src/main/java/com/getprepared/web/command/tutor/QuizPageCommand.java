@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT.QUIZ_ID;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
-import static javax.servlet.http.HttpServletResponse.*;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
@@ -40,7 +40,7 @@ public class QuizPageCommand extends AbstractQuizCommand {
             request.getSession().removeAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
             try {
                 fillPage(request, quizService);
-                return PAGE.TUTOR_QUIZZES;
+                return PATH.TUTOR_QUIZZES;
             } catch (final EntityNotFoundException e) {
                 response.sendRedirect(LINK.TUTOR_SIGN_IN);
             }

@@ -6,10 +6,9 @@ import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
-import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.annotation.CommandMapping;
-import com.getprepared.web.constant.PageConstant;
-import com.getprepared.web.constant.WebConstant;
+import com.getprepared.web.annotation.Controller;
+import com.getprepared.web.constant.PropertyConstant;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -17,14 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.PageConstant.*;
-import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.QUESTION;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
-import static javax.servlet.http.HttpServletResponse.*;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
@@ -66,12 +65,12 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 response.sendError(SC_NOT_FOUND);
                 return REDIRECT;
             }
-            return PAGE.TUTOR_QUESTIONS;
+            return PATH.TUTOR_QUESTIONS;
         }
 
         if (isNumeric(questionIdString)) {
             try {
-                request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.QUESTION, request.getLocale()));
+                request.setAttribute(TITLE, messages.getMessage(KEY.QUESTION, request.getLocale()));
                 final Long questionId = Long.valueOf(questionIdString);
                 final Question question = questionService.findById(questionId);
                 request.setAttribute(QUESTION, question);
@@ -80,7 +79,7 @@ public class QuestionsPageCommand extends AbstractQuestionsCommand {
                 response.sendError(SC_NOT_FOUND);
                 return REDIRECT;
             }
-            return PAGE.TUTOR_QUESTION;
+            return PATH.TUTOR_QUESTION;
         }
 
         response.sendError(SC_NOT_FOUND);

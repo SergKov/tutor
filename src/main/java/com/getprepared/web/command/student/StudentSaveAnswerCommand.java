@@ -6,7 +6,6 @@ import com.getprepared.persistence.domain.Answer;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.PageConstant;
 import com.getprepared.web.dto.TestQuestion;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.getprepared.web.constant.PageConstant.COMMAND;
-import static com.getprepared.web.constant.PageConstant.PAGE;
+import static com.getprepared.web.constant.ApplicationConstant.COMMAND;
+import static com.getprepared.web.constant.ApplicationConstant.PATH;
+import static com.getprepared.web.constant.PropertyConstant.KEY.TEST;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
@@ -67,8 +67,8 @@ public class StudentSaveAnswerCommand implements Command {
 
         request.setAttribute(TEST_QUESTION, test.get(parsedQuestionNumber - 1));
         request.setAttribute(CURRENT_QUESTION, parsedQuestionNumber);
-        request.setAttribute(TITLE, messages.getMessage(PageConstant.TITLE.TEST, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(TEST, request.getLocale()));
 
-        return PAGE.STUDENT_TEST;
+        return PATH.STUDENT_TEST;
     }
 }

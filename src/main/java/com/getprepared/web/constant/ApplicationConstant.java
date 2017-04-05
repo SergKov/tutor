@@ -3,15 +3,15 @@ package com.getprepared.web.constant;
 /**
  * Created by koval on 14.01.2017.
  */
-public final class PageConstant {
+public final class ApplicationConstant {
 
-    private PageConstant() { }
+    private ApplicationConstant() { }
 
     public static final String REDIRECT = "redirect";
 
-    public static final class PAGE {
+    public static final class PATH {
 
-        private PAGE() { }
+        private PATH() { }
 
         private static final String PREFIX = "/WEB-INF/pages/";
 
@@ -112,55 +112,5 @@ public final class PageConstant {
         public static final String TUTOR_QUESTION_ADD = "questionAdd";
 
         public static final String SIGN_UP = "signUp";
-    }
-
-    public static final class TITLE {
-
-        private TITLE() { }
-
-        public static final String SIGN_IN = "SignIn";
-
-        public static final String SIGN_UP = "SignUp";
-
-        public static final String HOME_PAGE = "HomePage";
-
-        public static final String UPDATE_PASSWORD = "UpdatePassword";
-
-        public static final String QUIZZES = "Quizzes";
-
-        public static final String ADD_QUIZ = "AddQuiz";
-
-        public static final String QUESTIONS = "Questions";
-
-        public static final String QUESTION = "Question";
-
-        public static final String ADD_QUESTION = "AddQuestion";
-
-        public static final String TEST = "Test";
-
-        public static final String RESULT = "Result";
-    }
-
-    public static final class ERROR {
-
-        private ERROR() { }
-
-        public static final String PASSWORDS_NOT_MATCH = "PasswordsNotMatch";
-
-        public static final String USER_EXISTS = "UserExists";
-
-        public static final String USER_NOT_FOUND = "UserNotExists";
-
-        public static final String TUTOR_NOT_FOUND = "TutorNotExists";
-
-        public static final String QUESTION_EXISTS = "QuestionExists";
-
-        public static final String QUIZ_EXISTS = "SuchQuizAlreadyExists";
-
-        public static final String FILL_NOT_ALL_FIELDS = "FillNotAllFields";
-
-        public static final String OLD_PASSWORD_INCORRECT = "OldPasswordIncorrect";
-
-        public static final String QUIZ_EMPTY = "QuizEmpty";
     }
 }

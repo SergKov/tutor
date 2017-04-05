@@ -7,7 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import static com.getprepared.core.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.COMPONENT_FILE;
+import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.CONFIGURATION_FILE;
+import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.POST_PROCESS_FILE;
+import static com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.persistence.constant.PropertyConstant.FILES_NAME.*;
+import static com.getprepared.web.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
 
 /**
  * Created by koval on 06.01.2017.
@@ -21,15 +26,15 @@ public final class PropertyUtils {
     private Map<String, Properties> cache = new HashMap<>();
 
     private void init() {
-        initProperty(FILES_NAME.USER);
-        initProperty(FILES_NAME.RESULT);
-        initProperty(FILES_NAME.QUESTION);
-        initProperty(FILES_NAME.ANSWER);
-        initProperty(FILES_NAME.QUIZ);
-        initProperty(FILES_NAME.COMPONENT_FILE);
-        initProperty(FILES_NAME.CONFIGURATION_FILE);
-        initProperty(FILES_NAME.CONTROLLER_FILE);
-        initProperty(FILES_NAME.POST_PROCESS_FILE);
+        initProperty(USER);
+        initProperty(RESULT);
+        initProperty(QUESTION);
+        initProperty(ANSWER);
+        initProperty(QUIZ);
+        initProperty(COMPONENT_FILE);
+        initProperty(CONFIGURATION_FILE);
+        initProperty(CONTROLLER_FILE);
+        initProperty(POST_PROCESS_FILE);
     }
 
     public Properties getProperty(final String fileName) {
