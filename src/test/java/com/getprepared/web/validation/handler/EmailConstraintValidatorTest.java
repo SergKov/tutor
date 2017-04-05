@@ -67,7 +67,7 @@ public class EmailConstraintValidatorTest {
 
     @Test
     public void requireIsValidWithLongWorld() {
-        assertFalse(validator.isValid("testtestnetestingtestingtesting_Test_texd@testing_test.com"));
+        assertTrue(validator.isValid("testtestnetestingtestingtesting_Test_texd@testing_test.com"));
     }
 
 }
