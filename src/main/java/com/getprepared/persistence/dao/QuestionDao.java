@@ -21,5 +21,5 @@ public interface QuestionDao {
 
     void update(String text, Long id) throws EntityExistsException;
 
-    void removeById(Long id) throws EntityNotFoundException;
+    void remove(Long id) throws EntityNotFoundException;
 }

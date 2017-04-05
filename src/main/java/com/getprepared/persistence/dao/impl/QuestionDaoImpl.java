@@ -3,10 +3,10 @@ package com.getprepared.persistence.dao.impl;
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.context.Registry;
-import com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
+import com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.database.template.JdbcTemplate;
 import com.getprepared.persistence.database.template.RowMapper;
@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
+import static com.getprepared.context.constant.ServerConstant.PROPERTY_UTILS;
 import static com.getprepared.persistence.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
 import static com.getprepared.persistence.domain.Question.QUIZ_ID_KEY;
@@ -32,7 +33,7 @@ public class QuestionDaoImpl implements QuestionDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = Registry.getApplicationContext().getBean("propertyUtils", PropertyUtils.class)
+    private final Properties prop = Registry.getApplicationContext().getBean(PROPERTY_UTILS, PropertyUtils.class)
             .getProperty(FILES_NAME.QUESTION);
 
     @Override
@@ -72,7 +73,7 @@ public class QuestionDaoImpl implements QuestionDao {
     }
 
     @Override
-    public void removeById(final Long id) {
+    public void remove(final Long id) {
         jdbcTemplate.remove(prop.getProperty(KEY.REMOVE_BY_ID), ps -> ps.setLong(1, id));
     }
 

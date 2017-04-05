@@ -90,7 +90,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
         final Long quizId = question.getQuiz().getId();
         final Quiz quiz = quizService.findById(quizId);
         checkActive(quiz);
-        questionDao.removeById(question.getId());
+        questionDao.remove(question.getId());
     }
 
     @Override

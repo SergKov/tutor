@@ -68,9 +68,6 @@ public class ConnectionProvider {
     }
 
     public Connection getConnection() {
-        if (threadLocal.get() == null) {
-            return dataSourceUtils.getConnection(dataSource);
-        }
-        return threadLocal.get().getConnection();
+        return threadLocal.get() != null ? threadLocal.get().getConnection() : dataSourceUtils.getConnection(dataSource);
     }
 }
