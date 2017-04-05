@@ -70,7 +70,7 @@ public class NameConstraintValidatorTest {
     }
 
     @Test
-    public void requireIsValidWithBigIncorrectName() {
+    public void requireIsValidWithLongIncorrectName() {
         assertFalse(validator.isValid("Asdsadsasfdsfdgfdsgfgddgfdfg"));
     }
 }

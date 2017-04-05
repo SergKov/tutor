@@ -51,13 +51,23 @@ public class EmailConstraintValidatorTest {
     }
 
     @Test
-    public void requireIsValidWithManyLetterAfterDot() {
+    public void requireIsValidWithManyLettersAfterDot() {
         assertFalse(validator.isValid("test@ukr.net...aervd"));
+    }
+
+    @Test
+    public void requireIsValidWithoutDotAndSign() {
+        assertFalse(validator.isValid("test_testnet"));
     }
 
     @Test
     public void requireIsValidWithEmailWithoutDogSign() {
         assertFalse(validator.isValid("testtest.net"));
+    }
+
+    @Test
+    public void requireIsValidWithLongWorld() {
+        assertFalse(validator.isValid("testtestnetestingtestingtesting_Test_texd@testing_test.com"));
     }
 
 }
