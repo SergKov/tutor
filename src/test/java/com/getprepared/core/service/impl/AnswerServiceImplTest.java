@@ -4,25 +4,18 @@ import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.persistence.dao.AnswerDao;
-import com.getprepared.persistence.database.TransactionManager;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
-import org.hamcrest.Matchers;
-import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static com.getprepared.constant.ServerConstant.ID;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 /**
@@ -33,6 +26,9 @@ public class AnswerServiceImplTest {
 
     @Mock
     private Answer answer;
+
+    @Mock
+    private List<Answer> answers;
 
     @Mock
     private Question question;
@@ -55,12 +51,11 @@ public class AnswerServiceImplTest {
     public void requireSaveWithException() throws Exception {
         doThrow(new EntityExistsException()).when(answerDao).save(answer);
         answerService.save(answer);
-        verifyNoMoreInteractions(answerDao);
     }
 
     @Test
     public void requireInvokeFindById() throws Exception {
-        when(answer.getId()).thenReturn(-58L);
+        when(answer.getId()).thenReturn(ID);
         answerService.findById(answer.getId());
         verify(answerDao).findById(answer.getId());
         verifyNoMoreInteractions(answerDao);
@@ -68,24 +63,44 @@ public class AnswerServiceImplTest {
 
     @Test(expected = EntityNotFoundException.class)
     public void requireFindByIdWithException() throws Exception {
-        doThrow(new EntityNotFoundException()).when(answerDao).findById(-5L);
-        answerService.findById(-5L);
-        verifyNoMoreInteractions(answerDao);
+        doThrow(new EntityNotFoundException()).when(answerDao).findById(ID);
+        answerService.findById(ID);
+    }
+
+    @Test
+    public void requireFindByIdWithSomeDaoResult() throws Exception { // TODO rename
+        doReturn(answer).when(answerDao).findById(ID);
+        final Answer originalAnswer = answerService.findById(ID);
+        assertEquals(answer, originalAnswer);
     }
 
     @Test
     public void requireInvokeFindByQuestionId() throws Exception {
-        when(question.getId()).thenReturn(100L);
+        when(question.getId()).thenReturn(ID);
         answerService.findByQuestionId(question.getId());
         verify(answerDao).findByQuestionId(question.getId());
         verifyNoMoreInteractions(answerDao);
     }
 
     @Test
-    public void requireInvokeFindByQuestionIdRandom() throws Exception {
-        when(question.getId()).thenReturn(12L);
-        answerService.findByQuestionIdRandom(question.getId());
-        verify(answerDao).findByQuestionIdRandom(question.getId());
+    public void requireFindByQuestionIdWithSomeDaoResult() throws Exception {
+        doReturn(answers).when(answerDao).findByQuestionId(ID);
+        final List<Answer> originalAnswers = answerService.findByQuestionId(ID);
+        assertEquals(originalAnswers, answers);
+    }
+
+    @Test
+    public void requireInvokeFindRandomAnswersByQuestionId() throws Exception {
+        when(question.getId()).thenReturn(ID);
+        answerService.findByQuestionIdInRandomOrder(question.getId());
+        verify(answerDao).findByQuestionIdInRandomOrder(question.getId());
         verifyNoMoreInteractions(answerDao);
+    }
+
+    @Test
+    public void requireFindRandomAnswersWithSomeDaoResult() throws Exception {
+        doReturn(answers).when(answerDao).findByQuestionIdInRandomOrder(ID);
+        final List<Answer> originalAnswers = answerService.findByQuestionIdInRandomOrder(ID);
+        assertEquals(originalAnswers, answers);
     }
 }
