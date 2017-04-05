@@ -1,18 +1,28 @@
 package com.getprepared.core.service.impl;
 
 import com.getprepared.core.exception.EntityExistsException;
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.persistence.dao.AnswerDao;
 import com.getprepared.persistence.database.TransactionManager;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -30,9 +40,6 @@ public class AnswerServiceImplTest {
     @Mock
     private AnswerDao answerDao;
 
-    @Mock
-    private TransactionManager transactionManager;
-
     @InjectMocks
     private final AnswerService answerService = new AnswerServiceImpl();
 
@@ -44,10 +51,9 @@ public class AnswerServiceImplTest {
         verifyNoMoreInteractions(answerDao);
     }
 
-    @Ignore
     @Test(expected = EntityExistsException.class)
-    public void requireSaveException() throws Exception {
-        when(answerDao.findById(answer.getId())).thenThrow(EntityExistsException.class);
+    public void requireSaveWithException() throws Exception {
+        doThrow(new EntityExistsException()).when(answerDao).save(answer);
         answerService.save(answer);
         verifyNoMoreInteractions(answerDao);
     }
@@ -57,6 +63,13 @@ public class AnswerServiceImplTest {
         when(answer.getId()).thenReturn(-58L);
         answerService.findById(answer.getId());
         verify(answerDao).findById(answer.getId());
+        verifyNoMoreInteractions(answerDao);
+    }
+
+    @Test(expected = EntityNotFoundException.class)
+    public void requireFindByIdWithException() throws Exception {
+        doThrow(new EntityNotFoundException()).when(answerDao).findById(-5L);
+        answerService.findById(-5L);
         verifyNoMoreInteractions(answerDao);
     }
 

@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="form-group">
                     <textarea class="form-control text-border" rows="3" id="text" name="questionText"
-                              required>${text.text}</textarea>
+                              required><c:out value="${text.text}"/></textarea>
                 </div>
             </div>
 
