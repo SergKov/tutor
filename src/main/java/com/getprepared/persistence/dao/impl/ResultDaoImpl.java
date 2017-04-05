@@ -2,6 +2,7 @@ package com.getprepared.persistence.dao.impl;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
+import com.getprepared.context.Registry;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
@@ -34,7 +35,8 @@ public class ResultDaoImpl implements ResultDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = PropertyUtils.getProperty(FILES_NAME.RESULT);
+    private final Properties prop = Registry.getApplicationContext().getBean("propertyUtils", PropertyUtils.class)
+            .getProperty(FILES_NAME.RESULT);
 
     @Override
     public void save(final Result result) throws EntityExistsException {

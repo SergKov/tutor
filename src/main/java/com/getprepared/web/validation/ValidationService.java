@@ -1,6 +1,8 @@
 package com.getprepared.web.validation;
 
 import com.getprepared.annotation.Component;
+import com.getprepared.context.Registry;
+import com.getprepared.core.util.ReflectionUtils;
 import com.getprepared.web.validation.annotation.Constraint;
 
 import java.lang.annotation.Annotation;
@@ -8,8 +10,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.getprepared.core.util.ReflectionUtils.getField;
-import static com.getprepared.core.util.ReflectionUtils.newInstance;
 import static java.util.Arrays.stream;
 import static java.util.Collections.emptyMap;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
@@ -39,7 +39,8 @@ public class ValidationService {
             if (isConstraint(annotation)) {
                 final ConstraintValidator validator = getConstraintValidator(annotation);
                 validator.init(annotation);
-                if (!validator.isValid(getField(field, object))) {
+                if (!validator.isValid(Registry.getApplicationContext().getBean("reflectionUtils",
+                        ReflectionUtils.class).getField(field, object))) {
                     errors.put(field.getName(), getMessage(annotation));
                     break;
                 }
@@ -59,7 +60,8 @@ public class ValidationService {
 
     private ConstraintValidator getConstraintValidator(final Annotation annotation) {
         final Constraint constraint = annotation.annotationType().getAnnotation(Constraint.class);
-        return newInstance(constraint.validatedBy());
+        return Registry.getApplicationContext().getBean("reflectionUtils", ReflectionUtils.class)
+                .newInstance(constraint.validatedBy());
     }
 
     private String getMessage(final Annotation annotation) {
