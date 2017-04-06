@@ -1,8 +1,8 @@
 package com.getprepared.core.service.impl;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.annotation.Service;
-import com.getprepared.annotation.Transactional;
+import com.getprepared.core.annotation.Service;
+import com.getprepared.core.annotation.Transactional;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.exception.QuizTerminatedException;

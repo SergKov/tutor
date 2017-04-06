@@ -1,4 +1,4 @@
-package com.getprepared.annotation;
+package com.getprepared.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

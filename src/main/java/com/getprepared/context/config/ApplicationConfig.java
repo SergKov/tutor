@@ -1,7 +1,7 @@
 package com.getprepared.context.config;
 
-import com.getprepared.annotation.Bean;
-import com.getprepared.annotation.Configuration;
+import com.getprepared.context.config.annotation.Bean;
+import com.getprepared.context.config.annotation.Configuration;
 import org.apache.log4j.Logger;
 
 import javax.naming.InitialContext;

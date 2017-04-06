@@ -1,8 +1,8 @@
 package com.getprepared.context.postprocess.impl;
 
 
-import com.getprepared.annotation.Service;
-import com.getprepared.annotation.Transactional;
+import com.getprepared.core.annotation.Service;
+import com.getprepared.core.annotation.Transactional;
 import com.getprepared.context.ApplicationContext;
 import com.getprepared.context.postprocess.BeanPostProcessor;
 import com.getprepared.persistence.database.TransactionManager;

@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
+import static com.getprepared.context.Registry.*;
 import static com.getprepared.context.constant.ServerConstant.PROPERTY_UTILS;
 import static com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
 import static com.getprepared.persistence.constant.PropertyConstant.KEY;
@@ -33,7 +34,7 @@ public class QuizDaoImpl implements QuizDao {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private final Properties prop = Registry.getApplicationContext().getBean(PROPERTY_UTILS, PropertyUtils.class)
+    private final Properties prop = getApplicationContext().getBean(PROPERTY_UTILS, PropertyUtils.class)
             .getProperty(FILES_NAME.QUIZ);
 
     @Override

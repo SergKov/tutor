@@ -24,8 +24,7 @@ public class WebContext {
 
     private final Map<String, Command> container = new HashMap<>();
 
-    WebContext() {
-    }
+    WebContext() { }
 
     void init() {
         initController();
