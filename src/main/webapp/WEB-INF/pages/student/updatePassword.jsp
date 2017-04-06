@@ -26,11 +26,11 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="control-label col-xs-5" for="oldPsw"><fmt:message
+                        <label class="control-label col-xs-5" for="oldPwd"><fmt:message
                                 key="updatePassword.oldPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
-                            <input type="password" pattern="${passwordRegex}" class="form-control" id="oldPsw"
+                            <input type="password" pattern="${passwordRegex}" class="form-control" id="oldPwd"
                                    name="oldPassword"
                                    placeholder="<fmt:message key="updatePassword.enterOldPassword" bundle="${lang}"/>"
                                    required>
@@ -40,11 +40,11 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="control-label col-xs-5" for="newPsw"><fmt:message
+                        <label class="control-label col-xs-5" for="newPwd"><fmt:message
                                 key="updatePassword.newPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
-                            <input type="password" pattern="${passwordRegex}" class="form-control" id="newPsw"
+                            <input type="password" pattern="${passwordRegex}" class="form-control" id="newPwd"
                                    name="newPassword"
                                    placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
                                    required>
@@ -62,11 +62,11 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="control-label col-xs-5" for="confirm_psw"><fmt:message
+                        <label class="control-label col-xs-5" for="confirm_pwd"><fmt:message
                                 key="updatePassword.repeatNewPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
-                            <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
+                            <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_pwd"
                                    placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
                                    required>
                         </div>

@@ -14,7 +14,7 @@
 <c:url value="/sign-up" var="signUpHref"/>
 
 <c:set value="email" var="idEmail"/>
-<c:set value="psw" var="psw"/>
+<c:set value="pwd" var="pwd"/>
 
 <templates:page_template>
 
@@ -58,14 +58,13 @@
 
 
                 <div class="row">
-                    <label class="control-label col-xs-5" for="${psw}"><fmt:message
+                    <label class="control-label col-xs-5" for="${pwd}"><fmt:message
                             key="homePage.password" bundle="${lang}"/></label>
-
                     <c:choose>
                         <c:when test="${empty errorMsg}">
                             <div class="form-group">
                                 <div class="col-xs-3">
-                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="${psw}"
+                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="${pwd}"
                                            name="password"
                                            placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>"
                                            required>
@@ -75,7 +74,7 @@
                         <c:otherwise>
                             <div class="form-group has-error has-feedback">
                                 <div class="col-xs-3">
-                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="${psw}"
+                                    <input type="password" pattern="${passwordRegex}" class="form-control" id="${pwd}"
                                            name="password"
                                            placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>"
                                            required>

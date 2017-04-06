@@ -33,7 +33,7 @@ public final class ConnectionUtils {
     }
 
     @FunctionalInterface
-    public interface SqlRunner { // TODO instead of Runner
+    public interface SqlRunner {
 
         void run() throws SQLException;
 

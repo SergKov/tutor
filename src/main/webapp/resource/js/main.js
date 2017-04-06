@@ -3,8 +3,8 @@
  */
 $(document).ready(function() {
 
-    $("#confirm_psw").keyup(function () {
-        var password = $("#psw").val();
+    $("#confirm_pwd").keyup(function () {
+        var password = $("#pwd").val();
         var $errorMsg = $("#errorMsg");
         if (password === $(this).val() || password === '') {
             $errorMsg.hide();

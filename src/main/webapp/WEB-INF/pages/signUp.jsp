@@ -107,11 +107,11 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="control-label col-xs-5" for="psw"><fmt:message key="homePage.password"
+                        <label class="control-label col-xs-5" for="pwd"><fmt:message key="homePage.password"
                                                                                      bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
-                            <input type="password" pattern="${passwordRegex}" class="form-control" id="psw"
+                            <input type="password" pattern="${passwordRegex}" class="form-control" id="pwd"
                                    name="password"
                                    placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>" required>
                         </div>
@@ -128,11 +128,11 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <label class="control-label col-xs-5" for="confirm_psw">
+                        <label class="control-label col-xs-5" for="confirm_pwd">
                             <fmt:message key="signUp.repeatPassword" bundle="${lang}"/></label>
 
                         <div class="col-xs-3">
-                            <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_psw"
+                            <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_pwd"
                                    placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>" required>
                         </div>
                     </div>
