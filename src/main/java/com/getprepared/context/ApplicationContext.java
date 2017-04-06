@@ -1,16 +1,18 @@
 package com.getprepared.context;
 
-import com.getprepared.annotation.*;
+import com.getprepared.annotation.Component;
+import com.getprepared.context.annotation.PostProcessor;
 import com.getprepared.context.config.annotation.Bean;
 import com.getprepared.context.config.annotation.Configuration;
-import com.getprepared.context.annotation.PostProcessor;
 import com.getprepared.context.postprocess.BeanPostProcessor;
 import com.getprepared.context.postprocess.Ordered;
 import com.getprepared.core.annotation.Service;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.core.util.ReflectionUtils;
+import com.getprepared.persistence.annotation.Repository;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -84,21 +86,27 @@ public class ApplicationContext {
                 .forEach(key -> load(componentProp.getProperty(key)));
     }
 
-    private void load(final String packageName) {
+    private void load(final String packageName) { // TODO
         final List<Class<?>> classes = getBean(PACKAGE_SCANNER, PackageScanner.class).scan(packageName);
 
         classes.stream()
-                .filter(clazz -> clazz.isAnnotationPresent(Component.class) || clazz.isAnnotationPresent(Service.class))
+                .filter(clazz -> clazz.isAnnotationPresent(Component.class) ||
+                            clazz.isAnnotationPresent(Service.class) ||
+                        clazz.isAnnotationPresent(Repository.class))
+
                 .forEach(this::initAnnotationBean);
     }
 
-    private void initAnnotationBean(final Class<?> clazz) {
+    private void initAnnotationBean(final Class<?> clazz) { // TODO
         String beanName = null;
-        if (clazz.getAnnotation(Component.class) != null) {
+        if (clazz.isAnnotationPresent(Component.class)) {
             final Component annotation = clazz.getAnnotation(Component.class);
             beanName = annotation.value();
-        } else {
+        } else if (clazz.isAnnotationPresent(Service.class)){
             final Service annotation = clazz.getAnnotation(Service.class);
+            beanName = annotation.value();
+        } else {
+            final Repository annotation = clazz.getAnnotation(Repository.class);
             beanName = annotation.value();
         }
 

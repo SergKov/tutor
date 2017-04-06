@@ -17,5 +17,9 @@ public final class ServerConstant {
 
     public static final String TRANSACTION_MANAGER = "transactionManager";
 
+    public static final String CONNECTION_PROVIDER = "connectionProvider";
+
+    public static final String CONNECTION_UTILS = "connectionUtils";
+
     public static final String EMPTY_STRING = "";
 }

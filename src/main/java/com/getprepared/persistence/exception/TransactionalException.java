@@ -1,4 +1,4 @@
-package com.getprepared.core.exception;
+package com.getprepared.persistence.exception;
 
 /**
  * Created by koval on 29.01.2017.

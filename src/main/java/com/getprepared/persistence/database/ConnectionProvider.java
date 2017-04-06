@@ -2,7 +2,7 @@ package com.getprepared.persistence.database;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.core.exception.TransactionalException;
+import com.getprepared.persistence.exception.TransactionalException;
 import com.getprepared.core.util.ConnectionUtils;
 import com.getprepared.core.util.DataSourceUtils;
 
@@ -68,10 +68,10 @@ public class ConnectionProvider {
     }
 
     public Connection getConnection() {
-        return threadLocal.get() != null ? threadLocal.get().getConnection() : dataSourceUtils.getConnection(dataSource);
+        return isTransactional() ? threadLocal.get().getConnection() : dataSourceUtils.getConnection(dataSource);
     }
 
-//    public boolean isTransactional() {
-//        return
-//    }
+    public boolean isTransactional() {
+        return threadLocal.get() != null;
+    }
 }

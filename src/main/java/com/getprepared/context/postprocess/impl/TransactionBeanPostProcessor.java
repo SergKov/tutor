@@ -1,10 +1,10 @@
 package com.getprepared.context.postprocess.impl;
 
 
-import com.getprepared.core.annotation.Service;
-import com.getprepared.core.annotation.Transactional;
 import com.getprepared.context.ApplicationContext;
 import com.getprepared.context.postprocess.BeanPostProcessor;
+import com.getprepared.core.annotation.Service;
+import com.getprepared.core.annotation.Transactional;
 import com.getprepared.persistence.database.TransactionManager;
 
 import java.lang.reflect.InvocationHandler;
@@ -26,8 +26,8 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
     private final Map<String, Class> map = new HashMap<>();
 
     @Override
-    public void postProcessBeforeInitialization(final String beanName, final Object bean
-            , final ApplicationContext applicationContext) {
+    public void postProcessBeforeInitialization(final String beanName, final Object bean,
+                                                final ApplicationContext applicationContext) {
         final Class<?> beanClass = bean.getClass();
         if (beanClass.isAnnotationPresent(Service.class)) {
             map.put(beanName, beanClass);
@@ -44,26 +44,26 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
 
         if (beanClass != null) {
             return Optional.of(Proxy.newProxyInstance(bean.getClass().getClassLoader(), bean.getClass().getInterfaces(),
-                                                                                            new InvocationHandler() {
-                @Override
-                public Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
+                    new InvocationHandler() {
+                        @Override
+                        public Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
 
-                    if (!method.isAnnotationPresent(Transactional.class)) {
-                        return method.invoke(bean, args);
-                    }
+                            if (!method.isAnnotationPresent(Transactional.class)) {
+                                return method.invoke(bean, args);
+                            }
 
-                    Object result = null;
-                    try {
-                        transactionManager.begin();
-                        result = method.invoke(bean, args);
-                        transactionManager.commit();
-                    } catch (final InvocationTargetException e) {
-                        transactionManager.rollback();
-                        throw e.getCause();
-                    }
-                    return result;
-                }
-            }));
+                            Object result = null;
+                            try {
+                                transactionManager.begin();
+                                result = method.invoke(bean, args);
+                                transactionManager.commit();
+                            } catch (final InvocationTargetException e) {
+                                transactionManager.rollback();
+                                throw e.getCause();
+                            }
+                            return result;
+                        }
+                    }));
         }
         return Optional.empty();
     }
