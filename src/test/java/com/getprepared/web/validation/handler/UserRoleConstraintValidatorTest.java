@@ -2,13 +2,11 @@ package com.getprepared.web.validation.handler;
 
 import com.getprepared.persistence.domain.Role;
 import com.getprepared.web.validation.annotation.UserRole;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
@@ -24,7 +22,7 @@ public class UserRoleConstraintValidatorTest {
     private UserRole userRole;
 
     @InjectMocks
-    private UserRoleConstraintValidator userRoleConstraintValidator;
+    private UserRoleConstraintValidator validator;
 
     @Before
     public void setUp() {
@@ -33,36 +31,41 @@ public class UserRoleConstraintValidatorTest {
 
     @Test
     public void requireIsValidWithIncorrectRole() throws Exception {
-        assertFalse(userRoleConstraintValidator.isValid("stdent"));
+        assertFalse(validator.isValid("stdent"));
     }
 
     @Test
     public void requireIsValidWithEmptyString() throws Exception {
-        assertFalse(userRoleConstraintValidator.isValid(""));
+        assertFalse(validator.isValid(""));
     }
 
     @Test
     public void requireIsValidWithStudentInOtherRegister() throws Exception {
-        assertTrue(userRoleConstraintValidator.isValid("StuDENt"));
+        assertTrue(validator.isValid("StuDENt"));
     }
 
     @Test
     public void requireIsValidWithTutorInOtherRegister() throws Exception {
-        assertTrue(userRoleConstraintValidator.isValid("TuTOr"));
+        assertTrue(validator.isValid("TuTOr"));
     }
 
     @Test
     public void requireIsValidWithRoleStudent() throws Exception {
-        assertTrue(userRoleConstraintValidator.isValid("Student"));
+        assertTrue(validator.isValid("Student"));
     }
 
     @Test
     public void requireIsValidWithRoleTutor() throws Exception {
-        assertTrue(userRoleConstraintValidator.isValid("Tutor"));
+        assertTrue(validator.isValid("Tutor"));
     }
 
     @Test
     public void requireIsValidWithNotExistsRole() throws Exception {
-        assertFalse(userRoleConstraintValidator.isValid("Manager"));
+        assertFalse(validator.isValid("Manager"));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void requireIsValidWithNull() {
+        validator.isValid(null);
     }
 }

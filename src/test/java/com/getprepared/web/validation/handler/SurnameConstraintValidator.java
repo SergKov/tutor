@@ -73,4 +73,9 @@ public class SurnameConstraintValidator {
     public void requireIsValidWithBigWord() {
         assertFalse(validator.isValid("asdsfdfdsfsfdsfdsfdsfdsf"));
     }
+
+    @Test(expected = NullPointerException.class)
+    public void requireIsValidWithNull() {
+        validator.isValid(null);
+    }
 }

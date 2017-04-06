@@ -12,4 +12,6 @@ public class ServerConstant {
     public static final String EMAIL = "test@test.com";
 
     public static final String PASSWORD = "Testing100";
+
+    public static final String NAME = "name";
 }

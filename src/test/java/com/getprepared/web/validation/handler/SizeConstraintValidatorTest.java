@@ -59,4 +59,9 @@ public class SizeConstraintValidatorTest {
         when(size.max()).thenReturn(8);
         assertFalse(validator.isValid(new String[]{"", "", "234"}));
     }
+
+    @Test(expected = NullPointerException.class)
+    public void requireIsValidWithNull() {
+        validator.isValid(null);
+    }
 }

@@ -2,13 +2,11 @@ package com.getprepared.web.validation.handler;
 
 import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.validation.annotation.AnswerType;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
@@ -24,7 +22,7 @@ public class AnswerTypeConstraintValidatorTest {
     private AnswerType answerType;
 
     @InjectMocks
-    private AnswerTypeConstraintValidator answerTypeConstraintValidator;
+    private AnswerTypeConstraintValidator validator;
 
     @Before
     public void setUp() {
@@ -33,37 +31,42 @@ public class AnswerTypeConstraintValidatorTest {
 
     @Test
     public void requireIsValidWithEmptyArray() throws Exception {
-        assertFalse(answerTypeConstraintValidator.isValid(new String[]{"", ""}));
+        assertFalse(validator.isValid(new String[]{"", ""}));
     }
 
     @Test
     public void requireIsValidWithFirstEmptyArgumentAndAnotherInvalid() throws Exception {
-        assertFalse(answerTypeConstraintValidator.isValid(new String[]{"", "1"}));
+        assertFalse(validator.isValid(new String[]{"", "1"}));
     }
 
     @Test
     public void requireIsValidWithSecondEmptyArgumentAndAnotherInvalid() throws Exception {
-        assertFalse(answerTypeConstraintValidator.isValid(new String[]{" 545", ""}));
+        assertFalse(validator.isValid(new String[]{" 545", ""}));
     }
 
     @Test
     public void requireIsValidWithCorrectArgument() throws Exception {
-        assertTrue(answerTypeConstraintValidator.isValid(new String[]{"CORRECT", "INCORRECT", "CORRECT", "CORRECT"}));
+        assertTrue(validator.isValid(new String[]{"CORRECT", "INCORRECT", "CORRECT", "CORRECT"}));
     }
 
     @Test
     public void requireIsValidWithCorrectArgumentsInRandomRegistr() throws Exception {
-        assertTrue(answerTypeConstraintValidator.isValid(new String[]{"CoRrect", "INCORrECt", "cOrreCT", "correct"}));
+        assertTrue(validator.isValid(new String[]{"CoRrect", "INCORrECt", "cOrreCT", "correct"}));
     }
 
     @Test
     public void requireIsValidWithOneEmptyString() throws Exception {
-        assertFalse(answerTypeConstraintValidator.isValid(new String[]{""}));
+        assertFalse(validator.isValid(new String[]{""}));
     }
 
     @Test
     public void requireIsValidWithOneCorrectArgument() throws Exception {
-        assertFalse(answerTypeConstraintValidator.isValid(new String[]{"", "INCORRECT"}));
+        assertFalse(validator.isValid(new String[]{"", "INCORRECT"}));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void requireIsValidWithNull() {
+        validator.isValid(null);
     }
 
 }

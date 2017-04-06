@@ -21,9 +21,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
     private UserDao userDao;
 
     @Inject
-    private ResultService resultService;
-
-    @Inject
     private PasswordEncoder passwordEncoder;
 
     @Override

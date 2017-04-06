@@ -36,4 +36,9 @@ public class NotEmptyConstraintValidatorTest {
     public void requireIsValidWithText() {
         assertTrue(validator.isValid("123"));
     }
+
+    @Test(expected = NullPointerException.class)
+    public void requireIsValidWithNull() {
+        validator.isValid(null);
+    }
 }

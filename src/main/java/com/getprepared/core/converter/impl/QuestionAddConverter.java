@@ -14,7 +14,7 @@ import java.util.List;
  * Created by koval on 23.03.2017.
  */
 @Component
-public class QuestionAddConverter implements Converter<QuestionAddForm, Question>{
+public class QuestionAddConverter implements Converter<QuestionAddForm, Question> {
 
     @Override
     public Question convert(QuestionAddForm form) {

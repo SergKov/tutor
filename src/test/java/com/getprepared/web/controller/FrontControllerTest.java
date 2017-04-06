@@ -36,16 +36,16 @@ public class FrontControllerTest {
     @InjectMocks
     private FrontController frontController = new FrontController();
 
-    @Test
-    @Ignore // TODO
-    public void doGetWithRequestUriNull() throws Exception {
+//    @Test
+//    @Ignore // TODO
+//    public void doGetWithRequestUriNull() throws Exception {
 //        when(request.getRequestURI()).thenReturn(null);
 //        when(getWebContext()).thenReturn(webContext);
 //        doReturn(null).when(getWebContext().getCommand(null));
 //        verify(response).sendError(SC_NOT_FOUND);
 //        verifyNoMoreInteractions(request);
 //        verifyNoMoreInteractions(response);
-    }
+//    }
 
     @Test
     @Ignore

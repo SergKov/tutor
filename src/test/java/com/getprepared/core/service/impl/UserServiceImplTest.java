@@ -1,5 +1,6 @@
 package com.getprepared.core.service.impl;
 
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.PasswordEncoder;
 import com.getprepared.persistence.dao.UserDao;
@@ -25,9 +26,6 @@ import static org.mockito.Mockito.*;
 public class UserServiceImplTest {
 
     @Mock
-    private User user;
-
-    @Mock
     private UserDao userDao;
 
     @Mock
@@ -38,18 +36,40 @@ public class UserServiceImplTest {
 
     @Test
     public void requireInvokeFindById() throws Exception {
-        userService.findById(ID);
-        verify(userDao).findById(ID);
+        userService.findById(anyLong());
+        verify(userDao).findById(anyLong());
         verifyNoMoreInteractions(userDao);
-        verifyZeroInteractions(user);
     }
 
-    @Ignore
     @Test
     public void requireInvokeSignInStudent() throws Exception {
+        when(userDao.findByStudentEmail(anyString())).thenReturn(new User());
+        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(true);
         userService.signInStudent(EMAIL, PASSWORD);
-        verify(userDao).findByTutorEmail(EMAIL);
+        verify(userDao).findByStudentEmail(anyString());
         verifyNoMoreInteractions(userDao);
-        verifyZeroInteractions(user);
+    }
+
+    @Test(expected = EntityNotFoundException.class)
+    public void requireFailedSignInStudent() throws Exception {
+        when(userDao.findByStudentEmail(anyString())).thenReturn(new User());
+        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(false);
+        userService.signInStudent(EMAIL, PASSWORD);
+    }
+
+    @Test
+    public void requireInvokeSignInTutor() throws Exception {
+        when(userDao.findByTutorEmail(anyString())).thenReturn(new User());
+        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(true);
+        userService.signInTutor(EMAIL, PASSWORD);
+        verify(userDao).findByTutorEmail(anyString());
+        verifyNoMoreInteractions(userDao);
+    }
+
+    @Test(expected = EntityNotFoundException.class)
+    public void requireFailedSignInTutor() throws Exception {
+        when(userDao.findByTutorEmail(anyString())).thenReturn(new User());
+        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(false);
+        userService.signInTutor(EMAIL, PASSWORD);
     }
 }

@@ -1,6 +1,7 @@
 package com.getprepared.core.service.impl;
 
 import com.getprepared.core.exception.EntityExistsException;
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
@@ -28,12 +29,6 @@ import static org.mockito.Mockito.*;
 public class QuestionServiceImplTest {
 
     @Mock
-    private Question question;
-
-    @Mock
-    private List<Answer> answers;
-
-    @Mock
     private QuestionDao questionDao;
 
     @Mock
@@ -42,27 +37,28 @@ public class QuestionServiceImplTest {
     @InjectMocks
     private QuestionService questionService = new QuestionServiceImpl();
 
-    @Ignore
-    @Test // TODO
+    @Test
     public void requireInvokeSaveQuestion() throws Exception {
-//        questionService.save(question);
-//        verify(questionDao).save(question);
-//        verify(question).getAnswers();
-//        verifyNoMoreInteractions(questionDao);
+        final Question question = new Question();
+        questionService.save(question);
+        verify(questionDao).save(question);
+        verifyNoMoreInteractions(questionDao);
     }
 
     @Test(expected = EntityExistsException.class)
     public void requireSaveQuestionWithException() throws Exception {
+        final Question question = new Question();
         doThrow(new EntityExistsException()).when(questionDao).save(question);
         questionService.save(question);
     }
 
-    @Test // TODO
+    @Test
     public void requireInvokeFindById() throws Exception {
-//        when(question.getId()).thenReturn(ID);
-//        doReturn(answerService).when(questionService).getAnswerService();
-//        questionService.findById(question.getId());
-//        verify(questionDao).findById(question.getId());
-//        verifyNoMoreInteractions(questionDao);
+        final Question question = new Question();
+        question.setId(ID);
+        when(questionDao.findById(any(Long.class))).thenReturn(question);
+        questionService.findById(question.getId());
+        verify(questionDao).findById(question.getId());
+        verifyNoMoreInteractions(questionDao);
     }
 }

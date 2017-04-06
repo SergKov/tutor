@@ -1,0 +1,62 @@
+package com.getprepared.persistence.database;
+
+import com.getprepared.core.util.ConnectionUtils;
+import com.getprepared.core.util.DataSourceUtils;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import javax.sql.DataSource;
+
+import java.sql.Connection;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+/**
+ * Created by koval on 06.04.2017.
+ */
+@RunWith(MockitoJUnitRunner.class)
+public class ConnectionProviderTest {
+
+    @Mock
+    private ThreadLocal<ConnectionCounter> threadLocal;
+
+    @InjectMocks
+    private ConnectionProvider provider = new ConnectionProvider();
+
+    @Test // TODO
+    @Ignore
+    public void requireBegin() throws Exception {
+//        doReturn(null).when(threadLocal.get());
+//        provider.begin();
+//        final Connection verifyConnection = verify(dataSourceUtils.getConnection(dataSource), only());
+//        verify(connectionUtils, only()).setAutoCommit(verifyConnection, false);
+//        verify(threadLocal, only()).set(counter);
+    }
+
+    @Test // TODO
+    @Ignore
+    public void requireBeginWithValueInThreadLocal() throws Exception {
+//        doReturn(notNull()).when(threadLocal.get());
+//        verify(threadLocal.get(), only()).increment();
+//        verifyNoMoreInteractions(threadLocal);
+    }
+//
+//    @Test
+//    public void rollback() throws Exception {
+//    }
+//
+//    @Test
+//    public void getConnection() throws Exception {
+//    }
+//
+//    @Test
+//    public void isTransactional() throws Exception {
+//    }
+
+}

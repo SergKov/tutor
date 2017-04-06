@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import static com.getprepared.web.constant.FilterConstant.HOME_PAGE;
 import static org.mockito.Mockito.*;
 
 /**
@@ -39,7 +40,7 @@ public class UserGuestFilterTest {
     private HttpSession session;
 
     @InjectMocks
-    private final Filter filter = new UserSignedInFilter();
+    private final Filter filter = new UserGuestFilter();
 
     @Test
     public void requireInteractionsWithFilterConfig() throws Exception {
@@ -48,11 +49,19 @@ public class UserGuestFilterTest {
         verifyNoMoreInteractions(config);
     }
 
-    @Test
-    @Ignore // TODO
-    public void requireNoInteractionsDoFilterWhenNoSession() throws Exception {
-        when(request.getSession(false)).thenReturn(notNull(HttpSession.class));
-        filter.doFilter(request, response, chain);
-        verify(chain, never()).doFilter(request, response);
-    }
+//    @Test // TODO
+//    public void requireNoInteractionsDoFilterWithSession() throws Exception {
+//        when(request.getSession(false)).thenReturn(notNull(HttpSession.class));
+//        filter.doFilter(request, response, chain);
+//        verify(chain, only()).doFilter(request, response);
+//        verifyNoMoreInteractions(chain, request, response);
+//    }
+
+//    @Test
+//    public void requireNoInteractionsDoFilterWithNoSession() throws Exception {
+//        when(request.getSession(false)).thenReturn(null);
+//        filter.doFilter(request, response, chain);
+//        verify(response, only()).sendRedirect(HOME_PAGE);
+//        verifyNoMoreInteractions(chain, request, response);
+//    }
 }
