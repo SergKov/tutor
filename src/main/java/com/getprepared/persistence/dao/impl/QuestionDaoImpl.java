@@ -1,11 +1,10 @@
 package com.getprepared.persistence.dao.impl;
 
-import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.context.Registry;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.util.PropertyUtils;
+import com.getprepared.persistence.annotation.Repository;
 import com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.database.template.JdbcTemplate;
@@ -18,7 +17,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
-import static com.getprepared.context.Registry.*;
+import static com.getprepared.context.Registry.getApplicationContext;
 import static com.getprepared.context.constant.ServerConstant.PROPERTY_UTILS;
 import static com.getprepared.persistence.constant.PropertyConstant.KEY;
 import static com.getprepared.persistence.domain.Entity.ID_KEY;
@@ -28,7 +27,7 @@ import static com.getprepared.persistence.domain.Question.TEXT_KEY;
 /**
  * Created by koval on 06.01.2017.
  */
-@Component("questionDao")
+@Repository("questionDao")
 public class QuestionDaoImpl implements QuestionDao {
 
     @Inject
