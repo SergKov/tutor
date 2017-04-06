@@ -3,6 +3,7 @@ package com.getprepared.web.filter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -34,31 +35,21 @@ public class EncodingFilterTest {
     @Mock
     private FilterChain chain;
 
-    private Filter filter;
-
-    @Before
-    public void setUp() {
-        filter = new EncodingFilter();
-    }
+    @InjectMocks
+    private final Filter filter = new EncodingFilter();
 
     @Test
     public void requireNoInteractionsWithFilterConfig() throws Exception {
         filter.init(config);
         verify(config, never()).getInitParameter(anyString());
-        verifyNoMoreInteractions(config);
+        verifyNoMoreInteractions(request, response, config);
     }
 
     @Test
     public void requireSetEncoding() throws Exception {
         filter.doFilter(request, response, chain);
-        verifyNoMoreInteractions(response);
         verify(request, only()).setCharacterEncoding(ENCODING);
-        verifyNoMoreInteractions(request);
-    }
-
-    @Test
-    public void requireInteractionsDoFilter() throws Exception {
-        filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(request, response);
     }
 }

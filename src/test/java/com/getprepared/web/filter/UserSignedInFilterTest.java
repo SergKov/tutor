@@ -1,8 +1,10 @@
 package com.getprepared.web.filter;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import static com.getprepared.web.constant.FilterConstant.HOME_PAGE;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -37,12 +40,8 @@ public class UserSignedInFilterTest {
     @Mock
     private FilterChain chain;
 
-    private Filter filter;
-
-    @Before
-    public void setUp() {
-        filter = new UserSignedInFilter();
-    }
+    @InjectMocks
+    private final Filter filter = new UserSignedInFilter();
 
     @Test
     public void requireInteractionsWithFilterConfig() throws Exception {
@@ -60,8 +59,16 @@ public class UserSignedInFilterTest {
 
     @Test
     public void requireInteractionsDoFilterWhenSessionCreated() throws Exception {
-        when(request.getSession()).thenReturn(notNull(HttpSession.class));
+        when(request.getSession(false)).thenReturn(notNull(HttpSession.class));
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
+    }
+
+    @Test
+    @Ignore // TODO
+    public void requireNoInteractionsDoFilteWithNoSession() throws Exception {
+        when(request.getSession(false)).thenReturn(null);
+        filter.doFilter(request, response, chain);
+        verify(response, only()).sendRedirect(HOME_PAGE);
     }
 }

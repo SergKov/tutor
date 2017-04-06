@@ -8,4 +8,8 @@ public class ServerConstant {
     private ServerConstant() {}
 
     public static final Long ID = 1L;
+
+    public static final String EMAIL = "test@test.com";
+
+    public static final String PASSWORD = "Testing100";
 }
