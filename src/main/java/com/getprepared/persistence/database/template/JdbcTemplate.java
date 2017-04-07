@@ -4,6 +4,7 @@ import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
+import com.getprepared.core.util.ConnectionUtils;
 import com.getprepared.persistence.database.ConnectionProvider;
 import com.getprepared.persistence.domain.Entity;
 import org.apache.log4j.Logger;
@@ -26,6 +27,9 @@ public class JdbcTemplate {
     @Inject
     private ConnectionProvider connectionProvider;
 
+    @Inject
+    private ConnectionUtils connectionUtils;
+
     public void executeUpdate(final String sql, final Entity entity, final PreparedStatementSetter setter)
             throws EntityExistsException {
 
@@ -42,6 +46,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -62,6 +68,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute batch update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -109,6 +117,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -123,6 +133,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -150,6 +162,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute update %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -164,6 +178,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to remove %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -189,6 +205,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute singleQuery %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -215,6 +233,8 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute query %s", sql);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
         }
     }
 
@@ -233,6 +253,14 @@ public class JdbcTemplate {
             final String errorMsg = String.format("Failed to execute query %s", COUNT_FOUND_ROWS);
             LOG.error(errorMsg, e);
             throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
+        }
+    }
+
+    private void close(final Connection con) {
+        if (!connectionProvider.isTransactional()) {
+            connectionUtils.close(con);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.getprepared.context.postprocess.impl;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.context.annotation.PostProcessor;
+import com.getprepared.context.postprocess.annotation.PostProcessor;
 import com.getprepared.context.ApplicationContext;
 import com.getprepared.context.postprocess.BeanPostProcessor;
 import com.getprepared.core.util.ReflectionUtils;
