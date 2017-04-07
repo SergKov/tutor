@@ -46,7 +46,8 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
             return Optional.of(Proxy.newProxyInstance(bean.getClass().getClassLoader(), bean.getClass().getInterfaces(),
                     new InvocationHandler() {
                         @Override
-                        public Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
+                        public Object invoke(final Object proxy, final Method method, final Object[] args)
+                                throws Throwable {
 
                             if (!method.isAnnotationPresent(Transactional.class)) {
                                 return method.invoke(bean, args);

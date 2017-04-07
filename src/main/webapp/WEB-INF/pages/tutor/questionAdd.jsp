@@ -14,6 +14,8 @@
 <c:url value="/resource/img/plus.ico" var="plusAnswerIcon"/>
 <c:url value="/resource/img/minus.ico" var="minusAnswerIcon"/>
 
+<c:set value="text" var="text"/>
+
 <templates:page_template>
 
     <jsp:attribute name="header">
@@ -25,14 +27,28 @@
             <input type="hidden" name="command" value="questionAdd"/>
 
             <div class="row">
-                <label for="text"><fmt:message key="addQuestion.text" bundle="${lang}"/></label>
+                <label for="${text}"><fmt:message key="addQuestion.text" bundle="${lang}"/></label>
             </div>
 
             <div class="row">
-                <div class="form-group">
-                    <textarea class="form-control text-border" rows="3" id="text" name="questionText"
-                              required><c:out value="${text.text}"/></textarea>
-                </div>
+                <c:choose>
+                    <c:when test="${empty errorMsgs['text']}">
+                        <div class="form-group">
+                            <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
+                                      required><c:out value="${question.text}"/></textarea>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="form-group has-error has-feedback">
+                            <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
+                                      required><c:out value="${question.text}"/></textarea>
+
+                            <div class="col-xs-12 center">
+                                <p class="text-danger">${errorMsgs['text']}</p>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="row">

@@ -80,7 +80,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
 
                 final Map<String, String> errors = validationService.validate(questionAddForm);
                 if (isNotEmpty(errors)) {
-                    request.setAttribute(ERROR_MSGS, errors);
+                    request.setAttribute(ERROR_MSGS, messages.getMessages(errors, request.getLocale()));
                 } else {
                     final Question question = questionAddConverter.convert(questionAddForm);
                     question.setQuiz(quiz);
