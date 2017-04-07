@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import static com.getprepared.constant.ServerConstant.NAME;
 import static com.getprepared.web.constant.FilterConstant.HOME_PAGE;
 import static org.mockito.Mockito.*;
 
@@ -49,19 +50,30 @@ public class UserGuestFilterTest {
         verifyNoMoreInteractions(config);
     }
 
-//    @Test // TODO
-//    public void requireNoInteractionsDoFilterWithSession() throws Exception {
-//        when(request.getSession(false)).thenReturn(notNull(HttpSession.class));
-//        filter.doFilter(request, response, chain);
-//        verify(chain, only()).doFilter(request, response);
-//        verifyNoMoreInteractions(chain, request, response);
-//    }
+    @Ignore // TODO
+    @Test
+    public void requireNoInteractionsDoFilterWithSession() throws Exception {
+        when(request.getSession(false)).thenReturn(notNull(HttpSession.class));
+        when(request.getSession(false).getAttribute(anyString())).thenReturn(notNull());
+        filter.doFilter(request, response, chain);
+        verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(chain, request, response);
+    }
 
-//    @Test
-//    public void requireNoInteractionsDoFilterWithNoSession() throws Exception {
-//        when(request.getSession(false)).thenReturn(null);
-//        filter.doFilter(request, response, chain);
-//        verify(response, only()).sendRedirect(HOME_PAGE);
-//        verifyNoMoreInteractions(chain, request, response);
-//    }
+    @Test
+    public void requireInteractionsDoFilterWithNoSession() throws Exception {
+        when(request.getSession(false)).thenReturn(null);
+        filter.doFilter(request, response, chain);
+        verify(response, only()).sendRedirect(anyString());
+        verifyNoMoreInteractions(chain, response);
+    }
+
+    @Ignore // TODO
+    @Test
+    public void requireInteractionsDoFilterWithNoSessionAttributes() throws Exception {
+        when(request.getSession(false).getAttribute(anyString())).thenReturn(NAME);
+        filter.doFilter(request, response, chain);
+        verify(response, only()).sendRedirect(anyString());
+        verifyNoMoreInteractions(chain, response);
+    }
 }
