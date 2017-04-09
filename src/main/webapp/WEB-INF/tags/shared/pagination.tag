@@ -30,7 +30,5 @@
         <option <c:if test="${showElements eq 5}">selected</c:if>>5</option>
         <option <c:if test="${showElements eq 10}">selected</c:if>>10</option>
         <option <c:if test="${showElements eq 15}">selected</c:if>>15</option>
-        <option <c:if test="${showElements eq 20}">selected</c:if>>20</option>
-        <option <c:if test="${showElements eq 25}">selected</c:if>>25</option>
     </select>
 </form>

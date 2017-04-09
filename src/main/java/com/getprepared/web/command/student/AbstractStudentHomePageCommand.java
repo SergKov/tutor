@@ -45,7 +45,6 @@ public abstract class AbstractStudentHomePageCommand implements Command {
         Long currentPage;
         if (isNumeric(currentPageParameter)) {
             currentPage = Long.parseLong(currentPageParameter);
-            request.getSession().setAttribute(QUIZZES_CURRENT_PAGE, currentPage);
         } else {
             currentPage = (Long) request.getSession().getAttribute(QUIZZES_CURRENT_PAGE);
             if (currentPage == null) {
@@ -56,7 +55,6 @@ public abstract class AbstractStudentHomePageCommand implements Command {
         Long showElements;
         if (isNumeric(showElementsParameter)) {
             showElements = Long.parseLong(showElementsParameter);
-            request.getSession().setAttribute(QUIZZES_SHOW_ELEMENTS, showElements);
         } else {
             showElements = (Long) request.getSession().getAttribute(QUIZZES_SHOW_ELEMENTS);
             if (showElements == null) {

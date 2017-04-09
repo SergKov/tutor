@@ -23,5 +23,4 @@ public abstract class AbstractUpdatePasswordCommand implements Command {
         request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);
         request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
     }
-
 }
