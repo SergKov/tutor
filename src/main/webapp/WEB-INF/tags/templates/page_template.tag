@@ -22,14 +22,14 @@
 <c:url value="/student/update-password" var="studentUpdatePasswordHref"/>
 <c:url value="/tutor/update-password" var="tutorUpdatePasswordHref"/>
 
-<header id="pageheader">
-    <h1 class="text-primary text-center">
+<header id="pageheader" class="header">
+    <h1 class="text-primary text-center hidden">
         <jsp:invoke fragment="header"/>
     </h1>
 
     <c:if test="${student ne null}">
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${student.name}
+        <div class="dropdown header-dropdown">
+            <button class="btn btn-primary dropdown-toggle text-left" type="button" data-toggle="dropdown">${student.name}
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li>
@@ -47,8 +47,8 @@
     </c:if>
 
     <c:if test="${tutor ne null}">
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${tutor.name}
+        <div class="dropdown header-dropdown">
+            <button class="btn btn-primary dropdown-toggle text-left" type="button" data-toggle="dropdown">${tutor.name}
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
                 <li>
@@ -68,7 +68,7 @@
 
 <div id="body">
     <div class="container">
-        <div class="row alert alert-danger" <c:if test="${empty errorMsg}"> style="display: none;" </c:if>
+        <div class="alert alert-danger" <c:if test="${empty errorMsg}"> style="display: none;" </c:if>
              id="errorMsg"> ${errorMsg}
         </div>
         <jsp:doBody/>

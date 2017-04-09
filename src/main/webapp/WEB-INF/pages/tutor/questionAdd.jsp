@@ -61,7 +61,7 @@
             </div>
 
             <div class="row answers">
-                <div class="answer">
+                <div class="answer clearfix">
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="answer" name="answerText[]" required/>
                     </div>
@@ -78,25 +78,14 @@
                 </div>
             </div>
 
-            <div class="row answers-manipulate">
-                <div class="col-xs-1 col-xs-offset-10">
-                    <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px">
-                </div>
+            <div class="answers-manipulate">
+                <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px" class="answers-manipulate__elem"/>
+                <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px" class="answers-manipulate__elem"/>
 
-                <div class="col-xs-1">
-                    <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px">
-                </div>
+                <button type="submit" class="btn btn-primary btn-md answers-manipulate__elem">
+                    <fmt:message key="addQuestion.add" bundle="${lang}"/>
+                </button>
             </div>
-
-            <p>
-            <div class="row">
-                <div class="col-xs-4 col-xs-offset-10">
-                    <button type="submit" class="btn btn-primary btn-md">
-                        <fmt:message key="addQuestion.add" bundle="${lang}"/>
-                    </button>
-                </div>
-            </div>
-            </p>
         </form>
     </jsp:body>
 

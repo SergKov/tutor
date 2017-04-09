@@ -35,7 +35,7 @@
                     <c:set var="emtyErrorMsgs" value="${empty errorMsgs['name']}"/>
                     <c:set var="quizName" value="${quizForm ne null ? quizForm.name : quiz.name}"/>
 
-                    <div class="row">
+                    <div class="row quizzes-page-block">
                         <div class="col-xs-5 col-xs-offset-2">
                             <c:choose>
                                 <c:when test="${isNotActive}">

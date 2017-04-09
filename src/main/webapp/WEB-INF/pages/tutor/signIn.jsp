@@ -84,15 +84,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-offset-7 col-xs-5">
-                        <button type="submit" class="btn btn-info btn-md"><fmt:message key="homePage.submit"
-                                                                                       bundle="${lang}"/></button>
+                    <div class="col-xs-offset-5 col-xs-3 login-form-btn-block">
+                        <button type="submit" class="btn btn-info btn-md"><fmt:message
+                                key="homePage.submit" bundle="${lang}"/></button>
+                        <a href="${signUpHref}"><fmt:message key="homePage.register"
+                                                             bundle="${lang}"/></a>
                     </div>
-                </div>
-
-                <div class="row">
-                    <p class="text-center"><a href="${signUpHref}"><fmt:message key="homePage.register"
-                                                                                bundle="${lang}"/></a></p>
                 </div>
             </form>
         </div>

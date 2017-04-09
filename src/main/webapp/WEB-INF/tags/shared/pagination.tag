@@ -13,7 +13,7 @@
 <%@ attribute name="showElements" type="java.lang.Integer" required="true" %>
 
 <form action="${action}" method="GET" class="center">
-    <ul class="pagination">
+    <ul class="pagination custom-pagination">
         <c:forEach var="i" begin="1" end="${numberOfPages}">
             <li>
                 <button value="${i}" name="current-page" class="center"

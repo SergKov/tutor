@@ -20,7 +20,7 @@
 
     <jsp:body>
         <div class="well">
-            <form action="${signUpAction}" method="POST" class="form-horizontal js-sign_up"
+            <form action="${signUpAction}" method="POST" class="form-horizontal js-sign_up sign-up-form"
                   data-msg-repeat="${repeatPassword}">
                 <input type="hidden" name="command" value="signUp"/>
 
@@ -39,7 +39,7 @@
                         </div>
 
                         <c:if test="${not empty errorMsgs['role']}">
-                            <div class="col-xs-12 center">
+                            <div class="col-xs-offset-5 col-xs-3 form-error-elem">
                                 <p class="text-danger">${errorMsgs['role']}</p>
                             </div>
                         </c:if>
@@ -58,7 +58,7 @@
                         </div>
 
                         <c:if test="${not empty errorMsgs['name']}">
-                            <div class="col-xs-12 center">
+                            <div class="col-xs-offset-5 col-xs-3 form-error-elem">
                                 <p class="text-danger">${errorMsgs['name']}</p>
                             </div>
                         </c:if>
@@ -77,7 +77,7 @@
                         </div>
 
                         <c:if test="${not empty errorMsgs['surname']}">
-                            <div class="col-xs-12 center">
+                            <div class="col-xs-offset-5 col-xs-3 form-error-elem">
                                 <p class="text-danger">${errorMsgs['surname']}</p>
                             </div>
                         </c:if>
@@ -97,7 +97,7 @@
 
                         <div class="col-xs-12">
                             <c:if test="${not empty errorMsgs['email']}">
-                                <div class="col-xs-12 center">
+                                <div class="col-xs-offset-5 col-xs-3 form-error-elem">
                                     <p class="text-danger">${errorMsgs['email']}</p>
                                 </div>
                             </c:if>
@@ -118,7 +118,7 @@
 
                         <div class="col-xs-12">
                             <c:if test="${not empty errorMsgs['password']}">
-                                <div class="col-xs-12 center">
+                                <div class="col-xs-offset-5 col-xs-3 form-error-elem">
                                     <p class="text-danger"> ${errorMsgs['password']}</p>
                                 </div>
                             </c:if>
@@ -140,7 +140,7 @@
 
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-xs-offset-5 col-xs-3">
+                        <div class="col-xs-offset-5 col-xs-3 form-error-elem">
                             <button type="submit" class="btn btn-info btn-block">
                                 <fmt:message key="homePage.register" bundle="${lang}"/>
                             </button>

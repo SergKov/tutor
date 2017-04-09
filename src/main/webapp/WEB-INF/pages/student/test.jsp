@@ -16,35 +16,36 @@
 <templates:page_template>
 
     <jsp:body>
-        <form action="${testAction}" method="POST">
+        <form action="${testAction}" method="POST" class="question-student-form" id="question-form">
             <input type="hidden" name="command" value="answerSave"/>
             <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
-            <div class="form-control text-border col-xs-8" id="test">
+            <div class="text-border question-block" id="test">
                     ${testQuestion.question.text}
             </div>
-
-            <c:forEach items="${testQuestion.question.answers}" var="answer">
-                <div class="row">
-                    <br/>
-                    <div class="col-xs-10">
-                            ${answer.text}
-                    </div>
-                    <div class="col-xs-2">
-                        <input type="checkbox" value="${answer.id}" name="chosenAnswersId[]"
+            <div class="answer-block clearfix">
+                <c:forEach items="${testQuestion.question.answers}" var="answer">
+                    <label class="answer-single">
+                        <input type="checkbox" value="${answer.id}" name="chosenAnswersId[]" class="answer-single__input"
                                <c:if test="${fn:contains(testQuestion.answers, answer)}">checked</c:if>
-                        >
-                    </div>
-                </div>
-            </c:forEach>
+                        > <span class="answer-text">${answer.text}</span>
+                    </label>
+                </c:forEach>
+            </div>
 
-            <button type="submit" id="save_btn" class="col-xs-2 btn btn-info btn-md">
-                <fmt:message key="test.answer.save" bundle="${lang}"/>
-            </button>
         </form>
 
+        <div class="question-form__btn-block clearfix">
+            <button type="submit" id="save_btn" class="btn btn-success btn-md answer-submit-btn" form="question-form">
+                <fmt:message key="test.answer.save" bundle="${lang}"/>
+            </button>
+            <button type="submit" id="finish_btn" class="btn btn-danger btn-md" form="close-form">
+                <fmt:message key="test.submit" bundle="${lang}"/>
+            </button>
+        </div>
+
         <form action="${testAction}" method="GET">
-            <ul class="pagination">
+            <ul class="pagination custom-pagination">
                 <c:forEach var="i" begin="1" end="${fn:length(test)}">
                     <li>
                         <button name="question-number" value="${i}">${i}</button>
@@ -53,15 +54,9 @@
             </ul>
         </form>
 
-        <form action="${testAction}" method="POST" class="form-horizontal js-finish-btn"
+        <form action="${testAction}" method="POST" class="form-horizontal js-finish-btn" id="close-form"
               data-finish-btn="<fmt:message key="test.confirm.finish" bundle="${lang}"/>">
             <input type="hidden" name="command" value="testEnd">
-
-            <div class="col-xs-5">
-                <button type="submit" id="finish_btn" class="btn btn-danger btn-md">
-                    <fmt:message key="test.submit" bundle="${lang}"/>
-                </button>
-            </div>
         </form>
     </jsp:body>
 

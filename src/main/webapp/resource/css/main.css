@@ -1,3 +1,11 @@
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: none;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
 .black {
     text-decoration: none;
     color: #000;
@@ -17,4 +25,122 @@
 
 .center {
     text-align: center;
+}
+
+.header {
+    text-align: right;
+    padding: 10px;
+    background: #f4f4f4;
+}
+
+.header-dropdown {
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+.header-dropdown button {
+    width: 150px;
+}
+
+.answer-block {
+    margin-top: 20px;
+}
+
+.answer-single {
+    display: block;
+    cursor: pointer;
+    font-weight: normal;
+}
+.answer-single + .answer-single {
+    margin-top: 10px;
+}
+
+.answer-text {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.question-block {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.question-form__btn-block {
+    margin: 15px 0;
+}
+
+.question-form__btn-block button + button {
+    margin-left: 20px;
+}
+
+.custom-pagination {
+    overflow: hidden;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: row nowrap;
+}
+
+.custom-pagination li button {
+    background: #55C668;
+    color: #fff;
+}
+
+.custom-pagination li {
+    margin: 0;
+    padding: 0;
+}
+
+.custom-pagination li button {
+    box-shadow: none;
+    border-width: 0;
+    min-width: 20px;
+    line-height: 20px;
+    padding: 0;
+}
+
+.custom-pagination li button:focus {
+    outline: none;
+}
+
+.custom-pagination li + li button {
+    border-left: 1px solid #fff;
+
+}
+
+.answer-submit-btn {
+    width: 160px;
+}
+.question-student-form {
+    margin-top: 20px;
+}
+
+.login-form-btn-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+}
+
+.quizzes-page-block {
+    margin-top: 30px;
+}
+
+.answers-manipulate {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.answers-manipulate__elem {
+    margin-left: 15px;
+}
+
+.answers .answer + .answer {
+    margin-top: 15px;
+}
+
+.form-error-elem p {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

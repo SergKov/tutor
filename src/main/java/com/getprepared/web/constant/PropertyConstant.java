@@ -61,5 +61,7 @@ public final class PropertyConstant {
         public static final String OLD_PASSWORD_INCORRECT = "OldPasswordIncorrect";
 
         public static final String QUIZ_EMPTY = "QuizEmpty";
+
+        public static final String ALL_RESULTS = "AllResults";
     }
 }
