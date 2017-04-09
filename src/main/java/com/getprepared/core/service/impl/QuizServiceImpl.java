@@ -59,8 +59,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
         page.setNumberOfElements(quizDao.countFoundRows());
 
-        initQuizzes(quizzes);
-
+        quizzes.forEach(this::initQuiz);
         return quizzes;
     }
 
@@ -70,8 +69,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
         page.setNumberOfElements(quizDao.countFoundRows());
 
-        initQuizzes(createdQuizzes);
-
+        createdQuizzes.forEach(this::initQuiz);
         return createdQuizzes;
     }
 
@@ -101,16 +99,6 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         quizDao.remove(id);
     }
 
-    private void initQuiz(final Quiz quiz) throws EntityNotFoundException {
-        final List<Question> questions = questionService.findByQuizId(quiz.getId());
-
-        for (final Question question : questions) {
-            final List<Answer> answers = answerService.findByQuestionId(question.getId());
-            question.setAnswers(answers);
-        }
-        quiz.setQuestions(questions);
-    }
-
     private void checkNotEmpty(final Quiz quiz) throws QuizNotTerminatedException {
         final List<Question> questions = quiz.getQuestions();
         if (isEmpty(questions)) {
@@ -118,15 +106,19 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         }
     }
 
-    private void initQuizzes(final List<Quiz> quizzes) {
-        for (final Quiz quiz : quizzes) {
-            final List<Question> questions = questionService.findByQuizId(quiz.getId());
+    private void initQuiz(final Quiz quiz) {
+        final List<Question> questions = questionService.findByQuizId(quiz.getId());
 
-            for (final Question question : questions) {
-                final List<Answer> answers = answerService.findByQuestionId(question.getId());
-                question.setAnswers(answers);
-            }
-            quiz.setQuestions(questions);
+        for (final Question question : questions) {
+            final List<Answer> answers = answerService.findByQuestionId(question.getId());
+            question.setAnswers(answers);
+        }
+        quiz.setQuestions(questions);
+
+        try {
+            final User user = userService.findById(quiz.getUser().getId());
+            quiz.setUser(user);
+        } catch (final EntityNotFoundException e) {  /* ignore, unreal situation */  // TODO
         }
     }
 }

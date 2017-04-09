@@ -1,6 +1,7 @@
 package com.getprepared.web.command.student;
 
 import com.getprepared.annotation.Inject;
+import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.database.pagination.PageableData;
@@ -9,6 +10,7 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.command.Command;
 import com.getprepared.web.constant.PropertyConstant;
 import com.getprepared.web.constant.WebConstant;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -66,7 +68,8 @@ public abstract class AbstractStudentHomePageCommand implements Command {
         pagination.setCurrentPage(currentPage);
         pagination.setShowElements(showElements);
 
-        final List<Quiz> quizzes = quizService.findAllActive(pagination);
+        List<Quiz> quizzes = quizService.findAllActive(pagination);
+
         request.setAttribute(PAGINATION, pagination);
         request.setAttribute(QUIZZES, quizzes);
     }

@@ -8,6 +8,7 @@
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shared" tagdir="/WEB-INF/tags/shared" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url value="/student" var="homePageAction"/>
@@ -53,7 +54,7 @@
                                 </td>
                                 <td>
                                     <div class="radio">
-                                        <input type="radio" name="" value="${quiz.id}"/>
+                                        <input type="radio" name="quiz-id" value="${quiz.id}">
                                     </div>
                                 </td>
                             </tr>
