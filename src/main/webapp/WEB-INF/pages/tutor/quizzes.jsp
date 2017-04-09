@@ -116,7 +116,7 @@
                 <shared:pagination action="${quizzesAction}"
                                    currentPage="${pagination.currentPage}"
                                    numberOfPages="${pagination.numberOfPages}"
-                                   numberOfElements="${pagination.numberOfElements}"/>
+                                   showElements="${pagination.showElements}"/>
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="quizPage.text" bundle="${lang}"/></h1>
