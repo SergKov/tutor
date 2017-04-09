@@ -55,6 +55,7 @@ public abstract class AbstractStudentHomePageCommand implements Command {
         Long showElements;
         if (isNumeric(showElementsParameter)) {
             showElements = Long.parseLong(showElementsParameter);
+            currentPage = DEFAULT_PAGE_NUMBER;
         } else {
             showElements = (Long) request.getSession().getAttribute(QUIZZES_SHOW_ELEMENTS);
             if (showElements == null) {
