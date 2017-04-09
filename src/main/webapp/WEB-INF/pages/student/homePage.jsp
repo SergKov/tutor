@@ -51,6 +51,11 @@
                                 <td>
                                         ${quiz.user.name}
                                 </td>
+                                <td>
+                                    <div class="radio">
+                                        <input type="radio" name="" value="${quiz.id}"/>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -68,7 +73,7 @@
                 <shared:pagination action="${homePageAction}"
                                    currentPage="${pagination.currentPage}"
                                    numberOfPages="${pagination.numberOfPages}"
-                                   numberOfElements="${pagination.numberOfElements}"/>
+                                   showElements="${pagination.showElements}"/>
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="studentHomePage.empty" bundle="${lang}"/></h1>

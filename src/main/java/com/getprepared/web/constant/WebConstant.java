@@ -41,8 +41,6 @@ public final class WebConstant {
 
         public static final String CHOSEN_ANSWER_ID = "chosenAnswersId[]";
 
-        public static final String NUMBER_OF_ELEMENTS = "numberOfElements";
-
         public static final String SHOW_ELEMENTS = "show-elements";
 
         public static final String CURRENT_PAGE = "current-page";
@@ -106,5 +104,9 @@ public final class WebConstant {
         public static final String TEST = "test";
 
         public static final String MARK = "mark";
+
+        public static final String QUIZZES_CURRENT_PAGE = "quizzesCurrentPage";
+
+        public static final String QUIZZES_SHOW_ELEMENTS = "quizzesShowElements";
     }
 }

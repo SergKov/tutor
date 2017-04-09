@@ -16,6 +16,8 @@ import java.util.List;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE.QUIZZES_CURRENT_PAGE;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE.QUIZZES_SHOW_ELEMENTS;
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 /**
@@ -23,10 +25,8 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  */
 public abstract class AbstractQuizCommand implements Command {
 
-    public static final long DEFAULT_PAGE_NUMBER = 1L;
-    public static final long DEFAULT_NUMBER_OF_ELEMENTS = 5L;
-    public static final String QUIZZES_CURRENT_PAGE = "quizzesCurrentPage";
-    public static final String QUIZZES_SHOW_ELEMENTS = "quizzesShowElements";
+    private static final long DEFAULT_PAGE_NUMBER = 1L;
+    private static final long DEFAULT_NUMBER_OF_ELEMENTS = 5L;
 
     @Inject
     private Messages messages;

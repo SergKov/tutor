@@ -16,6 +16,7 @@ import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
+import com.getprepared.persistence.domain.User;
 
 import java.util.List;
 
@@ -125,6 +126,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
                 final List<Answer> answers = answerService.findByQuestionId(question.getId());
                 question.setAnswers(answers);
             }
+            quiz.setQuestions(questions);
         }
     }
 }
