@@ -39,7 +39,7 @@
             <button type="submit" id="save_btn" class="btn btn-success btn-md answer-submit-btn" form="question-form">
                 <fmt:message key="test.answer.save" bundle="${lang}"/>
             </button>
-            <button type="submit" id="finish_btn" class="btn btn-danger btn-md" form="close-form">
+            <button type="submit" id="finish_btn" class="btn btn-danger btn-md" form="close-form" form="question-form">
                 <fmt:message key="test.submit" bundle="${lang}"/>
             </button>
         </div>
