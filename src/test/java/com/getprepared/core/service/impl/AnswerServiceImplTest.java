@@ -46,12 +46,6 @@ public class AnswerServiceImplTest {
         answerService.save(answer);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void requireSaveWithNull() throws Exception {
-        final Answer answer = null;
-        answerService.save(answer);
-    }
-
     @Test
     public void requireInvokeSaveBatch() throws Exception {
         final List<Answer> answers = new ArrayList<>();
@@ -64,12 +58,6 @@ public class AnswerServiceImplTest {
     public void requireSaveBatchWithException() throws Exception {
         final List<Answer> answers = new ArrayList<>();
         doThrow(new EntityExistsException()).when(answerDao).saveBatch(answers);
-        answerService.save(answers);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void requireSaveBatchWithNull() throws Exception {
-        final List<Answer> answers = null;
         answerService.save(answers);
     }
 
@@ -86,11 +74,6 @@ public class AnswerServiceImplTest {
     public void requireFindByIdWithException() throws Exception {
         doThrow(new EntityNotFoundException()).when(answerDao).findById(ID);
         answerService.findById(ID);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void requireFindByIdNull() throws Exception {
-        answerService.findById(null);
     }
 
     @Test
@@ -118,11 +101,6 @@ public class AnswerServiceImplTest {
         assertEquals(originalAnswers, answers);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void requireFindByQuestionIdNull() throws Exception {
-        answerService.findByQuestionId(null);
-    }
-
     @Test
     public void requireInvokeFindRandomAnswersByQuestionId() throws Exception {
         final Question question = new Question();
@@ -138,10 +116,5 @@ public class AnswerServiceImplTest {
         doReturn(answers).when(answerDao).findByQuestionIdInRandomOrder(ID);
         final List<Answer> originalAnswers = answerService.findByQuestionIdInRandomOrder(ID);
         assertEquals(originalAnswers, answers);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void requireFindRandomAnswersWithNull() throws Exception {
-        answerService.findByQuestionIdInRandomOrder(null);
     }
 }

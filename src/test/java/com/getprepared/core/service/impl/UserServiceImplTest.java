@@ -15,9 +15,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.getprepared.constant.ServerConstant.EMAIL;
-import static com.getprepared.constant.ServerConstant.ID;
-import static com.getprepared.constant.ServerConstant.PASSWORD;
+import java.util.Set;
+
+import static com.getprepared.constant.ServerConstant.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -91,10 +91,13 @@ public class UserServiceImplTest {
         userService.signUp(user);
     }
 
-    @Ignore // TODO
     @Test
+    @Ignore // TODO
     public void requireInvokeUpdateStudentPassword() throws Exception {
-        when(userDao.findByStudentEmail(anyString())).thenReturn(new User());
+        final User user = new User();
+        user.setPassword(PASSWORD);
+        when(userDao.findByStudentEmail(anyString())).thenReturn(user);
+        userService.updateStudentPassword(EMAIL, PASSWORD, PASSWORD);
         verify(userDao).updateStudentPassword(anyString());
         verifyNoMoreInteractions(userDao);
     }
@@ -109,7 +112,8 @@ public class UserServiceImplTest {
     @Ignore // TODO
     @Test
     public void requireInvokeUpdateTutorPassword() throws Exception {
-        when(userDao.findByTutorEmail(anyString())).thenReturn(new User());
+        when(userDao.findByTutorEmail(any(String.class))).thenReturn(new User());
+        userService.updateTutorPassword(anyString(), anyString(), anyString());
         verify(userDao).updateTutorPassword(any(String.class));
         verifyNoMoreInteractions(userDao);
     }

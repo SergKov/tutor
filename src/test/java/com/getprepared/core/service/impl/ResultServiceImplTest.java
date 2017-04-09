@@ -51,14 +51,15 @@ public class ResultServiceImplTest {
         resultService.save(result);
     }
 
-//    @Test
-//    public void requireInvokeFindByUserId() throws Exception {
-//        final User user = new User();
-//        user.setId(ID);
-//        final PageableData pageableData = new PageableData();
-//        verify(resultDao).findByUserId(ID, pageableData);
-//        verify(resultDao).countFoundRows();
-//        verify(userService).findById(any(Long.class));
-//        verify(quizService).findById(any(Long.class));
-//    }
+    @Test
+    public void requireInvokeFindByUserId() throws Exception {
+        final User user = new User();
+        user.setId(ID);
+        final PageableData pageableData = new PageableData();
+        resultService.findByUserId(ID, pageableData);
+        verify(resultDao).findByUserId(ID, pageableData);
+        verify(resultDao).countFoundRows();
+//        verify(userService).findById(ID);
+//        verify(quizService).findById(ID);
+    }
 }

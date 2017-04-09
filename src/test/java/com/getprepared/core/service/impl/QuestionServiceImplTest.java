@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.getprepared.constant.ServerConstant.ID;
@@ -40,25 +41,88 @@ public class QuestionServiceImplTest {
     @Test
     public void requireInvokeSaveQuestion() throws Exception {
         final Question question = new Question();
+        question.setAnswers(new ArrayList<>());
         questionService.save(question);
         verify(questionDao).save(question);
+        verify(answerService).save(question.getAnswers());
         verifyNoMoreInteractions(questionDao);
     }
 
     @Test(expected = EntityExistsException.class)
-    public void requireSaveQuestionWithException() throws Exception {
+    public void requireSaveQuestionWithQuestionDaoException() throws Exception {
         final Question question = new Question();
         doThrow(new EntityExistsException()).when(questionDao).save(question);
         questionService.save(question);
     }
 
-    @Test
-    public void requireInvokeFindById() throws Exception {
+    @Test(expected = EntityExistsException.class)
+    public void requireSaveQuestionWithAnswerServiceException() throws Exception {
         final Question question = new Question();
-        question.setId(ID);
-        when(questionDao.findById(any(Long.class))).thenReturn(question);
-        questionService.findById(question.getId());
-        verify(questionDao).findById(question.getId());
-        verifyNoMoreInteractions(questionDao);
+        final List<Answer> answers = new ArrayList<>();
+        question.setAnswers(answers);
+        doThrow(new EntityExistsException()).when(answerService).save(answers);
+        questionService.save(question);
+        verify(questionDao).save(question);
     }
+
+//    @Test
+//    public void requireInvokeFindByQuizId() throws Exception {
+//        final Question question = new Question();
+//        question.setId(ID);
+//        when(questionDao.findByQuizId(anyLong())).thenReturn(anyListOf(Question.class));
+//        questionService.findByQuizId(question.getId());
+//        verify(questionDao).findByQuizId(question.getId());
+//        verify(answerService).findByQuestionId(question.getId());
+//        verifyNoMoreInteractions(questionDao, answerService);
+//    }
+
+//    @Test(expected = EntityNotFoundException.class)
+//    public void requireExceptionWithFailQuestionDaoFindById() throws Exception {
+//        final Question question = new Question();
+//        question.setId(ID);
+//        when(questionDao.findById(any(Long.class))).thenReturn(question);
+//        doThrow(EntityNotFoundException.class).when(questionDao).findById(question.getId());
+//        questionService.findById(question.getId());
+//    }
+//
+//    @Test(expected = EntityNotFoundException.class)
+//    public void requireExceptionWithFailAnswerServiceFindByQuestionId() throws Exception {
+//        final Question question = new Question();
+//        question.setId(ID);
+//        when(questionDao.findById(any(Long.class))).thenReturn(question);
+//        doThrow(EntityNotFoundException.class).when(answerService).findByQuestionId(question.getId());
+//        questionService.findById(question.getId());
+//        verify(questionDao).findById(question.getId());
+//    }
+//
+//    @Test
+//    public void requireInvokeFindById() throws Exception {
+//        final Question question = new Question();
+//        question.setId(ID);
+//        when(questionDao.findById(any(Long.class))).thenReturn(question);
+//        questionService.findById(question.getId());
+//        verify(questionDao).findById(question.getId());
+//        verify(answerService).findByQuestionId(question.getId());
+//        verifyNoMoreInteractions(questionDao, answerService);
+//    }
+//
+//    @Test(expected = EntityNotFoundException.class)
+//    public void requireExceptionWithFailQuestionDaoFindById() throws Exception {
+//        final Question question = new Question();
+//        question.setId(ID);
+//        when(questionDao.findById(any(Long.class))).thenReturn(question);
+//        doThrow(EntityNotFoundException.class).when(questionDao).findById(question.getId());
+//        questionService.findById(question.getId());
+//    }
+//
+//    @Test(expected = EntityNotFoundException.class)
+//    public void requireExceptionWithFailAnswerServiceFindByQuestionId() throws Exception {
+//        final Question question = new Question();
+//        question.setId(ID);
+//        when(questionDao.findById(any(Long.class))).thenReturn(question);
+//        doThrow(EntityNotFoundException.class).when(answerService).findByQuestionId(question.getId());
+//        questionService.findById(question.getId());
+//        verify(questionDao).findById(question.getId());
+//    }
+
 }

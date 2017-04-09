@@ -26,9 +26,4 @@ public class QuizAddConverterTest {
         final Quiz quiz = converter.convert(quizAddForm);
         Assert.assertEquals(NAME, quiz.getName());
     }
-
-    @Test(expected = NullPointerException.class)
-    public void requireConvertWithNull() {
-        converter.convert(null);
-    }
 }

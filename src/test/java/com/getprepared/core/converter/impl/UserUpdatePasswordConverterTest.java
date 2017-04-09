@@ -24,9 +24,4 @@ public class UserUpdatePasswordConverterTest {
         final User user = converter.convert(userUpdatePasswordForm);
         Assert.assertEquals(PASSWORD, user.getPassword());
     }
-
-    @Test(expected = NullPointerException.class)
-    public void requireConvertWithNull() {
-        converter.convert(null);
-    }
 }

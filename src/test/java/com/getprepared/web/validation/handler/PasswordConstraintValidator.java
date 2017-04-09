@@ -90,9 +90,4 @@ public class PasswordConstraintValidator {
     public void requireIsValidWithOneNumber() {
         assertFalse(validator.isValid("1"));
     }
-
-    @Test(expected = NullPointerException.class)
-    public void requireIsValidWithNull() {
-        validator.isValid(null);
-    }
 }

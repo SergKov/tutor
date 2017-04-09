@@ -73,9 +73,4 @@ public class NameConstraintValidatorTest {
     public void requireIsValidWithLongIncorrectName() {
         assertFalse(validator.isValid("Asdsadsasfdsfdgfdsgfgddgfdfg"));
     }
-
-    @Test(expected = NullPointerException.class)
-    public void requireIsValidWithNull() {
-        validator.isValid(null);
-    }
 }

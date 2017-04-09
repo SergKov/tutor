@@ -63,9 +63,4 @@ public class UserRoleConstraintValidatorTest {
     public void requireIsValidWithNotExistsRole() throws Exception {
         assertFalse(validator.isValid("Manager"));
     }
-
-    @Test(expected = NullPointerException.class)
-    public void requireIsValidWithNull() {
-        validator.isValid(null);
-    }
 }

@@ -32,11 +32,10 @@ public class ConnectionProviderTest {
     @Test // TODO
     @Ignore
     public void requireBegin() throws Exception {
-//        doReturn(null).when(threadLocal.get());
-//        provider.begin();
-//        final Connection verifyConnection = verify(dataSourceUtils.getConnection(dataSource), only());
-//        verify(connectionUtils, only()).setAutoCommit(verifyConnection, false);
-//        verify(threadLocal, only()).set(counter);
+        when(threadLocal.get()).thenReturn(notNull(ConnectionCounter.class));
+        provider.begin();
+        verify(threadLocal.get()).increment();
+        verifyNoMoreInteractions(threadLocal);
     }
 
     @Test // TODO

@@ -64,9 +64,4 @@ public class AnswerTypeConstraintValidatorTest {
         assertFalse(validator.isValid(new String[]{"", "INCORRECT"}));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void requireIsValidWithNull() {
-        validator.isValid(null);
-    }
-
 }
