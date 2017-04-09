@@ -22,7 +22,6 @@ public class JdbcTemplate {
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
     private static final int SQL_DUPLICATE_ERROR_CODE = 1062;
-    private static final String COUNT_FOUND_ROWS = "SELECT FOUND_ROWS()";
 
     @Inject
     private ConnectionProvider connectionProvider;
@@ -214,6 +213,22 @@ public class JdbcTemplate {
         return singleQuery(sql, new DefaultPreparedStatementSetter(), rowMapper);
     }
 
+    public Long executeQuery(final String sql) {
+        final Connection connection = connectionProvider.getConnection();
+
+        try (Statement statement = connection.createStatement()){
+            final ResultSet resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            return resultSet.getLong(1);
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute executeQuery %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(connection);
+        }
+    }
+
     public <T> List<T> executeQuery(final String sql, final PreparedStatementSetter setter,
                                     final RowMapper<T> rowMapper) {
 
@@ -240,22 +255,6 @@ public class JdbcTemplate {
 
     public <T> List<T> executeQuery(final String sql, final RowMapper<T> rowMapper) {
         return executeQuery(sql, new DefaultPreparedStatementSetter(), rowMapper);
-    }
-
-    public Long countFoundRows() {
-        final Connection con = connectionProvider.getConnection();
-
-        try (Statement statement = con.createStatement()) {
-            final ResultSet rs = statement.executeQuery(COUNT_FOUND_ROWS);
-            rs.next();
-            return rs.getLong(1);
-        } catch (final SQLException e) {
-            final String errorMsg = String.format("Failed to execute query %s", COUNT_FOUND_ROWS);
-            LOG.error(errorMsg, e);
-            throw new IllegalStateException(errorMsg, e);
-        } finally {
-            close(con);
-        }
     }
 
     private void close(final Connection con) {

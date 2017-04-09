@@ -55,5 +55,7 @@ public final class PropertyConstant {
         public static final String FIND_ALL_CREATED = "findAllCreated";
 
         public static final String REMOVE_BY_ID = "removeById";
+
+        public static final String COUNT_ALL = "countAll";
     }
 }

@@ -103,7 +103,7 @@ public class UserServiceImplTest {
     }
 
     @Ignore // TODO
-    @Test(expected = EntityExistsException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void requireFailUpdateStudentPassword() throws Exception {
         doThrow(EntityExistsException.class).when(userDao).updateStudentPassword(anyString());
         userService.updateStudentPassword(anyString(), anyString(), anyString());
@@ -119,12 +119,9 @@ public class UserServiceImplTest {
     }
 
     @Ignore // TODO
-    @Test(expected = EntityExistsException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void requireFailUpdateTutorPassword() throws Exception {
-        final User user = new User();
-        user.setPassword(PASSWORD);
-        when(userDao.findByTutorEmail(any(String.class))).thenReturn(user);
-        doThrow(EntityExistsException.class).when(userDao).updateTutorPassword(user.getPassword());
-        userService.updateTutorPassword(anyString(), PASSWORD, anyString());
+        doThrow(EntityExistsException.class).when(userDao).updateTutorPassword(anyString());
+        userService.updateTutorPassword(anyString(), anyString(), anyString());
     }
 }

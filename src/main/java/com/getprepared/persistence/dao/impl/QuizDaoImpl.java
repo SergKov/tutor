@@ -64,7 +64,7 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public Long countFoundRows() {
-        return jdbcTemplate.countFoundRows();
+        return jdbcTemplate.executeQuery(prop.getProperty(KEY.COUNT_ALL));
     }
 
     @Override

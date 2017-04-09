@@ -16,7 +16,7 @@
 
     <input type="hidden" value="${currentPage}"/>
 
-    <select name="show-elements" class="js-show-elements" onchange="submit">
+    <select name="show-elements" class="js-show-elements">
         <option>5</option>
         <option>10</option>
         <option>15</option>
@@ -27,7 +27,7 @@
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${numberOfPages}">
             <li>
-                <button value="${i}" name="currentPage" class="center"
+                <button value="${i}" name="current-page" class="center"
                         <c:if test="${currentPage eq i}">disabled</c:if>>
                         ${i}
                 </button>

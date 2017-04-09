@@ -36,19 +36,19 @@ public abstract class AbstractQuizCommand implements Command {
         final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.TUTOR);
 
         final String currentPageParameter = request.getParameter(INPUT.CURRENT_PAGE);
-        final String numberOfElementsParameter = request.getParameter(INPUT.NUMBER_OF_ELEMENTS);
+        final String showElementsParameter = request.getParameter(INPUT.SHOW_ELEMENTS);
 
         final Long currentPage = isNumeric(currentPageParameter)
                 ? Long.parseLong(currentPageParameter)
                 : DEFAULT_PAGE_NUMBER;
 
-        final Long numberOfElements = isNumeric(numberOfElementsParameter)
-                ? Long.parseLong(numberOfElementsParameter)
+        final Long showElements = isNumeric(showElementsParameter)
+                ? Long.parseLong(showElementsParameter)
                 : DEFAULT_NUMBER_OF_ELEMENTS;
 
         final PageableData pagination = new PageableData();
         pagination.setCurrentPage(currentPage);
-        pagination.setNumberOfElements(numberOfElements);
+        pagination.setShowElements(showElements);
 
         final List<Quiz> quizzes = quizService.findAllByTutorId(user.getId(), pagination);
         request.setAttribute(PAGINATION, pagination);

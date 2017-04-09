@@ -43,7 +43,9 @@ public final class WebConstant {
 
         public static final String NUMBER_OF_ELEMENTS = "numberOfElements";
 
-        public static final String CURRENT_PAGE = "currentPage";
+        public static final String SHOW_ELEMENTS = "show-elements";
+
+        public static final String CURRENT_PAGE = "current-page";
     }
 
     public static final class REQUEST_ATTRIBUTE {
