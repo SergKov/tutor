@@ -13,17 +13,6 @@
 <%@ attribute name="showElements" type="java.lang.Integer" required="true" %>
 
 <form action="${action}" method="GET" class="center">
-
-    <input type="hidden" value="${currentPage}"/>
-
-    <select name="show-elements" class="js-show-elements">
-        <option <c:if test="${showElements eq 5}">selected</c:if>>5</option>
-        <option <c:if test="${showElements eq 10}">selected</c:if>>10</option>
-        <option <c:if test="${showElements eq 15}">selected</c:if>>15</option>
-        <option <c:if test="${showElements eq 20}">selected</c:if>>20</option>
-        <option <c:if test="${showElements eq 25}">selected</c:if>>25</option>
-    </select>
-
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${numberOfPages}">
             <li>
@@ -34,4 +23,14 @@
             </li>
         </c:forEach>
     </ul>
+</form>
+
+<form action="${action}" method="GET" class="center">
+    <select name="show-elements" class="js-show-elements">
+        <option <c:if test="${showElements eq 5}">selected</c:if>>5</option>
+        <option <c:if test="${showElements eq 10}">selected</c:if>>10</option>
+        <option <c:if test="${showElements eq 15}">selected</c:if>>15</option>
+        <option <c:if test="${showElements eq 20}">selected</c:if>>20</option>
+        <option <c:if test="${showElements eq 25}">selected</c:if>>25</option>
+    </select>
 </form>

@@ -22,11 +22,8 @@
         <c:choose>
             <c:when test="${not empty quizzes}">
                 <div class="row">
-                    <div class="col-xs-offset-5 col-xs-5">
-                        <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"
-                                                             bundle="${lang}"/></h3>
-
-                    </div>
+                    <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"
+                                                         bundle="${lang}"/></h3>
                 </div>
 
                 <form action="${homePageAction}" method="POST" class="js-start-btn"
@@ -35,27 +32,27 @@
 
                     <table class="table table-hover">
                         <thead>
-                            <tr>
-                                <th>
-                                    <fmt:message key="homePage.quiz" bundle="${lang}"/>
-                                </th>
-                                <th>
-                                    <fmt:message key="homePage.author" bundle="${lang}"/>
-                                </th>
-                            </tr>
+                        <tr>
+                            <th>
+                                <fmt:message key="homePage.quiz" bundle="${lang}"/>
+                            </th>
+                            <th>
+                                <fmt:message key="homePage.author" bundle="${lang}"/>
+                            </th>
+                        </tr>
                         </thead>
 
                         <tbody>
-                            <c:forEach items="${quizzes}" var="quiz">
-                                <tr>
-                                    <td>
+                        <c:forEach items="${quizzes}" var="quiz">
+                            <tr>
+                                <td>
                                         ${quiz.name}
-                                    </td>
-                                    <td>
+                                </td>
+                                <td>
                                         ${quiz.user.name}
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
 

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static com.getprepared.web.constant.PropertyConstant.KEY.HOME_PAGE;
+import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.PAGINATION;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.QUIZZES;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
@@ -35,25 +36,37 @@ public abstract class AbstractStudentHomePageCommand implements Command {
 
         request.setAttribute(TITLE, messages.getMessage(PropertyConstant.KEY.QUIZZES, request.getLocale()));
 
-        final User user = (User) request.getSession().getAttribute(WebConstant.SESSION_ATTRIBUTE.TUTOR);
+        final String currentPageParameter = request.getParameter(INPUT.CURRENT_PAGE);
+        final String showElementsParameter = request.getParameter(INPUT.SHOW_ELEMENTS);
 
-        final String currentPageParameter = request.getParameter(WebConstant.INPUT.CURRENT_PAGE);
-        final String showElementsParameter = request.getParameter(WebConstant.INPUT.SHOW_ELEMENTS);
+//        Long currentPage;
+//        if (isNumeric(currentPageParameter)) {
+//            currentPage = Long.parseLong(currentPageParameter);
+//            request.getSession().setAttribute("quizzesCurrentPage", currentPage);
+//        } else {
+//            currentPage = (Long) request.getSession().getAttribute("quizzesCurrentPage");
+//            if (currentPage == null) {
+//                currentPage = DEFAULT_PAGE_NUMBER;
+//            }
+//        }
+//
+//        Long showElements;
+//        if (isNumeric(showElementsParameter)) {
+//            showElements = Long.parseLong(showElementsParameter);
+//            request.getSession().setAttribute("quizzesShowElements", showElements);
+//        } else {
+//            showElements = (Long) request.getSession().getAttribute("quizzesShowElements");
+//            if (showElements == null) {
+//                showElements = DEFAULT_NUMBER_OF_ELEMENTS;
+//            }
+//        }
 
-        final Long currentPage = isNumeric(currentPageParameter)
-                ? Long.parseLong(currentPageParameter)
-                : DEFAULT_PAGE_NUMBER;
-
-        final Long showElements = isNumeric(showElementsParameter)
-                ? Long.parseLong(showElementsParameter)
-                : DEFAULT_NUMBER_OF_ELEMENTS;
-
-        final PageableData pagination = new PageableData();
-        pagination.setCurrentPage(currentPage);
-        pagination.setShowElements(showElements);
-
-        final List<Quiz> quizzes = quizService.findAllActive(pagination);
-        request.setAttribute(PAGINATION, pagination);
-        request.setAttribute(QUIZZES, quizzes);
+//        final PageableData pagination = new PageableData();
+//        pagination.setCurrentPage(currentPage);
+//        pagination.setShowElements(showElements);
+//
+//        final List<Quiz> quizzes = quizService.findAllActive(pagination);
+//        request.setAttribute(PAGINATION, pagination);
+//        request.setAttribute(QUIZZES, quizzes);
     }
 }
