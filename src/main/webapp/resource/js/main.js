@@ -64,4 +64,8 @@ $(document).ready(function() {
     $("#test").bind("cut copy paste", function (e) {
         e.preventDefault();
     });
+
+    $(".js-show-elements").change(function () {
+        this.form.submit();
+    })
 });

@@ -43,13 +43,13 @@
                                         <c:when test="${emtyErrorMsgs}">
                                             <div class="form-group">
                                                 <input id="${quizNameId}" type="text" class="form-control"
-                                                       name="quiz-name" value="${quiz.name}">
+                                                       name="quiz-name" value="<c:out value="${quiz.name}"/>"/>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group">
                                                 <input id="${quizNameId}" type="text" class="form-control"
-                                                       name="quiz-name" value="${quizName}">
+                                                       name="quiz-name" value="<c:out value="${quizName}"/>"/>
                                             </div>
 
                                             <div class="col-xs-12 center">
@@ -61,7 +61,7 @@
                                 <c:otherwise>
                                     <div class="form-group">
                                         <input id="${quizNameId}" type="text" class="form-control"
-                                               name="quiz-name" value="${quiz.name}" readonly="readonly">
+                                               name="quiz-name" value="<c:out value="${quiz.name}"/>" readonly="readonly">
                                     </div>
                                 </c:otherwise>
                             </c:choose>

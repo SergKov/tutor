@@ -13,14 +13,23 @@
 <%@ attribute name="numberOfElements" type="java.lang.Integer" required="true" %>
 
 <form action="${action}" method="GET">
-    <input type="hidden" name="numberOfElements" value="${numberOfElements}">
+
+    <input type="hidden" value="${currentPage}"/>
+
+    <select name="show-elements" class="js-show-elements" onchange="submit">
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+    </select>
 
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${numberOfPages}">
             <li>
-                <button value="${i}"
+                <button value="${i}" name="currentPage" class="center"
                         <c:if test="${currentPage eq i}">disabled</c:if>>
-                    ${i}
+                        ${i}
                 </button>
             </li>
         </c:forEach>
