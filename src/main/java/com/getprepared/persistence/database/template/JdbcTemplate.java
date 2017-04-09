@@ -217,9 +217,9 @@ public class JdbcTemplate {
         final Connection connection = connectionProvider.getConnection();
 
         try (Statement statement = connection.createStatement()){
-            final ResultSet resultSet = statement.executeQuery(sql);
-            resultSet.next();
-            return resultSet.getLong(1);
+            final ResultSet rs = statement.executeQuery(sql);
+            rs.next();
+            return rs.getLong(1);
         } catch (final SQLException e) {
             final String errorMsg = String.format("Failed to execute executeQuery %s", sql);
             LOG.error(errorMsg, e);

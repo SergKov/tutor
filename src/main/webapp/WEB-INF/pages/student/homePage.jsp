@@ -23,10 +23,9 @@
             <c:when test="${not empty quizzes}">
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-5">
-                        <label class="control-label" for="quiz">
-                            <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"
-                                                                 bundle="${lang}"/></h3>
-                        </label>
+                        <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"
+                                                             bundle="${lang}"/></h3>
+
                     </div>
                 </div>
 
@@ -34,19 +33,31 @@
                       data-start-btn="<fmt:message key="homePage.ready.confirm" bundle="${lang}"/>">
                     <input type="hidden" name="command" value="testStart"/>
 
-                    <div class="row">
-                        <div class="col-xs-offset-5 col-xs-2">
-                            <div class="form-group">
-                                <select id="quiz" name="quiz-id" class="form-control">
-                                    <c:forEach items="${quizzes}" var="quiz">
-                                        <option value="${quiz.id}">
-                                            ${quiz.name}
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <fmt:message key="homePage.quiz" bundle="${lang}"/>
+                                </th>
+                                <th>
+                                    <fmt:message key="homePage.author" bundle="${lang}"/>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <c:forEach items="${quizzes}" var="quiz">
+                                <tr>
+                                    <td>
+                                        ${quiz.name}
+                                    </td>
+                                    <td>
+                                        ${quiz.user.name}
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
 
                     <div class="row">
                         <div class="col-xs-offset-5 col-xs-2">
@@ -56,6 +67,11 @@
                         </div>
                     </div>
                 </form>
+
+                <shared:pagination action="${homePageAction}"
+                                   currentPage="${pagination.currentPage}"
+                                   numberOfPages="${pagination.numberOfPages}"
+                                   numberOfElements="${pagination.numberOfElements}"/>
             </c:when>
             <c:otherwise>
                 <h1 class="text-muted text-center"><fmt:message key="studentHomePage.empty" bundle="${lang}"/></h1>

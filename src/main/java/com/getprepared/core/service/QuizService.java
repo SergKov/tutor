@@ -20,7 +20,7 @@ public interface QuizService {
 
     List<Quiz> findAllByTutorId(Long id, PageableData pageableData);
 
-    List<Quiz> findAllActive(PageableData pageableData) throws EntityNotFoundException;
+    List<Quiz> findAllActive(PageableData pageableData);
 
     void active(Long id) throws QuizTerminatedException, EntityNotFoundException, QuizNotTerminatedException;
 
