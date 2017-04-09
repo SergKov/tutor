@@ -5,39 +5,43 @@ package com.getprepared.persistence.database.pagination;
  */
 public class PageableData {
 
-    private Long currentPage;
-    private Long numberOfPages;
-    private Long numberOfElements;
+    private long currentPage;
+    private long numberOfElements;
+    private long showElements;
 
-    public Long getLimit() {
-        return numberOfElements;
+    public long getLimit() {
+        return showElements;
     }
 
-    public Long getOffset() {
-        return numberOfElements * (currentPage - 1);
+    public long getOffset() {
+        return (currentPage - 1) * showElements;
     }
 
-    public Long getCurrentPage() {
+    public long getNumberOfPages() {
+        return numberOfElements / showElements; // TODO fix rounding bigDecimal devide
+    }
+
+    public long getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(Long currentPage) {
+    public void setCurrentPage(long currentPage) {
         this.currentPage = currentPage;
     }
 
-    public Long getNumberOfPages() {
-        return numberOfPages;
-    }
-
-    public void setNumberOfPages(Long numberOfPages) {
-        this.numberOfPages = numberOfPages;
-    }
-
-    public Long getNumberOfElements() {
+    public long getNumberOfElements() {
         return numberOfElements;
     }
 
-    public void setNumberOfElements(Long numberOfElements) {
+    public void setNumberOfElements(long numberOfElements) {
         this.numberOfElements = numberOfElements;
+    }
+
+    public long getShowElements() {
+        return showElements;
+    }
+
+    public void setShowElements(long showElements) {
+        this.showElements = showElements;
     }
 }

@@ -22,31 +22,26 @@ public class AnswerServiceImpl extends AbstractService implements AnswerService 
 
     @Override
     public void save(final Answer answer) throws EntityExistsException {
-        Objects.requireNonNull(answer, "Answer can not be null");
         answerDao.save(answer);
     }
 
     @Override
     public void save(final List<Answer> answers) throws EntityExistsException {
-        Objects.requireNonNull(answers, "Answers can not be null");
         answerDao.saveBatch(answers);
     }
 
     @Override
     public Answer findById(final Long id) throws EntityNotFoundException {
-        Objects.requireNonNull(id, "id can not be null");
         return answerDao.findById(id);
     }
 
     @Override
     public List<Answer> findByQuestionId(final Long questionId) {
-        Objects.requireNonNull(questionId, "id can not be null");
         return answerDao.findByQuestionId(questionId);
     }
 
     @Override
     public List<Answer> findByQuestionIdInRandomOrder(final Long questionId) {
-        Objects.requireNonNull(questionId, "id can not be null");
         return answerDao.findByQuestionIdInRandomOrder(questionId);
     }
 }

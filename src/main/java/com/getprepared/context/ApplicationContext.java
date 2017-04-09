@@ -89,12 +89,6 @@ public class ApplicationContext {
     private void load(final String packageName) { // TODO
         final List<Class<?>> classes = getBean(PACKAGE_SCANNER, PackageScanner.class).scan(packageName);
 
-//        for (final Class clazz : classes) {
-//            if (isComponent(clazz.getAnnotation(Component.class))) {
-//                initAnnotationBean(clazz);
-//            }
-//        }
-
         classes.stream()
                 .filter(clazz -> clazz.isAnnotationPresent(Component.class) ||
                             clazz.isAnnotationPresent(Service.class) ||
@@ -102,10 +96,6 @@ public class ApplicationContext {
 
                 .forEach(this::initAnnotationBean);
     }
-
-//    private boolean isComponent(final Annotation annotation) {
-//        if (annotation.annotationType().isAnnotationPresent(Component.class))
-//    }
 
     private void initAnnotationBean(final Class<?> clazz) { // TODO
         String beanName = null;

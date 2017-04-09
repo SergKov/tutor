@@ -56,8 +56,8 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Transactional
     public List<Quiz> findAllByTutorId(final Long id, final PageableData page) {
         final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
-
         page.setNumberOfElements(quizDao.countFoundRows());
+
         initQuizzes(quizzes);
 
         return quizzes;

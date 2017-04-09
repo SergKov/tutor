@@ -17,9 +17,9 @@ import com.getprepared.persistence.domain.Type;
 import com.getprepared.web.dto.TestQuestion;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -97,7 +97,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     public List<TestQuestion> startTest(final Long quizId) {
         final List<Question> questions = findByQuizId(quizId);
         final List<TestQuestion> testQuestions = new ArrayList<>();
-        questions.forEach(question -> testQuestions.add(new TestQuestion(question, Collections.emptyList())));
+        questions.forEach(question -> testQuestions.add(new TestQuestion(question, emptyList())));
         return testQuestions;
     }
 
