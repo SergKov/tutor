@@ -75,8 +75,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
 
     @Override
     @Transactional
-    public void active(final Long id) throws QuizTerminatedException, EntityNotFoundException,
-            QuizNotTerminatedException {
+    public void active(final Long id) throws QuizTerminatedException, EntityNotFoundException, QuizNotTerminatedException {
         final Quiz quiz = quizDao.findById(id);
 
         initQuiz(quiz);

@@ -64,12 +64,14 @@ public abstract class AbstractStudentHomePageCommand implements Command {
             }
         }
 
+        request.getSession().setAttribute(QUIZZES_CURRENT_PAGE, currentPage);
+        request.getSession().setAttribute(QUIZZES_SHOW_ELEMENTS, showElements);
+
         final PageableData pagination = new PageableData();
         pagination.setCurrentPage(currentPage);
         pagination.setShowElements(showElements);
 
         List<Quiz> quizzes = quizService.findAllActive(pagination);
-
         request.setAttribute(PAGINATION, pagination);
         request.setAttribute(QUIZZES, quizzes);
     }
