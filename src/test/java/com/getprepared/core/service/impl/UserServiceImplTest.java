@@ -92,36 +92,46 @@ public class UserServiceImplTest {
     }
 
     @Test
-    @Ignore // TODO
     public void requireInvokeUpdateStudentPassword() throws Exception {
         final User user = new User();
         user.setPassword(PASSWORD);
         when(userDao.findByStudentEmail(anyString())).thenReturn(user);
-        userService.updateStudentPassword(EMAIL, PASSWORD, PASSWORD);
-        verify(userDao).updateStudentPassword(anyString());
+        when(passwordEncoder.matches(PASSWORD, PASSWORD)).thenReturn(true);
+        userService.updateStudentPassword(anyString(), PASSWORD, PASSWORD);
+        verify(userDao).findByStudentEmail(any(String.class));
+        verify(userDao).updateStudentPassword(any(String.class));
         verifyNoMoreInteractions(userDao);
     }
 
-    @Ignore // TODO
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = EntityExistsException.class)
     public void requireFailUpdateStudentPassword() throws Exception {
-        doThrow(EntityExistsException.class).when(userDao).updateStudentPassword(anyString());
-        userService.updateStudentPassword(anyString(), anyString(), anyString());
+        final User user = new User();
+        user.setPassword(PASSWORD);
+        when(userDao.findByStudentEmail(anyString())).thenReturn(user);
+        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(true);
+        doThrow(EntityExistsException.class).when(userDao).updateStudentPassword(any(String.class));
+        userService.updateStudentPassword(anyString(), PASSWORD, PASSWORD);
     }
 
-    @Ignore // TODO
     @Test
     public void requireInvokeUpdateTutorPassword() throws Exception {
-        when(userDao.findByTutorEmail(any(String.class))).thenReturn(new User());
-        userService.updateTutorPassword(anyString(), anyString(), anyString());
+        final User user = new User();
+        user.setPassword(PASSWORD);
+        when(userDao.findByTutorEmail(anyString())).thenReturn(user);
+        when(passwordEncoder.matches(PASSWORD, PASSWORD)).thenReturn(true);
+        userService.updateTutorPassword(anyString(), PASSWORD, PASSWORD);
+        verify(userDao).findByTutorEmail(any(String.class));
         verify(userDao).updateTutorPassword(any(String.class));
         verifyNoMoreInteractions(userDao);
     }
 
-    @Ignore // TODO
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = EntityExistsException.class)
     public void requireFailUpdateTutorPassword() throws Exception {
-        doThrow(EntityExistsException.class).when(userDao).updateTutorPassword(anyString());
-        userService.updateTutorPassword(anyString(), anyString(), anyString());
+        final User user = new User();
+        user.setPassword(PASSWORD);
+        when(userDao.findByTutorEmail(anyString())).thenReturn(user);
+        when(passwordEncoder.matches(anyString(), anyString())).thenReturn(true);
+        doThrow(EntityExistsException.class).when(userDao).updateTutorPassword(any(String.class));
+        userService.updateTutorPassword(anyString(), PASSWORD, PASSWORD);
     }
 }
