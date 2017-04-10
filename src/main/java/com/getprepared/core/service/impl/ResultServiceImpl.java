@@ -16,6 +16,9 @@ import com.getprepared.persistence.domain.User;
 
 import java.util.List;
 
+import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_NUMBER_OF_ELEMENTS;
+import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_PAGE_NUMBER;
+
 /**
  * Created by koval on 15.01.2017.
  */
@@ -38,18 +41,25 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
 
     @Override
     @Transactional
-    public List<Result> findByUserId(final Long id, final PageableData page) throws EntityNotFoundException {
+    public List<Result> findByUserId(final Long id, final PageableData page) {
+        page.setNumberOfElements(resultDao.countFoundRows());
+        checkPage(page);
         final List<Result> results = resultDao.findByUserId(id, page);
 
-        page.setNumberOfElements(resultDao.countFoundRows());
-
-        for (final Result result : results) {
-            final User user = userService.findById(result.getId());
-            result.setUser(user);
-
-            final Quiz quiz = quizService.findById(user.getId());
-            result.setQuiz(quiz);
-        }
+        iniResult(results);
         return results;
+    }
+
+    private void iniResult(final List<Result> results) {
+        for (final Result result : results) {
+            try {
+                final User user = userService.findById(result.getId());
+                result.setUser(user);
+
+                final Quiz quiz = quizService.findById(user.getId());
+                result.setQuiz(quiz);
+            } catch (final EntityNotFoundException e) { /* ignore, unreal situation */
+            }
+        }
     }
 }

@@ -20,6 +20,8 @@ public interface QuizDao {
 
     List<Quiz> findAllCreated(PageableData page);
 
+    Long countFoundRows(Long id);
+
     Long countFoundRows();
 
     void update(String name, Long id) throws EntityExistsException;

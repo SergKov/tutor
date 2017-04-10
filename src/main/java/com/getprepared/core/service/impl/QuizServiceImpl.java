@@ -56,8 +56,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     @Transactional
     public List<Quiz> findAllByTutorId(final Long id, final PageableData page) {
-        final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
         page.setNumberOfElements(quizDao.countFoundRows());
+        checkPage(page);
+        final List<Quiz> quizzes = quizDao.findAllByTutorId(id, page);
 
         quizzes.forEach(this::initQuiz);
         return quizzes;
@@ -66,8 +67,9 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
     @Override
     @Transactional
     public List<Quiz> findAllActive(final PageableData page) {
-        final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
         page.setNumberOfElements(quizDao.countFoundRows());
+        checkPage(page);
+        final List<Quiz> createdQuizzes = quizDao.findAllCreated(page);
 
         createdQuizzes.forEach(this::initQuiz);
         return createdQuizzes;

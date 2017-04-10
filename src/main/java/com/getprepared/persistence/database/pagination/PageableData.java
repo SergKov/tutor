@@ -18,7 +18,7 @@ public class PageableData {
     }
 
     public long getNumberOfPages() {
-        return numberOfElements / showElements; // TODO fix rounding bigDecimal devide
+        return (long) Math.ceil(numberOfElements / (double) showElements);
     }
 
     public long getCurrentPage() {

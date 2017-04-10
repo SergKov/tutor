@@ -8,6 +8,7 @@ import com.getprepared.persistence.annotation.Repository;
 import com.getprepared.persistence.dao.QuizDao;
 import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.database.template.JdbcTemplate;
+import com.getprepared.persistence.database.template.PreparedStatementSetter;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.User;
@@ -60,6 +61,13 @@ public class QuizDaoImpl implements QuizDao {
     public List<Quiz> findAllCreated(final PageableData page) {
         return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL_CREATED), page.getLimit(),
                 page.getOffset()), new QuizMapper());
+    }
+
+    @Override
+    public Long countFoundRows(final Long id) {
+        return jdbcTemplate.executeQuery(prop.getProperty(KEY.COUNT_ALL_BY_USER_ID), ps -> {
+            ps.setLong(1, id);
+        });
     }
 
     @Override

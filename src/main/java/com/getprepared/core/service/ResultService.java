@@ -14,5 +14,5 @@ public interface ResultService {
 
     void save(Result result) throws EntityExistsException;
 
-    List<Result> findByUserId(Long id, PageableData page) throws EntityNotFoundException;
+    List<Result> findByUserId(Long id, PageableData page);
 }

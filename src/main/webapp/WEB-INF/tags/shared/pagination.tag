@@ -14,7 +14,7 @@
 
 <form action="${action}" method="GET" class="center">
     <ul class="pagination custom-pagination">
-        <c:forEach var="i" begin="1" end="${numberOfPages}">
+        <c:forEach var="i" begin="1" end="${pagination.numberOfPages}">
             <li>
                 <button value="${i}" name="current-page" class="center"
                         <c:if test="${currentPage eq i}">disabled</c:if>>
