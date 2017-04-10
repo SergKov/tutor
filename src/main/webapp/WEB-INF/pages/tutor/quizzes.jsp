@@ -35,20 +35,22 @@
                     <c:set var="emtyErrorMsgs" value="${empty errorMsgs['name']}"/>
                     <c:set var="quizName" value="${quizForm ne null ? quizForm.name : quiz.name}"/>
 
-                    <div class="row quizzes-page-block">
+                    <div class="row quizzes-page-block js-quiz-block">
                         <div class="col-xs-5 col-xs-offset-2">
                             <c:choose>
                                 <c:when test="${isNotActive}">
                                     <c:choose>
                                         <c:when test="${emtyErrorMsgs}">
                                             <div class="form-group">
-                                                <input id="${quizNameId}" type="text" class="form-control"
+                                                <input id="${quizNameId}" type="text"
+                                                       class="form-control js-input-source"
                                                        name="quiz-name" value="<c:out value="${quiz.name}"/>"/>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group">
-                                                <input id="${quizNameId}" type="text" class="form-control"
+                                                <input id="${quizNameId}" type="text"
+                                                       class="form-control js-input-source"
                                                        name="quiz-name" value="<c:out value="${quizName}"/>"/>
                                             </div>
 
@@ -61,7 +63,8 @@
                                 <c:otherwise>
                                     <div class="form-group">
                                         <input id="${quizNameId}" type="text" class="form-control"
-                                               name="quiz-name" value="<c:out value="${quiz.name}"/>" readonly="readonly">
+                                               name="quiz-name" value="<c:out value="${quiz.name}"/>"
+                                               readonly="readonly">
                                     </div>
                                 </c:otherwise>
                             </c:choose>
@@ -80,6 +83,7 @@
                             <div class="col-xs-1">
                                 <form action="${quizzesAction}" method="POST" class="form-horizontal">
                                     <input type="hidden" name="quiz-id" value="${quiz.id}"/>
+                                    <input type="hidden" name="quiz-name" class="js-input-target"/>
 
                                     <input id="quiz_update" type="image" src="${editQuizIcon}" width="25px"
                                            height="25px"

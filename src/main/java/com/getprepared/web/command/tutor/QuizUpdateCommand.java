@@ -61,7 +61,7 @@ public class QuizUpdateCommand implements Command {
         } else {
             final Quiz quiz = quizUpdateConverter.convert(quizForm);
             try {
-                quiz.setId(Long.valueOf(request.getParameter(INPUT.QUIZ_ID))); // TODO ???
+                quiz.setId(Long.valueOf(request.getParameter(INPUT.QUIZ_ID)));
                 quizService.update(quiz);
                 response.sendRedirect(LINK.TUTOR_QUIZZES);
                 return REDIRECT;

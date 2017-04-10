@@ -47,7 +47,8 @@
                 </div>
 
                 <div class="col-xs-2 col-xs-offset-2">
-                    <input class="form-control" value="${answer.type}" readonly/>
+                    <input class="form-control" value="<fmt:message key="question.${answer.type}" bundle="${lang}"/>"
+                           readonly/>
                 </div>
             </div>
         </c:forEach>

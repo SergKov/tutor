@@ -49,7 +49,7 @@ $(document).ready(function() {
 
         $answer.addClass('answer-padding');
         var $answers = $('.answers');
-        if ($answers.find('.answer').length < 10) {  // TODO fix
+        if ($answers.find('.answer').length < 10) {
             $answers.append($answer)
         }
     });
@@ -67,5 +67,10 @@ $(document).ready(function() {
 
     $(".js-show-elements").change(function () {
         this.form.submit();
-    })
+    });
+
+    $(".js-input-source").change(function () {
+        var target = $(this).closest(".js-quiz-block").find(".js-input-target");
+        target.val($(this).val());
+    });
 });

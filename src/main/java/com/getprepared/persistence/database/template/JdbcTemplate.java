@@ -253,6 +253,24 @@ public class JdbcTemplate {
         }
     }
 
+    public Long executeQuery(final String sql, final PreparedStatementSetter setter) {
+
+        final Connection con = connectionProvider.getConnection();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)){
+            setter.setValues(ps);
+            final ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getLong(1);
+        } catch (final SQLException e) {
+            final String errorMsg = String.format("Failed to execute query %s", sql);
+            LOG.error(errorMsg, e);
+            throw new IllegalStateException(errorMsg, e);
+        } finally {
+            close(con);
+        }
+    }
+
     public <T> List<T> executeQuery(final String sql, final RowMapper<T> rowMapper) {
         return executeQuery(sql, new DefaultPreparedStatementSetter(), rowMapper);
     }

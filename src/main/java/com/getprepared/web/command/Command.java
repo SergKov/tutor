@@ -9,5 +9,5 @@ import java.io.IOException;
  */
 public interface Command {
 
-    String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException;
+    String execute(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }
