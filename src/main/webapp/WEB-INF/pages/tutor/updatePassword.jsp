@@ -20,8 +20,8 @@
 
     <jsp:body>
         <div class="well">
-            <form action="${updatePasswordAction}" method="POST" class="form-horizontal"
-                  data-msg-repeat="${repeatPassword}">
+            <form action="${updatePasswordAction}" method="POST" class="form-horizontal js-repeat-password"
+                  data-msg-repeat="<fmt:message key="updatePassword.repeatNewPassword" bundle="${lang}"/>">
                 <input type="hidden" name="command" value="tutorUpdatePassword">
 
                 <div class="form-group">

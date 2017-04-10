@@ -9,7 +9,7 @@ $(document).ready(function() {
         if (password === $(this).val() || password === '') {
             $errorMsg.hide();
         } else {
-            var errorMsg = $('.js-sign_up').data('msg-repeat');
+            var errorMsg = $('.js-repeat-password').data('msg-repeat');
             $errorMsg.html(errorMsg);
             $errorMsg.show();
         }

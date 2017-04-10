@@ -20,8 +20,8 @@
 
     <jsp:body>
         <div class="well">
-            <form action="${signUpAction}" method="POST" class="form-horizontal js-sign_up sign-up-form"
-                  data-msg-repeat="${repeatPassword}">
+            <form action="${signUpAction}" method="POST" class="form-horizontal js-repeat-password sign-up-form"
+                  data-msg-repeat="<fmt:message key="updatePassword.repeatNewPassword"/>">
                 <input type="hidden" name="command" value="signUp"/>
 
                 <div class="form-group">
