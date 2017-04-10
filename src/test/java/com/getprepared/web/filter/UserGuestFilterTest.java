@@ -68,10 +68,10 @@ public class UserGuestFilterTest {
         verifyNoMoreInteractions(chain, response);
     }
 
-    @Ignore // TODO
-    @Test
+    @Test // TODO
+    @Ignore
     public void requireInteractionsDoFilterWithNoSessionAttributes() throws Exception {
-        when(request.getSession(false).getAttribute(anyString())).thenReturn(NAME);
+        when(request.getSession(false).getAttribute(NAME)).thenReturn(NAME);
         filter.doFilter(request, response, chain);
         verify(response, only()).sendRedirect(anyString());
         verifyNoMoreInteractions(chain, response);

@@ -41,7 +41,7 @@
                     <c:otherwise>
                         <div class="form-group has-error has-feedback">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required><c:out value="${question.text}"/></textarea>
+                                      required><c:out value="${question.text}"/></textarea> // TODO escape xml
 
                             <div class="col-xs-12 center">
                                 <p class="text-danger">${errorMsgs['text']}</p>

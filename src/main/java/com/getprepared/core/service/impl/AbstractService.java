@@ -19,7 +19,8 @@ public abstract class AbstractService {
     }
 
     protected void checkPage(final PageableData page) {
-        if (page.getNumberOfElements() < (page.getCurrentPage() - 1) * page.getShowElements()) {
+        if (page.getShowElements() < 0 || page.getCurrentPage() < 0 ||
+                page.getNumberOfElements() < (page.getCurrentPage() - 1) * page.getShowElements()) {
             page.setCurrentPage(DEFAULT_PAGE_NUMBER);
             page.setNumberOfElements(DEFAULT_NUMBER_OF_ELEMENTS);
         }

@@ -18,6 +18,7 @@ import java.util.List;
 
 import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_NUMBER_OF_ELEMENTS;
 import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_PAGE_NUMBER;
+import static com.getprepared.web.constant.PropertyConstant.*;
 import static com.getprepared.web.constant.PropertyConstant.KEY.HOME_PAGE;
 import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.PAGINATION;
@@ -36,7 +37,7 @@ public abstract class AbstractStudentHomePageCommand implements Command {
 
     protected void fillPage(final HttpServletRequest request, final QuizService quizService) {
 
-        request.setAttribute(TITLE, messages.getMessage(PropertyConstant.KEY.QUIZZES, request.getLocale()));
+        request.setAttribute(TITLE, messages.getMessage(KEY.QUIZZES, request.getLocale()));
 
         final String currentPageParameter = request.getParameter(INPUT.CURRENT_PAGE);
         final String showElementsParameter = request.getParameter(INPUT.SHOW_ELEMENTS);

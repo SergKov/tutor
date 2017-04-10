@@ -113,6 +113,12 @@ public class UserServiceImplTest {
         userService.updateStudentPassword(anyString(), PASSWORD, PASSWORD);
     }
 
+    @Test(expected = EntityNotFoundException.class)
+    public void requireFailFindByStudentEmail() throws Exception {
+        doThrow(EntityNotFoundException.class).when(userDao).findByStudentEmail(any(String.class));
+        userService.updateStudentPassword(anyString(), PASSWORD, PASSWORD);
+    }
+
     @Test
     public void requireInvokeUpdateTutorPassword() throws Exception {
         final User user = new User();
@@ -132,6 +138,12 @@ public class UserServiceImplTest {
         when(userDao.findByTutorEmail(anyString())).thenReturn(user);
         when(passwordEncoder.matches(anyString(), anyString())).thenReturn(true);
         doThrow(EntityExistsException.class).when(userDao).updateTutorPassword(any(String.class));
+        userService.updateTutorPassword(anyString(), PASSWORD, PASSWORD);
+    }
+
+    @Test(expected = EntityNotFoundException.class)
+    public void requireFailFindByTutorEmail() throws Exception {
+        doThrow(EntityNotFoundException.class).when(userDao).findByTutorEmail(any(String.class));
         userService.updateTutorPassword(anyString(), PASSWORD, PASSWORD);
     }
 }
