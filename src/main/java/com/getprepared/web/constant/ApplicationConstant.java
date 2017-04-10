@@ -9,6 +9,10 @@ public final class ApplicationConstant {
 
     public static final String REDIRECT = "redirect";
 
+    public static final long DEFAULT_PAGE_NUMBER = 1L;
+
+    public static final long DEFAULT_NUMBER_OF_ELEMENTS = 5L;
+
     public static final class PATH {
 
         private PATH() { }
@@ -32,6 +36,8 @@ public final class ApplicationConstant {
         public static final String STUDENT_TEST = STUDENT_PREFIX + "test" + SUFFIX;
 
         public static final String STUDENT_RESULT = STUDENT_PREFIX + "result" + SUFFIX;
+
+        public static final String STUDENT_RESULTS = STUDENT_PREFIX + "results" + SUFFIX;
 
         public static final String TUTOR_SIGN_IN = TUTOR_PREFIX + "signIn" + SUFFIX;
 
@@ -63,6 +69,8 @@ public final class ApplicationConstant {
         public static final String STUDENT_UPDATE_PASSWORD = "/student/update-password";
 
         public static final String STUDENT_TEST = "/student/test";
+
+        public static final String STUDENT_RESULTS = "/student/results";
 
         public static final String STUDENT_RESULT = "/student/test/result";
 

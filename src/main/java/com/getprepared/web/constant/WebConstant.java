@@ -89,6 +89,8 @@ public final class WebConstant {
         public static final String CURRENT_QUESTION = "currentQuestion";
 
         public static final String ANSWER_TYPES = "answerTypes";
+
+        public static final String RESULTS = "results";
     }
 
     public static final class SESSION_ATTRIBUTE {

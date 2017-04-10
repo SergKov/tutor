@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
 
+import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_NUMBER_OF_ELEMENTS;
+import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_PAGE_NUMBER;
 import static com.getprepared.web.constant.PropertyConstant.KEY.HOME_PAGE;
 import static com.getprepared.web.constant.WebConstant.*;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.PAGINATION;
@@ -28,9 +30,6 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  * Created by koval on 19.01.2017.
  */
 public abstract class AbstractStudentHomePageCommand implements Command {
-
-    public static final long DEFAULT_PAGE_NUMBER = 1L;
-    public static final long DEFAULT_NUMBER_OF_ELEMENTS = 5L;
 
     @Inject
     private Messages messages;
