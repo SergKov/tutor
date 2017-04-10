@@ -20,6 +20,7 @@
 
 <c:url value="/sign-out" var="signOutHref"/>
 <c:url value="/student/update-password" var="studentUpdatePasswordHref"/>
+<c:url value="/student/results" var="studentResultsHref"/>
 <c:url value="/tutor/update-password" var="tutorUpdatePasswordHref"/>
 
 <header id="pageheader" class="header">
@@ -35,6 +36,11 @@
                 <li>
                     <a href="${studentUpdatePasswordHref}">
                         <fmt:message key="updatePassword.title"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="${studentResultsHref}">
+                        <fmt:message key="results.title"/>
                     </a>
                 </li>
                 <li>

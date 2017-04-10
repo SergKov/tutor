@@ -96,8 +96,8 @@ a:hover, a:focus {
 .custom-pagination li button {
     box-shadow: none;
     border-width: 0;
-    min-width: 20px;
-    line-height: 20px;
+    min-width: 30px;
+    line-height: 30px;
     padding: 0;
 }
 
@@ -107,7 +107,6 @@ a:hover, a:focus {
 
 .custom-pagination li + li button {
     border-left: 1px solid #fff;
-
 }
 
 .answer-submit-btn {
@@ -126,7 +125,7 @@ a:hover, a:focus {
 }
 
 .quizzes-page-block {
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 .answers-manipulate {
@@ -139,7 +138,7 @@ a:hover, a:focus {
 }
 
 .answers .answer + .answer {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .form-error-elem p {
