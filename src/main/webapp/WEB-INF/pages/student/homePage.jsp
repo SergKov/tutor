@@ -53,7 +53,9 @@
                                 </td>
                                 <td>
                                     <div class="radio">
-                                        <input type="radio" name="quiz-id" value="${quiz.id}">
+                                        <input type="radio" name="quiz-id" value="${quiz.id}"
+                                            <c:if test="${quiz == quizzes[0]}">checked</c:if>
+                                        >
                                     </div>
                                 </td>
                             </tr>

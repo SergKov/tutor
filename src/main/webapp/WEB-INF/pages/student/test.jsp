@@ -13,7 +13,7 @@
 
 <c:url value="/student/test" var="testAction"/>
 
-<templates:page_template>
+<templates:test_template>
 
     <jsp:body>
         <form action="${testAction}" method="POST" class="question-student-form" id="question-form">
@@ -62,4 +62,4 @@
         </form>
     </jsp:body>
 
-</templates:page_template>
+</templates:test_template>

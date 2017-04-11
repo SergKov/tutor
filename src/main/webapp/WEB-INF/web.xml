@@ -91,6 +91,18 @@
         <url-pattern>/sign-up</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>StudentTestFilter</filter-name>
+        <filter-class>com.getprepared.web.filter.StudentTestFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>StudentTestFilter</filter-name>
+        <url-pattern>/student</url-pattern>
+        <url-pattern>/student/update-password</url-pattern>
+        <url-pattern>/student/test/result</url-pattern>
+    </filter-mapping>
+
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
