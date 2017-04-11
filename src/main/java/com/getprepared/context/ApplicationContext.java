@@ -86,7 +86,7 @@ public class ApplicationContext {
                 .forEach(key -> load(componentProp.getProperty(key)));
     }
 
-    private void load(final String packageName) { // TODO
+    private void load(final String packageName) {
         final List<Class<?>> classes = getBean(PACKAGE_SCANNER, PackageScanner.class).scan(packageName);
 
         classes.stream()
@@ -97,7 +97,7 @@ public class ApplicationContext {
                 .forEach(this::initAnnotationBean);
     }
 
-    private void initAnnotationBean(final Class<?> clazz) { // TODO
+    private void initAnnotationBean(final Class<?> clazz) {
         String beanName = null;
         if (clazz.isAnnotationPresent(Component.class)) {
             final Component annotation = clazz.getAnnotation(Component.class);

@@ -50,28 +50,9 @@ public class UserGuestFilterTest {
         verifyNoMoreInteractions(config);
     }
 
-    @Ignore // TODO
-    @Test
-    public void requireNoInteractionsDoFilterWithSession() throws Exception {
-        when(request.getSession(false)).thenReturn(notNull(HttpSession.class));
-        when(request.getSession(false).getAttribute(anyString())).thenReturn(notNull());
-        filter.doFilter(request, response, chain);
-        verify(chain, only()).doFilter(request, response);
-        verifyNoMoreInteractions(chain, request, response);
-    }
-
     @Test
     public void requireInteractionsDoFilterWithNoSession() throws Exception {
         when(request.getSession(false)).thenReturn(null);
-        filter.doFilter(request, response, chain);
-        verify(response, only()).sendRedirect(anyString());
-        verifyNoMoreInteractions(chain, response);
-    }
-
-    @Test // TODO
-    @Ignore
-    public void requireInteractionsDoFilterWithNoSessionAttributes() throws Exception {
-        when(request.getSession(false).getAttribute(NAME)).thenReturn(NAME);
         filter.doFilter(request, response, chain);
         verify(response, only()).sendRedirect(anyString());
         verifyNoMoreInteractions(chain, response);

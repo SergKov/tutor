@@ -8,15 +8,15 @@ import com.getprepared.web.validation.annotation.Length;
  */
 public class LengthConstraintValidator implements ConstraintValidator<Length, String> {
 
-    private Length length;
+    private Length annotation;
 
     @Override
     public void init(final Length annotation) {
-        this.length = length;
+        this.annotation = annotation;
     }
 
     @Override
     public boolean isValid(final String item) {
-        return item.length() < length.max();
+        return item.length() < annotation.max();
     }
 }

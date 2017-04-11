@@ -40,7 +40,7 @@
                                     ${result.quiz.name}
                             </td>
                             <td>
-                                    ${result.user.name}
+                                    ${result.quiz.user.name}
                             </td>
                             <td>
                                     ${result.mark}
