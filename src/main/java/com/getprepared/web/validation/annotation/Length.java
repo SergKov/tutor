@@ -1,7 +1,6 @@
 package com.getprepared.web.validation.annotation;
 
 import com.getprepared.web.validation.handler.LengthConstraintValidator;
-import com.getprepared.web.validation.handler.SizeConstraintValidator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

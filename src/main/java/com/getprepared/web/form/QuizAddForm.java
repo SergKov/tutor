@@ -1,5 +1,6 @@
 package com.getprepared.web.form;
 
+import com.getprepared.web.validation.annotation.Length;
 import com.getprepared.web.validation.annotation.NotEmpty;
 import com.getprepared.web.validation.annotation.Pattern;
 
@@ -10,7 +11,7 @@ import static com.getprepared.web.constant.ValidationConstant.REGEX;
  */
 public class QuizAddForm {
 
-    @NotEmpty
+    @Length(max = 20)
     private String name;
 
     public String getName() {
