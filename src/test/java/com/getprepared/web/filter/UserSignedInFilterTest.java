@@ -35,6 +35,9 @@ public class UserSignedInFilterTest {
     private HttpServletResponse response;
 
     @Mock
+    private HttpSession session;
+
+    @Mock
     private FilterConfig config;
 
     @Mock
@@ -67,6 +70,15 @@ public class UserSignedInFilterTest {
     @Test
     public void requireNoInteractionsDoFilterWithNoSession() throws Exception {
         when(request.getSession(false)).thenReturn(null);
+        filter.doFilter(request, response, chain);
+        verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(chain);
+    }
+
+    @Test
+    public void requireNoInteractionsDoFilterWithNoSessionArguments() throws Exception {
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(anyString())).thenReturn(null);
         filter.doFilter(request, response, chain);
         verify(chain, only()).doFilter(request, response);
         verifyNoMoreInteractions(chain);

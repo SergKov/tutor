@@ -57,4 +57,22 @@ public class UserGuestFilterTest {
         verify(response, only()).sendRedirect(anyString());
         verifyNoMoreInteractions(chain, response);
     }
+
+    @Test
+    public void requireInteractionsDoFilterWithNoAttributes() throws Exception {
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(anyString())).thenReturn(null);
+        filter.doFilter(request, response, chain);
+        verify(response, only()).sendRedirect(anyString());
+        verifyNoMoreInteractions(chain, response);
+    }
+
+    @Test
+    public void requireNoInteractionsWithSession() throws Exception {
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute(anyString())).thenReturn(anyString());
+        filter.doFilter(request, response, chain);
+        verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(chain, response);
+    }
 }
