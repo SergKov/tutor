@@ -1,6 +1,5 @@
 package com.getprepared.web.filter;
 
-import com.getprepared.web.constant.WebConstant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import static com.getprepared.web.constant.WebConstant.*;
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.only;
@@ -25,7 +23,7 @@ import static org.mockito.Mockito.when;
  * Created by koval on 11.04.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class StudentTestFilterTest {
+public class StudentTestFilterInTest {
 
     @Mock
     private FilterConfig config;
@@ -43,7 +41,7 @@ public class StudentTestFilterTest {
     private FilterChain chain;
 
     @InjectMocks
-    private final Filter filter = new StudentTestFilter();
+    private final Filter filter = new StudentInTestFilter();
 
     @Test
     public void requireNoInteractionsWithFilterConfig() throws Exception {

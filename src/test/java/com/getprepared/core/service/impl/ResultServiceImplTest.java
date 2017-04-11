@@ -1,7 +1,6 @@
 package com.getprepared.core.service.impl;
 
 import com.getprepared.core.exception.EntityExistsException;
-import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.core.service.ResultService;
 import com.getprepared.core.service.UserService;
@@ -9,7 +8,6 @@ import com.getprepared.persistence.dao.ResultDao;
 import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

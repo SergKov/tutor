@@ -8,8 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by koval on 11.04.2017.
@@ -41,5 +42,10 @@ public class LengthConstraintValidatorTest {
     @Test
     public void requireIsValidWithCorrectText() {
         assertTrue(validator.isValid(" 12 sdds "));
+    }
+
+    @Test
+    public void requireIsValidWithInCorrectText() {
+        assertFalse(validator.isValid("21376532463576t3rygwhfdbsfjhdbfj3264873463284"));
     }
 }
