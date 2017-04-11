@@ -1,16 +1,13 @@
 package com.getprepared.web.filter;
 
-import com.getprepared.web.constant.ApplicationConstant;
-import com.getprepared.web.constant.WebConstant;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static com.getprepared.web.constant.ApplicationConstant.*;
-import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.ApplicationConstant.LINK;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 
 /**
  * Created by koval on 11.04.2017.
