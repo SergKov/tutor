@@ -13,7 +13,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <h1 class="text-primary text-center"><fmt:message key="result.final" bundle="${lang}"/> ${mark}</h1>
+        <h1 class="text-primary text-center"><fmt:message key="result.final"/> ${mark}</h1>
     </jsp:attribute>
 
 </templates:page_template>

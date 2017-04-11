@@ -19,10 +19,10 @@
                     <thead>
                     <tr>
                         <th>
-                            <fmt:message key="homePage.quiz" bundle="${lang}"/>
+                            <fmt:message key="homePage.quiz"/>
                         </th>
                         <th>
-                            <fmt:message key="homePage.author" bundle="${lang}"/>
+                            <fmt:message key="homePage.author"/>
                         </th>
                     </tr>
                     </thead>
@@ -47,11 +47,11 @@
                                    showElements="${pagination.showElements}"/>
 
                 <button class="btn btn-link btn-block" id="back_btn">
-                    <fmt:message key="signUp.back" bundle="${lang}"/>
+                    <fmt:message key="signUp.back"/>
                 </button>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center"><fmt:message key="results.empty" bundle="${lang}"/></h1>
+                <h1 class="text-muted text-center"><fmt:message key="results.empty"/></h1>
             </c:otherwise>
         </c:choose>
     </jsp:body>

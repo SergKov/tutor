@@ -16,9 +16,6 @@ import com.getprepared.persistence.domain.User;
 
 import java.util.List;
 
-import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_NUMBER_OF_ELEMENTS;
-import static com.getprepared.web.constant.ApplicationConstant.DEFAULT_PAGE_NUMBER;
-
 /**
  * Created by koval on 15.01.2017.
  */
@@ -46,11 +43,11 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
         checkPage(page);
         final List<Result> results = resultDao.findByUserId(id, page);
 
-        iniResult(results);
+        initResult(results);
         return results;
     }
 
-    private void iniResult(final List<Result> results) {
+    private void initResult(final List<Result> results) {
         for (final Result result : results) {
             try {
                 final User user = userService.findById(result.getId());

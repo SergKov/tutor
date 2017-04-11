@@ -13,13 +13,13 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="Question" bundle="${lang}"/>
+        <fmt:message key="Question"/>
     </jsp:attribute>
 
     <jsp:body>
 
         <div class="row">
-            <label for="text"><fmt:message key="addQuestion.text" bundle="${lang}"/></label>
+            <label for="text"><fmt:message key="addQuestion.text"/></label>
         </div>
 
         <div class="row">
@@ -32,11 +32,11 @@
 
         <div class="row">
             <div class="col-xs-8">
-                <span><fmt:message key="addQuestion.answer" bundle="${lang}"/></span>
+                <span><fmt:message key="addQuestion.answer"/></span>
             </div>
 
             <div class="col-xs-1 col-xs-offset-2">
-                <span><fmt:message key="addQuestion.type" bundle="${lang}"/></span>
+                <span><fmt:message key="addQuestion.type"/></span>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="col-xs-2 col-xs-offset-2">
-                    <input class="form-control" value="<fmt:message key="question.${answer.type}" bundle="${lang}"/>"
+                    <input class="form-control" value="<fmt:message key="question.${answer.type}"/>"
                            readonly/>
                 </div>
             </div>
@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-xs-3 col-xs-offset-10">
                 <button class="btn btn-link btn-block" id="back_btn">
-                    <fmt:message key="text.back" bundle="${lang}"/>
+                    <fmt:message key="text.back"/>
                 </button>
             </div>
         </div>

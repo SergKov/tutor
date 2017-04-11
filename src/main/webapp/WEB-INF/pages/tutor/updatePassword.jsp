@@ -15,24 +15,24 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="updatePassword.title" bundle="${lang}"/>
+        <fmt:message key="updatePassword.title"/>
     </jsp:attribute>
 
     <jsp:body>
         <div class="well">
             <form action="${updatePasswordAction}" method="POST" class="form-horizontal js-repeat-password"
-                  data-msg-repeat="<fmt:message key="updatePassword.repeatNewPassword" bundle="${lang}"/>">
+                  data-msg-repeat="<fmt:message key="updatePassword.repeatNewPassword"/>">
                 <input type="hidden" name="command" value="tutorUpdatePassword">
 
                 <div class="form-group">
                     <div class="row">
                         <label class="control-label col-xs-5" for="oldPwd"><fmt:message
-                                key="updatePassword.oldPassword" bundle="${lang}"/></label>
+                                key="updatePassword.oldPassword"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="oldPwd"
                                    name="oldPassword"
-                                   placeholder="<fmt:message key="updatePassword.enterOldPassword" bundle="${lang}"/>"
+                                   placeholder="<fmt:message key="updatePassword.enterOldPassword"/>"
                                    required>
                         </div>
                     </div>
@@ -41,12 +41,12 @@
                 <div class="form-group">
                     <div class="row">
                         <label class="control-label col-xs-5" for="newPwd"><fmt:message
-                                key="updatePassword.newPassword" bundle="${lang}"/></label>
+                                key="updatePassword.newPassword"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="newPwd"
                                    name="newPassword"
-                                   placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
+                                   placeholder="<fmt:message key="updatePassword.enterNewPassword"/>"
                                    required>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
                 <div class="form-group">
                     <div class="row">
                         <label class="control-label col-xs-5" for="confirm_pwd"><fmt:message
-                                key="updatePassword.repeatNewPassword" bundle="${lang}"/></label>
+                                key="updatePassword.repeatNewPassword"/></label>
 
                         <div class="col-xs-3">
                             <input type="password" pattern="${passwordRegex}" class="form-control" id="confirm_pwd"
-                                   placeholder="<fmt:message key="updatePassword.enterNewPassword" bundle="${lang}"/>"
+                                   placeholder="<fmt:message key="updatePassword.enterNewPassword"/>"
                                    required>
                         </div>
 
@@ -76,11 +76,11 @@
                 <div class="form-group">
                     <div class="col-xs-offset-5 col-xs-3">
                         <button type="submit" class="btn btn-info btn-block">
-                            <fmt:message key="updatePassword.edit" bundle="${lang}"/>
+                            <fmt:message key="updatePassword.edit"/>
                         </button>
 
                         <button class="btn btn-link btn-block" id="back_btn">
-                            <fmt:message key="updatePassword.back" bundle="${lang}"/>
+                            <fmt:message key="updatePassword.back"/>
                         </button>
                     </div>
                 </div>

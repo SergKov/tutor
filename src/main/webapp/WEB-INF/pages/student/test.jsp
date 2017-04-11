@@ -38,11 +38,11 @@
 
         <div class="question-form__btn-block clearfix">
             <button type="submit" id="save_btn" class="btn btn-success btn-md answer-submit-btn" form="question-form">
-                <fmt:message key="test.answer.save" bundle="${lang}"/>
+                <fmt:message key="test.answer.save"/>
             </button>
 
             <button type="submit" id="finish_btn" class="btn btn-danger btn-md" form="close-form" form="question-form">
-                <fmt:message key="test.submit" bundle="${lang}"/>
+                <fmt:message key="test.submit"/>
             </button>
         </div>
 
@@ -57,7 +57,7 @@
         </form>
 
         <form action="${testAction}" method="POST" class="form-horizontal js-finish-btn" id="close-form"
-              data-finish-btn="<fmt:message key="test.confirm.finish" bundle="${lang}"/>">
+              data-finish-btn="<fmt:message key="test.confirm.finish"/>">
             <input type="hidden" name="command" value="testEnd">
         </form>
     </jsp:body>

@@ -24,7 +24,7 @@
 <templates:page_template>
 
 <jsp:attribute name="header">
-    <fmt:message key="quizPage.hello" bundle="${lang}"/> ${tutor.name} !
+    <fmt:message key="quizPage.hello"/> ${tutor.name} !
 </jsp:attribute>
 
     <jsp:body>
@@ -94,7 +94,7 @@
 
                         <div class="col-xs-1">
                             <form action="${quizzesAction}" method="POST" class="form-horizontal js-remove-btn"
-                                  data-remove-btn="<fmt:message key="quizzes.confirm" bundle="${lang}"/>">
+                                  data-remove-btn="<fmt:message key="quizzes.confirm"/>">
                                 <input type="hidden" name="quiz-id" value="${quiz.id}">
 
                                 <input id="quiz_remove" class="remove_btn" type="image"
@@ -123,7 +123,7 @@
                                    showElements="${pagination.showElements}"/>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center"><fmt:message key="quizPage.text" bundle="${lang}"/></h1>
+                <h1 class="text-muted text-center"><fmt:message key="quizPage.text"/></h1>
             </c:otherwise>
         </c:choose>
 

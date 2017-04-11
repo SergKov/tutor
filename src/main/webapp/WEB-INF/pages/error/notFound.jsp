@@ -12,7 +12,7 @@
 <templates:error_template title="page.error.notFound">
 
     <jsp:attribute name="header">
-        <h1 class="text-muted text-center"><fmt:message key="page.error.notFound" bundle="${lang}"/></h1>
+        <h1 class="text-muted text-center"><fmt:message key="page.error.notFound"/></h1>
     </jsp:attribute>
 
 </templates:error_template>

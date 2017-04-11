@@ -12,7 +12,7 @@
 <templates:error_template title="page.error.server">
 
     <jsp:attribute name="header">
-        <h1 class="text-muted text-center"><fmt:message key="page.error.server" bundle="${lang}"/></h1>
+        <h1 class="text-muted text-center"><fmt:message key="page.error.server"/></h1>
     </jsp:attribute>
 
 </templates:error_template>

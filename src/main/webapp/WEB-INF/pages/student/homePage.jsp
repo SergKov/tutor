@@ -16,29 +16,28 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="studentHomePage.welcome" bundle="${lang}"/> ${student.name} !
+        <fmt:message key="studentHomePage.welcome"/> ${student.name} !
     </jsp:attribute>
 
     <jsp:body>
         <c:choose>
             <c:when test="${not empty quizzes}">
                 <div class="row">
-                    <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"
-                                                         bundle="${lang}"/></h3>
+                    <h3 class="text-center"><fmt:message key="studentHomePage.chooseQuiz"/></h3>
                 </div>
 
                 <form action="${homePageAction}" method="POST" class="js-start-btn"
-                      data-start-btn="<fmt:message key="homePage.ready.confirm" bundle="${lang}"/>">
+                      data-start-btn="<fmt:message key="homePage.ready.confirm"/>">
                     <input type="hidden" name="command" value="testStart"/>
 
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>
-                                <fmt:message key="homePage.quiz" bundle="${lang}"/>
+                                <fmt:message key="homePage.quiz"/>
                             </th>
                             <th>
-                                <fmt:message key="homePage.author" bundle="${lang}"/>
+                                <fmt:message key="homePage.author"/>
                             </th>
                         </tr>
                         </thead>
@@ -65,7 +64,7 @@
                     <div class="row">
                         <div class="col-xs-offset-5 col-xs-2">
                             <button class="btn btn-block btn-primary" id="start_btn">
-                                <fmt:message key="studentHomePage.start" bundle="${lang}"/>
+                                <fmt:message key="studentHomePage.start"/>
                             </button>
                         </div>
                     </div>
@@ -77,8 +76,8 @@
                                    showElements="${pagination.showElements}"/>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center"><fmt:message key="studentHomePage.empty" bundle="${lang}"/></h1>
-                <h3 class="text-muted text-center"><fmt:message key="studentHomePage.tryLater" bundle="${lang}"/></h3>
+                <h1 class="text-muted text-center"><fmt:message key="studentHomePage.empty"/></h1>
+                <h3 class="text-muted text-center"><fmt:message key="studentHomePage.tryLater"/></h3>
             </c:otherwise>
         </c:choose>
     </jsp:body>

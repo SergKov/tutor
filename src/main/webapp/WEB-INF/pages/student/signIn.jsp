@@ -19,7 +19,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="homePage.title" bundle="${lang}"/>
+        <fmt:message key="homePage.title"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -29,7 +29,7 @@
                     <input type="hidden" name="command" value="studentSignIn">
 
                     <label class="control-label col-xs-5" for="${email}"><fmt:message
-                            key="homePage.login" bundle="${lang}"/></label>
+                            key="homePage.login"/></label>
 
                     <c:choose>
                         <c:when test="${empty errorMsg}">
@@ -37,7 +37,7 @@
                                 <div class="col-xs-3">
                                     <input type="text" pattern="${emailRegex}" class="form-control" id="${idEmail}"
                                            name="email"
-                                           placeholder="<fmt:message key="homePage.enterEmail" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="homePage.enterEmail"/>"
                                            required>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                     <input type="text" pattern="${emailRegex}" class="form-control" id="${idEmail}"
                                            name="email"
                                            value="${email}"
-                                           placeholder="<fmt:message key="homePage.enterEmail" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="homePage.enterEmail"/>"
                                            required>
                                 </div>
                             </div>
@@ -59,14 +59,14 @@
 
                 <div class="row">
                     <label class="control-label col-xs-5" for="${pwd}"><fmt:message
-                            key="homePage.password" bundle="${lang}"/></label>
+                            key="homePage.password"/></label>
                     <c:choose>
                         <c:when test="${empty errorMsg}">
                             <div class="form-group">
                                 <div class="col-xs-3">
                                     <input type="password" pattern="${passwordRegex}" class="form-control" id="${pwd}"
                                            name="password"
-                                           placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="homePage.enterPassword"/>"
                                            required>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="col-xs-3">
                                     <input type="password" pattern="${passwordRegex}" class="form-control" id="${pwd}"
                                            name="password"
-                                           placeholder="<fmt:message key="homePage.enterPassword" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="homePage.enterPassword"/>"
                                            required>
                                 </div>
                             </div>
@@ -87,9 +87,8 @@
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-3 login-form-btn-block">
                         <button type="submit" class="btn btn-info btn-md"><fmt:message
-                                key="homePage.submit" bundle="${lang}"/></button>
-                        <a href="${signUpHref}"><fmt:message key="homePage.register"
-                                                             bundle="${lang}"/></a>
+                                key="homePage.submit"/></button>
+                        <a href="${signUpHref}"><fmt:message key="homePage.register"/></a>
                     </div>
                 </div>
             </form>

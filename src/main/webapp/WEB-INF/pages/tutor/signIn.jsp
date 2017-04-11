@@ -19,7 +19,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="homePage.title" bundle="${lang}"/>
+        <fmt:message key="homePage.title"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -28,15 +28,14 @@
                 <input type="hidden" name="command" value="tutorSignIn">
 
                 <div class="row">
-                    <label class="control-label col-xs-5" for="${email}"><fmt:message key="tutorSignIn.email"
-                                                                                      bundle="${lang}"/></label>
+                    <label class="control-label col-xs-5" for="${email}"><fmt:message key="tutorSignIn.email"/></label>
                     <c:choose>
                         <c:when test="${empty errorMsg}">
                             <div class="form-group">
                                 <div class="col-xs-3">
                                     <input type="text" pattern="${emailRegex}" class="form-control" id="${idEmail}"
                                            name="email"
-                                           placeholder="<fmt:message key="tutorSignIn.enterEmail" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="tutorSignIn.enterEmail"/>"
                                            required>
                                 </div>
                             </div>
@@ -47,7 +46,7 @@
                                     <input type="text" pattern="${emailRegex}" class="form-control" id="${idEmail}"
                                            name="email"
                                            value="${email}"
-                                           placeholder="<fmt:message key="tutorSignIn.enterEmail" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="tutorSignIn.enterEmail"/>"
                                            required>
                                 </div>
                             </div>
@@ -57,7 +56,7 @@
 
                 <div class="row">
                     <label class="control-label col-xs-5" for="${pwd}"><fmt:message
-                            key="tutorSignIn.password" bundle="${lang}"/></label>
+                            key="tutorSignIn.password"/></label>
 
                     <c:choose>
                         <c:when test="${empty errorMsg}">
@@ -65,7 +64,7 @@
                                 <div class="col-xs-3">
                                     <input type="password" pattern="${passwordRegex}" class="form-control" id="${pwd}"
                                            name="password"
-                                           placeholder="<fmt:message key="tutorSignIn.enterPassword" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="tutorSignIn.enterPassword"/>"
                                            required>
                                 </div>
                             </div>
@@ -75,7 +74,7 @@
                                 <div class="col-xs-3">
                                     <input type="password" pattern="${passwordRegex}" class="form-control" id="${pwd}"
                                            name="password"
-                                           placeholder="<fmt:message key="tutorSignIn.enterPassword" bundle="${lang}"/>"
+                                           placeholder="<fmt:message key="tutorSignIn.enterPassword"/>"
                                            required>
                                 </div>
                             </div>
@@ -86,9 +85,8 @@
                 <div class="row">
                     <div class="col-xs-offset-5 col-xs-3 login-form-btn-block">
                         <button type="submit" class="btn btn-info btn-md"><fmt:message
-                                key="homePage.submit" bundle="${lang}"/></button>
-                        <a href="${signUpHref}"><fmt:message key="homePage.register"
-                                                             bundle="${lang}"/></a>
+                                key="homePage.submit"/></button>
+                        <a href="${signUpHref}"><fmt:message key="homePage.register"/></a>
                     </div>
                 </div>
             </form>

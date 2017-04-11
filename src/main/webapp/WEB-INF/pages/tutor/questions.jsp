@@ -21,7 +21,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="questionPage.welcome" bundle="${lang}"/> ${tutor.name} !
+        <fmt:message key="questionPage.welcome"/> ${tutor.name} !
     </jsp:attribute>
 
     <jsp:body>
@@ -48,7 +48,7 @@
                         <c:if test="${isNotActive}">
                             <div class="col-xs-2">
                                 <form action="${questionAction}" method="POST" class="form-horizontal js-remove-btn"
-                                      data-remove-btn="<fmt:message key="quizzes.confirm" bundle="${lang}"/>">
+                                      data-remove-btn="<fmt:message key="quizzes.confirm"/>">
                                     <input type="hidden" name="question-id" value="${question.id}">
 
                                     <input id="question_remove" class="remove_btn" type="image"
@@ -61,7 +61,7 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <h1 class="text-muted text-center"><fmt:message key="questionPage.text" bundle="${lang}"/></h1>
+                <h1 class="text-muted text-center"><fmt:message key="questionPage.text"/></h1>
             </c:otherwise>
         </c:choose>
 
@@ -80,7 +80,7 @@
         <div class="row">
             <div class="col-xs-offset-5 col-xs-2">
                 <a href="${quizzesHref}">
-                    <fmt:message key="questions.changeQuiz" bundle="${lang}"/>
+                    <fmt:message key="questions.changeQuiz"/>
                 </a>
             </div>
         </div>

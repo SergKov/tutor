@@ -17,7 +17,7 @@
 <templates:page_template>
 
     <jsp:attribute name="header">
-        <fmt:message key="addQuiz.title" bundle="${lang}"/>
+        <fmt:message key="addQuiz.title"/>
     </jsp:attribute>
 
     <jsp:body>
@@ -31,11 +31,11 @@
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
                                        name="quiz-name"
-                                       placeholder="<fmt:message key="addQuiz.placeholder" bundle="${lang}"/>" required>
+                                       placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>
                             <div class="col-xs-3">
                                 <button type="submit" class="btn btn-primary btn-md">
-                                    <fmt:message key="addQuiz.add" bundle="${lang}"/>
+                                    <fmt:message key="addQuiz.add"/>
                                 </button>
                             </div>
                         </div>
@@ -46,11 +46,11 @@
                                 <input type="text" class="form-control" id="${quizId}"
                                        value="${quiz.name}"
                                        name="quiz-name"
-                                       placeholder="<fmt:message key="addQuiz.placeholder" bundle="${lang}"/>" required>
+                                       placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>
                             <div class="col-xs-3">
                                 <button type="submit" class="btn btn-primary btn-md">
-                                    <fmt:message key="addQuiz.add" bundle="${lang}"/>
+                                    <fmt:message key="addQuiz.add"/>
                                 </button>
                             </div>
                         </div>
