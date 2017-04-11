@@ -13,9 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by koval on 11.04.2017.
@@ -53,4 +51,10 @@ public class QuizServiceImplTest {
         quizService.save(quiz);
     }
 
+    @Test
+    public void requireInvokeRemove() throws Exception {
+        quizService.remove(anyLong());
+        verify(quizDao).remove(anyLong());
+        verifyNoMoreInteractions(quizDao);
+    }
 }
