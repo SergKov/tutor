@@ -8,6 +8,7 @@
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shared" tagdir="/WEB-INF/tags/shared" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url var="resultsAction" value="/student/results"/>

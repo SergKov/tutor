@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <title><fmt:message key="${title}"/></title>
+    <title>${title}</title>
     <link rel="icon" href="/resource/img/title.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>

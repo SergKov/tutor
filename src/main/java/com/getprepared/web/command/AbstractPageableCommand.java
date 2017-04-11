@@ -16,7 +16,7 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  */
 public abstract class AbstractPageableCommand implements Command {
 
-    public PageableData doPageable(final HttpServletRequest request, final String type) {
+    protected PageableData doPageable(final HttpServletRequest request, final String type) {
 
         final String currentPageParameter = request.getParameter(INPUT.CURRENT_PAGE);
         final String showElementsParameter = request.getParameter(INPUT.SHOW_ELEMENTS);
