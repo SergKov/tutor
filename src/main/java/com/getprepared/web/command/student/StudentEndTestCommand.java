@@ -40,30 +40,20 @@ public class StudentEndTestCommand implements Command {
     @Inject
     private QuestionService questionService;
 
-    @Inject
-    private ResultService resultService;
-
     @Override
+    @SuppressWarnings("unchecked")
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-        @SuppressWarnings("unchecked")
         final List<TestQuestion> test = (List<TestQuestion>) request.getSession().getAttribute(SESSION_ATTRIBUTE.TEST);
-        final double mark = questionService.endTest(test);
-        request.getSession().removeAttribute(SESSION_ATTRIBUTE.TEST);
-        request.getSession().setAttribute(SESSION_ATTRIBUTE.MARK, mark);
 
         final Long id = (Long) request.getSession().getAttribute(SESSION_ATTRIBUTE.QUIZ_ID);
 
         try {
             final Quiz quiz = quizService.findById(id);
-            final Result result = new Result();
-            result.setQuiz(quiz);
             final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.STUDENT);
-            result.setUser(user);
-            result.setMark(mark);
-            result.setCreationDateTime(LocalDateTime.now());
-            resultService.save(result);
+            questionService.endTest(quiz.getId(), user.getId(), test);
+            request.getSession().removeAttribute(SESSION_ATTRIBUTE.TEST);
             response.sendRedirect(LINK.STUDENT_RESULT);
-        } catch (EntityNotFoundException | EntityExistsException e) {
+        } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
             response.sendError(SC_NOT_FOUND);
         }

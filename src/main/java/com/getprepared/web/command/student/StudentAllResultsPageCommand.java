@@ -40,8 +40,6 @@ public class StudentAllResultsPageCommand implements Command {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        request.getSession().removeAttribute(SESSION_ATTRIBUTE.MARK);
-
         request.setAttribute(TITLE, messages.getMessage(ALL_RESULTS, request.getLocale()));
 
         final String currentPageParameter = request.getParameter(INPUT.CURRENT_PAGE);

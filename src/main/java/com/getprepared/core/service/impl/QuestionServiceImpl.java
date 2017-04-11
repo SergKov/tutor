@@ -9,13 +9,13 @@ import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.core.service.AnswerService;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
+import com.getprepared.core.service.ResultService;
 import com.getprepared.persistence.dao.QuestionDao;
-import com.getprepared.persistence.domain.Answer;
-import com.getprepared.persistence.domain.Question;
-import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.persistence.domain.Type;
+import com.getprepared.persistence.domain.*;
 import com.getprepared.web.dto.TestQuestion;
+import org.apache.log4j.Logger;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +28,8 @@ import static java.util.stream.Collectors.toList;
 @Service("questionService")
 public class QuestionServiceImpl extends AbstractService implements QuestionService {
 
+    private static final Logger LOG = Logger.getLogger(QuestionServiceImpl.class);
+
     @Inject
     private QuestionDao questionDao;
 
@@ -36,6 +38,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     @Inject
     private QuizService quizService;
+
+    @Inject
+    private ResultService resultService;
 
     @Override
     @Transactional
@@ -102,7 +107,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public double endTest(final List<TestQuestion> test) {
+    public void endTest(final Long quizId, final Long userId, final List<TestQuestion> test) {
         final int countCorrectAnswers = test.stream().mapToInt(testQuestion -> {
             final List<Answer> correctAnswers = testQuestion.getQuestion()
                     .getAnswers()
@@ -112,6 +117,23 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
             return testQuestion.getAnswers().size() == correctAnswers.size() &&
                     testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;
         }).sum();
-        return (double) countCorrectAnswers / test.size() * 100;
+
+        saveResult(quizId, test, countCorrectAnswers);
+    }
+
+    private void saveResult(final Long quizId, final List<TestQuestion> test, final double countCorrectAnswers) {
+        try {
+            final Quiz quiz = quizService.findById(quizId);
+            final Result result = new Result();
+            result.setQuiz(quiz);
+            resultService.save(result);
+            final User user = new User();
+            result.setUser(user);
+            result.setMark(countCorrectAnswers / test.size() * 100);
+            result.setCreationDateTime(LocalDateTime.now());
+            resultService.save(result);
+        } catch (EntityNotFoundException | EntityExistsException e) {
+            LOG.error(e.getMessage(), e);
+        }
     }
 }

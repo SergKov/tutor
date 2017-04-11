@@ -22,7 +22,6 @@ public class StudentUpdatePasswordPageCommand extends AbstractUpdatePasswordComm
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-        request.getSession().removeAttribute(SESSION_ATTRIBUTE.MARK);
         fillPage(request);
         return PATH.STUDENT_UPDATE_PASSWORD;
     }

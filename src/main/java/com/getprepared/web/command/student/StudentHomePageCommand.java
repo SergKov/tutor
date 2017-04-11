@@ -26,7 +26,6 @@ public class StudentHomePageCommand extends AbstractStudentHomePageCommand {
 
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
-        request.getSession().removeAttribute(SESSION_ATTRIBUTE.MARK);
         fillPage(request, quizService);
         return PATH.STUDENT_HOME_PAGE;
     }

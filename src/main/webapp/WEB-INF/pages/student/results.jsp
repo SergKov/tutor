@@ -10,6 +10,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
+<c:url var="resultsAction" value="/student/results"/>
+
 <templates:page_template>
 
     <jsp:body>
@@ -53,7 +55,7 @@
                     </tbody>
                 </table>
 
-                <shared:pagination action="${homePageAction}"
+                <shared:pagination action="${resultsAction}"
                                    currentPage="${pagination.currentPage}"
                                    numberOfPages="${pagination.numberOfPages}"
                                    showElements="${pagination.showElements}"/>
