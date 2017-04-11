@@ -32,7 +32,7 @@ import static org.apache.commons.collections4.MapUtils.isNotEmpty;
  */
 @Controller
 @CommandMapping(COMMAND.TUTOR_QUIZ_UPDATE)
-public class QuizUpdateCommand implements Command {
+public class QuizUpdateCommand extends AbstractQuizCommand {
 
     private static final Logger LOG = Logger.getLogger(QuizUpdateCommand.class);
 
@@ -74,9 +74,9 @@ public class QuizUpdateCommand implements Command {
             }
         }
 
+        fillPage(request, quizService);
         request.setAttribute(QUIZ, quizForm);
         request.setAttribute(QUIZ_NAME_REGEX, QUIZ_NAME_REGEX);
-        request.setAttribute(TITLE, QUIZZES);
         return PATH.TUTOR_QUIZZES;
     }
 }

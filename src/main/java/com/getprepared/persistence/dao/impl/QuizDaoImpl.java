@@ -77,7 +77,7 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public void update(final String name, final Long id) throws EntityExistsException {
-        jdbcTemplate.update(prop.getProperty(KEY.UPDATE), ps -> {
+        jdbcTemplate.executeUpdate(prop.getProperty(KEY.UPDATE), ps -> {
             ps.setString(1, name);
             ps.setLong(2, id);
         });

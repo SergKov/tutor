@@ -22,6 +22,7 @@ public class JdbcTemplate {
     private static final Logger LOG = Logger.getLogger(JdbcTemplate.class);
 
     private static final int SQL_DUPLICATE_ERROR_CODE = 1062;
+    private static final int SQL_TOO_LONG_DATA_ERROR_CODE = 1406;
 
     @Inject
     private ConnectionProvider connectionProvider;
