@@ -12,7 +12,7 @@ import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 /**
  * Created by koval on 11.04.2017.
  */
-public class StudentTestFilter implements Filter {
+public class StudentInTestFilter implements Filter {
 
     @Override
     public void init(final FilterConfig filterConfig) throws ServletException { }

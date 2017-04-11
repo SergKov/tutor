@@ -92,16 +92,26 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>StudentTestFilter</filter-name>
+        <filter-name>StudentInTestFilter</filter-name>
         <filter-class>com.getprepared.web.filter.StudentInTestFilter</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>StudentTestFilter</filter-name>
+        <filter-name>StudentInTestFilter</filter-name>
         <url-pattern>/student</url-pattern>
         <url-pattern>/student/update-password</url-pattern>
         <url-pattern>/student/test/result</url-pattern>
         <url-pattern>/tutor/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>StudentOutTestFilter</filter-name>
+        <filter-class>com.getprepared.web.filter.StudentOutTestFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>StudentOutTestFilter</filter-name>
+        <url-pattern>/student/test</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>
