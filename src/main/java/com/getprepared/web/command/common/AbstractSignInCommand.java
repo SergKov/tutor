@@ -19,7 +19,7 @@ public abstract class AbstractSignInCommand implements Command {
     private Messages messages;
 
     protected void fillPage(final HttpServletRequest request) {
-        request.setAttribute(TITLE, messages.getMessage(SIGN_IN, request.getLocale()));
+        request.setAttribute(TITLE, SIGN_IN);
         request.setAttribute(EMAIL_REGEX, REGEX.EMAIL);
         request.setAttribute(PASSWORD_REGEX, REGEX.PASSWORD);
     }

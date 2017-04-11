@@ -6,10 +6,7 @@ import com.getprepared.core.annotation.Transactional;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.exception.QuizTerminatedException;
-import com.getprepared.core.service.AnswerService;
-import com.getprepared.core.service.QuestionService;
-import com.getprepared.core.service.QuizService;
-import com.getprepared.core.service.ResultService;
+import com.getprepared.core.service.*;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.domain.*;
 import com.getprepared.web.dto.TestQuestion;
@@ -41,6 +38,9 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
 
     @Inject
     private ResultService resultService;
+
+    @Inject
+    private UserService userService;
 
     @Override
     @Transactional
@@ -107,7 +107,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
     }
 
     @Override
-    public void endTest(final Long quizId, final Long userId, final List<TestQuestion> test) {
+    public double endTest(final Long quizId, final Long userId, final List<TestQuestion> test) {
         final int countCorrectAnswers = test.stream().mapToInt(testQuestion -> {
             final List<Answer> correctAnswers = testQuestion.getQuestion()
                     .getAnswers()
@@ -118,18 +118,19 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
                     testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;
         }).sum();
 
-        saveResult(quizId, test, countCorrectAnswers);
+        final double mark = countCorrectAnswers / test.size() * 100;
+        saveResult(userId, quizId, test, mark);
+        return mark;
     }
 
-    private void saveResult(final Long quizId, final List<TestQuestion> test, final double countCorrectAnswers) {
+    private void saveResult(final Long userId, final Long quizId, final List<TestQuestion> test, final double mark) {
         try {
             final Quiz quiz = quizService.findById(quizId);
             final Result result = new Result();
             result.setQuiz(quiz);
-            resultService.save(result);
-            final User user = new User();
+            final User user = userService.findById(userId);
             result.setUser(user);
-            result.setMark(countCorrectAnswers / test.size() * 100);
+            result.setMark(mark);
             result.setCreationDateTime(LocalDateTime.now());
             resultService.save(result);
         } catch (EntityNotFoundException | EntityExistsException e) {

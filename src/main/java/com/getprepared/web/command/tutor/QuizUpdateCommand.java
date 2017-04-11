@@ -75,7 +75,7 @@ public class QuizUpdateCommand extends AbstractQuizCommand {
         }
 
         fillPage(request, quizService);
-        request.setAttribute(QUIZ, quizForm);
+        request.setAttribute(QUIZ_FORM, quizForm);
         request.setAttribute(QUIZ_NAME_REGEX, QUIZ_NAME_REGEX);
         return PATH.TUTOR_QUIZZES;
     }

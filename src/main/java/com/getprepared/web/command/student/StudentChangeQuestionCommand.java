@@ -34,11 +34,6 @@ public class StudentChangeQuestionCommand implements Command {
     @Override
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 
-        if (request.getSession().getAttribute(SESSION_ATTRIBUTE.TEST) == null) {
-            response.sendError(SC_NOT_FOUND);
-            return REDIRECT;
-        }
-
         request.setAttribute(TITLE, messages.getMessage(TEST, request.getLocale()));
 
         @SuppressWarnings("unchecked")

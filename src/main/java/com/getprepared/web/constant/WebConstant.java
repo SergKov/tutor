@@ -78,6 +78,8 @@ public final class WebConstant {
 
         public static final String QUIZ = "quiz";
 
+        public static final String QUIZ_FORM = "quizForm";
+
         public static final String QUESTION = "question";
 
         public static final String TEST_QUESTION = "testQuestion";
@@ -91,6 +93,8 @@ public final class WebConstant {
         public static final String ANSWER_TYPES = "answerTypes";
 
         public static final String RESULTS = "results";
+
+        public static final String LANGUAGE = "language";
     }
 
     public static final class SESSION_ATTRIBUTE {
@@ -105,10 +109,12 @@ public final class WebConstant {
 
         public static final String TEST = "test";
 
+        public static final String LANGUAGE = "language";
+
         public static final String MARK = "mark";
 
-        public static final String QUIZZES_CURRENT_PAGE = "quizzesCurrentPage";
+        public static final String CURRENT_PAGE = "currentPage";
 
-        public static final String QUIZZES_SHOW_ELEMENTS = "quizzesShowElements";
+        public static final String SHOW_ELEMENTS = "showElements";
     }
 }

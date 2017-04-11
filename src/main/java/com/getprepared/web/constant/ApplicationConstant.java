@@ -120,5 +120,7 @@ public final class ApplicationConstant {
         public static final String TUTOR_QUESTION_ADD = "questionAdd";
 
         public static final String SIGN_UP = "signUp";
+
+        public static final String LANGUAGE = "language";
     }
 }

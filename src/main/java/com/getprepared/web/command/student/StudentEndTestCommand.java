@@ -50,8 +50,9 @@ public class StudentEndTestCommand implements Command {
         try {
             final Quiz quiz = quizService.findById(id);
             final User user = (User) request.getSession().getAttribute(SESSION_ATTRIBUTE.STUDENT);
-            questionService.endTest(quiz.getId(), user.getId(), test);
+            final double mark = questionService.endTest(quiz.getId(), user.getId(), test);
             request.getSession().removeAttribute(SESSION_ATTRIBUTE.TEST);
+            request.getSession().setAttribute(SESSION_ATTRIBUTE.MARK, mark);
             response.sendRedirect(LINK.STUDENT_RESULT);
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
