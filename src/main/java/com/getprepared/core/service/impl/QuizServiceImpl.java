@@ -17,6 +17,7 @@ import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.User;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -27,6 +28,8 @@ import static org.apache.commons.collections4.CollectionUtils.isEmpty;
  */
 @Service("quizService")
 public class QuizServiceImpl extends AbstractService implements QuizService {
+
+    private static final Logger LOG = Logger.getLogger(QuizServiceImpl.class);
 
     @Inject
     private QuizDao quizDao;
@@ -119,7 +122,8 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             final User user = userService.findById(quiz.getUser().getId());
             quiz.setUser(user);
-        } catch (final EntityNotFoundException e) {  /* ignore, unreal situation */
+        } catch (final EntityNotFoundException e) {
+            LOG.error(e.getMessage(), e);
         }
     }
 }

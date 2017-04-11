@@ -13,6 +13,7 @@ import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ import java.util.List;
  */
 @Service("resultService")
 public class ResultServiceImpl extends AbstractService implements ResultService {
+
+    private static final Logger LOG = Logger.getLogger(ResultServiceImpl.class);
 
     @Inject
     private ResultDao resultDao;
@@ -55,7 +58,8 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
 
                 final Quiz quiz = quizService.findById(result.getQuiz().getId());
                 result.setQuiz(quiz);
-            } catch (final EntityNotFoundException e) { /* ignore, unreal situation */
+            } catch (final EntityNotFoundException e) {
+                LOG.error(e.getMessage(), e);
             }
         }
     }
