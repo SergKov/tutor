@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<c:url value="/student" var="studentHomePageHref"/>
 <c:url value="/sign-out" var="signOutHref"/>
 <c:url value="/student/update-password" var="studentUpdatePasswordHref"/>
 <c:url value="/student/results" var="studentResultsHref"/>
@@ -30,9 +31,15 @@
 
     <c:if test="${student ne null}">
         <div class="dropdown header-dropdown">
-            <button class="btn btn-primary dropdown-toggle text-left" type="button" data-toggle="dropdown">${student.name}
+            <button class="btn btn-primary dropdown-toggle text-left" type="button"
+                    data-toggle="dropdown">${student.name}
                 <span class="caret"></span></button>
             <ul class="dropdown-menu">
+                <li>
+                    <a href="${studentHomePageHref}">
+                        <fmt:message key="homePage.all.quizzes"/>
+                    </a>
+                </li>
                 <li>
                     <a href="${studentUpdatePasswordHref}">
                         <fmt:message key="updatePassword.title"/>

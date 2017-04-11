@@ -8,6 +8,7 @@
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url value="/tutor/quizzes/questions/add" var="addQuestionAction"/>
@@ -35,13 +36,13 @@
                     <c:when test="${empty errorMsgs['text']}">
                         <div class="form-group">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required><c:out value="${question.text}" escapeXml="true"/></textarea>
+                                      required>${fn:escapeXml(question.text)}</textarea>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="form-group has-error has-feedback">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required><c:out value="${question.text}" escapeXml="true"/></textarea>
+                                      required>${fn:escapeXml(question.text)}</textarea>
 
                             <div class="col-xs-12 center">
                                 <p class="text-danger">${errorMsgs['text']}</p>
@@ -56,7 +57,7 @@
                     <span><fmt:message key="addQuestion.answer"/></span>
                 </div>
                 <div class="col-xs-1 col-xs-offset-2">
-                    <span><fmt:message key="addQuestion.type"/> </span>
+                    <span><fmt:message key="addQuestion.type"/></span>
                 </div>
             </div>
 
@@ -64,7 +65,11 @@
                 <div class="answer clearfix">
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="answer" name="answerText[]"
-                               value="<c:out value="" escapeXml="true"/>" required/>
+                               value="<c:out value="" escapeXml="false"/>" required/>
+
+                        <div class="color-xs-12 center">
+                            <p class="text-danger">${errorMsgs['answersText']}</p>
+                        </div>
                     </div>
 
                     <div class="col-xs-2 col-xs-offset-2">
@@ -75,6 +80,10 @@
                                 </option>
                             </c:forEach>
                         </select>
+
+                        <div class="color-xs-12 center">
+                            <p class="text-danger">${errorMsgs['answersType']}</p>
+                        </div>
                     </div>
                 </div>
             </div>
