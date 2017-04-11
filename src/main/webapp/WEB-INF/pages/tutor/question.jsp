@@ -25,7 +25,7 @@
         <div class="row">
             <div class="form-group">
                 <textarea class="form-control text-border" rows="3" id="text" disabled>
-                        ${question.text}
+                        <c:out value="${question.text}"/>
                 </textarea>
             </div>
         </div>
@@ -43,7 +43,7 @@
         <c:forEach items="${question.answers}" var="answer">
             <div class="row">
                 <div class="col-xs-8">
-                    <input class="form-control" value="${answer.text}" readonly/>
+                    <input class="form-control" value="<c:out value="${answer.text}"/>" readonly/>
                 </div>
 
                 <div class="col-xs-2 col-xs-offset-2">

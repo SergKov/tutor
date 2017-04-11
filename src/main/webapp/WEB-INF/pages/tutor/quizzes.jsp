@@ -45,7 +45,7 @@
                                                 <input id="${quizNameId}" type="text"
                                                        class="form-control js-input-source"
                                                        name="quiz-name"
-                                                       value="<c:out value="${quiz.name}" escapeXml="true"/>"/>
+                                                       value="<c:out value="${quiz.name}"/>"/>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
@@ -53,7 +53,7 @@
                                                 <input id="${quizNameId}" type="text"
                                                        class="form-control js-input-source"
                                                        name="quiz-name"
-                                                       value="<c:out value="${quizName}" escapeXml="true"/>"/>
+                                                       value="<c:out value="${quizName}"/>"/>
                                             </div>
 
                                             <div class="col-xs-12 center">
@@ -65,7 +65,7 @@
                                 <c:otherwise>
                                     <div class="form-group">
                                         <input id="${quizNameId}" type="text" class="form-control"
-                                               name="quiz-name" value="<c:out value="${quiz.name}" escapeXml="true"/>"
+                                               name="quiz-name" value="<c:out value="${quiz.name}"/>"
                                                readonly="readonly">
                                     </div>
                                 </c:otherwise>

@@ -46,10 +46,10 @@
                         <c:forEach items="${quizzes}" var="quiz">
                             <tr>
                                 <td>
-                                        ${quiz.name}
+                                        <c:out value="${quiz.name}"/>
                                 </td>
                                 <td>
-                                        ${quiz.user.name}
+                                        <c:out value="${quiz.user.name}"/>
                                 </td>
                                 <td>
                                     <div class="radio">

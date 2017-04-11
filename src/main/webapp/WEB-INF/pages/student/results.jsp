@@ -37,16 +37,16 @@
                     <c:forEach items="${results}" var="result">
                         <tr>
                             <td>
-                                    ${result.quiz.name}
+                                    <c:out value="${result.quiz.name}"/>
                             </td>
                             <td>
-                                    ${result.quiz.user.name}
+                                    <c:out value="${result.quiz.user.name}"/>
                             </td>
                             <td>
-                                    ${result.mark}
+                                    <c:out value="${result.mark}"/>
                             </td>
                             <td>
-                                    ${result.creationDateTime}
+                                    <c:out value="${result.creationDateTime}"/>
                             </td>
                         </tr>
                     </c:forEach>

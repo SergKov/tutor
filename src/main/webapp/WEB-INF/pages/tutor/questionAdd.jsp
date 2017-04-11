@@ -36,13 +36,13 @@
                     <c:when test="${empty errorMsgs['text']}">
                         <div class="form-group">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required>${fn:escapeXml(question.text)}</textarea>
+                                      required><c:out value="${question.text}"/></textarea>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="form-group has-error has-feedback">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required>${fn:escapeXml(question.text)}</textarea>
+                                      required><c:out value="${question.text}"/></textarea>
 
                             <div class="col-xs-12 center">
                                 <p class="text-danger">${errorMsgs['text']}</p>
@@ -65,7 +65,7 @@
                 <div class="answer clearfix">
                     <div class="col-xs-8">
                         <input type="text" class="form-control" id="answer" name="answerText[]"
-                               value="<c:out value="" escapeXml="false"/>" required/>
+                               value="<c:out value=""/>" required/>
 
                         <div class="color-xs-12 center">
                             <p class="text-danger">${errorMsgs['answersText']}</p>

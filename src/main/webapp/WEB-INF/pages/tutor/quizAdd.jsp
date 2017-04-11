@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
-                                       name="quiz-name" value="<c:out value="${quiz.name}" escapeXml="true"/>"
+                                       name="quiz-name" value="<c:out value="${quiz.name}"/>"
                                        placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>
                             <div class="col-xs-3">

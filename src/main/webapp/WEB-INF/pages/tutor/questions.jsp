@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col-xs-6 col-xs-offset-2">
                             <c:set var="shortText" value="${fn:substring(question.text, 0, 50)}"/>
-                                ${shortText}
+                                <c:out value="${shortText}"/>
                         </div>
 
                         <div class="col-xs-1">
