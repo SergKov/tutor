@@ -19,10 +19,16 @@
                     <thead>
                     <tr>
                         <th>
-                            <fmt:message key="homePage.quiz"/>
+                            <fmt:message key="results.quiz.name"/>
                         </th>
                         <th>
-                            <fmt:message key="homePage.author"/>
+                            <fmt:message key="results.quiz.author"/>
+                        </th>
+                        <th>
+                            <fmt:message key="results.mark"/>
+                        </th>
+                        <th>
+                            <fmt:message key="results.date"/>
                         </th>
                     </tr>
                     </thead>
@@ -30,6 +36,12 @@
                     <tbody>
                     <c:forEach items="${results}" var="result">
                         <tr>
+                            <td>
+                                    ${result.quiz.name}
+                            </td>
+                            <td>
+                                    ${result.user.name}
+                            </td>
                             <td>
                                     ${result.mark}
                             </td>

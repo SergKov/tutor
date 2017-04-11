@@ -39,7 +39,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     @Override
     @Transactional
     public List<Result> findByUserId(final Long id, final PageableData page) {
-        page.setNumberOfElements(resultDao.countFoundRows());
+        page.setNumberOfElements(resultDao.countFoundRows(id));
         checkPage(page);
         final List<Result> results = resultDao.findByUserId(id, page);
 
@@ -53,7 +53,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
                 final User user = userService.findById(result.getId());
                 result.setUser(user);
 
-                final Quiz quiz = quizService.findById(user.getId());
+                final Quiz quiz = quizService.findById(result.getQuiz().getId());
                 result.setQuiz(quiz);
             } catch (final EntityNotFoundException e) { /* ignore, unreal situation */
             }

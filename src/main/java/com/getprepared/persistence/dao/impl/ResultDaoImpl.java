@@ -59,7 +59,7 @@ public class ResultDaoImpl implements ResultDao {
 
     @Override
     public List<Result> findByUserId(final Long id, final PageableData page) {
-        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_BY_ID), USER_ID_KEY,
+        return jdbcTemplate.executeQuery(String.format(prop.getProperty(KEY.FIND_ALL),
                 page.getLimit(), page.getOffset()),
                 ps -> ps.setLong(1, id), new ResultMapper());
     }
@@ -72,8 +72,10 @@ public class ResultDaoImpl implements ResultDao {
     }
 
     @Override
-    public Long countFoundRows() {
-        return jdbcTemplate.executeQuery(prop.getProperty(KEY.COUNT_ALL));
+    public Long countFoundRows(final Long id) {
+        return jdbcTemplate.executeQuery(prop.getProperty(KEY.COUNT_ALL_BY_USER_ID), ps -> {
+            ps.setLong(1, id);
+        });
     }
 
     private static class ResultMapper implements RowMapper<Result> {

@@ -20,5 +20,5 @@ public interface ResultDao {
 
     List<Result> findByQuizId(Long quizId, PageableData page);
 
-    Long countFoundRows();
+    Long countFoundRows(Long id);
 }
