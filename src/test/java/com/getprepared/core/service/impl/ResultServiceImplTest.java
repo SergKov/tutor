@@ -9,11 +9,15 @@ import com.getprepared.persistence.dao.ResultDao;
 import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.getprepared.constant.ServerConstant.ID;
 import static org.mockito.Mockito.*;
@@ -56,10 +60,10 @@ public class ResultServiceImplTest {
         final User user = new User();
         user.setId(ID);
         final PageableData pageableData = new PageableData();
+        final List<Result> results = new ArrayList<>();
+        when(resultDao.findByUserId(ID, pageableData)).thenReturn(results);
         resultService.findByUserId(ID, pageableData);
         verify(resultDao).findByUserId(ID, pageableData);
-        verify(resultDao).countFoundRows();
-//        verify(userService).findById(ID);
-//        verify(quizService).findById(ID);
+        verify(resultDao).countFoundRows(ID);
     }
 }

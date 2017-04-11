@@ -29,8 +29,8 @@ public class ConnectionProviderTest {
     @InjectMocks
     private ConnectionProvider provider = new ConnectionProvider();
 
-    @Test // TODO
     @Ignore
+    @Test // TODO
     public void requireBegin() throws Exception {
         when(threadLocal.get()).thenReturn(notNull(ConnectionCounter.class));
         provider.begin();
@@ -38,12 +38,12 @@ public class ConnectionProviderTest {
         verifyNoMoreInteractions(threadLocal);
     }
 
-    @Test // TODO
-    @Ignore
+    @Test
+    @Ignore // TODO
     public void requireBeginWithValueInThreadLocal() throws Exception {
-//        doReturn(notNull()).when(threadLocal.get());
-//        verify(threadLocal.get(), only()).increment();
-//        verifyNoMoreInteractions(threadLocal);
+        doReturn(notNull(ConnectionCounter.class)).when(threadLocal.get());
+        verify(threadLocal.get(), only()).increment();
+        verifyNoMoreInteractions(threadLocal);
     }
 //
 //    @Test

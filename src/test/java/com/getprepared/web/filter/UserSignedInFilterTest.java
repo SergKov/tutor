@@ -65,10 +65,10 @@ public class UserSignedInFilterTest {
     }
 
     @Test
-    @Ignore // TODO
-    public void requireNoInteractionsDoFilteWithNoSession() throws Exception {
+    public void requireNoInteractionsDoFilterWithNoSession() throws Exception {
         when(request.getSession(false)).thenReturn(null);
         filter.doFilter(request, response, chain);
-        verify(response, only()).sendRedirect(HOME_PAGE);
+        verify(chain, only()).doFilter(request, response);
+        verifyNoMoreInteractions(chain);
     }
 }
