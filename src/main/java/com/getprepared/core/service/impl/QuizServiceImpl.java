@@ -119,7 +119,7 @@ public class QuizServiceImpl extends AbstractService implements QuizService {
         try {
             final User user = userService.findById(quiz.getUser().getId());
             quiz.setUser(user);
-        } catch (final EntityNotFoundException e) {  /* ignore, unreal situation */  // TODO
+        } catch (final EntityNotFoundException e) {  /* ignore, unreal situation */
         }
     }
 }
