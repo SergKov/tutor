@@ -35,13 +35,13 @@
                     <c:when test="${empty errorMsgs['text']}">
                         <div class="form-group">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required><c:out value="${question.text}"/></textarea>
+                                      required><c:out value="${question.text}" escapeXml="true"/></textarea>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <div class="form-group has-error has-feedback">
                             <textarea class="form-control text-border" rows="3" id="${text}" name="questionText"
-                                      required><c:out value="${question.text}"/></textarea> // TODO escape xml
+                                      required><c:out value="${question.text}" escapeXml="true"/></textarea>
 
                             <div class="col-xs-12 center">
                                 <p class="text-danger">${errorMsgs['text']}</p>
@@ -79,8 +79,10 @@
             </div>
 
             <div class="answers-manipulate">
-                <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px" class="answers-manipulate__elem"/>
-                <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px" class="answers-manipulate__elem"/>
+                <img id="plusAnswer" src="${plusAnswerIcon}" width="25px" height="25px"
+                     class="answers-manipulate__elem"/>
+                <img id="minusAnswer" src="${minusAnswerIcon}" width="25px" height="25px"
+                     class="answers-manipulate__elem"/>
 
                 <button type="submit" class="btn btn-primary btn-md answers-manipulate__elem">
                     <fmt:message key="addQuestion.add"/>

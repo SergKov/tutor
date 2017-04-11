@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
-                                       name="quiz-name"
+                                       name="quiz-name" value="<c:out value="" escapeXml="true"/>"
                                        placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>
                             <div class="col-xs-3">
@@ -44,7 +44,7 @@
                         <div class="form-group has-error has-feedback">
                             <div class="col-xs-3">
                                 <input type="text" class="form-control" id="${quizId}"
-                                       value="${quiz.name}"
+                                       value="<c:out value="${quiz.name}" escapeXml="true"/>"
                                        name="quiz-name"
                                        placeholder="<fmt:message key="addQuiz.placeholder"/>" required>
                             </div>

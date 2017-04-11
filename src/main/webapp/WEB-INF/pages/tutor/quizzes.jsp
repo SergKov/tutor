@@ -44,14 +44,16 @@
                                             <div class="form-group">
                                                 <input id="${quizNameId}" type="text"
                                                        class="form-control js-input-source"
-                                                       name="quiz-name" value="<c:out value="${quiz.name}"/>"/>
+                                                       name="quiz-name"
+                                                       value="<c:out value="${quiz.name}" escapeXml="true"/>"/>
                                             </div>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group">
                                                 <input id="${quizNameId}" type="text"
                                                        class="form-control js-input-source"
-                                                       name="quiz-name" value="<c:out value="${quizName}"/>"/>
+                                                       name="quiz-name"
+                                                       value="<c:out value="${quizName}" escapeXml="true"/>"/>
                                             </div>
 
                                             <div class="col-xs-12 center">
@@ -63,7 +65,7 @@
                                 <c:otherwise>
                                     <div class="form-group">
                                         <input id="${quizNameId}" type="text" class="form-control"
-                                               name="quiz-name" value="<c:out value="${quiz.name}"/>"
+                                               name="quiz-name" value="<c:out value="${quiz.name}" escapeXml="true"/>"
                                                readonly="readonly">
                                     </div>
                                 </c:otherwise>
