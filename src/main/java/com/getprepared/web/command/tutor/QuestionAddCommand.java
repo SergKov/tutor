@@ -73,7 +73,7 @@ public class QuestionAddCommand extends AbstractQuestionAddCommand {
             answersType = request.getParameterValues(INPUT.ANSWER_TYPE);
 
             if (answersText.length != answersType.length) {
-                request.setAttribute(ERROR_MSG, FILL_NOT_ALL_FIELDS);
+                request.setAttribute(ERROR_MSG, messages.getMessage(FILL_NOT_ALL_FIELDS, request.getLocale()));
             } else {
                 questionAddForm.setAnswersText(answersText);
                 questionAddForm.setAnswersType(answersType);

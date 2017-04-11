@@ -63,7 +63,8 @@
             <div class="row answers">
                 <div class="answer clearfix">
                     <div class="col-xs-8">
-                        <input type="text" class="form-control" id="answer" name="answerText[]" required/>
+                        <input type="text" class="form-control" id="answer" name="answerText[]"
+                               value="<c:out value="" escapeXml="true"/>" required/>
                     </div>
 
                     <div class="col-xs-2 col-xs-offset-2">
