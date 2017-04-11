@@ -93,7 +93,7 @@
 
     <filter>
         <filter-name>StudentTestFilter</filter-name>
-        <filter-class>com.getprepared.web.filter.StudentTestFilter</filter-class>
+        <filter-class>com.getprepared.web.filter.StudentInTestFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -101,6 +101,7 @@
         <url-pattern>/student</url-pattern>
         <url-pattern>/student/update-password</url-pattern>
         <url-pattern>/student/test/result</url-pattern>
+        <url-pattern>/tutor/*</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>

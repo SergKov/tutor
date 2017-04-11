@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>${title}</title>
+    <title><fmt:message key="${title}"/></title>
     <link rel="icon" href="/resource/img/title.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -56,6 +56,19 @@
                     </a>
                 </li>
             </ul>
+        </div>
+        <div>
+            <form method="POST">
+                <input type="hidden" name="command" value="language">
+
+                <button type="submit" name="language" value="en">
+                    en
+                </button>
+
+                <button type="submit" name="language" value="ru">
+                    ru
+                </button>
+            </form>
         </div>
     </c:if>
 
