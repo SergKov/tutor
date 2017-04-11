@@ -50,7 +50,7 @@ public class ResultServiceImpl extends AbstractService implements ResultService 
     private void initResult(final List<Result> results) {
         for (final Result result : results) {
             try {
-                final User user = userService.findById(result.getId());
+                final User user = userService.findById(result.getUser().getId());
                 result.setUser(user);
 
                 final Quiz quiz = quizService.findById(result.getQuiz().getId());

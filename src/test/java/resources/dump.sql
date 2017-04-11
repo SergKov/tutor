@@ -19,7 +19,7 @@ CREATE TABLE Quiz (
   user_id INT NOT NULL,
   name VARCHAR(20) NOT NULL,
   active BOOLEAN DEFAULT FALSE,
-  CONSTRAINT UC_Quiz UNIQUE (user_id, name),
+  UNIQUE KEY `name_user` (user_id, name),
   FOREIGN KEY (user_id) REFERENCES `User`(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
 );

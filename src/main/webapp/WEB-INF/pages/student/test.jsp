@@ -21,7 +21,7 @@
             <input type="hidden" name="question-number" value="${currentQuestion}"/>
 
             <div class="text-border question-block" id="test">
-                    ${testQuestion.question.text}
+                    <c:out value="${testQuestion.question.text}"/>
             </div>
 
             <div class="answer-block clearfix">
@@ -29,11 +29,10 @@
                     <label class="answer-single">
                         <input type="checkbox" value="${answer.id}" name="chosenAnswersId[]" class="answer-single__input"
                                <c:if test="${fn:contains(testQuestion.answers, answer)}">checked</c:if>
-                        > <span class="answer-text">${answer.text}</span>
+                        > <span class="answer-text"><c:out value="${answer.text}"/> </span>
                     </label>
                 </c:forEach>
             </div>
-
         </form>
 
         <div class="question-form__btn-block clearfix">
