@@ -1,6 +1,7 @@
 package com.getprepared.web.command;
 
 import com.getprepared.persistence.database.pagination.PageableData;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +17,8 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
  */
 public abstract class AbstractPageableCommand implements Command {
 
+    private static final Logger LOG = Logger.getLogger(AbstractPageableCommand.class);
+
     protected PageableData doPageable(final HttpServletRequest request, final String type) {
 
         final String currentPageParameter = request.getParameter(INPUT.CURRENT_PAGE);
@@ -23,7 +26,9 @@ public abstract class AbstractPageableCommand implements Command {
 
         Long currentPage;
         if (isNumeric(currentPageParameter)) {
-            currentPage = Long.parseLong(currentPageParameter);
+            currentPage = parseLong(currentPageParameter) != 0 ?
+                    Long.valueOf(currentPageParameter)
+                    : DEFAULT_PAGE_NUMBER;
         } else {
             currentPage = (Long) request.getSession().getAttribute(type + SESSION_ATTRIBUTE.CURRENT_PAGE);
             if (currentPage == null) {
@@ -33,7 +38,10 @@ public abstract class AbstractPageableCommand implements Command {
 
         Long showElements;
         if (isNumeric(showElementsParameter)) {
-            showElements = Long.parseLong(showElementsParameter);
+            showElements = parseLong(showElementsParameter) != 0 ?
+                    Long.valueOf(showElementsParameter)
+                    : DEFAULT_NUMBER_OF_ELEMENTS;
+
             currentPage = DEFAULT_PAGE_NUMBER;
         } else {
             showElements = (Long) request.getSession().getAttribute(type + SESSION_ATTRIBUTE.SHOW_ELEMENTS);
@@ -54,4 +62,12 @@ public abstract class AbstractPageableCommand implements Command {
         return pagination;
     }
 
+    private Long parseLong(final String number) {
+        try {
+            return Long.valueOf(number);
+        } catch (final NumberFormatException e) {
+            LOG.error(e.getMessage(), e);
+            return 0L;
+        }
+    }
 }
