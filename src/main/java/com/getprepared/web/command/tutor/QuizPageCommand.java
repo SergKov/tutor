@@ -1,7 +1,6 @@
 package com.getprepared.web.command.tutor;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuizService;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;

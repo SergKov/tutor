@@ -54,10 +54,10 @@ public class StudentSignInCommand extends AbstractSignInCommand {
             }
         } catch (final EntityNotFoundException e) {
             LOG.warn(e.getMessage(), e);
-            request.setAttribute(REQUEST_ATTRIBUTE.EMAIL, email);
             request.setAttribute(ERROR_MSG, messages.getMessage(USER_NOT_FOUND, request.getLocale()));
         }
 
+        request.setAttribute(REQUEST_ATTRIBUTE.EMAIL, email);
         fillPage(request);
         return PATH.STUDENT_SIGN_IN;
     }

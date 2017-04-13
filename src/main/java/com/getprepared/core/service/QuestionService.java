@@ -4,7 +4,6 @@ import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.exception.QuizTerminatedException;
 import com.getprepared.persistence.domain.Question;
-import com.getprepared.persistence.domain.Result;
 import com.getprepared.web.dto.TestQuestion;
 
 import java.util.List;

@@ -2,9 +2,9 @@ package com.getprepared.persistence.database;
 
 import com.getprepared.annotation.Component;
 import com.getprepared.annotation.Inject;
-import com.getprepared.persistence.exception.TransactionalException;
 import com.getprepared.core.util.ConnectionUtils;
 import com.getprepared.core.util.DataSourceUtils;
+import com.getprepared.persistence.exception.TransactionalException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

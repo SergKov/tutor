@@ -5,7 +5,6 @@ import com.getprepared.core.annotation.Service;
 import com.getprepared.core.annotation.Transactional;
 import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
-import com.getprepared.core.service.ResultService;
 import com.getprepared.core.service.UserService;
 import com.getprepared.core.util.PasswordEncoder;
 import com.getprepared.persistence.dao.UserDao;

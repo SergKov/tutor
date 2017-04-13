@@ -1,18 +1,17 @@
 package com.getprepared.context;
 
 import com.getprepared.annotation.Component;
-import com.getprepared.context.postprocess.annotation.PostProcessor;
 import com.getprepared.context.config.annotation.Bean;
 import com.getprepared.context.config.annotation.Configuration;
 import com.getprepared.context.postprocess.BeanPostProcessor;
 import com.getprepared.context.postprocess.Ordered;
+import com.getprepared.context.postprocess.annotation.PostProcessor;
 import com.getprepared.core.annotation.Service;
 import com.getprepared.core.util.PackageScanner;
 import com.getprepared.core.util.PropertyUtils;
 import com.getprepared.core.util.ReflectionUtils;
 import com.getprepared.persistence.annotation.Repository;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
 

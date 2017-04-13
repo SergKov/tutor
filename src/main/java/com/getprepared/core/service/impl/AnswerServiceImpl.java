@@ -9,7 +9,6 @@ import com.getprepared.persistence.dao.AnswerDao;
 import com.getprepared.persistence.domain.Answer;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by koval on 14.01.2017.

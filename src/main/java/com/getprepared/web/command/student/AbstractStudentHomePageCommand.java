@@ -8,11 +8,10 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.command.AbstractPageableCommand;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.List;
 
-import static com.getprepared.web.constant.PropertyConstant.*;
-import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 
 /**

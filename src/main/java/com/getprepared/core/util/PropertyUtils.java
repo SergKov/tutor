@@ -7,10 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.COMPONENT_FILE;
-import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.CONFIGURATION_FILE;
-import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.POST_PROCESS_FILE;
-import static com.getprepared.persistence.constant.PropertyConstant.FILES_NAME;
+import static com.getprepared.context.constant.PropertyConstant.FILES_NAME.*;
 import static com.getprepared.persistence.constant.PropertyConstant.FILES_NAME.*;
 import static com.getprepared.web.constant.PropertyConstant.FILES_NAME.CONTROLLER_FILE;
 

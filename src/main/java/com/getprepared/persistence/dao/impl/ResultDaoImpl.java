@@ -13,7 +13,6 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
 
-import java.security.Key;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;

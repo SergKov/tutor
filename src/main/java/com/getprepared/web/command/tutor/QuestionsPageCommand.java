@@ -8,7 +8,6 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Question;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.constant.PropertyConstant;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
 
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.getprepared.web.constant.ApplicationConstant.*;
-import static com.getprepared.web.constant.PropertyConstant.*;
+import static com.getprepared.web.constant.PropertyConstant.KEY;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.QUESTION;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;

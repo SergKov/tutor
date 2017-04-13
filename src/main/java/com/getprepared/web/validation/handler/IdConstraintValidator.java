@@ -15,6 +15,7 @@ public class IdConstraintValidator implements ConstraintValidator<Id, String> {
         return isNumeric(item) && isInRange(item);
     }
 
+    @SuppressWarnings("all")
     private boolean isInRange(final String item) {
         try {
             Long.valueOf(item);

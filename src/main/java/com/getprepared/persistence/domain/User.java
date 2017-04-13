@@ -1,7 +1,5 @@
 package com.getprepared.persistence.domain;
 
-import java.util.List;
-
 /**
  * Created by koval on 02.01.2017.
  */

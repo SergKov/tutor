@@ -8,7 +8,6 @@ import com.getprepared.persistence.annotation.Repository;
 import com.getprepared.persistence.dao.QuizDao;
 import com.getprepared.persistence.database.pagination.PageableData;
 import com.getprepared.persistence.database.template.JdbcTemplate;
-import com.getprepared.persistence.database.template.PreparedStatementSetter;
 import com.getprepared.persistence.database.template.RowMapper;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.persistence.domain.User;

@@ -1,10 +1,6 @@
 package com.getprepared.web.form;
 
 import com.getprepared.web.validation.annotation.Length;
-import com.getprepared.web.validation.annotation.NotEmpty;
-import com.getprepared.web.validation.annotation.Pattern;
-
-import static com.getprepared.web.constant.ValidationConstant.REGEX;
 
 /**
  * Created by koval on 08.03.2017.

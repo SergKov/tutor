@@ -1,13 +1,10 @@
 package com.getprepared.web.command.student;
 
 import com.getprepared.annotation.Inject;
-import com.getprepared.core.exception.EntityExistsException;
 import com.getprepared.core.exception.EntityNotFoundException;
 import com.getprepared.core.service.QuestionService;
 import com.getprepared.core.service.QuizService;
-import com.getprepared.core.service.ResultService;
 import com.getprepared.persistence.domain.Quiz;
-import com.getprepared.persistence.domain.Result;
 import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
@@ -18,7 +15,6 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.getprepared.web.constant.ApplicationConstant.*;

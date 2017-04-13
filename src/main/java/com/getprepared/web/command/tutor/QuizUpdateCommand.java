@@ -10,8 +10,6 @@ import com.getprepared.core.util.Messages;
 import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
-import com.getprepared.web.command.Command;
-import com.getprepared.web.constant.ValidationConstant;
 import com.getprepared.web.form.QuizUpdateForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -23,7 +21,6 @@ import java.util.Map;
 
 import static com.getprepared.web.constant.ApplicationConstant.*;
 import static com.getprepared.web.constant.PropertyConstant.KEY.QUIZ_EXISTS;
-import static com.getprepared.web.constant.ValidationConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
