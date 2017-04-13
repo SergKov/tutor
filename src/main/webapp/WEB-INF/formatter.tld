@@ -10,7 +10,7 @@
     <uri>http://example.com/functions</uri>
 
     <function>
-        <name>matches</name>
+        <name>format</name>
         <function-class>com.getprepared.web.tag.DateTimeUtils</function-class>
         <function-signature>java.lang.String formatLocalDateTime(java.time.LocalDateTime, java.lang.String)</function-signature>
     </function>

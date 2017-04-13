@@ -50,7 +50,7 @@
                                 <c:out value="${result.mark}"/>
                             </td>
                             <td>
-                                <c:out value="${format:matches(result.creationDateTime, 'dd-MM-yyyy HH:mm:ss')}"/>
+                                <c:out value="${format:format(result.creationDateTime, 'dd-MM-yyyy HH:mm:ss')}"/>
                             </td>
                         </tr>
                     </c:forEach>
