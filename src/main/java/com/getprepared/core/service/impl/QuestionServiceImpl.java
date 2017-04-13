@@ -119,11 +119,11 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
         }).sum();
 
         final double mark = (double) countCorrectAnswers / test.size() * 100;
-        saveResult(userId, quizId, test, mark);
+        saveResult(userId, quizId, mark);
         return mark;
     }
 
-    private void saveResult(final Long userId, final Long quizId, final List<TestQuestion> test, final double mark) {
+    private void saveResult(final Long userId, final Long quizId, final double mark) {
         try {
             final Quiz quiz = quizService.findById(quizId);
             final Result result = new Result();

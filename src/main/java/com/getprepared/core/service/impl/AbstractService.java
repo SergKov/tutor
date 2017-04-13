@@ -19,10 +19,16 @@ public abstract class AbstractService {
     }
 
     protected void checkPage(final PageableData page) {
-        if (page.getShowElements() < 0 || page.getCurrentPage() < 0 ||
-                page.getNumberOfElements() < (page.getCurrentPage() - 1) * page.getShowElements()) {
+        if (checkSize(page)) {
             page.setCurrentPage(DEFAULT_PAGE_NUMBER);
             page.setNumberOfElements(DEFAULT_NUMBER_OF_ELEMENTS);
         }
+    }
+
+    private boolean checkSize(final PageableData page) {
+        return page.getShowElements() < 0 ||
+                page.getCurrentPage() < 0 ||
+                (page.getCurrentPage() - 1) * page.getShowElements() < 0 ||
+                page.getNumberOfElements() < (page.getCurrentPage() - 1) * page.getShowElements();
     }
 }
