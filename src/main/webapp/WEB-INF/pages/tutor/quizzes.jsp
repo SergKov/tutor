@@ -32,8 +32,7 @@
             <c:when test="${not empty quizzes}">
                 <c:forEach items="${quizzes}" var="quiz">
                     <c:set var="isNotActive" value="${quiz.active eq null or not quiz.active}"/>
-                    <c:set var="emtyErrorMsgs" value="${empty errorMsgs['name']}"/>
-                    <c:set var="quizName" value="${quizForm ne null ? quizForm.name : quiz.name}"/>
+                    <c:set var="emtyErrorMsgs" value="${empty errorMsgs['name'] and empty errorMsg}"/>
 
                     <div class="row quizzes-page-block js-quiz-block">
                         <div class="col-xs-5 col-xs-offset-2">
@@ -49,16 +48,28 @@
                                             </div>
                                         </c:when>
                                         <c:otherwise>
-                                            <div class="form-group">
-                                                <input id="${quizNameId}" type="text"
-                                                       class="form-control js-input-source"
-                                                       name="quiz-name"
-                                                       value="<c:out value="${quizName}"/>"/>
-                                            </div>
+                                            <c:choose>
+                                                <c:when test="${quizForm.id ne quiz.id}">
+                                                    <div class="form-group">
+                                                        <input id="${quizNameId}" type="text"
+                                                               class="form-control js-input-source"
+                                                               name="quiz-name"
+                                                               value="<c:out value="${quiz.name}"/>"/>
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="form-group has-error has-feedback">
+                                                        <input id="${quizNameId}" type="text"
+                                                               class="form-control js-input-source"
+                                                               name="quiz-name"
+                                                               value="<c:out value="${quizForm.name}"/>"/>
+                                                    </div>
 
-                                            <div class="col-xs-12 center">
-                                                <p class="text-danger">${errorMsgs['name']}</p>
-                                            </div>
+                                                    <div class="col-xs-12 center">
+                                                        <p class="text-danger">${errorMsgs['name']}</p>
+                                                    </div>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>

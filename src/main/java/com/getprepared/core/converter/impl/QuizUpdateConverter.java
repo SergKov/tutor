@@ -14,6 +14,7 @@ public class QuizUpdateConverter implements Converter<QuizUpdateForm, Quiz> {
     @Override
     public Quiz convert(final QuizUpdateForm form) {
         final Quiz quiz = new Quiz();
+        quiz.setId(Long.valueOf(form.getId()));
         quiz.setName(form.getName());
         return quiz;
     }

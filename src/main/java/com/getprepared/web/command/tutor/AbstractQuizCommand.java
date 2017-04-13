@@ -21,7 +21,7 @@ import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
  */
 public abstract class AbstractQuizCommand extends AbstractPageableCommand {
 
-    public static final String QUIZZES = "quizzes";
+    private static final String QUIZZES = "quizzes";
 
     @Inject
     private Messages messages;

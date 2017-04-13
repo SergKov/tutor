@@ -1,5 +1,6 @@
 package com.getprepared.web.form;
 
+import com.getprepared.web.validation.annotation.Id;
 import com.getprepared.web.validation.annotation.NotEmpty;
 
 /**
@@ -8,7 +9,19 @@ import com.getprepared.web.validation.annotation.NotEmpty;
 public class QuizUpdateForm {
 
     @NotEmpty
+    @Id
+    private String id;
+
+    @NotEmpty
     private String name;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -11,6 +11,7 @@ import com.getprepared.persistence.domain.Quiz;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.Command;
+import com.getprepared.web.constant.ValidationConstant;
 import com.getprepared.web.form.QuizUpdateForm;
 import com.getprepared.web.validation.ValidationService;
 import org.apache.log4j.Logger;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 import static com.getprepared.web.constant.ApplicationConstant.*;
 import static com.getprepared.web.constant.PropertyConstant.KEY.QUIZ_EXISTS;
+import static com.getprepared.web.constant.ValidationConstant.*;
 import static com.getprepared.web.constant.WebConstant.INPUT;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.*;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
@@ -52,7 +54,9 @@ public class QuizUpdateCommand extends AbstractQuizCommand {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
         final QuizUpdateForm quizForm = new QuizUpdateForm();
 
+        final String quizId = request.getParameter(INPUT.QUIZ_ID);
         final String quizName = request.getParameter(INPUT.QUIZ_NAME);
+        quizForm.setId(quizId);
         quizForm.setName(quizName);
 
         final Map<String, String> errors = validationService.validate(quizForm);
@@ -61,7 +65,6 @@ public class QuizUpdateCommand extends AbstractQuizCommand {
         } else {
             final Quiz quiz = quizUpdateConverter.convert(quizForm);
             try {
-                quiz.setId(Long.valueOf(request.getParameter(INPUT.QUIZ_ID)));
                 quizService.update(quiz);
                 response.sendRedirect(LINK.TUTOR_QUIZZES);
                 return REDIRECT;
@@ -76,7 +79,6 @@ public class QuizUpdateCommand extends AbstractQuizCommand {
 
         fillPage(request, quizService);
         request.setAttribute(QUIZ_FORM, quizForm);
-        request.setAttribute(QUIZ_NAME_REGEX, QUIZ_NAME_REGEX);
         return PATH.TUTOR_QUIZZES;
     }
 }
