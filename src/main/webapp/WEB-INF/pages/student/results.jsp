@@ -49,7 +49,7 @@
                                     <c:out value="${result.mark}"/>
                             </td>
                             <td>
-                                    <c:out value="${result.creationDateTime}"/>
+                                    <shared:parse_date_time value="${result.creationDateTime}"/>
                             </td>
                         </tr>
                     </c:forEach>

@@ -9,20 +9,16 @@ import com.getprepared.persistence.domain.User;
 import com.getprepared.web.annotation.CommandMapping;
 import com.getprepared.web.annotation.Controller;
 import com.getprepared.web.command.AbstractPageableCommand;
-import com.getprepared.web.constant.WebConstant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.getprepared.web.constant.ApplicationConstant.LINK;
 import static com.getprepared.web.constant.ApplicationConstant.PATH;
 import static com.getprepared.web.constant.PropertyConstant.KEY.ALL_RESULTS;
-import static com.getprepared.web.constant.WebConstant.*;
-import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.PAGINATION;
+import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE;
 import static com.getprepared.web.constant.WebConstant.REQUEST_ATTRIBUTE.TITLE;
 import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 
