@@ -118,7 +118,7 @@ public class QuestionServiceImpl extends AbstractService implements QuestionServ
                     testQuestion.getAnswers().containsAll(correctAnswers) ? 1 : 0;
         }).sum();
 
-        final double mark = countCorrectAnswers / test.size() * 100;
+        final double mark = (double) countCorrectAnswers / test.size() * 100;
         saveResult(userId, quizId, test, mark);
         return mark;
     }
