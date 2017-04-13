@@ -9,6 +9,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shared" tagdir="/WEB-INF/tags/shared" %>
+<%@ taglib uri="/WEB-INF/formatter.tld" prefix="format" %>
 <%@ include file="/WEB-INF/pages/setup/setupMessages.jsp" %>
 
 <c:url var="resultsAction" value="/student/results"/>
@@ -40,16 +41,16 @@
                     <c:forEach items="${results}" var="result">
                         <tr>
                             <td>
-                                    <c:out value="${result.quiz.name}"/>
+                                <c:out value="${result.quiz.name}"/>
                             </td>
                             <td>
-                                    <c:out value="${result.quiz.user.name}"/>
+                                <c:out value="${result.quiz.user.name}"/>
                             </td>
                             <td>
-                                    <c:out value="${result.mark}"/>
+                                <c:out value="${result.mark}"/>
                             </td>
                             <td>
-                                    <shared:parse_date_time value="${result.creationDateTime}"/>
+                                <c:out value="${format:matches(result.creationDateTime, 'dd-MM-yyyy HH:mm:ss')}"/>
                             </td>
                         </tr>
                     </c:forEach>
