@@ -101,7 +101,6 @@
         <url-pattern>/student</url-pattern>
         <url-pattern>/student/update-password</url-pattern>
         <url-pattern>/student/test/result</url-pattern>
-        <url-pattern>/tutor/*</url-pattern>
     </filter-mapping>
 
     <filter>
