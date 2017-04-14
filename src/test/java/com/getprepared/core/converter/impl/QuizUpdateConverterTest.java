@@ -6,7 +6,9 @@ import com.getprepared.web.form.QuizUpdateForm;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static com.getprepared.constant.ServerConstant.ID;
 import static com.getprepared.constant.ServerConstant.NAME;
+import static com.getprepared.constant.ServerConstant.STRING_ID;
 import static org.junit.Assert.*;
 
 /**
@@ -19,13 +21,10 @@ public class QuizUpdateConverterTest {
     @Test
     public void requireConvert() throws Exception {
         final QuizUpdateForm quizUpdateForm = new QuizUpdateForm();
+        quizUpdateForm.setId(STRING_ID);
         quizUpdateForm.setName(NAME);
         final Quiz quiz = converter.convert(quizUpdateForm);
+        Assert.assertEquals(ID, quiz.getId());
         Assert.assertEquals(NAME, quiz.getName());
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void requireConvertWithNull() {
-        converter.convert(null);
     }
 }

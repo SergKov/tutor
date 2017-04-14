@@ -9,6 +9,8 @@ public class ServerConstant {
 
     public static final Long ID = 1L;
 
+    public static final String STRING_ID = "1";
+
     public static final String EMAIL = "test@test.com";
 
     public static final String PASSWORD = "Testing88";
