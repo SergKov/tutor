@@ -13,17 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import static com.getprepared.web.constant.WebConstant.*;
+import static com.getprepared.web.constant.WebConstant.SESSION_ATTRIBUTE;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.when;
 
 /**
- * Created by koval on 11.04.2017.
+ * Created by koval on 14.04.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class StudentTestFilterInTest {
+public class StudentOutTestFilterTest {
 
     @Mock
     private FilterConfig config;
@@ -41,7 +39,7 @@ public class StudentTestFilterInTest {
     private FilterChain chain;
 
     @InjectMocks
-    private final Filter filter = new StudentInTestFilter();
+    private final Filter filter = new StudentOutTestFilter();
 
     @Test
     public void requireNoInteractionsWithFilterConfig() throws Exception {
@@ -51,11 +49,19 @@ public class StudentTestFilterInTest {
     }
 
     @Test
-    public void requireInteractionsDoFilterWithNoSession() throws Exception {
+    public void requireSendErrorWithNoSession() throws Exception {
+        when(request.getSession(false)).thenReturn(null);
+        filter.doFilter(request, response, chain);
+        verify(response, only()).sendError(anyInt());
+        verifyNoMoreInteractions(chain, response, response);
+    }
+
+    @Test
+    public void requireSendErrorWithNoSessionAttribute() throws Exception {
         when(request.getSession(false)).thenReturn(session);
         when(session.getAttribute(SESSION_ATTRIBUTE.TEST)).thenReturn(null);
         filter.doFilter(request, response, chain);
-        verify(chain, only()).doFilter(request, response);
+        verify(response, only()).sendError(anyInt());
         verifyNoMoreInteractions(chain, response, response);
     }
 
@@ -64,7 +70,7 @@ public class StudentTestFilterInTest {
         when(request.getSession(false)).thenReturn(session);
         when(session.getAttribute(SESSION_ATTRIBUTE.TEST)).thenReturn(anyString());
         filter.doFilter(request, response, chain);
-        verify(response, only()).sendRedirect(anyString());
+        verify(chain, only()).doFilter(request, response);
         verifyNoMoreInteractions(chain, response);
     }
 
