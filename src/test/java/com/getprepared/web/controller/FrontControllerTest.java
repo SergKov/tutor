@@ -4,7 +4,6 @@ import com.getprepared.context.ApplicationContext;
 import com.getprepared.context.Registry;
 import com.getprepared.context.WebContext;
 import com.getprepared.web.command.student.StudentSignInCommand;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static com.getprepared.constant.ServerConstant.HOME_PAGE;
-import static com.getprepared.constant.ServerConstant.ID;
-import static com.getprepared.constant.ServerConstant.RANDOM_STRING;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -54,17 +51,18 @@ public class FrontControllerTest {
     private FrontController frontController = new FrontController();
 
     @Test
-    @Ignore // TODO
     public void requireDoGetWithForward() throws Exception {
         PowerMockito.mockStatic(Registry.class);
         PowerMockito.when(Registry.getWebContext()).thenReturn(webContext);
-        when(request.getRequestURI()).thenReturn(anyString());
+        when(request.getRequestURI()).thenReturn(HOME_PAGE);
         when(webContext.getCommand(anyString())).thenReturn(command);
         when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
-        when(command.execute(request, response)).thenReturn(RANDOM_STRING);
-        frontController.doPost(request, response);
+        when(command.execute(request, response)).thenReturn(HOME_PAGE);
+        frontController.doGet(request, response);
+        verify(webContext, only()).getCommand(anyString());
         verify(command, only()).execute(request, response);
         verify(requestDispatcher, only()).forward(request, response);
+        verifyNoMoreInteractions(response, requestDispatcher, webContext);
     }
 
     @Test
@@ -92,17 +90,18 @@ public class FrontControllerTest {
     }
 
     @Test
-    @Ignore // TODO
     public void requireDoPostWithForward() throws Exception {
         PowerMockito.mockStatic(Registry.class);
         PowerMockito.when(Registry.getWebContext()).thenReturn(webContext);
         when(request.getParameter(anyString())).thenReturn(HOME_PAGE);
-        when(webContext.getCommand(HOME_PAGE)).thenReturn(command);
-        when(request.getRequestDispatcher(HOME_PAGE)).thenReturn(requestDispatcher);
-        when(command.execute(request, response)).thenReturn(RANDOM_STRING);
+        when(webContext.getCommand(anyString())).thenReturn(command);
+        when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
+        when(command.execute(request, response)).thenReturn(HOME_PAGE);
         frontController.doPost(request, response);
+        verify(webContext, only()).getCommand(anyString());
         verify(command, only()).execute(request, response);
         verify(requestDispatcher, only()).forward(request, response);
+        verifyNoMoreInteractions(response, requestDispatcher, webContext);
     }
 
     @Test
