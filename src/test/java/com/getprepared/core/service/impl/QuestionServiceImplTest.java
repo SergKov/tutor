@@ -6,10 +6,13 @@ import com.getprepared.core.service.QuestionService;
 import com.getprepared.persistence.dao.QuestionDao;
 import com.getprepared.persistence.domain.Answer;
 import com.getprepared.persistence.domain.Question;
+import com.getprepared.web.dto.TestQuestion;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;

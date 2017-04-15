@@ -16,4 +16,10 @@ public class ServerConstant {
     public static final String PASSWORD = "Testing88";
 
     public static final String NAME = "name";
+
+    public static final String HOME_PAGE = "/";
+
+    public static final String RANDOM_STRING = "random";
+
+    public static final String REDIRECT = "redirect";
 }
