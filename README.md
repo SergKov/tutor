@@ -7,7 +7,7 @@ Technologies
 <li> JSP, JSTL </li>
 <li> JDBC </li>
 <li> MySQL </li>
-<li> Testing : jUnit, Mokito </li>
+<li> Testing : jUnit, Mokito, PowerMock, Hamcrest </li>
 <li> Log4j </li>
 <li> FrontEnd : HTML 5, CSS, Bootstrap, jQuery </li>
 </ul>
