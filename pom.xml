@@ -24,7 +24,7 @@
         <jstl.api.version>1.2</jstl.api.version>
 
         <core.utilities.version>3.0</core.utilities.version>
-        <collection.utilities.version>4.0</collection.utilities.version>
+        <collection.utilities.version>4.1</collection.utilities.version>
         <jbcrypt.version>0.3m</jbcrypt.version>
 
         <log4j.version>1.2.17</log4j.version>
