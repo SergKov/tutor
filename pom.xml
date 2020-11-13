@@ -17,7 +17,7 @@
         <maven.compiler.version>3.6.0</maven.compiler.version>
         <maven.var.plugin.version>3.0.0</maven.var.plugin.version>
 
-        <my.sql.connector.version>6.0.5</my.sql.connector.version>
+        <my.sql.connector.version>8.0.16</my.sql.connector.version>
 
         <servlet.api.version>3.1.0</servlet.api.version>
         <jsp.api.version>2.3.1</jsp.api.version>
