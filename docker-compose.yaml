@@ -1,0 +1,17 @@
+version: "3.2"
+
+services:
+
+  mysql:
+    build:
+       context: .
+       dockerfile: Dockerfile
+    image: local/tutor-mysql:0.1   
+    container_name: tutor-mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: "Tutor"
+      MYSQL_USER: tutor
+      MYSQL_PASSWORD: tutor
