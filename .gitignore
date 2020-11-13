@@ -1,6 +1,10 @@
 ### Java template
 *.class
 
+# Idea Files
+*.iml
+.idea
+
 # Package Files #
 *.jar
 *.war
